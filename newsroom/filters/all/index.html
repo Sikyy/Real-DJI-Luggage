@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights - DJI Luggage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-SemiBold.woff2') format('woff2');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Black.woff2') format('woff2');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --body-bg: #f3f4f6;
+      --yellow: #fedb5b;
+      --text-dark: #333333;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Geist', -apple-system, sans-serif;
+      color: var(--text-dark);
+      background: var(--body-bg);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== HEADER (Dark text variant) ========== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 24px;
+      background: transparent;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      transition: background 0.4s ease, border-color 0.4s ease;
+    }
+    header.scrolled {
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom-color: transparent;
+    }
+    header.scrolled .logo svg { fill: var(--white); }
+    header.scrolled .hamburger span { background: var(--white); }
+    header.scrolled .header-cta { color: var(--white); }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .logo svg {
+      height: 13px;
+      width: auto;
+      fill: var(--black);
+      transition: fill 0.4s ease;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 101;
+      position: relative;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 1.5px;
+      background: var(--black);
+      transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.25s ease, background 0.4s ease;
+      transform-origin: center;
+    }
+    .hamburger.active span:first-child {
+      transform: translateY(4.25px) rotate(45deg);
+    }
+    .hamburger.active span:last-child {
+      transform: translateY(-4.25px) rotate(-45deg);
+    }
+
+    .header-cta {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0;
+      color: var(--black);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: opacity 0.3s, color 0.4s ease;
+    }
+    .header-cta:hover { opacity: 0.6; }
+    /* Adaptive header: transparent, text color follows the section behind it */
+    header.txt-dark .logo svg { fill: var(--black); }
+    header.txt-dark .hamburger span { background: var(--black); }
+    header.txt-dark .header-cta { color: var(--black); }
+    header.txt-light .logo svg { fill: var(--white); }
+    header.txt-light .hamburger span { background: var(--white); }
+    header.txt-light .header-cta { color: var(--white); }
+    header.menu-open .logo svg { fill: var(--black) !important; }
+    header.menu-open .hamburger span { background: var(--black) !important; }
+    header.menu-open .header-cta { color: var(--black) !important; }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 24px;
+      border-radius: 2px;
+      text-decoration: none;
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.64px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:active { transform: scale(0.97); }
+
+    .btn-frosted {
+      background: rgba(158, 158, 158, 0.4);
+      color: var(--white);
+    }
+    .btn-frosted:hover { background: rgba(158, 158, 158, 0.6); }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--white);
+    }
+    .btn-dark:hover { background: #222; }
+
+    .btn-yellow {
+      background: var(--yellow);
+      color: var(--black);
+    }
+    .btn-yellow:hover { background: #f0cc40; }
+
+    .btn-glass {
+      background: rgba(158, 158, 158, 0.35);
+      color: var(--white);
+      backdrop-filter: blur(8px);
+    }
+    .btn-glass:hover { background: rgba(158, 158, 158, 0.55); }
+
+    /* ========== SECTION LABEL ========== */
+    .section-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      margin-bottom: 40px;
+    }
+
+    /* ========== HERO SECTION ========== */
+    .newsroom-hero {
+      background: var(--body-bg);
+      padding: 240px 24px 24px;
+      height: 666.4px;
+    }
+
+    .newsroom-hero h1 {
+      font-family: 'Geist', sans-serif;
+      font-size: 80px;
+      font-weight: 400;
+      line-height: 80px;
+      letter-spacing: -5.6px;
+      color: var(--black);
+      margin-bottom: 80px;
+      max-width: 700px;
+    }
+
+    .newsroom-hero-descriptions {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+    }
+
+    .newsroom-hero-descriptions p {
+      font-family: 'Geist', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 20.8px;
+      color: rgb(0, 0, 0);
+      width: 250px;
+      max-width: 250px;
+    }
+
+    /* ========== FILTER TABS & ARTICLE GRID ========== */
+    .newsroom-content {
+      background: var(--body-bg);
+      padding: 0 32px 261px;
+    }
+
+    .newsroom-divider {
+      border: none;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      margin-bottom: 99.4px;
+      border-radius: 999px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 56px;
+      align-items: baseline;
+    }
+
+    .filter-tab {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0;
+      color: rgba(0,0,0,0.35);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      height: 20px;
+      overflow: hidden;
+      text-decoration: none;
+      appearance: none;
+    }
+
+    .filter-tab-track {
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .filter-tab span {
+      display: block;
+      height: 20px;
+      line-height: 20px;
+      white-space: nowrap;
+    }
+
+    .filter-tab span:first-child { color: rgba(0,0,0,0.35); }
+    .filter-tab span:last-child { color: rgb(30,30,31); }
+    .filter-tab:hover .filter-tab-track { transform: translateY(-20px); }
+    .filter-tab.active {
+      color: var(--black);
+    }
+    .filter-tab.active span:first-child { color: var(--black); }
+
+    /* ========== NEWS GRID ========== */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px 12px;
+    }
+
+    .news-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text-dark);
+      transition: none;
+      min-width: 0;
+    }
+    .news-card:hover { opacity: 1; }
+
+    .news-card-image {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      height: auto;
+      overflow: hidden;
+      border-radius: 12px;
+      transition: border-radius 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .news-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform-origin: center;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                  filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .news-card:hover .news-card-image {
+      border-radius: 8px;
+    }
+    .news-card:hover .news-card-image img {
+      transform: scale(1.2);
+      filter: brightness(0.45);
+    }
+
+    .news-card-tag {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      font-family: 'Fragment Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 12px;
+      text-transform: uppercase;
+      color: var(--white);
+      background: rgba(48, 48, 48, 0.3);
+      padding: 8px 10px;
+    }
+
+    .news-card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .news-date {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 12px;
+      color: var(--black);
+    }
+
+    .news-card-title {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 4px;
+    }
+
+    .news-card-title h4 {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.64px;
+      line-height: 1.3;
+      color: var(--black);
+      flex: 1;
+    }
+
+    .news-arrow-clip {
+      flex-shrink: 0;
+      position: relative;
+      width: 20px;
+      height: 20px;
+      margin-top: -3px;
+      overflow: hidden;
+    }
+
+    .news-arrow-track {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 42px;
+      height: 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(-50%);
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .news-arrow-icon {
+      flex: 0 0 16px;
+      width: 16px;
+      height: 13px;
+      fill: var(--black);
+    }
+
+    .news-card:hover .news-arrow-track {
+      transform: translateY(-50%) translateX(26px);
+    }
+
+    .news-card-title .arrow-icon {
+      display: none;
+    }
+
+    /* ========== FINAL CTA ========== */
+    .final-cta {
+      position: relative;
+      height: 414px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 128px 24px;
+      overflow: hidden;
+    }
+    .final-cta-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(0.4);
+    }
+    .final-cta > *:not(.final-cta-bg) {
+      position: relative;
+      z-index: 1;
+    }
+    .final-cta .section-label {
+      color: rgba(255,255,255,0.55);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .final-cta .section-label::before {
+      content: '+';
+      font-size: 13px;
+    }
+    .final-cta h2,
+    .final-cta .cta-title {
+      font-family: 'Geist', sans-serif;
+      font-size: 80px;
+      font-weight: 400;
+      line-height: 80px;
+      letter-spacing: -5.6px;
+      color: rgb(228, 228, 228);
+      margin-bottom: 40px;
+    }
+    .cta-title .cta-char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .cta-title.visible .cta-char {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: rgb(4, 4, 4);
+      color: var(--white);
+      padding: 80px 16px 16px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-contact-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(158, 158, 158);
+      margin-bottom: 18px;
+    }
+
+    .footer-contact {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-contact h3 {
+      font-family: 'Geist', sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.88px;
+    }
+
+    .footer-contact .divider {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 72px;
+    }
+
+    .footer-nav-col h4 {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(158, 158, 158);
+      margin-bottom: 20px;
+    }
+
+    .footer-nav-col p {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 2;
+      color: rgb(255, 255, 255);
+      text-transform: uppercase;
+    }
+
+    .footer-nav-col a {
+      display: block;
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      margin-bottom: 6px;
+      transition: opacity 0.3s;
+    }
+    .footer-nav-col a:hover { opacity: 0.6; }
+
+    .footer-middle {
+      padding: 50px 0;
+    }
+
+    .footer-social-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(158, 158, 158);
+      margin-bottom: 18px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .social-icon:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.3);
+    }
+    .social-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .footer-bottom { padding: 40px 0 0; }
+
+    .footer-copyright {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .footer-copyright .sep {
+      width: 1px;
+      height: 14px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .footer-large-text {
+      position: relative;
+      font-family: 'Geist', sans-serif;
+      font-size: 20vw;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      color: rgba(255,255,255,0.07);
+      line-height: 0.85;
+      padding-bottom: 16px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+    .footer-registered {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: clamp(40px, 4vw, 64px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.07);
+      line-height: 1;
+    }
+
+    /* ========== SCROLL ANIMATIONS ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ========== MENU OVERLAY ========== */
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 99;
+      background: var(--body-bg);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.5s;
+      overflow-y: auto;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    body.menu-open { overflow: hidden; }
+
+    .menu-overlay-content {
+      width: 100%;
+      min-height: 100vh;
+      padding: 72px 16px 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 64px;
+      padding: 0 80px;
+    }
+
+    .menu-nav-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(0, 0, 0);
+      margin-bottom: 24px;
+      line-height: 12px;
+    }
+
+    .menu-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 80px;
+      max-width: 700px;
+    }
+
+    .menu-nav a {
+      font-family: 'Geist', sans-serif;
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: -2px;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      line-height: 44px;
+      transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    .menu-overlay.active .menu-nav a {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .menu-overlay.active .menu-nav a:nth-child(1) { transition-delay: 0.05s; }
+    .menu-overlay.active .menu-nav a:nth-child(2) { transition-delay: 0.1s; }
+    .menu-overlay.active .menu-nav a:nth-child(3) { transition-delay: 0.15s; }
+    .menu-overlay.active .menu-nav a:nth-child(4) { transition-delay: 0.2s; }
+    .menu-overlay.active .menu-nav a:nth-child(5) { transition-delay: 0.25s; }
+    .menu-overlay.active .menu-nav a:nth-child(6) { transition-delay: 0.3s; }
+    .menu-nav:hover a { opacity: 0.4 !important; }
+    .menu-nav a:hover { opacity: 1 !important; }
+
+    .menu-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .menu-contact-section {
+      text-align: right;
+    }
+
+    .menu-section-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(51, 51, 51);
+      margin-bottom: 16px;
+      line-height: 12px;
+    }
+
+    .menu-contact-section .menu-section-label {
+      color: rgb(0, 0, 0);
+    }
+
+    .menu-contact-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .menu-btn {
+      width: 100%;
+      min-width: 184px;
+      text-align: center;
+      font-size: 16px;
+      padding: 10px 24px;
+    }
+
+    .menu-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-top: 32px;
+      border-top: 1px solid #d4d4d4;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    .menu-address-text {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgb(100, 100, 100);
+    }
+
+    .menu-footer-logo svg {
+      height: 24px;
+      width: auto;
+      fill: var(--text-dark);
+    }
+
+    .menu-social .social-icon {
+      border-color: rgba(0, 0, 0, 0.12);
+      color: var(--text-dark);
+    }
+    .menu-social .social-icon:hover {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.25);
+    }
+    .menu-social .social-icon svg { fill: var(--text-dark); }
+
+    /* ========== HEADER MENU-OPEN STATE ========== */
+    header.menu-open {
+      background: transparent !important;
+      backdrop-filter: none !important;
+      border-bottom-color: transparent !important;
+    }
+    header.menu-open .logo svg { fill: var(--text-dark); }
+    header.menu-open .hamburger span { background: var(--text-dark); }
+    header.menu-open .header-cta { color: var(--text-dark); }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .newsroom-hero { padding: 180px 24px 24px; }
+      .newsroom-hero h1 { font-size: 56px; letter-spacing: -3px; }
+      .newsroom-hero-descriptions { flex-direction: column; gap: 24px; }
+      .news-grid { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+      .footer-top { flex-direction: column; gap: 48px; }
+      .footer-nav { gap: 36px; flex-wrap: wrap; }
+      .final-cta h2 { font-size: 40px; line-height: 48px; letter-spacing: -3.36px; }
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 18px 20px; }
+      .newsroom-hero { padding: 140px 20px 48px; }
+      .newsroom-hero h1 { font-size: 40px; letter-spacing: -2px; }
+      .newsroom-content { padding: 0 20px 80px; }
+      .news-grid { grid-template-columns: 1fr; gap: 32px; }
+      .final-cta { padding-left: 20px; padding-right: 20px; }
+      .final-cta h2 { font-size: 36px; line-height: 36px; letter-spacing: -2.52px; }
+      footer { padding: 48px 20px 0; }
+      .menu-overlay-content { padding: 120px 20px 32px; }
+      .menu-nav { grid-template-columns: 1fr; gap: 8px; }
+      .menu-nav a { font-size: 32px; letter-spacing: -1.5px; }
+      .menu-top { flex-direction: column; gap: 40px; }
+      .menu-contact-section { text-align: left; }
+      .menu-bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+  <link rel="stylesheet" href="/menu-fix.css?v=20260601c">
+  <script defer src="/menu-fix.js?v=20260531t"></script>
+  <script defer src="/cms-connect.js?v=20260601n"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <a href="/" class="logo" aria-label="DJI Luggage"><span class="cms-logo-image-stack" aria-label="DJI Luggage"><img class="cms-logo-image cms-logo-image-light" src="/assets/brand/dji-luggage-logo-white.png" alt="DJI Luggage"><img class="cms-logo-image cms-logo-image-dark" src="/assets/brand/dji-luggage-logo-black.png" alt=""></span></a>
+    <div class="hamburger" id="menuToggle">
+      <span></span>
+      <span></span>
+    </div>
+    <a href="/contact" class="header-cta">GET A QUOTE</a>
+  </header>
+
+  <!-- MENU OVERLAY -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-overlay-content">
+      <div class="menu-inner">
+      <div class="menu-top">
+        <div class="menu-nav-section">
+          <div class="menu-nav-label">Main</div>
+          <nav class="menu-nav">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/services">Services</a>
+            <a href="/platform">Platform</a>
+            <a href="/newsroom/filters/all">Newsroom</a>
+            <a href="/careers">Careers</a>
+          </nav>
+        </div>
+        <div class="menu-contact-section">
+          <div class="menu-section-label">Contact</div>
+          <div class="menu-contact-btns">
+            <a href="mailto:info@djiluggage.id" class="btn btn-dark menu-btn">Send Us A Message</a>
+            <a href="/contact" class="btn btn-yellow menu-btn">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="menu-bottom">
+        <div class="menu-quick-section">
+          <div class="menu-section-label">Quick Contact</div>
+          <div class="social-icons menu-social">
+            <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" class="social-icon"><svg viewBox="0 0 24 24" style="fill:none !important;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" class="social-icon"><svg viewBox="0 0 24 24" style="fill:none !important;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:currentColor;stroke:none"/></svg></a>
+          </div>
+        </div>
+        <div class="menu-address-section">
+          <div class="menu-section-label">Address</div>
+          <p class="menu-address-text">JL RAYA PARUNG BOGOR,<br>DESA/KELURAHAN KEMANG,<br>KEC. KEMANG, KAB. BOGOR,<br>PROVINSI JAWA BARAT,<br>KODE POS: 16310</p>
+        </div>
+        <div class="menu-footer-logo">
+          <span class="cms-logo-image-stack" aria-label="DJI Luggage"><img class="cms-logo-image cms-logo-image-light" src="/assets/brand/dji-luggage-logo-white.png" alt="DJI Luggage"><img class="cms-logo-image cms-logo-image-dark" src="/assets/brand/dji-luggage-logo-black.png" alt=""></span>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="newsroom-hero" data-header="dark">
+    <h1 class="reveal">Stay Connected, Stay Informed</h1>
+    <div class="newsroom-hero-descriptions">
+      <p class="reveal reveal-delay-1">Read practical notes on luggage<br>materials, OEM/ODM production,<br>quality checks, and export prep.</p>
+      <p class="reveal reveal-delay-2">Explore thought leadership,<br>expert perspectives and company<br>news in our dynamic Newsroom.</p>
+    </div>
+  </section>
+
+  <!-- FILTER TABS & ARTICLES -->
+  <section class="newsroom-content" data-header="dark">
+    <hr class="newsroom-divider">
+
+    <div class="filter-tabs reveal">
+      <a href="/newsroom/filters/all" class="filter-tab active" data-filter="all"><span class="filter-tab-track"><span>All</span><span>All</span></span></a>
+      <a href="/newsroom/filters/insights" class="filter-tab" data-filter="insights"><span class="filter-tab-track"><span>Insights</span><span>Insights</span></span></a>
+      <a href="/newsroom/filters/news" class="filter-tab" data-filter="news"><span class="filter-tab-track"><span>News</span><span>News</span></span></a>
+    </div>
+
+    <!-- 3-column article grid -->
+    <div class="news-grid">
+      <!-- Row 1 -->
+      <a href="/newsroom/choosing-the-right-luggage-manufacturer" class="news-card reveal" data-category="insights">
+        <div class="news-card-image">
+          <img src="https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg" alt="Train station with light trails" loading="lazy">
+          <div class="news-card-tag">INSIGHTS</div>
+        </div>
+        <div class="news-card-info">
+          <div class="news-date">10.31.25</div>
+          <div class="news-card-title">
+            <h4>Choosing the Right Luggage Manufacturer</h4>
+            <span class="news-arrow-clip" aria-hidden="true"><span class="news-arrow-track"><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg></span></span>
+          </div>
+        </div>
+      </a>
+      <a href="/newsroom/oem-vs-odm-for-luggage-brands" class="news-card reveal reveal-delay-1" data-category="insights">
+        <div class="news-card-image">
+          <img src="https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg" alt="Truck on road" loading="lazy">
+          <div class="news-card-tag">INSIGHTS</div>
+        </div>
+        <div class="news-card-info">
+          <div class="news-date">10.02.25</div>
+          <div class="news-card-title">
+            <h4>OEM vs ODM for Luggage Brands</h4>
+            <span class="news-arrow-clip" aria-hidden="true"><span class="news-arrow-track"><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg></span></span>
+          </div>
+        </div>
+      </a>
+      <a href="/newsroom/quality-checks-in-suitcase-production" class="news-card reveal reveal-delay-2" data-category="news">
+        <div class="news-card-image">
+          <img src="https://framerusercontent.com/images/gtxhO5eQb8zTp6csYDNAsGA9k.jpg" alt="Man in office meeting" loading="lazy">
+          <div class="news-card-tag">NEWS</div>
+        </div>
+        <div class="news-card-info">
+          <div class="news-date">9.27.25</div>
+          <div class="news-card-title">
+            <h4>Quality Checks in Suitcase Production</h4>
+            <span class="news-arrow-clip" aria-hidden="true"><span class="news-arrow-track"><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg></span></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Row 2 -->
+      <a href="/newsroom/material-choices-for-hard-shell-luggage" class="news-card reveal" data-category="insights">
+        <div class="news-card-image">
+          <img src="https://framerusercontent.com/images/qerU0u7MgBoEnXdijYtcgsdtMTk.jpg" alt="Luggage materials" loading="lazy">
+          <div class="news-card-tag">INSIGHTS</div>
+        </div>
+        <div class="news-card-info">
+          <div class="news-date">9.17.25</div>
+          <div class="news-card-title">
+            <h4>Material Choices for Hard-Shell Luggage</h4>
+            <span class="news-arrow-clip" aria-hidden="true"><span class="news-arrow-track"><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg></span></span>
+          </div>
+        </div>
+      </a>
+      <a href="/newsroom/planning-your-first-bulk-luggage-order" class="news-card reveal reveal-delay-1" data-category="news">
+        <div class="news-card-image">
+          <img src="https://framerusercontent.com/images/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg" alt="Bridge highway" loading="lazy">
+          <div class="news-card-tag">NEWS</div>
+        </div>
+        <div class="news-card-info">
+          <div class="news-date">9.08.25</div>
+          <div class="news-card-title">
+            <h4>Planning Your First Bulk Luggage Order</h4>
+            <span class="news-arrow-clip" aria-hidden="true"><span class="news-arrow-track"><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg></span></span>
+          </div>
+        </div>
+      </a>
+      <a href="/newsroom/master-customs-compliance" class="news-card reveal reveal-delay-2" data-category="news">
+        <div class="news-card-image">
+          <img src="https://framerusercontent.com/images/CA2gOg0z0KVvO9JiKIDAroigUw.jpg?scale-down-to=1024&width=5191&height=3458" alt="Container ship aerial" loading="lazy">
+          <div class="news-card-tag">NEWS</div>
+        </div>
+        <div class="news-card-info">
+          <div class="news-date">9.01.25</div>
+          <div class="news-card-title">
+            <h4>Master Customs Compliance</h4>
+            <span class="news-arrow-clip" aria-hidden="true"><span class="news-arrow-track"><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg></span></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Row 3 (only 2 cards) -->
+      <a href="/newsroom/building-a-private-label-travel-line" class="news-card reveal" data-category="insights">
+        <div class="news-card-image">
+          <img src="https://framerusercontent.com/images/pNkjoqFtJG8GbECTaKovqOFWvXI.jpg" alt="Private label luggage" loading="lazy">
+          <div class="news-card-tag">INSIGHTS</div>
+        </div>
+        <div class="news-card-info">
+          <div class="news-date">8.29.25</div>
+          <div class="news-card-title">
+            <h4>Building a Private-Label Travel Line</h4>
+            <span class="news-arrow-clip" aria-hidden="true"><span class="news-arrow-track"><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg></span></span>
+          </div>
+        </div>
+      </a>
+      <a href="/newsroom/packaging-and-export-prep-for-suitcases" class="news-card reveal reveal-delay-1" data-category="news">
+        <div class="news-card-image">
+          <img src="https://framerusercontent.com/images/qdVrKVWoQ6IYD1EWJSW1Z5nYMc.jpg" alt="Bridge over turquoise water" loading="lazy">
+          <div class="news-card-tag">NEWS</div>
+        </div>
+        <div class="news-card-info">
+          <div class="news-date">8.12.25</div>
+          <div class="news-card-title">
+            <h4>Packaging and Export Prep for Suitcases</h4>
+            <span class="news-arrow-clip" aria-hidden="true"><span class="news-arrow-track"><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg><svg class="news-arrow-icon" viewBox="0 0 16 13"><path d="M 5.261 11.942 L 10.234 6.97 L 0 6.97 L 0 4.992 L 10.272 4.992 L 5.28 0 L 7.68 0 L 13.632 5.971 L 7.661 11.942 Z" transform="translate(0.883 0.032)"/></svg></span></span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <img class="final-cta-bg" src="https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg" alt="" loading="lazy">
+    <div class="section-label reveal" style="color:rgba(255,255,255,0.55);margin-bottom:28px;">LET'S GET TO WORK</div>
+    <h2 class="cta-title" id="ctaTitle">Build Your<br>Luggage Line</h2>
+    <a href="/contact" class="btn btn-glass reveal">Get a Quote</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-contact-label">CONTACT</div>
+        <div class="footer-contact">
+          <h3>Let's Get Started</h3>
+          <div class="divider"></div>
+          <a href="/contact" class="btn btn-frosted" style="font-size:14px;">Get a Quote</a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <h4>ADDRESS</h4>
+          <p>JL RAYA PARUNG BOGOR,<br>DESA/KELURAHAN KEMANG,<br>KEC. KEMANG, KAB. BOGOR,<br>PROVINSI JAWA BARAT,<br>KODE POS: 16310</p>
+        </div>
+        <div class="footer-nav-col">
+          <h4>MAIN</h4>
+          <a href="/">HOME</a>
+          <a href="/services">SERVICES</a>
+          <a href="/about">ABOUT</a>
+          <a href="/careers">CAREERS</a>
+          <a href="/platform">PLATFORM</a>
+          <a href="/newsroom/filters/all">NEWSROOM</a>
+        </div>
+        <div class="footer-nav-col">
+          <h4>SUPPORT</h4>
+          <a href="/404">404</a>
+          <a href="/privacy-policy">PRIVACY POLICY</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-middle">
+      <div class="footer-social-label">QUICK CONTACT</div>
+      <div class="social-icons">
+        <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" class="social-icon"><svg viewBox="0 0 24 24" style="fill:none !important;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="social-icon"><svg viewBox="0 0 24 24" style="fill:none !important;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:currentColor;stroke:none"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        <span>&copy;2025. All right reserved</span>
+        <span class="sep"></span>
+        <span>Indonesian luggage manufacturer</span>
+      </div>
+      <div class="footer-large-text">DJI LUGGAGE</div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    // Header text color adapts to the section currently behind it
+    const navSections = Array.from(document.querySelectorAll('[data-header]'));
+    function updateHeaderTheme() {
+      const line = 37;
+      let theme = 'light';
+      for (const s of navSections) {
+        const r = s.getBoundingClientRect();
+        if (r.top <= line && r.bottom > line) { theme = s.dataset.header; break; }
+      }
+      header.classList.toggle('txt-dark', theme === 'dark');
+      header.classList.toggle('txt-light', theme !== 'dark');
+    }
+    window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+    window.addEventListener('resize', updateHeaderTheme);
+    updateHeaderTheme();
+
+    // Scroll reveal animations
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Immediately reveal elements already in viewport on page load
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add('visible');
+        }
+      });
+    });
+
+    // Menu overlay toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function toggleMenu() {
+      menuOverlay.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      header.classList.toggle('menu-open');
+      document.body.classList.toggle('menu-open');
+    }
+
+    function closeMenu() {
+      menuOverlay.classList.remove('active');
+      menuToggle.classList.remove('active');
+      header.classList.remove('menu-open');
+      document.body.classList.remove('menu-open');
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+
+    // Close menu on nav link click
+    document.querySelectorAll('.menu-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+
+    // Close menu on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOverlay.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+
+    // Filter tabs functionality
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const newsCards = document.querySelectorAll('.news-card');
+
+    function getFilterFromPath() {
+      const match = window.location.pathname.match(/\/newsroom\/filters\/(all|insights|news)\/?$/);
+      return match ? match[1] : 'all';
+    }
+
+    function applyNewsFilter(filter, updatePath) {
+      filterTabs.forEach(tab => {
+        const isActive = tab.dataset.filter === filter;
+        tab.classList.toggle('active', isActive);
+        if (isActive) {
+          tab.setAttribute('aria-current', 'page');
+        } else {
+          tab.removeAttribute('aria-current');
+        }
+      });
+
+      newsCards.forEach(card => {
+        card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
+      });
+
+      if (updatePath) {
+        history.pushState({ filter }, '', `/newsroom/filters/${filter}`);
+      }
+
+      const titlePrefix = { all: 'All', insights: 'Insights', news: 'News' }[filter] || 'All';
+      document.title = `${titlePrefix} - DJI Luggage - Indonesian Luggage Manufacturer`;
+    }
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', (event) => {
+        event.preventDefault();
+        applyNewsFilter(tab.dataset.filter, true);
+      });
+    });
+
+    window.addEventListener('popstate', () => applyNewsFilter(getFilterFromPath(), false));
+    applyNewsFilter(getFilterFromPath(), false);
+    // CTA title character-by-character scroll animation
+    (function() {
+      const ctaTitle = document.getElementById('ctaTitle');
+      if (!ctaTitle) return;
+      const html = ctaTitle.innerHTML;
+      let charIndex = 0;
+      const segments = html.split(/<br\s*\/?>/gi);
+      const processed = segments.map(segment => {
+        return segment.split('').map(function(char) {
+          charIndex++;
+          var display = char === ' ' ? '&nbsp;' : char;
+          return '<span class="cta-char" style="transition-delay:' + (charIndex * 0.025) + 's">' + display + '</span>';
+        }).join('');
+      }).join('<br>');
+      ctaTitle.innerHTML = processed;
+
+      const ctaObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            ctaTitle.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.3 });
+      ctaObserver.observe(ctaTitle);
+    })();
+  </script>
+
+</body>
+</html>

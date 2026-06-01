@@ -1,0 +1,5 @@
+.env
+.next
+cms.db
+node_modules
+media

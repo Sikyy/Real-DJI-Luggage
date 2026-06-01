@@ -1,0 +1,25 @@
+.DS_Store
+-S
+.claude/
+
+# Environment and local data
+.env
+.env.*
+!.env.example
+*.db
+*.db-*
+*.db.*
+*.sqlite
+*.sqlite3
+
+# Node / build output
+node_modules/
+cms/node_modules/
+cms/.next/
+cms/tsconfig.tsbuildinfo
+cms/media/
+
+# Logs and temporary files
+*.log
+tmp/
+dist/

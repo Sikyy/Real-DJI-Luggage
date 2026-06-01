@@ -1,0 +1,306 @@
+/* Site refinements for the DJI Luggage static frontend. */
+
+/* ===== Static brand fallback ===== */
+.logo .cms-logo-image-stack,
+.menu-footer-logo .cms-logo-image-stack {
+  display: inline-grid;
+  align-items: center;
+  height: 24px;
+  max-width: 240px;
+}
+.logo:has(.cms-logo-image-stack)::before {
+  content: none !important;
+}
+.logo .cms-logo-image,
+.menu-footer-logo .cms-logo-image {
+  grid-area: 1 / 1;
+  display: block;
+  width: auto;
+  height: 24px;
+  max-width: 240px;
+  object-fit: contain;
+  transition: opacity .25s ease;
+}
+.logo .cms-logo-image-light { opacity: 1; }
+.logo .cms-logo-image-dark { opacity: 0; }
+.menu-footer-logo .cms-logo-image-light { opacity: 0; }
+.menu-footer-logo .cms-logo-image-dark { opacity: 1; }
+header.txt-light .logo .cms-logo-image-light { opacity: 1; }
+header.txt-light .logo .cms-logo-image-dark { opacity: 0; }
+header.txt-dark .logo .cms-logo-image-light,
+header.header-solid .logo .cms-logo-image-light,
+header.header-dark .logo .cms-logo-image-light,
+header.scrolled .logo .cms-logo-image-light,
+header.menu-open .logo .cms-logo-image-light {
+  opacity: 0;
+}
+header.txt-dark .logo .cms-logo-image-dark,
+header.header-solid .logo .cms-logo-image-dark,
+header.header-dark .logo .cms-logo-image-dark,
+header.scrolled .logo .cms-logo-image-dark,
+header.menu-open .logo .cms-logo-image-dark {
+  opacity: 1;
+}
+
+/* ===== Menu overlay ===== */
+/* Item 1 — align Contact buttons (and bottom-row content) with the nav rows
+   by matching the section-label spacing to the MAIN nav label (24px). */
+.menu-overlay .menu-section-label { margin-bottom: 24px; }
+
+/* Item 4 — Address text is dark in the original, not grey. */
+.menu-overlay .menu-address-section .menu-section-label { color: #000000; }
+.menu-overlay .menu-address-text {
+  color: #000000;
+  font-size: 16px;
+  line-height: 20.8px;
+}
+
+/* Item 3 — Main nav hover: Framer-style text offset/fade, not card scaling. */
+.menu-overlay .menu-nav:hover a { opacity: 1 !important; }
+.menu-overlay .menu-nav a {
+  padding-left: 0;
+  transform: none !important;
+  transition:
+    opacity .65s cubic-bezier(.19, 1, .22, 1),
+    padding-left .65s cubic-bezier(.19, 1, .22, 1) !important;
+  will-change: opacity, padding-left;
+}
+.menu-overlay.active .menu-nav a:hover {
+  opacity: .65 !important;
+  padding-left: 18px;
+  transform: none !important;
+}
+.menu-overlay .menu-nav {
+  grid-auto-flow: column;
+  grid-template-rows: repeat(3, auto);
+  grid-template-columns: 300px 1fr;
+  max-width: 700px;
+}
+.menu-overlay .menu-inner { transform: translateY(9px); }
+.menu-overlay .menu-nav a { justify-self: start; }
+.menu-overlay .menu-contact-section { text-align: left; }
+.menu-overlay .menu-bottom { padding-top: 84px; }
+.menu-overlay .menu-quick-section { flex: 0 0 204px; width: 204px; }
+.menu-overlay .menu-address-section { flex: 0 0 120px; width: 120px; margin-left: 186px; }
+.menu-overlay .menu-footer-logo { padding-top: 40px; }
+.menu-overlay .menu-footer-logo { margin-left: auto; margin-right: 2px; }
+.menu-overlay .menu-footer-logo svg { width: 171px; height: auto; }
+.menu-overlay .menu-contact-btns { width: 186px; }
+.menu-overlay .menu-btn { width: 186px; height: 43px; }
+
+/* Item 2 — Quick Contact uses the original vertical icon-swap hover. */
+.menu-social {
+  gap: 4px;
+}
+.menu-social .social-icon {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 0;
+  outline: 1px solid rgba(0, 0, 0, 0.12);
+  outline-offset: -1px;
+  overflow: hidden;
+  position: relative;
+  transition: none;
+}
+.menu-social .social-icon:hover {
+  transform: none !important;
+  background: transparent;
+  border-color: transparent;
+}
+.menu-social .social-icon > svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: currentColor;
+  fill: currentColor;
+}
+.menu-social .menu-social-icon-clip {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+}
+.menu-social .menu-social-icon-track {
+  display: flex;
+  flex-direction: column;
+  width: 18px;
+  height: 36px;
+  transform: translateY(0);
+  transition: transform .65s cubic-bezier(.19, 1, .22, 1);
+  will-change: transform;
+}
+.menu-social .social-icon:hover .menu-social-icon-track {
+  transform: translateY(-18px);
+}
+.menu-social .menu-social-icon-track svg {
+  display: block;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+}
+
+/* Footer Quick Contact mirrors the menu's vertical icon-swap hover. */
+footer .social-icons {
+  gap: 4px;
+}
+footer .social-icon {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 0;
+  outline: 1px solid rgba(255, 255, 255, 0.16);
+  outline-offset: -1px;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+  transition: none;
+}
+footer .social-icon:hover {
+  transform: none !important;
+  background: transparent;
+  border-color: transparent;
+}
+footer .social-icon > svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: currentColor;
+  fill: currentColor;
+}
+footer .menu-social-icon-clip {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+}
+footer .menu-social-icon-track {
+  display: flex;
+  flex-direction: column;
+  width: 18px;
+  height: 36px;
+  transform: translateY(0);
+  transition: transform .65s cubic-bezier(.19, 1, .22, 1);
+  will-change: transform;
+}
+footer .social-icon:hover .menu-social-icon-track {
+  transform: translateY(-18px);
+}
+footer .menu-social-icon-track svg {
+  display: block;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+footer .footer-top {
+  border-bottom: none;
+}
+@media (min-width: 769px) {
+  footer .footer-middle {
+    padding-bottom: 145px;
+  }
+}
+footer .footer-copyright {
+  height: 22px;
+  gap: 8px;
+  align-items: center;
+  color: rgb(158, 158, 158);
+  line-height: 12px;
+  margin-bottom: 12px;
+}
+footer .footer-copyright .sep {
+  height: 22px;
+  background: rgba(255, 255, 255, 0.22);
+}
+footer .footer-bottom {
+  padding-top: 17px !important;
+}
+footer .footer-large-text {
+  display: block;
+  width: 100%;
+  padding: 0 !important;
+  overflow: visible;
+  background: url("https://framerusercontent.com/images/uDWkoxYOJd2scWEApx3U4Zoak0.svg?width=1406&height=165") center / cover no-repeat;
+  color: transparent !important;
+  font-size: 0 !important;
+  letter-spacing: 0 !important;
+  line-height: 0 !important;
+}
+footer .footer-large-text::before {
+  content: "";
+  display: block;
+  padding-top: 11.558%;
+}
+footer .footer-registered,
+footer .footer-large-text sup {
+  display: none !important;
+}
+
+/* ===== Item 6 — final-cta "Contact Us" button =====
+   The original is a lighter, more translucent frosted button. */
+.btn-glass {
+  background: rgba(158, 158, 158, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 2px;
+  border: none;
+  flex-shrink: 0;
+}
+.btn-glass:hover {
+  background: rgba(158, 158, 158, 0.6);
+}
+
+/* ===== final-cta heading "Moving Your Business Forward" =====
+   Original scales fluidly with the viewport; the fixed 80px overflowed on
+   narrower / zoomed views. Make it fluid so it always fits with margins. */
+.final-cta .cta-title {
+  font-size: clamp(40px, 5.4vw, 92px);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+/* ===== Items 9 & 10 — hero title char-by-char entrance (Platform & Services) ===== */
+.hero-anim-title .hac {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(48px);
+  animation: heroCharRise .6s cubic-bezier(.19, 1, .22, 1) forwards;
+}
+@keyframes heroCharRise { to { opacity: 1; transform: translateY(0); } }
+
+/* Keep hidden menu content and desktop intro columns from widening mobile pages. */
+@media (max-width: 768px) {
+  .menu-overlay { overflow-x: hidden; }
+  .menu-overlay .menu-overlay-content { padding: 160px 16px 32px !important; }
+  .menu-inner { padding-left: 0 !important; padding-right: 0 !important; }
+  .menu-overlay .menu-inner { transform: none; }
+  .menu-overlay .menu-inner {
+    gap: 20px !important;
+    justify-content: flex-start !important;
+  }
+  .menu-top { flex-direction: column !important; gap: 40px !important; }
+  .menu-nav {
+    grid-template-columns: 1fr !important;
+    grid-auto-flow: row !important;
+    grid-template-rows: none !important;
+    max-width: 100% !important;
+    gap: 8px !important;
+  }
+  .menu-overlay .menu-nav a {
+    font-size: 32px !important;
+    line-height: 34px !important;
+  }
+  .menu-contact-section { text-align: left !important; }
+  .menu-contact-btns { align-items: flex-start !important; }
+  .menu-overlay .menu-bottom { padding-top: 34px; }
+  .menu-overlay .menu-address-section { display: none; }
+  .menu-overlay .menu-footer-logo { display: none; }
+  .services-left-label { width: 100% !important; }
+}

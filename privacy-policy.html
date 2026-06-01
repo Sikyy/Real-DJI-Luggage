@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - DJI Luggage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: "Geist";
+      src: url("https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Regular.woff2") format("woff2");
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Geist";
+      src: url("https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Black.woff2") format("woff2");
+      font-weight: 900;
+      font-display: swap;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #000;
+      --white: #fff;
+      --body-bg: #f3f4f6;
+      --text-dark: #333;
+      --muted: rgba(51, 51, 51, .62);
+    }
+    body {
+      min-height: 100vh;
+      background: var(--body-bg);
+      color: var(--text-dark);
+      font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .mono {
+      font-family: "Fragment Mono", monospace;
+      font-size: 12px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px;
+      background: rgba(243, 244, 246, .78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0, 0, 0, .06);
+    }
+    .logo {
+      font-size: 23px;
+      font-style: italic;
+      font-weight: 900;
+      letter-spacing: 0;
+      line-height: 1;
+    }
+    .policy {
+      max-width: none;
+      height: 908.7px;
+      margin: 0;
+      padding: 160px 32px;
+      display: grid;
+      grid-template-columns: 431.3px 862.7px;
+      gap: 64px;
+      overflow: visible;
+    }
+    h1 {
+      position: sticky;
+      top: 160px;
+      align-self: start;
+      width: 431.3px;
+      margin: 0;
+      color: var(--black);
+      font-size: 56px;
+      font-weight: 400;
+      line-height: 64.4px;
+      letter-spacing: 0;
+    }
+    .policy-body {
+      width: 862.7px;
+      max-width: 862.7px;
+      margin: 0;
+      display: grid;
+      align-content: start;
+      gap: 20px;
+      padding: 0;
+      border-top: 0;
+    }
+    .policy-body p {
+      color: var(--black);
+      font-size: 16px;
+      line-height: 20.8px;
+    }
+    .updated {
+      margin-bottom: 0;
+      color: var(--black);
+      font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 20.8px;
+      text-transform: none;
+    }
+    .final-cta {
+      position: relative;
+      height: 414px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      padding: 128px 32px;
+      overflow: hidden;
+      color: var(--white);
+      text-align: center;
+    }
+    .final-cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .56)), url("https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg") center/cover;
+    }
+    .final-cta > * { position: relative; z-index: 1; }
+    .final-cta h2 {
+      max-width: 980px;
+      font-size: 80px;
+      font-weight: 400;
+      line-height: 80px;
+      letter-spacing: -5.6px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 8px;
+      background: rgba(175, 175, 175, .32);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color: var(--white);
+    }
+    footer {
+      min-height: 806.2px;
+      padding: 80px 16px 16px;
+      background: rgb(4, 4, 4);
+      color: var(--white);
+      overflow: hidden;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 48px;
+      max-width: none;
+      margin: 0 0 60px;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      padding: 0 0 60px;
+    }
+    .footer-contact h3 { margin: 18px 0; font-size: 22px; font-weight: 400; letter-spacing: -0.88px; }
+    .footer-nav {
+      display: flex;
+      gap: 64px;
+      min-width: min(640px, 100%);
+      justify-content: flex-end;
+    }
+    .footer-nav-col {
+      display: grid;
+      align-content: start;
+      gap: 10px;
+      min-width: 118px;
+    }
+    .footer-nav-col h4, .footer-contact-label { font-family: "Fragment Mono", monospace; font-size: 12px; font-weight: 400; color: rgb(158, 158, 158); }
+    .footer-nav-col a, .footer-nav-col p { font-family: "Fragment Mono", monospace; font-size: 12px; line-height: 2; color: var(--white); }
+    .footer-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 8px;
+      background: rgba(158, 158, 158, .4);
+      color: var(--white);
+      font-size: 15px;
+    }
+    .footer-large-text {
+      font-size: 20vw;
+      font-weight: 900;
+      line-height: .85;
+      letter-spacing: .03em;
+      text-align: center;
+      color: rgba(255, 255, 255, .07);
+      white-space: nowrap;
+    }
+    @media (max-width: 860px) {
+      header { padding: 18px 20px; }
+      .policy { padding: 132px 20px 80px; }
+      .policy-body { margin-left: 0; }
+      .footer-top, .footer-nav { flex-direction: column; }
+      .footer-nav { gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">DJI LUGGAGE</a>
+    <a class="mono" href="/contact">Get a Quote</a>
+  </header>
+
+  <main>
+    <section class="policy">
+      <h1>Privacy Policy</h1>
+      <div class="policy-body">
+        <div class="updated mono">PRIVACY POLICY LAST UPDATED: June 1, 2026</div>
+        <p>DJI Luggage respects your privacy. This Privacy Policy explains how we collect, use, and protect information you share with us through this website, quotation requests, inquiry forms, email, WhatsApp, and other business communications.</p>
+        <p>We may collect contact and business information such as your name, company name, email address, phone number, destination market, requested product type, order quantity, project notes, and any details you choose to send when discussing luggage manufacturing, OEM, ODM, sampling, or bulk production.</p>
+        <p>We may also collect basic technical information, including IP address, browser type, device type, pages visited, and website usage data. This helps us maintain the website, understand buyer interest, improve content, and protect the site from misuse.</p>
+        <p>We use your information to respond to inquiries, prepare quotations, coordinate samples, discuss production requirements, provide customer support, improve our services, and maintain business records. We do not sell your personal information.</p>
+        <p>We may share limited information with trusted service providers who help us operate the website, manage communications, process business records, or support customer service. We may also disclose information when required by law, regulation, legal process, or a legitimate request from authorities.</p>
+        <p>We use reasonable administrative and technical safeguards to protect your information. No online system is completely secure, so please avoid sending sensitive personal or financial details through open website forms unless requested through an appropriate business channel.</p>
+        <p>You may contact us to request access, correction, or deletion of your personal information where applicable. For privacy questions, business data requests, or concerns about this policy, contact us at info@djiluggage.id.</p>
+        <p>We may update this Privacy Policy from time to time. The latest version will be posted on this page, and continued use of the website means you accept the updated policy.</p>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="mono" style="color:rgba(255,255,255,.6);">Ready To Build</div>
+      <h2>Start Your<br>Luggage Program</h2>
+      <a class="btn" href="/contact">Get a Quote</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-contact-label">CONTACT</div>
+        <div class="footer-contact">
+          <h3>Let's Get Started</h3>
+          <a class="footer-button" href="/contact">Get a Quote</a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <h4>ADDRESS</h4>
+          <p>JL RAYA PARUNG BOGOR,<br>DESA/KELURAHAN KEMANG,<br>KEC. KEMANG, KAB. BOGOR,<br>PROVINSI JAWA BARAT,<br>KODE POS: 16310</p>
+        </div>
+        <div class="footer-nav-col">
+          <h4>MAIN</h4>
+          <a href="/">HOME</a>
+          <a href="/services">MANUFACTURING</a>
+          <a href="/about">ABOUT</a>
+          <a href="/careers">CAREERS</a>
+          <a href="/platform">CAPABILITIES</a>
+          <a href="/newsroom/filters/all">INSIGHTS</a>
+        </div>
+        <div class="footer-nav-col">
+          <h4>SUPPORT</h4>
+          <a href="/404">404</a>
+          <a href="/privacy-policy">PRIVACY POLICY</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-large-text">DJI LUGGAGE</div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers - DJI Luggage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-SemiBold.woff2') format('woff2');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Black.woff2') format('woff2');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --body-bg: #f3f4f6;
+      --yellow: #fedb5b;
+      --text-dark: #333333;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Geist', -apple-system, sans-serif;
+      color: var(--text-dark);
+      background: var(--body-bg);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== HEADER (Dark text variant) ========== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      padding: 0 16px;
+      background: transparent;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      transition: background 0.4s ease, border-color 0.4s ease;
+    }
+    header.scrolled {
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom-color: transparent;
+    }
+    header.scrolled .logo svg { fill: var(--white); }
+    header.scrolled .hamburger span { background: var(--white); }
+    header.scrolled .header-cta { color: var(--white); }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .logo svg {
+      height: 13px;
+      width: auto;
+      fill: var(--black);
+      transition: fill 0.4s ease;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 1.5px;
+      background: var(--black);
+      transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.25s ease, background 0.4s ease;
+      transform-origin: center;
+    }
+
+    .header-cta {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0;
+      color: var(--black);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: opacity 0.3s, color 0.4s ease;
+    }
+    .header-cta:hover { opacity: 0.6; }
+    /* Adaptive header: transparent, text color follows the section behind it */
+    header.txt-dark .logo svg { fill: var(--black); }
+    header.txt-dark .hamburger span { background: var(--black); }
+    header.txt-dark .header-cta { color: var(--black); }
+    header.txt-light .logo svg { fill: var(--white); }
+    header.txt-light .hamburger span { background: var(--white); }
+    header.txt-light .header-cta { color: var(--white); }
+    header.menu-open .logo svg { fill: var(--black) !important; }
+    header.menu-open .hamburger span { background: var(--black) !important; }
+    header.menu-open .header-cta { color: var(--black) !important; }
+
+    /* ========== HAMBURGER X ANIMATION ========== */
+    .hamburger { z-index: 101; position: relative; }
+    .hamburger.active span:first-child {
+      transform: translateY(4.25px) rotate(45deg);
+    }
+    .hamburger.active span:last-child {
+      transform: translateY(-4.25px) rotate(-45deg);
+    }
+
+    /* ========== HEADER MENU-OPEN STATE ========== */
+    header.menu-open {
+      background: transparent !important;
+      backdrop-filter: none !important;
+      border-bottom-color: transparent !important;
+    }
+    header.menu-open .logo svg { fill: var(--text-dark); }
+    header.menu-open .hamburger span { background: var(--text-dark); }
+    header.menu-open .header-cta { color: var(--text-dark); }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 24px;
+      border-radius: 2px;
+      text-decoration: none;
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.64px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:active { transform: scale(0.97); }
+
+    .btn-frosted {
+      background: rgba(158, 158, 158, 0.4);
+      color: var(--white);
+    }
+    .btn-frosted:hover {
+      background: rgba(158, 158, 158, 0.6);
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--white);
+    }
+    .btn-dark:hover {
+      background: #222;
+    }
+
+    .btn-glass {
+      background: rgba(158, 158, 158, 0.35);
+      color: var(--white);
+      backdrop-filter: blur(8px);
+    }
+    .btn-glass:hover {
+      background: rgba(158, 158, 158, 0.55);
+    }
+
+    .btn-yellow {
+      background: var(--yellow);
+      color: var(--black);
+    }
+    .btn-yellow:hover { background: #f0cc40; }
+
+    /* ========== SECTION LABEL ========== */
+    .section-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      margin-bottom: 40px;
+    }
+
+    /* ========== SCROLL ANIMATIONS ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ========== MENU OVERLAY ========== */
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 99;
+      background: var(--body-bg);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.5s;
+      overflow-y: auto;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    body.menu-open { overflow: hidden; }
+
+    .menu-overlay-content {
+      width: 100%;
+      min-height: 100vh;
+      padding: 72px 16px 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 64px;
+      padding: 0 80px;
+    }
+
+    .menu-nav-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(0, 0, 0);
+      margin-bottom: 24px;
+      line-height: 12px;
+    }
+
+    .menu-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 80px;
+      max-width: 700px;
+    }
+
+    .menu-nav a {
+      font-family: 'Geist', sans-serif;
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: -2px;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      line-height: 44px;
+      transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    .menu-overlay.active .menu-nav a {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .menu-overlay.active .menu-nav a:nth-child(1) { transition-delay: 0.05s; }
+    .menu-overlay.active .menu-nav a:nth-child(2) { transition-delay: 0.1s; }
+    .menu-overlay.active .menu-nav a:nth-child(3) { transition-delay: 0.15s; }
+    .menu-overlay.active .menu-nav a:nth-child(4) { transition-delay: 0.2s; }
+    .menu-overlay.active .menu-nav a:nth-child(5) { transition-delay: 0.25s; }
+    .menu-overlay.active .menu-nav a:nth-child(6) { transition-delay: 0.3s; }
+    .menu-nav:hover a { opacity: 0.4 !important; }
+    .menu-nav a:hover { opacity: 1 !important; }
+
+    .menu-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .menu-contact-section {
+      text-align: right;
+    }
+
+    .menu-section-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(51, 51, 51);
+      margin-bottom: 16px;
+      line-height: 12px;
+    }
+
+    .menu-contact-section .menu-section-label {
+      color: rgb(0, 0, 0);
+    }
+
+    .menu-contact-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .menu-btn {
+      width: 100%;
+      min-width: 184px;
+      text-align: center;
+      font-size: 16px;
+      padding: 10px 24px;
+    }
+
+    .menu-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-top: 32px;
+      border-top: 1px solid #d4d4d4;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    .menu-address-text {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgb(100, 100, 100);
+    }
+
+    .menu-footer-logo svg {
+      height: 24px;
+      width: auto;
+      fill: var(--text-dark);
+    }
+
+    .menu-social .social-icon {
+      border-color: rgba(0, 0, 0, 0.12);
+      color: var(--text-dark);
+    }
+    .menu-social .social-icon:hover {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.25);
+    }
+    .menu-social .social-icon svg { fill: var(--text-dark); }
+
+    .social-icons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .social-icon:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.3);
+    }
+    .social-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* ========== HERO / TITLE SECTION ========== */
+    .careers-hero {
+      background: var(--body-bg);
+      height: 700px;
+      min-height: 0;
+      padding: 240px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      justify-content: flex-start;
+    }
+
+    .careers-hero-title {
+      font-family: 'Geist', sans-serif;
+      font-size: 80px;
+      font-weight: 400;
+      line-height: 80px;
+      letter-spacing: -5.6px;
+      color: var(--black);
+      max-width: 700px;
+      margin-bottom: 0;
+    }
+
+    .careers-hero-desc {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      gap: 32px;
+      align-self: stretch;
+      padding-right: calc(10vw - 4.8px);
+    }
+    .careers-hero-desc p { flex: 0 0 250px; }
+
+    .careers-hero-desc p {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.64px;
+      line-height: 20.8px;
+      color: rgb(0, 0, 0);
+    }
+
+    /* ========== TEAM PHOTOS SECTION ========== */
+    .team-photos {
+      background: var(--body-bg);
+      height: 521.2px;
+      overflow: hidden;
+      padding: 0;
+      position: relative;
+    }
+
+    .team-photos-row {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 6872.4px;
+      animation: teamPhotosDrift 22.9s linear infinite;
+      will-change: transform;
+    }
+
+    .team-photo {
+      overflow: hidden;
+      position: absolute;
+      left: calc(var(--photo-x) + var(--loop-x, 0px));
+      top: calc(var(--photo-y) + var(--loop-y, 0px));
+      width: var(--photo-w);
+      height: var(--photo-h);
+    }
+
+    .team-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .team-photo.photo-1 { --photo-w: 257.4px; --photo-h: 321px; --photo-x: 148.4px; --photo-y: 45.7px; }
+    .team-photo.photo-2 { --photo-w: 343.2px; --photo-h: 406.8px; --photo-x: 392.1px; --photo-y: 76.8px; }
+    .team-photo.photo-3 { --photo-w: 300.6px; --photo-h: 218.7px; --photo-x: 744.5px; --photo-y: 117.3px; }
+    .team-photo.photo-4 { --photo-w: 256.4px; --photo-h: 313px; --photo-x: 1041.7px; --photo-y: 155.3px; }
+    .team-photo.photo-5 { --photo-w: 343.2px; --photo-h: 406.8px; --photo-x: 1284.4px; --photo-y: 186.4px; }
+    .team-photo.photo-6 { --photo-w: 257.4px; --photo-h: 321px; --photo-x: 1623.4px; --photo-y: 226.8px; }
+    .team-photo.photo-7 { --photo-w: 300.6px; --photo-h: 218.7px; --photo-x: 1889.9px; --photo-y: 257.9px; }
+    .team-photo.photo-8 { --photo-w: 256.4px; --photo-h: 313px; --photo-x: 2187.1px; --photo-y: 295.9px; }
+
+    @keyframes teamPhotosDrift {
+      to { transform: translate3d(-2290.8px, -281.3px, 0); }
+    }
+
+    /* ========== BENEFITS INTRO ========== */
+    .benefits-intro {
+      background: var(--body-bg);
+      height: 501.2px;
+      overflow: visible;
+      padding: 225px 32px 0;
+      position: relative;
+    }
+
+    .benefits-portrait {
+      height: clamp(502px, 32.45vw, 624px);
+      left: clamp(32px, calc(16vw - 203px), 107px);
+      object-fit: cover;
+      position: absolute;
+      top: 200px;
+      width: min(26.05vw, 500px);
+    }
+
+    .benefits-intro-text {
+      font-family: 'Geist', sans-serif;
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: -2px;
+      line-height: 44px;
+      color: rgb(110, 110, 110);
+      margin-left: calc(28.579vw + 27.3px);
+      max-width: 700px;
+      width: 700px;
+    }
+    .benefits-intro-text .benefits-highlight {
+      color: var(--black);
+    }
+
+    /* ========== BENEFITS CARDS ========== */
+    .benefits-cards {
+      background: var(--body-bg);
+      height: calc(28.474vw + 6.5px);
+      padding: 0 32px calc(28.474vw - 243.5px);
+    }
+
+    .benefits-cards-row {
+      display: flex;
+      flex-direction: row;
+      gap: 48px;
+      height: 250px;
+      margin-left: calc(28.579vw + 27.3px);
+      width: calc(71.367vw - 90.6px);
+    }
+
+    .benefit-card {
+      flex: 0 0 calc(23.789vw - 62.2px);
+      display: flex;
+      flex-direction: row;
+    }
+
+    .benefit-card-line {
+      width: 1px;
+      flex-shrink: 0;
+      background: #d4d4d4;
+      height: 250px;
+      margin-right: 27px;
+    }
+
+    .benefit-card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      height: 250px;
+      padding-right: 0;
+      width: calc(23.789vw - 90.2px);
+    }
+
+    .benefit-number {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(0,0,0,0.4);
+      line-height: 12px;
+      margin-bottom: 0;
+    }
+
+    .benefit-card-content h3 {
+      font-family: 'Geist', sans-serif;
+      font-size: 20.8px;
+      font-weight: 400;
+      letter-spacing: -0.832px;
+      line-height: 24.96px;
+      color: var(--text-dark);
+    }
+
+    .benefit-card-content p {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.64px;
+      line-height: 20.8px;
+      color: var(--black);
+      margin-top: auto;
+    }
+
+    @media (min-width: 1600px) {
+      .benefits-intro-text {
+        margin-left: calc(28.579vw + 112px);
+      }
+      .benefits-cards-row {
+        margin-left: calc(28.579vw + 112px);
+        width: calc(71.367vw - 175.3px);
+      }
+    }
+
+    /* ========== CLOCK / LOCATION SECTION ========== */
+    .clock-section {
+      background: var(--body-bg);
+      border: 0;
+      height: 800px;
+      overflow: hidden;
+      padding: 0;
+      position: relative;
+    }
+
+    .clock-bg {
+      height: 880px;
+      left: -73.5px;
+      object-fit: cover;
+      position: absolute;
+      top: -70px;
+      width: 1617px;
+    }
+
+    .clock-inner {
+      align-items: flex-start;
+      bottom: 0;
+      display: flex;
+      gap: 8px;
+      height: 80.9px;
+      justify-content: flex-end;
+      left: 0;
+      padding: 0 32px 55.1px;
+      position: absolute;
+      width: 100%;
+    }
+
+    .clock-location {
+      font-family: 'Geist', sans-serif;
+      font-size: 20.8px;
+      font-weight: 400;
+      letter-spacing: -0.832px;
+      line-height: 24.96px;
+      color: var(--white);
+    }
+
+    .clock-time {
+      font-family: 'Geist', sans-serif;
+      font-size: 20.8px;
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: -0.832px;
+      line-height: 20.8px;
+      padding-top: 5px;
+    }
+
+    .clock-divider {
+      display: none;
+    }
+
+    /* ========== OPEN POSITIONS ========== */
+    .positions {
+      background: var(--body-bg);
+      height: 659.8px;
+      padding: 160px 32px;
+      position: relative;
+    }
+
+    .positions-header {
+      left: 32px;
+      margin-bottom: 0;
+      position: absolute;
+      top: 160px;
+      width: calc(33.333vw - 54.7px);
+    }
+
+    .positions-title {
+      font-family: 'Geist', sans-serif;
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: -2px;
+      line-height: 44px;
+      color: rgb(0, 0, 0);
+      width: calc(33.333vw - 54.7px);
+    }
+
+    .positions-count {
+      display: none;
+    }
+
+    .position-list {
+      display: flex;
+      flex-direction: column;
+      left: calc(33.333vw + 77.3px);
+      position: absolute;
+      top: 160px;
+      width: calc(66.667vw - 109.3px);
+    }
+
+    .position-row {
+      align-items: start;
+      border: 0;
+      border-top: 1px dashed #d4d4d4;
+      column-gap: 80px;
+      display: grid;
+      grid-template-columns: 14.8px 1fr 42px;
+      grid-template-rows: 25px 12px;
+      height: 85px;
+      padding: 16px 0;
+      row-gap: 16px;
+      text-decoration: none;
+      color: var(--text-dark);
+      transition: opacity 0.3s ease;
+      cursor: pointer;
+    }
+    .position-row:last-child {
+      border-bottom: 0;
+    }
+    .position-row:hover {
+      opacity: 0.5;
+    }
+
+    .position-number {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(0,0,0,0.4);
+      grid-column: 1;
+      grid-row: 1;
+      line-height: 12px;
+      width: 14.8px;
+    }
+
+    .position-title {
+      font-family: 'Geist', sans-serif;
+      font-size: 20.8px;
+      font-weight: 400;
+      letter-spacing: -0.8px;
+      line-height: 24.96px;
+      color: var(--black);
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: start;
+    }
+
+    .position-location {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.5);
+      grid-column: 2;
+      grid-row: 2;
+      justify-self: start;
+      line-height: 12px;
+      margin-right: 0;
+    }
+    .position-row .position-number,
+    .position-row .position-title,
+    .position-row .position-location {
+      transition: transform 0.3s ease;
+    }
+    .position-row:hover .position-number,
+    .position-row:hover .position-title,
+    .position-row:hover .position-location {
+      transform: translateX(32px);
+    }
+
+    .position-arrow {
+      align-items: center;
+      align-self: center;
+      display: flex;
+      grid-column: 3;
+      grid-row: 1 / span 2;
+      height: 20px;
+      justify-content: flex-end;
+      justify-self: end;
+      width: 42px;
+    }
+    .position-arrow svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--black);
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+      transition: stroke 0.3s;
+    }
+
+    /* ========== FINAL CTA ========== */
+    .final-cta {
+      position: relative;
+      height: 447.6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 128px 32px;
+      overflow: hidden;
+    }
+    .final-cta-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(0.4);
+    }
+    .final-cta > *:not(.final-cta-bg) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .final-cta .section-label {
+      color: rgb(255,255,255);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 28px;
+      text-transform: none;
+      top: 4.1px;
+    }
+    .final-cta .section-label::before {
+      content: '+';
+      font-size: 13px;
+    }
+
+    .final-cta h2,
+    .final-cta .cta-title {
+      font-family: 'Geist', sans-serif;
+      font-size: 80px;
+      font-weight: 400;
+      line-height: 80px;
+      letter-spacing: -5.6px;
+      color: rgb(228, 228, 228);
+      margin-bottom: 40px;
+    }
+    .cta-title .cta-char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .cta-title.visible .cta-char {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: rgb(4, 4, 4);
+      color: var(--white);
+      padding: 80px 16px 16px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-contact-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(158, 158, 158);
+      margin-bottom: 18px;
+    }
+
+    .footer-contact {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-contact h3 {
+      font-family: 'Geist', sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.88px;
+    }
+
+    .footer-contact .divider {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 72px;
+    }
+
+    .footer-nav-col h4 {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(158, 158, 158);
+      margin-bottom: 20px;
+    }
+
+    .footer-nav-col p {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 2;
+      color: rgb(255, 255, 255);
+      text-transform: uppercase;
+    }
+
+    .footer-nav-col a {
+      display: block;
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      margin-bottom: 6px;
+      transition: opacity 0.3s;
+    }
+    .footer-nav-col a:hover { opacity: 0.6; }
+
+    .footer-middle {
+      padding: 50px 0;
+    }
+
+    .footer-social-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(158, 158, 158);
+      margin-bottom: 18px;
+    }
+
+    .footer-bottom { padding: 40px 0 0; }
+
+    .footer-copyright {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .footer-copyright .sep {
+      width: 1px;
+      height: 14px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .footer-large-text {
+      position: relative;
+      font-family: 'Geist', sans-serif;
+      font-size: 20vw;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      color: rgba(255,255,255,0.07);
+      line-height: 0.85;
+      padding-bottom: 16px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+    .footer-registered {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: clamp(40px, 4vw, 64px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.07);
+      line-height: 1;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .careers-hero-title { font-size: 56px; letter-spacing: -3px; }
+      .benefits-intro-text { font-size: 32px; letter-spacing: -1.6px; line-height: 36px; }
+      .benefits-cards-row { flex-direction: column; gap: 40px; }
+      .benefit-card { flex-direction: row; }
+      .benefit-card-content { padding-right: 0; }
+      .clock-time { font-size: 36px; }
+      .positions-title { font-size: 32px; letter-spacing: -1.6px; line-height: 36px; }
+      .careers-hero-desc { padding-right: 0; }
+      .team-photos-row { height: 100%; }
+      .final-cta h2 { font-size: 64px; line-height: 64px; letter-spacing: -4.48px; }
+      .footer-top { flex-direction: column; gap: 48px; }
+      .footer-nav { gap: 36px; flex-wrap: wrap; }
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 18px 20px; }
+      .careers-hero { padding: 200px 20px 20px; }
+      .careers-hero-title { font-size: 40px; letter-spacing: -2px; line-height: 40px; }
+      .careers-hero-desc p { font-size: 14px; line-height: 18.2px; letter-spacing: -0.56px; }
+      .team-photos { padding: 20px 0 60px; }
+      .team-photos-row {
+        height: 100%;
+        padding: 0;
+      }
+      .benefits-intro { padding: 60px 20px 40px; }
+      .benefits-intro-text { font-size: 24px; letter-spacing: -1.2px; line-height: 28px; }
+      .benefits-cards { padding: 20px 20px 80px; }
+      .clock-section { padding: 40px 20px; }
+      .clock-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .clock-time { font-size: 32px; }
+      .clock-divider { width: 40px; height: 1px; }
+      .positions { padding: 80px 20px; }
+      .positions-title { font-size: 28px; letter-spacing: -1.4px; line-height: 32px; }
+      .position-row { flex-wrap: wrap; gap: 12px; }
+      .position-title { font-size: 18px; min-width: 100%; order: 2; }
+      .position-number { order: 1; }
+      .position-location { order: 3; flex: 1; }
+      .position-arrow { order: 4; }
+      .final-cta { padding: 80px 20px; }
+      .final-cta h2 { font-size: 40px; letter-spacing: -2.8px; line-height: 40px; }
+      footer { padding: 48px 20px 0; }
+    }
+  </style>
+  <link rel="stylesheet" href="/menu-fix.css?v=20260601e">
+  <style>
+    .final-cta .cta-title {
+      width: 650px;
+      max-width: calc(100vw - 48px);
+      font-size: 80px;
+      line-height: 80px;
+      letter-spacing: -5.6px;
+      margin-bottom: 24px;
+    }
+    .final-cta .btn {
+      width: 125.2px;
+      min-height: 42.8px;
+      padding-left: 0;
+      padding-right: 0;
+      line-height: 20.8px;
+    }
+    .benefits-cards-row.reveal,
+    .clock-inner.reveal,
+    .positions .reveal,
+    .final-cta .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .positions .position-row.reveal:hover {
+      opacity: 0.5 !important;
+    }
+    @media (max-width: 768px) {
+      .final-cta .cta-title {
+        width: auto;
+        font-size: 40px;
+        line-height: 40px;
+        letter-spacing: -2.8px;
+      }
+    }
+  </style>
+  <script defer src="/menu-fix.js?v=20260531t"></script>
+  <script defer src="/cms-connect.js?v=20260601p"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <a href="/" class="logo" aria-label="DJI Luggage"><span class="cms-logo-image-stack" aria-label="DJI Luggage"><img class="cms-logo-image cms-logo-image-light" src="/assets/brand/dji-luggage-logo-white.png" alt="DJI Luggage"><img class="cms-logo-image cms-logo-image-dark" src="/assets/brand/dji-luggage-logo-black.png" alt=""></span></a>
+    <div class="hamburger" id="menuToggle">
+      <span></span>
+      <span></span>
+    </div>
+    <a href="/contact" class="header-cta">GET A QUOTE</a>
+  </header>
+
+  <!-- MENU OVERLAY -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-overlay-content">
+      <div class="menu-inner">
+      <div class="menu-top">
+        <div class="menu-nav-section">
+          <div class="menu-nav-label">Main</div>
+          <nav class="menu-nav">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/services">Services</a>
+            <a href="/platform">Platform</a>
+            <a href="/newsroom/filters/all">Newsroom</a>
+            <a href="/careers">Careers</a>
+          </nav>
+        </div>
+        <div class="menu-contact-section">
+          <div class="menu-section-label">Contact</div>
+          <div class="menu-contact-btns">
+            <a href="mailto:info@djiluggage.id" class="btn btn-dark menu-btn">Send Us A Message</a>
+            <a href="/contact" class="btn btn-yellow menu-btn">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="menu-bottom">
+        <div class="menu-quick-section">
+          <div class="menu-section-label">Quick Contact</div>
+          <div class="social-icons menu-social">
+            <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" class="social-icon"><svg viewBox="0 0 24 24" style="fill:none !important;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" class="social-icon"><svg viewBox="0 0 24 24" style="fill:none !important;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:currentColor;stroke:none"/></svg></a>
+          </div>
+        </div>
+        <div class="menu-address-section">
+          <div class="menu-section-label">Address</div>
+          <p class="menu-address-text">JL RAYA PARUNG BOGOR,<br>DESA/KELURAHAN KEMANG,<br>KEC. KEMANG, KAB. BOGOR,<br>PROVINSI JAWA BARAT,<br>KODE POS: 16310</p>
+        </div>
+        <div class="menu-footer-logo">
+          <span class="cms-logo-image-stack" aria-label="DJI Luggage"><img class="cms-logo-image cms-logo-image-light" src="/assets/brand/dji-luggage-logo-white.png" alt="DJI Luggage"><img class="cms-logo-image cms-logo-image-dark" src="/assets/brand/dji-luggage-logo-black.png" alt=""></span>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO / TITLE SECTION -->
+  <section class="careers-hero" data-header="dark">
+    <h1 class="careers-hero-title reveal">Careers That Move<br>You Forward.</h1>
+    <div class="careers-hero-desc">
+      <p class="reveal reveal-delay-1">At DJI Luggage, we build practical travel products for brands, importers, and private-label partners.</p>
+      <p class="reveal reveal-delay-2">You'll find roles across production, quality, export coordination, and sample development in a hands-on manufacturing environment.</p>
+    </div>
+  </section>
+
+  <!-- TEAM PHOTOS SECTION -->
+  <section class="team-photos" data-header="dark">
+    <div class="team-photos-row">
+      <div class="team-photo photo-1">
+        <img src="https://framerusercontent.com/images/ZYX74OGfgMItW1hW5UEHBon9ic.jpg" alt="Career image" loading="lazy">
+      </div>
+      <div class="team-photo photo-2">
+        <img src="https://framerusercontent.com/images/EAfzjUmTenmtXJuhNEUOCMwps.jpg" alt="Career image" loading="lazy">
+      </div>
+      <div class="team-photo photo-3">
+        <img src="https://framerusercontent.com/images/pY4ShkQbP5hHBA0R47iSDyJY4.jpg" alt="Career image" loading="lazy">
+      </div>
+      <div class="team-photo photo-4">
+        <img src="https://framerusercontent.com/images/QPbxJzSomgVjzBqsCDWlXDen47g.jpg" alt="Career image" loading="lazy">
+      </div>
+      <div class="team-photo photo-5">
+        <img src="https://framerusercontent.com/images/I0JLD4ZrkQ2m8SgO1b7ObGpY0Y.jpg" alt="Career image" loading="lazy">
+      </div>
+      <div class="team-photo photo-6">
+        <img src="https://framerusercontent.com/images/Rf6AGJdqHXAyTMdqgeIEMydTW4.jpg" alt="Career image" loading="lazy">
+      </div>
+      <div class="team-photo photo-7">
+        <img src="https://framerusercontent.com/images/0KH5UuIJHGUclkImAuBW1STq1gI.jpg" alt="Career image" loading="lazy">
+      </div>
+      <div class="team-photo photo-8">
+        <img src="https://framerusercontent.com/images/WxjRRdMY30YyaF7s3NcvXQkdk.jpg" alt="Career image" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS INTRO -->
+  <section class="benefits-intro" data-header="dark">
+    <img class="benefits-portrait" src="https://framerusercontent.com/images/FgA1lEYmTjFwXZKDZbC2INNrVg.jpg" alt="" loading="lazy">
+    <p class="benefits-intro-text">At <span class="benefits-highlight">DJI Luggage</span>, you'll find practical training, room for <span class="benefits-highlight">growth</span>, and a team culture built around quality, ownership, and steady improvement.</p>
+  </section>
+
+  <!-- BENEFITS CARDS -->
+  <section class="benefits-cards" data-header="dark">
+    <div class="benefits-cards-row reveal">
+      <div class="benefit-card">
+        <div class="benefit-card-line"></div>
+        <div class="benefit-card-content">
+          <div class="benefit-number">[01]</div>
+          <h3>Stability</h3>
+          <p>Work with a growing luggage manufacturer where clear production planning and team coordination keep daily work grounded.</p>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card-line"></div>
+        <div class="benefit-card-content">
+          <div class="benefit-number">[02]</div>
+          <h3>Growth</h3>
+          <p>Build your skills through hands-on exposure to materials, sampling, production flow, inspection standards, and export preparation.</p>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card-line"></div>
+        <div class="benefit-card-content">
+          <div class="benefit-number">[03]</div>
+          <h3>Quality</h3>
+          <p>Join a team that values careful workmanship, practical problem solving, and products that hold up in real travel use.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOCK / LOCATION SECTION -->
+  <section class="clock-section" data-header="dark">
+    <img class="clock-bg" src="https://framerusercontent.com/images/JRztHvFLJHCm77Wuu4pLXB4vWx0.jpg" alt="" loading="lazy">
+    <div class="clock-inner reveal">
+      <span class="clock-location">Bogor</span>
+      <div class="clock-divider"></div>
+      <span class="clock-time" id="sfClock">--:--:--</span>
+    </div>
+  </section>
+
+  <!-- OPEN POSITIONS -->
+  <section class="positions" data-header="dark">
+    <div class="positions-header reveal">
+      <h2 class="positions-title">Open Positions</h2>
+      <span class="positions-count">(04)</span>
+    </div>
+    <div class="position-list">
+      <a href="/careers/production-supervisor" class="position-row reveal">
+        <span class="position-number">01</span>
+        <span class="position-title">Production Supervisor</span>
+        <span class="position-location">BOGOR, ID</span>
+        <div class="position-arrow">
+          <svg viewBox="0 0 20 20"><line x1="3" y1="10" x2="17" y2="10"/><polyline points="11 4 17 10 11 16"/></svg>
+        </div>
+      </a>
+      <a href="/careers/quality-control-specialist" class="position-row reveal reveal-delay-1">
+        <span class="position-number">02</span>
+        <span class="position-title">Quality Control Specialist</span>
+        <span class="position-location">BOGOR, ID</span>
+        <div class="position-arrow">
+          <svg viewBox="0 0 20 20"><line x1="3" y1="10" x2="17" y2="10"/><polyline points="11 4 17 10 11 16"/></svg>
+        </div>
+      </a>
+      <a href="/careers/export-sales-coordinator" class="position-row reveal reveal-delay-2">
+        <span class="position-number">03</span>
+        <span class="position-title">Export Sales Coordinator</span>
+        <span class="position-location">BOGOR, ID</span>
+        <div class="position-arrow">
+          <svg viewBox="0 0 20 20"><line x1="3" y1="10" x2="17" y2="10"/><polyline points="11 4 17 10 11 16"/></svg>
+        </div>
+      </a>
+      <a href="/careers/sample-development-technician" class="position-row reveal reveal-delay-3">
+        <span class="position-number">04</span>
+        <span class="position-title">Sample Development Technician</span>
+        <span class="position-location">BOGOR, ID</span>
+        <div class="position-arrow">
+          <svg viewBox="0 0 20 20"><line x1="3" y1="10" x2="17" y2="10"/><polyline points="11 4 17 10 11 16"/></svg>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <img class="final-cta-bg" src="https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg" alt="" loading="lazy">
+    <div class="section-label reveal" style="margin-bottom:28px;">Let's Get to Work</div>
+    <h2 class="cta-title" id="ctaTitle">Build With<br>DJI Luggage</h2>
+    <a href="/contact" class="btn btn-glass reveal">Get a Quote</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-contact-label">CONTACT</div>
+        <div class="footer-contact">
+          <h3>Let's Get Started</h3>
+          <div class="divider"></div>
+          <a href="/contact" class="btn btn-frosted" style="font-size:14px;">Get a Quote</a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <h4>ADDRESS</h4>
+          <p>JL RAYA PARUNG BOGOR,<br>DESA/KELURAHAN KEMANG,<br>KEC. KEMANG, KAB. BOGOR,<br>PROVINSI JAWA BARAT,<br>KODE POS: 16310</p>
+        </div>
+        <div class="footer-nav-col">
+          <h4>MAIN</h4>
+          <a href="/">HOME</a>
+          <a href="/services">SERVICES</a>
+          <a href="/about">ABOUT</a>
+          <a href="/careers">CAREERS</a>
+          <a href="/platform">PLATFORM</a>
+          <a href="/newsroom/filters/all">NEWSROOM</a>
+        </div>
+        <div class="footer-nav-col">
+          <h4>SUPPORT</h4>
+          <a href="/404">404</a>
+          <a href="/privacy-policy">PRIVACY POLICY</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-middle">
+      <div class="footer-social-label">QUICK CONTACT</div>
+      <div class="social-icons">
+        <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" class="social-icon"><svg viewBox="0 0 24 24" style="fill:none !important;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="social-icon"><svg viewBox="0 0 24 24" style="fill:none !important;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:currentColor;stroke:none"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        <span>&copy;2025. All right reserved</span>
+        <span class="sep"></span>
+        <span>Indonesian luggage manufacturer</span>
+      </div>
+      <div class="footer-large-text">DJI LUGGAGE</div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    // Header text color adapts to the section currently behind it
+    const navSections = Array.from(document.querySelectorAll('[data-header]'));
+    function updateHeaderTheme() {
+      const line = 37;
+      let theme = 'light';
+      for (const s of navSections) {
+        const r = s.getBoundingClientRect();
+        if (r.top <= line && r.bottom > line) { theme = s.dataset.header; break; }
+      }
+      header.classList.toggle('txt-dark', theme === 'dark');
+      header.classList.toggle('txt-light', theme !== 'dark');
+    }
+    window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+    window.addEventListener('resize', updateHeaderTheme);
+    updateHeaderTheme();
+
+    // Scroll reveal animations
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Immediately reveal elements already in viewport on page load
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add('visible');
+        }
+      });
+    });
+
+    // Menu overlay toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function toggleMenu() {
+      menuOverlay.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      header.classList.toggle('menu-open');
+      document.body.classList.toggle('menu-open');
+    }
+
+    function closeMenu() {
+      menuOverlay.classList.remove('active');
+      menuToggle.classList.remove('active');
+      header.classList.remove('menu-open');
+      document.body.classList.remove('menu-open');
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+
+    // Close menu on nav link click
+    document.querySelectorAll('.menu-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+
+    // Close menu on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOverlay.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+
+    // Live clock - Bogor time (Asia/Jakarta)
+    (function() {
+      const clockEl = document.getElementById('sfClock');
+      if (!clockEl) return;
+
+      function updateClock() {
+        const now = new Date();
+        const sfTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }));
+        const hours = String(sfTime.getHours()).padStart(2, '0');
+        const minutes = String(sfTime.getMinutes()).padStart(2, '0');
+        const seconds = String(sfTime.getSeconds()).padStart(2, '0');
+        clockEl.textContent = hours + ':' + minutes + ':' + seconds;
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+    })();
+    // CTA title character-by-character scroll animation
+    (function() {
+      const ctaTitle = document.getElementById('ctaTitle');
+      if (!ctaTitle) return;
+      ctaTitle.classList.add('visible');
+    })();
+    // Careers image strip mirrors the source's repeated diagonal marquee.
+    (function() {
+      const row = document.querySelector('.team-photos-row');
+      if (!row || row.dataset.looped) return;
+      row.dataset.looped = 'true';
+      const originals = Array.from(row.children);
+      const cycleX = 2290.8;
+      const cycleY = 281.3;
+      for (let loop = 1; loop <= 2; loop++) {
+        originals.forEach(photo => {
+          const clone = photo.cloneNode(true);
+          clone.style.setProperty('--loop-x', `${cycleX * loop}px`);
+          clone.style.setProperty('--loop-y', `${cycleY * loop}px`);
+          clone.setAttribute('aria-hidden', 'true');
+          row.appendChild(clone);
+        });
+      }
+    })();
+  </script>
+
+  <script src="/reveal.js"></script>
+</body>
+</html>

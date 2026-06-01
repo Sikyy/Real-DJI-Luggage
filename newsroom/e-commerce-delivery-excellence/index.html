@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJI Luggage Insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: "Geist";
+      src: url("https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Regular.woff2") format("woff2");
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Geist";
+      src: url("https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Black.woff2") format("woff2");
+      font-weight: 900;
+      font-display: swap;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #000;
+      --white: #fff;
+      --body-bg: #f3f4f6;
+      --text-dark: #333;
+      --muted: rgba(51, 51, 51, .64);
+      --yellow: #fedb5b;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--body-bg);
+      color: var(--text-dark);
+      font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px;
+      background: rgba(243, 244, 246, .78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0, 0, 0, .06);
+    }
+    .logo {
+      font-size: 23px;
+      font-style: italic;
+      font-weight: 900;
+      letter-spacing: 0;
+      line-height: 1;
+    }
+    .header-cta, .mono {
+      font-family: "Fragment Mono", monospace;
+      font-size: 12px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .hamburger {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      display: flex;
+      width: 26px;
+      flex-direction: column;
+      gap: 7px;
+      transform: translate(-50%, -50%);
+    }
+    .hamburger span {
+      display: block;
+      height: 1.5px;
+      background: var(--black);
+    }
+    .article-hero {
+      padding: 160px 24px 0;
+      display: grid;
+      grid-template-columns: 458px 700px;
+      gap: 48px;
+      max-width: none;
+      height: 380px;
+      margin: 0;
+    }
+    .article-hero h1 {
+      position: sticky;
+      top: 160px;
+      align-self: start;
+      max-width: 458px;
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 44px;
+      letter-spacing: 0;
+      color: var(--black);
+    }
+    .intro {
+      align-self: start;
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+      width: 700px;
+      height: 220px;
+      overflow: hidden;
+    }
+    .intro > div:first-child {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 600px;
+      height: 107.2px;
+      overflow: hidden;
+    }
+    .intro p {
+      max-width: 600px;
+      font-size: 16px;
+      line-height: 20.8px;
+      color: var(--black);
+    }
+    .meta-grid {
+      display: flex;
+      gap: 80px;
+      width: 700px;
+      max-width: 700px;
+      height: 48.8px;
+      overflow: hidden;
+    }
+    .meta-item {
+      width: 180px;
+      min-height: 48.8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 16px;
+    }
+    .meta-item strong {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20.8px;
+      color: var(--black);
+    }
+    .meta-item .mono { color: rgb(110, 110, 110); }
+    .article-media {
+      position: relative;
+      height: 912.7px;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      display: block;
+      overflow: visible;
+    }
+    .article-media img {
+      position: absolute;
+      top: 0;
+      left: 484.2px;
+      display: block;
+      width: 1007.6px;
+      max-width: none;
+      height: 856.6px;
+      object-fit: cover;
+      border-radius: 0;
+    }
+    .article-body {
+      max-width: none;
+      height: 1320.7px;
+      margin: 0;
+      padding: 0 0 0 530px;
+      display: block;
+      overflow: hidden;
+    }
+    .article-body > * {
+      width: 768px;
+    }
+    .article-body h4 {
+      margin: 40px 0 0;
+      color: var(--black);
+      font-size: 20.8px;
+      font-weight: 400;
+      line-height: 24.96px;
+      letter-spacing: 0;
+    }
+    .article-body h4:first-child { margin-top: 0; }
+    .article-body p {
+      margin: 20px 0 0;
+      font-size: 16px;
+      line-height: 20.8px;
+      color: var(--black);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      margin-top: 28px;
+      border-radius: 8px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 15px;
+    }
+    .article-body .back-link { display: none; }
+    .final-cta {
+      position: relative;
+      height: 414px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      padding: 128px 32px;
+      overflow: hidden;
+      color: var(--white);
+      text-align: center;
+    }
+    .final-cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .56)), url("https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg") center/cover;
+    }
+    .final-cta > * { position: relative; z-index: 1; }
+    .final-cta h2 {
+      max-width: 980px;
+      font-size: 80px;
+      font-weight: 400;
+      line-height: 80px;
+      letter-spacing: -5.6px;
+    }
+    .btn-glass {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 8px;
+      background: rgba(175, 175, 175, .32);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color: var(--white);
+    }
+    footer {
+      min-height: 806.2px;
+      padding: 80px 16px 16px;
+      background: rgb(4, 4, 4);
+      color: var(--white);
+      overflow: hidden;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 48px;
+      max-width: none;
+      margin: 0 0 60px;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      padding: 0 0 60px;
+    }
+    .footer-contact h3 { margin: 18px 0; font-size: 22px; font-weight: 400; letter-spacing: -0.88px; }
+    .footer-nav {
+      display: flex;
+      gap: 64px;
+      min-width: min(640px, 100%);
+      justify-content: flex-end;
+    }
+    .footer-nav-col {
+      display: grid;
+      align-content: start;
+      gap: 10px;
+      min-width: 118px;
+    }
+    .footer-nav-col h4, .footer-contact-label { font-family: "Fragment Mono", monospace; font-size: 12px; font-weight: 400; color: rgb(158, 158, 158); }
+    .footer-nav-col a, .footer-nav-col p { font-family: "Fragment Mono", monospace; font-size: 12px; line-height: 2; color: var(--white); }
+    .footer-large-text {
+      font-size: 20vw;
+      font-weight: 900;
+      line-height: .85;
+      letter-spacing: .03em;
+      text-align: center;
+      color: rgba(255,255,255,.07);
+      white-space: nowrap;
+    }
+    @media (max-width: 860px) {
+      header { padding: 18px 20px; }
+      .article-hero { grid-template-columns: 1fr; padding: 132px 20px 44px; gap: 28px; }
+      .meta-grid { grid-template-columns: 1fr; }
+      .article-media, .article-body {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .article-media img, .article-body > * { grid-column: 1; }
+      .footer-top, .footer-nav { flex-direction: column; }
+      .footer-nav { gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">DJI LUGGAGE</a>
+    <div class="hamburger" aria-hidden="true"><span></span><span></span></div>
+    <a class="header-cta" href="/contact">Get a Quote</a>
+  </header>
+
+  <main>
+    <section class="article-hero">
+      <h1 id="articleTitle"></h1>
+      <div class="intro">
+        <div>
+          <div class="mono" style="color:rgb(110,110,110);">Introduction</div>
+          <p>Practical notes from DJI Luggage on building reliable suitcase and travel product programs, from early product planning to repeatable production.</p>
+        </div>
+        <div class="meta-grid">
+          <div class="meta-item"><span class="mono">Date</span><strong id="articleDate"></strong></div>
+          <div class="meta-item"><span class="mono">Author</span><strong id="articleAuthor"></strong></div>
+          <div class="meta-item"><span class="mono">Type</span><strong id="articleType"></strong></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="article-media">
+      <img id="articleImage" src="" alt="">
+    </div>
+
+    <article class="article-body">
+      <h4>Start With A Clear Product Brief</h4>
+      <p>A strong luggage program starts with the basics: suitcase size, shell or fabric direction, wheel system, handle requirements, lining, lock type, color, branding method, target price, and expected quantity.</p>
+      <p>Clear inputs help the factory recommend realistic construction choices and avoid unnecessary sampling rounds.</p>
+      <h4>Sampling Turns Ideas Into Decisions</h4>
+      <p>Sampling is where design intent meets production reality. Buyers can review structure, weight, finish, trolley movement, wheel feel, zipper performance, logo placement, interior layout, and packaging details before committing to a larger order.</p>
+      <h4>Quality Checks Need To Be Built In</h4>
+      <p>Luggage quality is shaped by many small details: material consistency, wheel assembly, handle strength, corner protection, stitching, zipper movement, color matching, logo position, and carton packing.</p>
+      <h4>Plan Packaging And Delivery Early</h4>
+      <p>Carton size, master packing, product labels, hangtags, barcode placement, and destination requirements should be discussed early because these details affect cost, warehousing, inspection, and final delivery readiness.</p>
+      <h4>Build For The Next Order</h4>
+      <p>DJI Luggage supports buyers who want a practical factory partner for long-term travel product development and repeatable production.</p>
+      <a class="back-link" href="/newsroom/filters/all">View all</a>
+    </article>
+
+    <section class="final-cta">
+      <div class="mono" style="color:rgba(255,255,255,.6);">Ready To Build</div>
+      <h2>Start Your<br>Luggage Program</h2>
+      <a class="btn-glass" href="/contact">Get a Quote</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-contact-label">CONTACT</div>
+        <div class="footer-contact">
+          <h3>Let's Get Started</h3>
+          <a class="back-link" href="/contact">Get a Quote</a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <h4>ADDRESS</h4>
+          <p>JL RAYA PARUNG BOGOR,<br>DESA/KELURAHAN KEMANG,<br>KEC. KEMANG, KAB. BOGOR,<br>PROVINSI JAWA BARAT,<br>KODE POS: 16310</p>
+        </div>
+        <div class="footer-nav-col">
+          <h4>MAIN</h4>
+          <a href="/">HOME</a>
+          <a href="/services">MANUFACTURING</a>
+          <a href="/about">ABOUT</a>
+          <a href="/careers">CAREERS</a>
+          <a href="/platform">CAPABILITIES</a>
+          <a href="/newsroom/filters/all">INSIGHTS</a>
+        </div>
+        <div class="footer-nav-col">
+          <h4>SUPPORT</h4>
+          <a href="/404">404</a>
+          <a href="/privacy-policy">PRIVACY POLICY</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-large-text">DJI LUGGAGE</div>
+  </footer>
+
+  <script defer src="/cms-connect.js?v=20260601p"></script>
+  <script>
+    const CMS_BASE = 'http://localhost:3000';
+    const SUPPORTED_LOCALES = ['en', 'id', 'zh'];
+    const DEFAULT_LOCALE = 'en';
+    const firstSegment = location.pathname.split('/').filter(Boolean)[0];
+    const CURRENT_LOCALE = SUPPORTED_LOCALES.includes(firstSegment) ? firstSegment : DEFAULT_LOCALE;
+    const articles = {
+      "choosing-the-right-luggage-manufacturer": {
+        title: "Choosing The Right Luggage Manufacturer",
+        date: "10.31.25",
+        author: "DJI Luggage Team",
+        type: "Insights",
+        image: "https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg"
+      },
+      "oem-vs-odm-for-luggage-brands": {
+        title: "OEM vs ODM For Luggage Brands",
+        date: "10.02.25",
+        author: "DJI Luggage Team",
+        type: "Insights",
+        image: "https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg"
+      },
+      "quality-checks-in-suitcase-production": {
+        title: "Quality Checks In Suitcase Production",
+        date: "9.27.25",
+        author: "DJI Luggage Team",
+        type: "News",
+        image: "https://framerusercontent.com/images/gtxhO5eQb8zTp6csYDNAsGA9k.jpg"
+      },
+      "material-choices-for-hard-shell-luggage": {
+        title: "Material Choices For Hard Shell Luggage",
+        date: "9.17.25",
+        author: "DJI Luggage Team",
+        type: "Insights",
+        image: "https://framerusercontent.com/images/qerU0u7MgBoEnXdijYtcgsdtMTk.jpg"
+      },
+      "planning-your-first-bulk-luggage-order": {
+        title: "Planning Your First Bulk Luggage Order",
+        date: "9.08.25",
+        author: "DJI Luggage Team",
+        type: "News",
+        image: "https://framerusercontent.com/images/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg"
+      },
+      "building-a-private-label-travel-line": {
+        title: "Building A Private Label Travel Line",
+        date: "9.01.25",
+        author: "DJI Luggage Team",
+        type: "News",
+        image: "https://framerusercontent.com/images/CA2gOg0z0KVvO9JiKIDAroigUw.jpg?scale-down-to=1024&width=5191&height=3458"
+      },
+      "packaging-and-export-prep-for-suitcases": {
+        title: "Packaging And Export Prep For Suitcases",
+        date: "8.29.25",
+        author: "DJI Luggage Team",
+        type: "Insights",
+        image: "https://framerusercontent.com/images/pNkjoqFtJG8GbECTaKovqOFWvXI.jpg"
+      },
+      "from-sample-to-production": {
+        title: "From Sample To Production",
+        date: "8.12.25",
+        author: "DJI Luggage Team",
+        type: "News",
+        image: "https://framerusercontent.com/images/qdVrKVWoQ6IYD1EWJSW1Z5nYMc.jpg"
+      }
+    };
+    const slug = location.pathname.split("/").filter(Boolean).pop();
+    const article = articles[slug] || articles["choosing-the-right-luggage-manufacturer"];
+
+    function localizeUrl(url) {
+      if (!url || !String(url).startsWith('/') || /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(String(url))) return url;
+      const parts = String(url).split('/').filter(Boolean);
+      if (SUPPORTED_LOCALES.includes(parts[0])) parts.shift();
+      const cleanPath = '/' + parts.join('/');
+      return CURRENT_LOCALE === DEFAULT_LOCALE ? cleanPath : '/' + CURRENT_LOCALE + (cleanPath === '/' ? '' : cleanPath);
+    }
+
+    function cmsQuery(params) {
+      const search = new URLSearchParams(params || {});
+      search.set('locale', CURRENT_LOCALE);
+      search.set('fallback-locale', DEFAULT_LOCALE);
+      return search.toString();
+    }
+
+    function escapeHTML(value) {
+      return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function formatArticleDate(value, fallback) {
+      if (!value) return fallback || '';
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return fallback || '';
+      return (date.getMonth() + 1) + '.' + String(date.getDate()).padStart(2, '0') + '.' + String(date.getFullYear()).slice(-2);
+    }
+
+    function categoryLabel(value) {
+      if (value === 'insights') return 'Insights';
+      if (value === 'news') return 'News';
+      return value || '';
+    }
+
+    function cmsImageUrl(post) {
+      const url = post && (post.externalCoverImageUrl || (post.coverImage && post.coverImage.url));
+      if (!url) return '';
+      if (/^https?:\/\//.test(url)) return url;
+      return CMS_BASE + url;
+    }
+
+    function applyArticle(post) {
+      const title = post && post.title ? post.title : article.title;
+      const intro = post && post.intro ? post.intro : '';
+      const author = post && post.author ? post.author : article.author;
+      const type = post && post.category ? categoryLabel(post.category) : article.type;
+      const imageUrl = cmsImageUrl(post) || article.image;
+
+      document.title = title + ' - DJI Luggage';
+      document.getElementById('articleTitle').textContent = title;
+      document.getElementById('articleDate').textContent = formatArticleDate(post && post.publishedAt, article.date);
+      document.getElementById('articleAuthor').textContent = author;
+      document.getElementById('articleType').textContent = type;
+
+      const introCopy = document.querySelector('.intro p');
+      if (introCopy && intro) introCopy.textContent = intro;
+
+      const image = document.getElementById('articleImage');
+      image.src = imageUrl;
+      image.alt = title;
+
+      const sections = post && Array.isArray(post.contentSections) ? post.contentSections : [];
+      if (!sections.length) return;
+      const body = document.querySelector('.article-body');
+      if (!body) return;
+      body.innerHTML = sections.map((section) => {
+        const paragraphs = String(section.body || '')
+          .split(/\n{2,}/)
+          .map((paragraph) => paragraph.trim())
+          .filter(Boolean)
+          .map((paragraph) => '<p>' + escapeHTML(paragraph) + '</p>')
+          .join('');
+        return '<h4>' + escapeHTML(section.heading) + '</h4>' + paragraphs;
+      }).join('') + '<a class="back-link" href="' + localizeUrl('/newsroom/filters/all') + '">View all</a>';
+    }
+
+    applyArticle(null);
+
+    async function connectArticle() {
+      try {
+        const response = await fetch(CMS_BASE + '/api/news-posts?' + cmsQuery({
+          'where[slug][equals]': slug,
+          depth: '1',
+          limit: '1',
+        }));
+        if (!response.ok) throw new Error('Article request failed');
+        const data = await response.json();
+        const post = data.docs && data.docs[0];
+        if (post) {
+          applyArticle(post);
+          document.documentElement.dataset.articleConnected = 'true';
+        }
+      } catch (error) {
+        console.warn('[DJI Luggage CMS] Falling back to static article content.', error);
+      }
+    }
+
+    connectArticle();
+  </script>
+</body>
+</html>

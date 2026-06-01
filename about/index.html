@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - DJI Luggage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-SemiBold.woff2') format('woff2');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Black.woff2') format('woff2');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --body-bg: #f3f4f6;
+      --yellow: #fedb5b;
+      --text-dark: #333333;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Geist', -apple-system, sans-serif;
+      color: var(--text-dark);
+      background: var(--body-bg);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== HEADER (Dark text variant for sub-pages) ========== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      padding: 0 16px;
+      background: var(--body-bg);
+      transition: background 0.4s ease, border-color 0.4s ease;
+      border-bottom: 0;
+    }
+    header.scrolled {
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom-color: transparent;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .logo svg {
+      height: 13px;
+      width: auto;
+      fill: var(--black);
+      transition: fill 0.4s ease;
+    }
+    header.scrolled .logo svg { fill: var(--white); }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 101;
+      position: relative;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 1.5px;
+      background: var(--black);
+      transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.25s ease, background 0.4s ease;
+      transform-origin: center;
+    }
+    header.scrolled .hamburger span { background: var(--white); }
+    .hamburger.active span:first-child {
+      transform: translateY(4.25px) rotate(45deg);
+    }
+    .hamburger.active span:last-child {
+      transform: translateY(-4.25px) rotate(-45deg);
+    }
+
+    .header-cta {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0;
+      color: var(--black);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: opacity 0.3s, color 0.4s ease;
+    }
+    .header-cta:hover { opacity: 0.6; }
+    /* Adaptive header: transparent, text color follows the section behind it */
+    header.txt-dark .logo svg { fill: var(--black); }
+    header.txt-dark .hamburger span { background: var(--black); }
+    header.txt-dark .header-cta { color: var(--black); }
+    header.txt-light .logo svg { fill: var(--white); }
+    header.txt-light .hamburger span { background: var(--white); }
+    header.txt-light .header-cta { color: var(--white); }
+    header.txt-light .logo svg,
+    header.txt-dark .logo svg { fill: var(--black); }
+    header.txt-light .hamburger span,
+    header.txt-dark .hamburger span { background: var(--black); }
+    header.txt-light .header-cta,
+    header.txt-dark .header-cta { color: var(--black); }
+    header.menu-open .logo svg { fill: var(--black) !important; }
+    header.menu-open .hamburger span { background: var(--black) !important; }
+    header.menu-open .header-cta { color: var(--black) !important; }
+    header.scrolled .header-cta { color: var(--white); }
+
+    /* Header menu-open state */
+    header.menu-open {
+      background: transparent !important;
+      backdrop-filter: none !important;
+    }
+    header.menu-open .logo svg { fill: var(--text-dark); }
+    header.menu-open .hamburger span { background: var(--text-dark); }
+    header.menu-open .header-cta { color: var(--text-dark); }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 24px;
+      border-radius: 2px;
+      text-decoration: none;
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.64px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:active { transform: scale(0.97); }
+
+    .btn-frosted {
+      background: rgba(158, 158, 158, 0.4);
+      color: var(--white);
+    }
+    .btn-frosted:hover { background: rgba(158, 158, 158, 0.6); }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--white);
+    }
+    .btn-dark:hover { background: #222; }
+
+    .btn-glass {
+      background: rgba(158, 158, 158, 0.35);
+      color: var(--white);
+      backdrop-filter: blur(8px);
+    }
+    .btn-glass:hover { background: rgba(158, 158, 158, 0.55); }
+
+    .btn-yellow {
+      background: var(--yellow);
+      color: var(--black);
+    }
+    .btn-yellow:hover { background: #f0cc40; }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    /* ========== SECTION LABEL ========== */
+    .section-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::before {
+      content: '+';
+      font-size: 13px;
+    }
+
+    /* ========== SCROLL ANIMATIONS ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ========== MENU OVERLAY ========== */
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 99;
+      background: var(--body-bg);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.5s;
+      overflow-y: auto;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    body.menu-open { overflow: hidden; }
+
+    .menu-overlay-content {
+      width: 100%;
+      min-height: 100vh;
+      padding: 72px 16px 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 64px;
+      padding: 0 80px;
+    }
+
+    .menu-nav-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(0, 0, 0);
+      margin-bottom: 24px;
+      line-height: 12px;
+    }
+
+    .menu-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 80px;
+      max-width: 700px;
+    }
+
+    .menu-nav a {
+      font-family: 'Geist', sans-serif;
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: -2px;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      line-height: 44px;
+      transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    .menu-overlay.active .menu-nav a {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .menu-overlay.active .menu-nav a:nth-child(1) { transition-delay: 0.05s; }
+    .menu-overlay.active .menu-nav a:nth-child(2) { transition-delay: 0.1s; }
+    .menu-overlay.active .menu-nav a:nth-child(3) { transition-delay: 0.15s; }
+    .menu-overlay.active .menu-nav a:nth-child(4) { transition-delay: 0.2s; }
+    .menu-overlay.active .menu-nav a:nth-child(5) { transition-delay: 0.25s; }
+    .menu-overlay.active .menu-nav a:nth-child(6) { transition-delay: 0.3s; }
+    .menu-nav:hover a { opacity: 0.4 !important; }
+    .menu-nav a:hover { opacity: 1 !important; }
+
+    .menu-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .menu-contact-section { text-align: right; }
+
+    .menu-section-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(51, 51, 51);
+      margin-bottom: 16px;
+      line-height: 12px;
+    }
+
+    .menu-contact-section .menu-section-label {
+      color: rgb(0, 0, 0);
+    }
+
+    .menu-contact-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .menu-btn {
+      width: 100%;
+      min-width: 184px;
+      text-align: center;
+      font-size: 16px;
+      padding: 10px 24px;
+    }
+
+    .menu-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-top: 32px;
+      border-top: 1px solid #d4d4d4;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    .menu-address-text {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgb(100, 100, 100);
+    }
+
+    .menu-footer-logo svg {
+      height: 24px;
+      width: auto;
+      fill: var(--text-dark);
+    }
+
+    .menu-social .social-icon {
+      border-color: rgba(0, 0, 0, 0.12);
+      color: var(--text-dark);
+    }
+    .menu-social .social-icon:hover {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.25);
+    }
+    .menu-social .social-icon svg { fill: var(--text-dark); }
+
+    /* ========== 1. PAGE TITLE ========== */
+    .page-title-section {
+      background: var(--body-bg);
+      padding: 180px 24px 32px;
+      height: 485px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-align: left;
+      position: relative;
+    }
+
+    .page-title {
+      font-family: 'Geist', sans-serif;
+      font-size: 80px;
+      font-weight: 400;
+      letter-spacing: -5.6px;
+      line-height: 80px;
+      color: var(--text-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .page-title .arrow-down {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.7em;
+      color: rgba(0,0,0,0.3);
+    }
+
+    .page-title-anim {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: pageTitleIn 0.8s ease forwards;
+      animation-delay: 0.2s;
+    }
+
+    @keyframes pageTitleIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ========== 2. HERO IMAGE ========== */
+    .about-hero-image {
+      width: 100%;
+      height: 552px;
+      overflow: hidden;
+      background-image: url('https://framerusercontent.com/images/2cLLtW9JseVLuB8Se1lBw03NAlI.jpg');
+      background-position: center center;
+      background-size: 110vw 110vh;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+    .about-hero-image img {
+      display: none;
+    }
+
+    /* ========== 3. WHO WE ARE ========== */
+    .who-we-are {
+      background: var(--body-bg);
+      padding: 261px 32px 183px;
+      height: 861px;
+      color: var(--text-dark);
+    }
+
+    .section-divider-rounded {
+      width: 100%;
+      height: 1px;
+      background: #d4d4d4;
+      border-radius: 1px;
+      margin-bottom: 60px;
+    }
+
+    .about-layout {
+      display: flex;
+      flex-direction: row;
+      gap: 32px;
+    }
+
+    .about-left-label {
+      flex-shrink: 0;
+      width: 430px;
+    }
+
+    .about-right {
+      flex: 1 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    .about-heading {
+      font-family: 'Geist', sans-serif;
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: -2px;
+      line-height: 44px;
+      color: var(--text-dark);
+      max-width: 750px;
+    }
+    .who-we-are .about-heading { max-width: 100%; }
+
+    .about-columns {
+      display: flex;
+      gap: 48px;
+    }
+
+    .about-column {
+      flex: 1;
+      max-width: 420px;
+    }
+
+    .about-column p {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.64px;
+      line-height: 20.8px;
+      color: rgb(0, 0, 0);
+    }
+
+    /* ========== 4. OUR REACH ========== */
+    .our-reach {
+      background: var(--black);
+      height: 1036px;
+      padding: 180px 32px 0;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .our-reach .about-layout {
+      position: relative;
+      z-index: 3;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+      transform: translateX(16px);
+    }
+
+    .our-reach .about-left-label {
+      width: auto;
+    }
+
+    .our-reach .about-right {
+      flex: none;
+      align-items: center;
+      gap: 0;
+    }
+
+    .our-reach .section-label {
+      color: rgb(201, 201, 201);
+      margin-bottom: 0 !important;
+    }
+
+    .our-reach .about-heading {
+      color: var(--white);
+      font-size: 56px;
+      line-height: 64.4px;
+      letter-spacing: -2.8px;
+      max-width: 700px;
+      text-align: center;
+    }
+
+    .marquee-container {
+      position: absolute;
+      z-index: 4;
+      top: 375px;
+      left: 0;
+      right: 0;
+      height: 187px;
+      margin-top: 0;
+      overflow: hidden;
+    }
+
+    .marquee-container::before,
+    .marquee-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .marquee-container::before {
+      left: 0;
+      background: linear-gradient(to right, var(--black), transparent);
+    }
+    .marquee-container::after {
+      right: 0;
+      background: linear-gradient(to left, var(--black), transparent);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 30s linear infinite;
+      width: max-content;
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-33.333%); }
+    }
+
+    .location-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      padding: 36px 0 0;
+      border-left: 0;
+      min-width: 322px;
+    }
+
+    .location-country {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0;
+      line-height: 12px;
+    }
+
+    .location-city {
+      font-family: 'Geist', sans-serif;
+      font-size: 14.4px;
+      font-weight: 400;
+      line-height: 17.28px;
+      letter-spacing: 3.744px;
+      color: var(--white);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .reach-pin {
+      position: absolute;
+      z-index: 5;
+      top: 528px;
+      left: calc(50% + 16px);
+      width: 25px;
+      height: 209px;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .reach-pin::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 16px;
+      height: 16px;
+      transform: translateX(-50%);
+      border: 3px solid var(--white);
+      border-radius: 50%;
+      background: var(--black);
+      box-shadow: 0 0 12px rgba(255,255,255,0.75);
+    }
+
+    .reach-pin::after {
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      width: 1px;
+      height: 193px;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.55);
+    }
+
+    .reach-globe {
+      position: absolute;
+      z-index: 1;
+      left: 50%;
+      top: 568px;
+      width: 2211px;
+      height: 995px;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .reach-globe video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .reach-globe-gradient {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      bottom: 271px;
+      width: 1470px;
+      height: 366px;
+      transform: translateX(-50%);
+      background: linear-gradient(rgba(0,0,0,0) 0%, rgb(0,0,0) 100%);
+    }
+
+    /* ========== 5. KEY METRICS ========== */
+    .key-metrics {
+      background: var(--body-bg);
+      padding: 216px 24px 324px;
+      color: var(--text-dark);
+      overflow: hidden;
+    }
+
+    .key-metrics .section-divider-rounded {
+      display: none;
+    }
+
+    .metrics-layout {
+      --metric-card-height: 376px;
+      --metric-card-row-gap: 10px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr);
+      gap: 100px;
+      align-items: start;
+      width: 100%;
+    }
+
+    .metrics-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: calc((var(--metric-card-height) * 2) + var(--metric-card-row-gap));
+      transform: translateY(24px);
+    }
+
+    .metrics-intro {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .key-metrics .section-label {
+      margin-bottom: 0 !important;
+      gap: 6px;
+      min-height: 16px;
+      align-self: flex-start;
+      line-height: 12px;
+    }
+
+    .key-metrics .section-label::before {
+      display: inline-block;
+      width: 16px;
+      flex: 0 0 16px;
+      text-align: left;
+    }
+
+    .key-metrics .about-heading {
+      max-width: 100%;
+    }
+
+    .metrics-media-copy {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: end;
+    }
+
+    .metrics-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .metrics-subtext {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.64px;
+      line-height: 20.8px;
+      color: var(--text-dark);
+      max-width: 100%;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--metric-card-row-gap) 12px;
+      max-width: none;
+    }
+
+    .metric-card {
+      height: var(--metric-card-height);
+      border-radius: 4px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      color: var(--black);
+      transform: translateY(var(--metric-scroll-y, 0px));
+    }
+
+    .metric-card:nth-child(even) {
+      transform: translateY(calc(44px + var(--metric-scroll-y, 0px)));
+    }
+
+    .metric-card-dark {
+      background: #040404;
+      color: var(--white);
+    }
+
+    .metric-card-gray {
+      background: #c9c9c9;
+    }
+
+    .metric-card-yellow {
+      background: var(--yellow);
+    }
+
+    .metric-card-charcoal {
+      background: #333333;
+      color: var(--white);
+    }
+
+    .metric-number {
+      font-family: 'Geist', sans-serif;
+      font-size: 96px;
+      font-weight: 400;
+      letter-spacing: -6.72px;
+      line-height: 96px;
+      color: currentColor;
+    }
+
+    .metric-label {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20.8px;
+      letter-spacing: -0.64px;
+      color: currentColor;
+      border-top: 1px solid currentColor;
+      border-radius: 10px 10px 0 0;
+      padding-top: 20px;
+      opacity: 0.96;
+    }
+
+    /* ========== 6. TESTIMONIALS ========== */
+    .testimonials {
+      position: relative;
+      height: 800px;
+      padding: 0;
+      overflow: hidden;
+      color: var(--white);
+      background: #040404;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .testimonial-slider {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      --testimonial-slide-width: 100vw;
+    }
+
+    .testimonial-track {
+      display: flex;
+      width: max-content;
+      height: 100%;
+      transition: transform 0.55s cubic-bezier(0.19, 1, 0.22, 1);
+      will-change: transform;
+    }
+
+    .testimonial-slide {
+      position: relative;
+      flex: 0 0 var(--testimonial-slide-width);
+      width: var(--testimonial-slide-width);
+      height: 800px;
+      overflow: hidden;
+    }
+
+    .testimonial-slide img {
+      position: absolute;
+      top: -63px;
+      left: -73px;
+      width: calc(var(--testimonial-slide-width) + 147px);
+      height: 880px;
+      object-fit: cover;
+      filter: brightness(0.48);
+    }
+
+    .testimonial-content {
+      position: absolute;
+      left: 32px;
+      top: 330px;
+      z-index: 1;
+      max-width: 600px;
+    }
+
+    .testimonial-quote {
+      font-family: 'Geist', sans-serif;
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: -2px;
+      line-height: 44px;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .testimonial-company {
+      font-family: 'Geist', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 26px;
+      color: var(--white);
+      letter-spacing: -0.64px;
+    }
+
+    .testimonial-controls {
+      position: absolute;
+      left: 32px;
+      bottom: 100px;
+      z-index: 2;
+      display: flex;
+      gap: 6px;
+    }
+
+    .testimonial-arrow,
+    .team-arrow {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 4px;
+      background: rgba(231, 233, 236, 0.18);
+      color: var(--white);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .testimonial-arrow:hover,
+    .team-arrow:hover {
+      background: rgba(231, 233, 236, 0.3);
+    }
+
+    .testimonial-arrow:active,
+    .team-arrow:active {
+      transform: scale(0.96);
+    }
+
+    .testimonial-arrow svg,
+    .team-arrow svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ========== 7. TRUSTED BY ========== */
+    .trusted-by {
+      position: relative;
+      z-index: 1;
+      background: var(--body-bg);
+      height: 254px;
+      margin-top: 0;
+      padding: 24px;
+      color: var(--text-dark);
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .trusted-by::before {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 194px;
+      background: var(--body-bg);
+      pointer-events: none;
+    }
+
+    .trusted-by .section-label {
+      position: absolute;
+      z-index: 3;
+      top: 95px;
+      left: 24px;
+      margin-bottom: 0;
+    }
+
+    .trusted-by .section-label::before {
+      display: none;
+      content: none;
+    }
+
+    .trusted-logos {
+      position: absolute;
+      top: 40px;
+      left: 194px;
+      right: 40px;
+      height: 122px;
+      padding: 10px;
+      z-index: 1;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, #000 12.5%, #000 87.5%, rgba(0, 0, 0, 0) 100%);
+      -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, #000 12.5%, #000 87.5%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    .trusted-track {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      width: max-content;
+      height: 100%;
+      animation: trustedScroll 20.6s linear infinite;
+      animation-delay: 0.85s;
+      animation-play-state: paused;
+      will-change: transform;
+    }
+
+    .trusted-by.is-visible .trusted-track {
+      animation-play-state: running;
+    }
+
+    .trusted-logos:hover .trusted-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes trustedScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .trusted-logo-card {
+      flex: 0 0 215px;
+      height: 120px;
+      padding: 24px;
+      border-radius: 4px;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .trusted-logo-card svg {
+      display: block;
+      width: 168px;
+      height: 72px;
+      color: #040404;
+    }
+
+    .trusted-logo-defs {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    /* ========== 8. OUR TEAM ========== */
+    .our-team {
+      position: relative;
+      height: 973px;
+      background: linear-gradient(rgb(243, 244, 246) 42%, rgb(201, 201, 201) 100%);
+      padding: 180px 0 0 32px;
+      overflow: hidden;
+    }
+
+    .our-team .section-label {
+      margin-bottom: 16px;
+    }
+
+    .team-heading-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding-right: 32px;
+      margin-bottom: 73px;
+    }
+
+    .team-title {
+      font-family: 'Geist', sans-serif;
+      font-size: 56px;
+      font-weight: 400;
+      line-height: 64.4px;
+      letter-spacing: -2.8px;
+      color: #040404;
+    }
+
+    .team-controls {
+      display: flex;
+      gap: 6px;
+    }
+
+    .team-arrow {
+      background: rgb(231, 233, 236);
+      color: var(--black);
+    }
+
+    .team-carousel-container {
+      position: relative;
+      overflow: visible;
+    }
+
+    .team-carousel {
+      display: flex;
+      gap: 100px;
+      width: max-content;
+      transition: transform 0.55s cubic-bezier(0.19, 1, 0.22, 1);
+      will-change: transform;
+    }
+
+    .team-card {
+      position: relative;
+      flex: 0 0 515px;
+      height: 649px;
+      overflow: hidden;
+    }
+
+    .team-card-image {
+      width: 433px;
+      height: 623px;
+      margin-left: 41px;
+      overflow: hidden;
+      border-radius: 4px;
+      background: transparent;
+    }
+
+    .team-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: none;
+      transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .team-card:hover .team-card-image img {
+      transform: scale(1.025);
+    }
+
+    .team-card-info {
+      position: absolute;
+      top: 32px;
+      left: 16px;
+      z-index: 1;
+      display: flex;
+      gap: 16px;
+      min-height: 47px;
+      padding-left: 18px;
+      color: var(--black);
+    }
+
+    .team-card-info::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 16px;
+      height: 47px;
+      border-left: 1px solid rgba(0,0,0,0.2);
+      border-radius: 8px 0 0 8px;
+    }
+
+    .team-card-name {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      letter-spacing: 0;
+      line-height: 12px;
+    }
+
+    .team-card-title {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: var(--black);
+      letter-spacing: 0;
+      line-height: 12px;
+      margin-top: 6px;
+    }
+
+    /* ========== 9. CAREERS CTA ========== */
+    .careers-cta {
+      min-height: 611px;
+      padding: 200px 32px;
+      color: var(--black);
+      background-color: var(--yellow);
+      background-image: url('https://framerusercontent.com/images/JcuFjKTuj2SCFBQDFdYoNXayY.svg?width=1440&height=1079');
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .careers-cta .section-label {
+      color: var(--black);
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .careers-cta .about-heading {
+      color: var(--black);
+      margin: 0 auto 24px;
+      max-width: 700px;
+      text-align: center;
+    }
+
+    .careers-cta .btn {
+      background: var(--black);
+      color: var(--white);
+      border: 0;
+    }
+
+    /* ========== 10. FINAL CTA ========== */
+    .final-cta {
+      position: relative;
+      height: 414px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 128px 32px;
+      overflow: hidden;
+    }
+    .final-cta-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(0.4);
+    }
+    .final-cta > *:not(.final-cta-bg) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .final-cta .section-label {
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 28px;
+    }
+
+    .final-cta h2,
+    .final-cta .cta-title {
+      font-family: 'Geist', sans-serif;
+      font-size: 80px;
+      font-weight: 400;
+      line-height: 80px;
+      letter-spacing: -5.6px;
+      color: rgb(228,228,228);
+      margin-bottom: 40px;
+    }
+    .cta-title .cta-char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .cta-title.visible .cta-char {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== 11. FOOTER ========== */
+    footer {
+      background: rgb(4, 4, 4);
+      color: var(--white);
+      padding: 80px 16px 50px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-contact-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(158, 158, 158);
+      margin-bottom: 18px;
+    }
+
+    .footer-contact {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-contact h3 {
+      font-family: 'Geist', sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.88px;
+    }
+
+    .footer-contact .divider {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 72px;
+    }
+
+    .footer-nav-col h4 {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(158, 158, 158);
+      margin-bottom: 20px;
+    }
+
+    .footer-nav-col p {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 2;
+      color: rgb(255, 255, 255);
+      text-transform: uppercase;
+    }
+
+    .footer-nav-col a {
+      display: block;
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      margin-bottom: 6px;
+      transition: opacity 0.3s;
+    }
+    .footer-nav-col a:hover { opacity: 0.6; }
+
+    .footer-middle {
+      padding: 50px 0;
+    }
+
+    .footer-social-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(158, 158, 158);
+      margin-bottom: 18px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .social-icon:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.3);
+    }
+    .social-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .footer-bottom { padding: 40px 0 0; }
+
+    .footer-copyright {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .footer-copyright .sep {
+      width: 1px;
+      height: 14px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .footer-large-text {
+      position: relative;
+      font-family: 'Geist', sans-serif;
+      font-size: 20vw;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      color: rgba(255,255,255,0.07);
+      line-height: 0.85;
+      padding-bottom: 16px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+    .footer-registered {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: clamp(40px, 4vw, 64px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.07);
+      line-height: 1;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .about-layout { flex-direction: column; gap: 40px; }
+      .about-left-label { width: auto; }
+      .about-heading { font-size: 28px; line-height: 34px; }
+      .our-reach .about-heading { font-size: 40px; line-height: 46px; letter-spacing: -2px; }
+      .about-columns { flex-direction: column; gap: 24px; }
+      .metrics-layout { grid-template-columns: 1fr; gap: 48px; }
+      .metrics-left { min-height: auto; gap: 48px; transform: none; }
+      .stats-grid { max-width: 100%; }
+      .testimonials { height: 720px; }
+      .testimonial-content { top: 250px; max-width: calc(100% - 64px); }
+      .testimonial-quote { font-size: 34px; line-height: 40px; letter-spacing: -1.7px; }
+      .trusted-logos { left: 24px; }
+      .team-card { flex-basis: 420px; }
+      .team-card-image { width: 360px; height: 520px; margin-left: 30px; }
+      .page-title { font-size: 60px; letter-spacing: -3px; }
+      .footer-top { flex-direction: column; gap: 48px; }
+      .footer-nav { gap: 36px; flex-wrap: wrap; }
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 18px 20px; }
+      .page-title-section { padding: 180px 20px 24px; height: auto; }
+      .page-title { font-size: 40px; letter-spacing: -2px; }
+      .about-hero-image { height: 300px; }
+      .who-we-are, .key-metrics, .testimonials, .trusted-by, .our-team, .careers-cta, .our-reach { padding-left: 20px; padding-right: 20px; }
+      .final-cta { padding-left: 20px; padding-right: 20px; }
+      .final-cta h2 { font-size: 40px; line-height: 40px; letter-spacing: -2px; }
+      footer { padding: 48px 20px 0; }
+      .key-metrics { padding-top: 120px; padding-bottom: 140px; }
+      .metrics-media-copy { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .metric-card { height: 280px; }
+      .metric-card:nth-child(even) { transform: none; }
+      .metric-number { font-size: 64px; line-height: 64px; letter-spacing: -4.48px; }
+      .testimonials { height: 640px; }
+      .testimonial-slide img {
+        top: -63px;
+        left: -120px;
+        width: calc(var(--testimonial-slide-width) + 240px);
+      }
+      .testimonial-content { left: 20px; top: 230px; max-width: calc(100% - 40px); }
+      .testimonial-quote { font-size: 28px; line-height: 34px; letter-spacing: -1.4px; }
+      .testimonial-controls { left: 20px; bottom: 80px; }
+      .trusted-by { height: 220px; padding-left: 20px; padding-right: 20px; }
+      .trusted-by .section-label { left: 20px; top: 96px; }
+      .trusted-logos { left: 120px; right: 20px; top: 36px; }
+      .trusted-logo-card { flex-basis: 180px; height: 104px; }
+      .trusted-logo-card svg { width: 140px; }
+      .our-team { height: 760px; padding: 120px 0 0 20px; }
+      .team-heading-row { padding-right: 20px; margin-bottom: 32px; }
+      .team-title { font-size: 40px; line-height: 46px; letter-spacing: -2px; }
+      .team-carousel { gap: 32px; }
+      .team-card { flex-basis: 320px; height: 520px; }
+      .team-card-image { width: 280px; height: 420px; margin-left: 20px; }
+      .team-card-info { left: 20px; top: 24px; }
+      .careers-cta { min-height: 520px; padding: 140px 20px; }
+    }
+  </style>
+  <link rel="stylesheet" href="/menu-fix.css?v=20260601e">
+  <script defer src="/menu-fix.js?v=20260531t"></script>
+  <script defer src="/cms-connect.js?v=20260601p"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <a href="/" class="logo" aria-label="DJI Luggage"><span class="cms-logo-image-stack" aria-label="DJI Luggage"><img class="cms-logo-image cms-logo-image-light" src="/assets/brand/dji-luggage-logo-white.png" alt="DJI Luggage"><img class="cms-logo-image cms-logo-image-dark" src="/assets/brand/dji-luggage-logo-black.png" alt=""></span></a>
+    <div class="hamburger" id="menuToggle">
+      <span></span>
+      <span></span>
+    </div>
+    <a href="/contact" class="header-cta">GET A QUOTE</a>
+  </header>
+
+  <!-- MENU OVERLAY -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-overlay-content">
+      <div class="menu-inner">
+      <div class="menu-top">
+        <div class="menu-nav-section">
+          <div class="menu-nav-label">Main</div>
+          <nav class="menu-nav">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/services">Services</a>
+            <a href="/platform">Platform</a>
+            <a href="/newsroom/filters/all">Newsroom</a>
+            <a href="/careers">Careers</a>
+          </nav>
+        </div>
+        <div class="menu-contact-section">
+          <div class="menu-section-label">Contact</div>
+          <div class="menu-contact-btns">
+            <a href="mailto:info@djiluggage.id" class="btn btn-dark menu-btn">Send Us A Message</a>
+            <a href="/contact" class="btn btn-yellow menu-btn">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="menu-bottom">
+        <div class="menu-quick-section">
+          <div class="menu-section-label">Quick Contact</div>
+          <div class="social-icons menu-social">
+            <a href="https://www.linkedin.com/" class="social-icon" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="https://x.com/" class="social-icon" aria-label="X" title="X" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="https://www.instagram.com/" class="social-icon" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" style="fill:none !important;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.youtube.com/" class="social-icon" aria-label="YouTube" title="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" style="fill:none !important;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:currentColor;stroke:none"/></svg></a>
+          </div>
+        </div>
+        <div class="menu-address-section">
+          <div class="menu-section-label">Address</div>
+          <p class="menu-address-text">JL RAYA PARUNG BOGOR,<br>DESA/KELURAHAN KEMANG,<br>KEC. KEMANG, KAB. BOGOR,<br>PROVINSI JAWA BARAT,<br>KODE POS: 16310</p>
+        </div>
+        <div class="menu-footer-logo">
+          <span class="cms-logo-image-stack" aria-label="DJI Luggage"><img class="cms-logo-image cms-logo-image-light" src="/assets/brand/dji-luggage-logo-white.png" alt="DJI Luggage"><img class="cms-logo-image cms-logo-image-dark" src="/assets/brand/dji-luggage-logo-black.png" alt=""></span>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. PAGE TITLE -->
+  <section class="page-title-section" data-header="dark">
+    <h1 class="page-title page-title-anim">Learn About DJI Luggage <span class="arrow-down">&darr;</span></h1>
+  </section>
+
+  <!-- 2. HERO IMAGE -->
+  <div class="about-hero-image">
+    <img src="https://framerusercontent.com/images/2cLLtW9JseVLuB8Se1lBw03NAlI.jpg" alt="Luggage manufacturing" loading="lazy">
+  </div>
+
+  <!-- 3. WHO WE ARE -->
+  <section class="who-we-are" data-header="dark">
+    <div class="section-divider-rounded"></div>
+    <div class="about-layout">
+      <div class="about-left-label">
+        <div class="section-label reveal" style="margin-bottom:0;">WHO WE ARE</div>
+      </div>
+      <div class="about-right">
+        <h2 class="about-heading word-reveal">Our team supports luggage brands with practical product development, reliable production, and export-ready quality control.</h2>
+        <div class="about-columns reveal">
+          <div class="about-column">
+            <p>Our leadership team brings together experience across luggage production, product sampling, supplier coordination, quality inspection, and export preparation.</p>
+          </div>
+          <div class="about-column">
+            <p>We focus on clear communication, disciplined production, and practical improvements that help buyers build dependable travel goods programs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. OUR REACH -->
+  <section class="our-reach">
+    <div class="about-layout">
+      <div class="about-left-label">
+        <div class="section-label reveal" style="margin-bottom:0;">OUR REACH</div>
+      </div>
+      <div class="about-right">
+        <h2 class="about-heading word-reveal">Based in Indonesia, Supporting Luggage Brands Across the Globe</h2>
+      </div>
+    </div>
+    <div class="marquee-container reveal">
+      <div class="marquee-track">
+        <!-- Set 1 -->
+        <div class="location-item"><span class="location-country">France</span><span class="location-city">Paris</span></div>
+        <div class="location-item"><span class="location-country">UK</span><span class="location-city">London</span></div>
+        <div class="location-item"><span class="location-country">China</span><span class="location-city">Shanghai</span></div>
+        <div class="location-item"><span class="location-country">USA</span><span class="location-city">Los Angeles</span></div>
+        <div class="location-item"><span class="location-country">Brazil</span><span class="location-city">S&atilde;o Paulo</span></div>
+        <div class="location-item"><span class="location-country">India</span><span class="location-city">Mumbai</span></div>
+        <!-- Set 2 -->
+        <div class="location-item"><span class="location-country">France</span><span class="location-city">Paris</span></div>
+        <div class="location-item"><span class="location-country">UK</span><span class="location-city">London</span></div>
+        <div class="location-item"><span class="location-country">China</span><span class="location-city">Shanghai</span></div>
+        <div class="location-item"><span class="location-country">USA</span><span class="location-city">Los Angeles</span></div>
+        <div class="location-item"><span class="location-country">Brazil</span><span class="location-city">S&atilde;o Paulo</span></div>
+        <div class="location-item"><span class="location-country">India</span><span class="location-city">Mumbai</span></div>
+        <!-- Set 3 -->
+        <div class="location-item"><span class="location-country">France</span><span class="location-city">Paris</span></div>
+        <div class="location-item"><span class="location-country">UK</span><span class="location-city">London</span></div>
+        <div class="location-item"><span class="location-country">China</span><span class="location-city">Shanghai</span></div>
+        <div class="location-item"><span class="location-country">USA</span><span class="location-city">Los Angeles</span></div>
+        <div class="location-item"><span class="location-country">Brazil</span><span class="location-city">S&atilde;o Paulo</span></div>
+        <div class="location-item"><span class="location-country">India</span><span class="location-city">Mumbai</span></div>
+      </div>
+    </div>
+    <div class="reach-pin" aria-hidden="true"></div>
+    <div class="reach-globe" aria-hidden="true">
+      <video src="https://framerusercontent.com/assets/euvxzcjhbUUqkHE2xg8ip1m5lIo.mp4" autoplay muted loop playsinline preload="auto"></video>
+      <div class="reach-globe-gradient"></div>
+    </div>
+  </section>
+
+  <!-- 5. KEY METRICS -->
+  <section class="key-metrics" data-header="dark">
+    <div class="section-divider-rounded"></div>
+    <div class="metrics-layout">
+      <div class="metrics-left">
+        <div class="metrics-intro">
+          <div class="section-label reveal" style="margin-bottom:0;">KEY METRICS</div>
+          <h2 class="about-heading word-reveal">DJI Luggage turns practical factory capability into measurable production performance.</h2>
+        </div>
+        <div class="metrics-media-copy">
+          <img class="metrics-image" src="https://framerusercontent.com/images/SmKpJArNfpH0J4YgHNcqsyxuyEA.jpg?scale-down-to=1024&amp;width=5418&amp;height=3612" alt="person on computer">
+          <p class="metrics-subtext">From sampling to bulk orders, we track the details that matter: timing, consistency, workmanship, and shipment readiness.</p>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="metric-card metric-card-dark">
+          <div class="metric-number">10+</div>
+          <div class="metric-label">Years Experience</div>
+        </div>
+        <div class="metric-card metric-card-gray">
+          <div class="metric-number">75</div>
+          <div class="metric-label">Employees</div>
+        </div>
+        <div class="metric-card metric-card-yellow">
+          <div class="metric-number">300</div>
+          <div class="metric-label">Vehicles in Fleet</div>
+        </div>
+        <div class="metric-card metric-card-charcoal">
+          <div class="metric-number">80k</div>
+          <div class="metric-label">Tons Transported Annual</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. TESTIMONIALS -->
+  <section class="testimonials" data-header="dark">
+    <div class="testimonial-slider" data-slider="testimonials">
+      <div class="testimonial-track" data-testimonial-track>
+        <article class="testimonial-slide active">
+          <img src="https://framerusercontent.com/images/qkMQq9Zs1gGZaibDwwhw42dog.jpg?width=3000&amp;height=2248" alt="factory overview shot" loading="lazy">
+          <div class="testimonial-content">
+            <p class="testimonial-quote">"The sampling process was clear, fast, and practical for our launch plan."</p>
+            <div class="testimonial-company">TechCorp</div>
+          </div>
+        </article>
+        <article class="testimonial-slide">
+          <img src="https://framerusercontent.com/images/gvhFBMsq7CqzGkGuVh2v7bOU4CE.jpg?scale-down-to=4096&amp;width=5464&amp;height=3640" alt="luggage materials" loading="lazy">
+          <div class="testimonial-content">
+            <p class="testimonial-quote">"Reliable, efficient, and always communicative during production."</p>
+            <div class="testimonial-company">GreenLeaf Organics</div>
+          </div>
+        </article>
+        <article class="testimonial-slide">
+          <img src="https://framerusercontent.com/images/ttsW2lp4NVYHyV30luZYHR1UMg.jpg?width=3936&amp;height=2214" alt="luggage production" loading="lazy">
+          <div class="testimonial-content">
+            <p class="testimonial-quote">"Their QC feedback helped us avoid costly changes after mass production."</p>
+            <div class="testimonial-company">Luna Interiors</div>
+          </div>
+        </article>
+      </div>
+      <div class="testimonial-controls">
+        <button class="testimonial-arrow" type="button" data-testimonial-prev aria-label="Previous testimonial">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="testimonial-arrow" type="button" data-testimonial-next aria-label="Next testimonial">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. TRUSTED BY -->
+  <section class="trusted-by" data-header="dark">
+    <div class="section-label">TRUSTED BY</div>
+    <div class="trusted-logos" aria-label="Trusted customer logos">
+      <svg class="trusted-logo-defs" aria-hidden="true" width="0" height="0" focusable="false">
+        <symbol id="trusted-logo-ipsum-bars" viewBox="0 0 267 116">
+          <g clip-path="url(#trusted-logo-ipsum-bars-a)">
+            <path d="M72.921 36.814c.348-1.652 1.994-2.991 3.671-2.991h9.116l-7.58 35.894H69.01c-1.678 0-2.756-1.338-2.407-2.991l6.317-29.912Zm30.387 0c.349-1.652 1.993-2.991 3.67-2.991h9.116l-7.581 35.894h-9.116c-1.678 0-2.756-1.338-2.407-2.991l6.318-29.912Zm60.773 0c.348-1.652 1.991-2.991 3.67-2.991h9.116l-7.581 35.894h-9.117c-1.678 0-2.755-1.338-2.406-2.991l6.318-29.912Zm-44.948-2.991h9.115c1.679 0 2.757 1.338 2.408 2.99l-6.318 29.913c-.348 1.653-1.992 2.99-3.67 2.99h-9.116l7.581-35.893Zm60.773 0h9.116c1.678 0 2.756 1.338 2.407 2.99l-6.319 29.913c-.348 1.653-1.991 2.99-3.669 2.99h-9.117l7.582-35.893Zm-46.211 2.99c.348-1.65 1.991-2.99 3.669-2.99h9.117l-7.582 35.894h-9.116c-1.678 0-2.756-1.338-2.406-2.991l6.317-29.912h.001Zm15.824-2.99h9.117c1.678 0 2.755 1.338 2.406 2.99l-9.476 44.87c-.35 1.651-1.994 2.99-3.672 2.99h-9.117l10.742-50.85Zm-65.827 23.93h12.155l-1.895 8.973c-.349 1.653-1.993 2.99-3.67 2.99h-9.117l2.526-11.962.001-.002Zm42.422 14.956h12.153l-2.526 11.965h-9.116c-1.679 0-2.756-1.339-2.407-2.991l1.896-8.974Zm32.992 2.782-1.539 7.288c-.067.313-.172.398-.49.398h-.7c-.319 0-.388-.085-.321-.398l1.539-7.288c.067-.312.171-.399.489-.399h.7c.319 0 .388.087.322.399Zm2.023 4.916h-.143c-.153 0-.206.043-.237.195l-.461 2.177c-.066.313-.172.398-.489.398h-.702c-.317 0-.386-.085-.321-.398l1.539-7.288c.067-.312.174-.399.491-.399h1.446c1.664 0 2.295.593 1.987 2.048l-.257 1.219c-.308 1.456-1.188 2.049-2.853 2.049Zm.423-3.611-.402 1.908c-.033.151.002.194.155.194h.231c.535 0 .823-.215.939-.765l.161-.766c.116-.549-.079-.765-.616-.765h-.23c-.153 0-.206.042-.238.194Zm5.002 1.175 1.137 1.25c.597.647.68 1.035.527 1.758l-.04.194c-.287 1.358-.973 2.113-2.561 2.113-1.587 0-1.979-.636-1.612-2.373l.045-.214c.067-.313.173-.4.49-.4h.744c.318 0 .388.087.321.399l-.1.475c-.091.43.048.603.431.603.384 0 .592-.16.675-.548l.043-.206c.064-.303.03-.453-.3-.809l-1.07-1.153c-.6-.636-.676-1.004-.523-1.726l.049-.236c.288-1.358.973-2.114 2.56-2.114 1.588 0 1.981.637 1.614 2.372l-.046.216c-.066.313-.172.399-.489.399h-.746c-.317 0-.386-.086-.321-.4l.1-.473c.091-.432-.046-.603-.43-.603-.383 0-.593.16-.675.548l-.039.184c-.067.313-.032.464.216.744Zm6.412-2.48c.067-.312.172-.399.49-.399h.7c.318 0 .388.087.321.399l-1.145 5.424c-.367 1.735-1.027 2.37-2.615 2.37-1.587 0-1.979-.635-1.613-2.372l1.146-5.422c.067-.312.172-.399.49-.399h.701c.317 0 .387.087.321.399l-1.2 5.682c-.091.43.059.603.475.603.404 0 .638-.172.729-.603l1.2-5.682Zm4.558 4.388c.004.087.032.107.087.107.054 0 .092-.02.133-.107l1.892-4.506c.092-.227.202-.28.476-.28h1.063c.317 0 .386.086.321.398l-1.539 7.288c-.067.313-.174.398-.491.398h-.503c-.317 0-.388-.085-.321-.398l.738-3.493c.02-.096.003-.119-.063-.119-.044 0-.093.023-.12.098l-1.528 3.558c-.11.258-.251.355-.568.355h-.297c-.329 0-.428-.097-.428-.355l-.037-3.56c-.007-.075-.025-.096-.079-.096-.066 0-.093.023-.113.12l-.737 3.492c-.067.313-.171.398-.49.398h-.503c-.319 0-.388-.085-.321-.398l1.539-7.288c.067-.312.172-.399.489-.399h.91c.383 0 .506.087.504.465l-.015 4.322h.001Zm22.832-46.056a2.668 2.668 0 0 1-2.659 2.676 2.666 2.666 0 0 1-2.659-2.676 2.668 2.668 0 0 1 2.659-2.677 2.668 2.668 0 0 1 2.659 2.677Z" fill="#272727"></path>
+          </g>
+          <defs><clipPath id="trusted-logo-ipsum-bars-a"><path fill="#fff" transform="translate(66.539 31.146)" d="M0 0h133.818v53.527H0z"></path></clipPath></defs>
+        </symbol>
+        <symbol id="trusted-logo-loop" viewBox="0 0 268 116">
+          <g clip-path="url(#trusted-logo-loop-a)" fill="#272727">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M59.39 65.967a5.137 5.137 0 0 1-3.609-1.475 5.003 5.003 0 0 1-1.494-3.56V37.767H44.082V60.93c0 8.344 6.854 15.107 15.307 15.107h11.225v-10.07H59.39ZM90.003 47.84a9.29 9.29 0 0 0-3.515.69 9.194 9.194 0 0 0-2.98 1.965 9.058 9.058 0 0 0-1.99 2.94 8.96 8.96 0 0 0 0 6.938 9.058 9.058 0 0 0 1.99 2.94 9.192 9.192 0 0 0 2.98 1.965 9.29 9.29 0 0 0 3.514.69 9.246 9.246 0 0 0 6.495-2.655 9.004 9.004 0 0 0 2.69-6.41 9.003 9.003 0 0 0-2.69-6.408 9.246 9.246 0 0 0-6.495-2.655Zm-19.39 9.064c0-10.568 8.682-19.135 19.39-19.135 10.707 0 19.389 8.567 19.389 19.135 0 10.568-8.682 19.135-19.39 19.135-10.707 0-19.389-8.567-19.389-19.135Zm129.601-9.064a9.245 9.245 0 0 0-6.494 2.655 9.002 9.002 0 0 0-2.69 6.409c0 2.404.967 4.71 2.69 6.41a9.245 9.245 0 0 0 6.494 2.654 9.245 9.245 0 0 0 6.494-2.655 9.002 9.002 0 0 0 2.69-6.41 9 9 0 0 0-2.69-6.408 9.245 9.245 0 0 0-6.494-2.655Zm-19.389 9.064c0-10.568 8.681-19.135 19.389-19.135s19.389 8.567 19.389 19.135c0 10.568-8.681 19.135-19.389 19.135s-19.389-8.567-19.389-19.135Zm-50.003-19.135c-10.708 0-19.39 8.567-19.39 19.135 0 10.568 8.682 19.135 19.39 19.135h28.573c2.009 0 3.947-.302 5.77-.862l5.455 2.877 5.886-10.881a18.942 18.942 0 0 0 2.278-9v-1.27c0-10.567-8.681-19.134-19.389-19.134h-28.573Zm37.757 19.135c0-2.404-.967-4.71-2.69-6.41a9.245 9.245 0 0 0-6.494-2.654h-28.573a9.288 9.288 0 0 0-3.515.69 9.2 9.2 0 0 0-2.98 1.965 9.062 9.062 0 0 0-1.991 2.94 8.97 8.97 0 0 0 0 6.938 9.061 9.061 0 0 0 1.991 2.94 9.2 9.2 0 0 0 2.98 1.965 9.288 9.288 0 0 0 3.515.69h28.573a9.247 9.247 0 0 0 6.469-2.63 9.008 9.008 0 0 0 2.715-6.364v-.07Z"></path>
+            <path d="M223.69 40.285c0 .668-.269 1.308-.747 1.78a2.567 2.567 0 0 1-1.804.738 2.567 2.567 0 0 1-1.803-.738 2.5 2.5 0 0 1-.748-1.78 2.5 2.5 0 0 1 .748-1.78 2.567 2.567 0 0 1 1.803-.737c.677 0 1.326.265 1.804.737s.747 1.112.747 1.78Z"></path>
+          </g>
+          <defs><clipPath id="trusted-logo-loop-a"><path fill="#fff" transform="translate(44.081 37.768)" d="M0 0h179.604v40.285H0z"></path></clipPath></defs>
+        </symbol>
+        <symbol id="trusted-logo-logoipsum" viewBox="0 0 268 116">
+          <path d="M47.803 40.536v-7.134H25.31v49.014h22.493v-7.134a17.373 17.373 0 0 1 0-34.746Z" fill="#272727"></path>
+          <path d="M47.8 40.537v34.745a17.373 17.373 0 1 0 0-34.745ZM77.795 44.9h5.035v24.255h-5.035V44.9Zm7.857 15.947a8.813 8.813 0 1 1 8.762 8.812 8.692 8.692 0 0 1-8.128-5.433 8.697 8.697 0 0 1-.634-3.38Zm12.623 0a3.827 3.827 0 1 0-3.828 3.928 3.723 3.723 0 0 0 3.565-2.424c.179-.48.257-.992.229-1.504h.034Z" fill="#272727"></path>
+          <path d="M123.102 52.538v15.795c0 5.572-4.364 7.94-8.779 7.94a8.39 8.39 0 0 1-7.872-4.03l4.247-2.45a3.806 3.806 0 0 0 3.793 2.098 3.36 3.36 0 0 0 3.76-3.558v-1.528a5.924 5.924 0 0 1-4.851 2.149 8.391 8.391 0 0 1-5.934-14.327 8.391 8.391 0 0 1 5.934-2.459 5.928 5.928 0 0 1 4.851 2.149v-1.679l4.851-.1Zm-4.851 7.973a4.023 4.023 0 0 0-2.367-3.84 4.026 4.026 0 0 0-5.596 2.822 4.027 4.027 0 0 0 3.935 4.878 3.757 3.757 0 0 0 4.028-3.86Zm7.686.336a8.813 8.813 0 1 1 8.796 8.812 8.71 8.71 0 0 1-8.796-8.812Zm12.623 0a3.83 3.83 0 0 0-4.64-3.639 3.829 3.829 0 0 0-1.29 6.936 3.826 3.826 0 0 0 2.119.63 3.725 3.725 0 0 0 3.794-3.927h.017Zm7.305-12.757a2.99 2.99 0 0 1 3.57-2.931 2.987 2.987 0 0 1-.582 5.918 3.02 3.02 0 0 1-2.988-2.988Zm.487 4.447h5.035v16.618h-5.035V52.538Zm26.584 8.309a8.39 8.39 0 0 1-8.006 8.812 6.242 6.242 0 0 1-5.036-2.031v8.208h-5.036V52.537h5.036v1.56a6.227 6.227 0 0 1 5.036-2.013 8.386 8.386 0 0 1 5.818 2.722 8.394 8.394 0 0 1 2.188 6.04Zm-5.035 0a3.962 3.962 0 1 0-3.945 4.062 3.795 3.795 0 0 0 3.945-4.062Zm20.358 3.324c0 3.826-3.357 5.455-6.916 5.455a7.286 7.286 0 0 1-7.15-3.962l4.33-2.45a2.723 2.723 0 0 0 2.803 1.964c1.192 0 1.796-.37 1.796-1.041 0-1.83-8.174-.856-8.174-6.614 0-3.625 3.055-5.438 6.513-5.438a7.28 7.28 0 0 1 6.58 3.542l-4.331 2.282a2.45 2.45 0 0 0-2.233-1.46c-.872 0-1.393.336-1.393.923 0 1.914 8.175.655 8.175 6.798Zm18.243-11.633v16.618h-5.036v-1.561a5.73 5.73 0 0 1-4.733 2.064c-3.357 0-6.227-2.4-6.227-6.882V52.537h5.035v9.484c-.04.396.007.797.138 1.173.131.377.341.72.616 1.008a2.77 2.77 0 0 0 2.15.84c1.813 0 3.089-1.074 3.089-3.357v-9.148h4.968Zm28.539 6.412v10.205h-5.035v-9.769c0-1.678-.789-2.72-2.384-2.72-1.594 0-2.602 1.16-2.602 3.123v9.366h-5.035v-9.769c0-1.678-.789-2.72-2.384-2.72-1.594 0-2.602 1.16-2.602 3.123v9.366h-5.035V52.537h5.035v1.527a5.14 5.14 0 0 1 4.465-1.98 4.92 4.92 0 0 1 4.348 2.182 5.48 5.48 0 0 1 4.817-2.182c3.928 0 6.412 2.719 6.412 6.865Zm4.23-6.513a3.693 3.693 0 1 0 0-7.385 3.693 3.693 0 0 0 0 7.385Z" fill="#272727"></path>
+        </symbol>
+        <symbol id="trusted-logo-uam" viewBox="0 0 268 116">
+          <g clip-path="url(#trusted-logo-uam-a)" fill="#272727">
+            <path d="M173.814 29.887a2.211 2.211 0 1 1-4.423 0 2.211 2.211 0 0 1 4.423 0Z"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M114.449 87.843c-11.201 0-20.28-9.08-20.28-20.28V29.15h7.374v38.413a12.907 12.907 0 0 0 12.906 12.906c7.217 0 12.905-5.562 12.905-12.602h7.375v11.062a1.842 1.842 0 1 0 3.687 0v-13.09a9.216 9.216 0 0 1-11.062-9.034V38.37a9.222 9.222 0 0 1 9.219-9.219 9.22 9.22 0 0 1 9.218 9.219v40.56a1.842 1.842 0 1 0 3.687 0V38.37a9.217 9.217 0 1 1 18.436 0v40.56a9.218 9.218 0 0 1-14.749 7.374 9.177 9.177 0 0 1-5.531 1.844 9.179 9.179 0 0 1-5.531-1.844 9.215 9.215 0 0 1-11.503-.351 9.22 9.22 0 0 1-2.458-3.292c-3.622 3.24-8.441 5.183-13.693 5.183Zm44.247-7.07a1.844 1.844 0 0 1-1.843-1.844v-40.56a1.842 1.842 0 1 1 3.687 0v40.56a1.844 1.844 0 0 1-1.844 1.843Zm-20.28-23.968a1.843 1.843 0 1 1-3.687 0V38.37a1.842 1.842 0 1 1 3.687 0v18.436Z"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M105.23 67.867a9.221 9.221 0 0 0 9.219 9.218 9.218 9.218 0 0 0 9.218-9.218V38.369a9.217 9.217 0 1 0-18.437 0v29.498Zm9.219 1.844a1.844 1.844 0 0 1-1.844-1.844V38.369a1.842 1.842 0 1 1 3.687 0v29.498a1.844 1.844 0 0 1-1.843 1.844Z"></path>
+          </g>
+          <defs><clipPath id="trusted-logo-uam-a"><path fill="#fff" transform="translate(94.167 27.675)" d="M0 0h79.645v60.471H0z"></path></clipPath></defs>
+        </symbol>
+      </svg>
+      <div class="trusted-track">
+        <div class="trusted-logo-card"><svg viewBox="0 0 267 116" role="img" aria-label="Ipsum"><use href="#trusted-logo-ipsum-bars"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 268 116" role="img" aria-label="Loop"><use href="#trusted-logo-loop"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 268 116" role="img" aria-label="Logoipsum"><use href="#trusted-logo-logoipsum"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 268 116" role="img" aria-label="Uam"><use href="#trusted-logo-uam"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 267 116" role="img" aria-label="Ipsum"><use href="#trusted-logo-ipsum-bars"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 268 116" role="img" aria-label="Loop"><use href="#trusted-logo-loop"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 268 116" role="img" aria-label="Logoipsum"><use href="#trusted-logo-logoipsum"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 268 116" role="img" aria-label="Uam"><use href="#trusted-logo-uam"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 267 116" role="img" aria-label="Ipsum"><use href="#trusted-logo-ipsum-bars"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 268 116" role="img" aria-label="Loop"><use href="#trusted-logo-loop"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 268 116" role="img" aria-label="Logoipsum"><use href="#trusted-logo-logoipsum"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 268 116" role="img" aria-label="Uam"><use href="#trusted-logo-uam"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 267 116" role="img" aria-label="Ipsum"><use href="#trusted-logo-ipsum-bars"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 268 116" role="img" aria-label="Loop"><use href="#trusted-logo-loop"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 268 116" role="img" aria-label="Logoipsum"><use href="#trusted-logo-logoipsum"></use></svg></div>
+        <div class="trusted-logo-card"><svg viewBox="0 0 268 116" role="img" aria-label="Uam"><use href="#trusted-logo-uam"></use></svg></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. OUR TEAM -->
+  <section class="our-team" data-header="dark">
+    <div class="team-heading-row">
+      <div>
+        <div class="section-label">OUR TEAM</div>
+        <h2 class="team-title">Leadership</h2>
+      </div>
+      <div class="team-controls">
+        <button class="team-arrow" type="button" data-team-prev aria-label="Previous team member">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="team-arrow" type="button" data-team-next aria-label="Next team member">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="team-carousel-container">
+      <div class="team-carousel" data-team-track>
+        <article class="team-card">
+          <div class="team-card-info"><div><div class="team-card-name">Matt Longst</div><div class="team-card-title">CLO</div></div></div>
+          <div class="team-card-image">
+            <img src="https://framerusercontent.com/images/miYR1uyIgPn1OuV5Tbi4b9GKSg.png" alt="Matt Longst" loading="lazy">
+          </div>
+        </article>
+        <article class="team-card">
+          <div class="team-card-info"><div><div class="team-card-name">Nicole Sue</div><div class="team-card-title">CFO</div></div></div>
+          <div class="team-card-image">
+            <img src="https://framerusercontent.com/images/MpL8d6ij0GvQ1VvuPLf1q4Sh5IU.png" alt="Nicole Sue" loading="lazy">
+          </div>
+        </article>
+        <article class="team-card">
+          <div class="team-card-info"><div><div class="team-card-name">Melanie Lumon</div><div class="team-card-title">CSO</div></div></div>
+          <div class="team-card-image">
+            <img src="https://framerusercontent.com/images/d9QoUUypywk33NzCK1txqmi0Rc.png" alt="Melanie Lumon" loading="lazy">
+          </div>
+        </article>
+        <article class="team-card">
+          <div class="team-card-info"><div><div class="team-card-name">John Mossier</div><div class="team-card-title">CEO</div></div></div>
+          <div class="team-card-image">
+            <img src="https://framerusercontent.com/images/GUp8VdbqJAnhfOr7NK5rhb7iz4.png" alt="John Mossier" loading="lazy">
+          </div>
+        </article>
+        <article class="team-card">
+          <div class="team-card-info"><div><div class="team-card-name">Stacy Freed</div><div class="team-card-title">CTO</div></div></div>
+          <div class="team-card-image">
+            <img src="https://framerusercontent.com/images/IJzILYgo1giGLlbhYFoQxnkTYQ.png" alt="Stacy Freed" loading="lazy">
+          </div>
+        </article>
+        <article class="team-card">
+          <div class="team-card-info"><div><div class="team-card-name">Matt Longst</div><div class="team-card-title">CLO</div></div></div>
+          <div class="team-card-image">
+            <img src="https://framerusercontent.com/images/miYR1uyIgPn1OuV5Tbi4b9GKSg.png" alt="Matt Longst" loading="lazy">
+          </div>
+        </article>
+        <article class="team-card">
+          <div class="team-card-info"><div><div class="team-card-name">Nicole Sue</div><div class="team-card-title">CFO</div></div></div>
+          <div class="team-card-image">
+            <img src="https://framerusercontent.com/images/MpL8d6ij0GvQ1VvuPLf1q4Sh5IU.png" alt="Nicole Sue" loading="lazy">
+          </div>
+        </article>
+        <article class="team-card">
+          <div class="team-card-info"><div><div class="team-card-name">Melanie Lumon</div><div class="team-card-title">CSO</div></div></div>
+          <div class="team-card-image">
+            <img src="https://framerusercontent.com/images/d9QoUUypywk33NzCK1txqmi0Rc.png" alt="Melanie Lumon" loading="lazy">
+          </div>
+        </article>
+        <article class="team-card">
+          <div class="team-card-info"><div><div class="team-card-name">John Mossier</div><div class="team-card-title">CEO</div></div></div>
+          <div class="team-card-image">
+            <img src="https://framerusercontent.com/images/GUp8VdbqJAnhfOr7NK5rhb7iz4.png" alt="John Mossier" loading="lazy">
+          </div>
+        </article>
+        <article class="team-card">
+          <div class="team-card-info"><div><div class="team-card-name">Stacy Freed</div><div class="team-card-title">CTO</div></div></div>
+          <div class="team-card-image">
+            <img src="https://framerusercontent.com/images/IJzILYgo1giGLlbhYFoQxnkTYQ.png" alt="Stacy Freed" loading="lazy">
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. CAREERS CTA -->
+  <section class="careers-cta" data-header="dark">
+    <div class="careers-cta-content">
+      <div class="section-label">CAREERS</div>
+      <h2 class="about-heading">Explore careers with us and help build better luggage for global brands</h2>
+      <a href="/careers" class="btn">Explore Careers</a>
+    </div>
+  </section>
+
+  <!-- 10. FINAL CTA -->
+  <section class="final-cta">
+    <img class="final-cta-bg" src="https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg" alt="" loading="lazy">
+    <div class="section-label reveal" style="color:rgba(255,255,255,0.55);margin-bottom:28px;">LET'S GET TO WORK</div>
+    <h2 class="cta-title" id="ctaTitle">Build Your<br>Luggage Line</h2>
+    <a href="/contact" class="btn btn-glass reveal">Get a Quote</a>
+  </section>
+
+  <!-- 11. FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-contact-label">CONTACT</div>
+        <div class="footer-contact">
+          <h3>Let's Get Started</h3>
+          <div class="divider"></div>
+          <a href="/contact" class="btn btn-frosted" style="font-size:14px;">Get a Quote</a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <h4>ADDRESS</h4>
+          <p>JL RAYA PARUNG BOGOR,<br>DESA/KELURAHAN KEMANG,<br>KEC. KEMANG, KAB. BOGOR,<br>PROVINSI JAWA BARAT,<br>KODE POS: 16310</p>
+        </div>
+        <div class="footer-nav-col">
+          <h4>MAIN</h4>
+          <a href="/">HOME</a>
+          <a href="/services">SERVICES</a>
+          <a href="/about">ABOUT</a>
+          <a href="/careers">CAREERS</a>
+          <a href="/platform">PLATFORM</a>
+          <a href="/newsroom/filters/all">NEWSROOM</a>
+        </div>
+        <div class="footer-nav-col">
+          <h4>SUPPORT</h4>
+          <a href="/404">404</a>
+          <a href="/privacy-policy">PRIVACY POLICY</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-middle">
+      <div class="footer-social-label">QUICK CONTACT</div>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/" class="social-icon" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://x.com/" class="social-icon" aria-label="X" title="X" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.instagram.com/" class="social-icon" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" style="fill:none !important;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://www.youtube.com/" class="social-icon" aria-label="YouTube" title="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" style="fill:none !important;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:currentColor;stroke:none"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        <span>&copy;2025. All right reserved</span>
+        <span class="sep"></span>
+        <span>Indonesian luggage manufacturer</span>
+      </div>
+      <div class="footer-large-text">DJI LUGGAGE</div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    // Header text color adapts to the section currently behind it
+    const navSections = Array.from(document.querySelectorAll('[data-header]'));
+    function updateHeaderTheme() {
+      const line = 37;
+      let theme = 'light';
+      for (const s of navSections) {
+        const r = s.getBoundingClientRect();
+        if (r.top <= line && r.bottom > line) { theme = s.dataset.header; break; }
+      }
+      header.classList.toggle('txt-dark', theme === 'dark');
+      header.classList.toggle('txt-light', theme !== 'dark');
+    }
+    window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+    window.addEventListener('resize', updateHeaderTheme);
+    updateHeaderTheme();
+
+    // Scroll reveal animations
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Immediately reveal elements already in viewport on page load
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add('visible');
+        }
+      });
+    });
+
+    const trustedSection = document.querySelector('.trusted-by');
+    if (trustedSection) {
+      const trustedObserver = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        trustedSection.classList.add('is-visible');
+        trustedObserver.disconnect();
+      }, { threshold: 0.35 });
+      trustedObserver.observe(trustedSection);
+    }
+
+    // Source page uses a subtle scroll-linked vertical drift on the metric cards.
+    (function() {
+      const section = document.querySelector('.key-metrics');
+      const cards = Array.from(document.querySelectorAll('.metric-card'));
+      if (!section || !cards.length) return;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mobile = window.matchMedia('(max-width: 768px)');
+      let ticking = false;
+
+      function resetCards() {
+        cards.forEach(card => card.style.removeProperty('--metric-scroll-y'));
+      }
+
+      function render() {
+        ticking = false;
+        if (reduceMotion.matches || mobile.matches) {
+          resetCards();
+          return;
+        }
+        const rect = section.getBoundingClientRect();
+        const travel = rect.height + window.innerHeight;
+        const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / travel));
+        const drift = (progress - 0.45) * 120;
+        cards.forEach((card, index) => {
+          const direction = index % 2 === 0 ? 1 : -1;
+          card.style.setProperty('--metric-scroll-y', `${(drift * direction).toFixed(2)}px`);
+        });
+      }
+
+      function requestRender() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(render);
+      }
+
+      window.addEventListener('scroll', requestRender, { passive: true });
+      window.addEventListener('resize', requestRender);
+      reduceMotion.addEventListener?.('change', requestRender);
+      mobile.addEventListener?.('change', requestRender);
+      requestRender();
+    })();
+
+    // Testimonial image slider
+    (function() {
+      const slider = document.querySelector('[data-slider="testimonials"]');
+      const track = document.querySelector('[data-testimonial-track]');
+      const prev = document.querySelector('[data-testimonial-prev]');
+      const next = document.querySelector('[data-testimonial-next]');
+      const originalSlides = Array.from(track?.querySelectorAll('.testimonial-slide') || []);
+      if (!slider || !track || !originalSlides.length || !prev || !next) return;
+      originalSlides.forEach(slide => {
+        const clone = slide.cloneNode(true);
+        clone.classList.remove('active');
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      });
+      const slides = Array.from(track.querySelectorAll('.testimonial-slide'));
+      const slideCount = originalSlides.length;
+      let index = 0;
+      let timer;
+
+      function render(animate = true) {
+        const width = slider.getBoundingClientRect().width;
+        slider.style.setProperty('--testimonial-slide-width', `${width}px`);
+        track.style.transition = animate ? '' : 'none';
+        track.style.transform = `translateX(${-index * width}px)`;
+        const activeIndex = ((index % slideCount) + slideCount) % slideCount;
+        slides.forEach((slide, i) => slide.classList.toggle('active', i % slideCount === activeIndex));
+        if (!animate) {
+          track.getBoundingClientRect();
+          track.style.transition = '';
+        }
+      }
+
+      function nextSlide() {
+        index += 1;
+        render();
+      }
+
+      function prevSlide() {
+        if (index === 0) {
+          index = slideCount;
+          render(false);
+        }
+        index -= 1;
+        render();
+      }
+
+      function restart() {
+        window.clearInterval(timer);
+        timer = window.setInterval(nextSlide, 5200);
+      }
+
+      track.addEventListener('transitionend', () => {
+        if (index >= slideCount) {
+          index = 0;
+          render(false);
+        }
+      });
+
+      slider.addEventListener('mouseenter', () => window.clearInterval(timer));
+      slider.addEventListener('mouseleave', restart);
+      prev.addEventListener('click', () => { prevSlide(); restart(); });
+      next.addEventListener('click', () => { nextSlide(); restart(); });
+      window.addEventListener('resize', render);
+      requestAnimationFrame(render);
+      restart();
+    })();
+
+    // Team carousel controls
+    (function() {
+      const track = document.querySelector('[data-team-track]');
+      const prev = document.querySelector('[data-team-prev]');
+      const next = document.querySelector('[data-team-next]');
+      if (!track || !prev || !next) return;
+      const initialCards = Array.from(track.querySelectorAll('.team-card'));
+      if (!initialCards.length) return;
+
+      const midpoint = initialCards.length / 2;
+      const isRepeated = Number.isInteger(midpoint) && initialCards
+        .slice(0, midpoint)
+        .every((card, i) => card.textContent.trim() === initialCards[i + midpoint].textContent.trim());
+      const sourceCards = (isRepeated ? initialCards.slice(0, midpoint) : initialCards)
+        .map(card => card.cloneNode(true));
+      const slideCount = sourceCards.length;
+      const startOffset = Math.min(3, Math.max(0, slideCount - 1));
+      let index = slideCount + startOffset;
+      let isAnimating = false;
+
+      track.innerHTML = '';
+      for (let set = 0; set < 3; set++) {
+        sourceCards.forEach(card => {
+          const clone = card.cloneNode(true);
+          if (set !== 1) clone.setAttribute('aria-hidden', 'true');
+          track.appendChild(clone);
+        });
+      }
+      const cards = Array.from(track.querySelectorAll('.team-card'));
+
+      function stepSize() {
+        const card = cards[0].getBoundingClientRect();
+        const gap = Number.parseFloat(getComputedStyle(track).gap) || 0;
+        return card.width + gap;
+      }
+
+      function render(animate = true) {
+        track.style.transition = animate ? '' : 'none';
+        track.style.transform = 'translateX(' + (-index * stepSize()) + 'px)';
+        if (!animate) {
+          track.getBoundingClientRect();
+          track.style.transition = '';
+        }
+      }
+
+      function move(direction) {
+        if (isAnimating) return;
+        isAnimating = true;
+        index += direction;
+        render();
+      }
+
+      function normalizeIndex() {
+        if (index >= slideCount * 2) {
+          index -= slideCount;
+          render(false);
+        } else if (index < slideCount) {
+          index += slideCount;
+          render(false);
+        }
+      }
+
+      track.addEventListener('transitionend', event => {
+        if (event.target !== track || event.propertyName !== 'transform') return;
+        normalizeIndex();
+        isAnimating = false;
+      });
+
+      prev.addEventListener('click', () => move(-1));
+      next.addEventListener('click', () => move(1));
+      window.addEventListener('resize', () => render(false));
+      requestAnimationFrame(() => render(false));
+    })();
+
+    // Menu overlay toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function toggleMenu() {
+      menuOverlay.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      header.classList.toggle('menu-open');
+      document.body.classList.toggle('menu-open');
+    }
+
+    function closeMenu() {
+      menuOverlay.classList.remove('active');
+      menuToggle.classList.remove('active');
+      header.classList.remove('menu-open');
+      document.body.classList.remove('menu-open');
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+
+    // Close menu on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOverlay.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+    // CTA title character-by-character scroll animation
+    (function() {
+      const ctaTitle = document.getElementById('ctaTitle');
+      if (!ctaTitle) return;
+      const html = ctaTitle.innerHTML;
+      let charIndex = 0;
+      const segments = html.split(/<br\s*\/?>/gi);
+      const processed = segments.map(segment => {
+        return segment.split('').map(function(char) {
+          charIndex++;
+          var display = char === ' ' ? '&nbsp;' : char;
+          return '<span class="cta-char" style="transition-delay:' + (charIndex * 0.025) + 's">' + display + '</span>';
+        }).join('');
+      }).join('<br>');
+      ctaTitle.innerHTML = processed;
+
+      const ctaObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            ctaTitle.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.3 });
+      ctaObserver.observe(ctaTitle);
+    })();
+  </script>
+
+  <script src="/reveal.js"></script>
+</body>
+</html>
