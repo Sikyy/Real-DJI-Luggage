@@ -299,8 +299,8 @@
       '.logo .cms-logo-text,.menu-footer-logo .cms-logo-text{display:inline-block;font-family:Geist,Switzer,Inter,"Helvetica Neue",Arial,sans-serif;font-size:23px;font-style:italic;font-weight:700;line-height:1;letter-spacing:0;white-space:nowrap;transition:color .35s ease;}',
       '.logo .cms-logo-text,.logo:link .cms-logo-text,.logo:visited .cms-logo-text{color:var(--white,#fff);}',
       '.menu-footer-logo .cms-logo-text{color:var(--text-dark,#080808);}',
-      '.logo .cms-logo-image-stack,.menu-footer-logo .cms-logo-image-stack{display:inline-grid;align-items:center;height:24px;max-width:240px;}',
-      '.logo .cms-logo-image,.menu-footer-logo .cms-logo-image{grid-area:1/1;display:block;width:auto;height:24px;max-width:240px;object-fit:contain;transition:opacity .25s ease;}',
+      '.logo .cms-logo-image-stack,.menu-footer-logo .cms-logo-image-stack{display:inline-grid;align-items:center;height:18px;width:115px;max-width:115px;}',
+      '.logo .cms-logo-image,.menu-footer-logo .cms-logo-image{grid-area:1/1;display:block;width:115px;height:13px;max-width:115px;max-height:13px;object-fit:contain;transition:opacity .25s ease;}',
       '.logo .cms-logo-image-light{opacity:1;}',
       '.logo .cms-logo-image-dark{opacity:0;}',
       '.menu-footer-logo .cms-logo-image-light{opacity:0;}',
@@ -318,7 +318,7 @@
       '.quote-form-status[data-tone="success"]{color:#0b6b35;}',
       '.quote-form-status[data-tone="error"]{color:#9b1c1c;}',
       '.quote-submit:disabled{cursor:not-allowed;opacity:.72;}',
-      '@media (max-width:768px){.logo .cms-logo-text,.menu-footer-logo .cms-logo-text{font-size:20px;}.logo .cms-logo-image-stack,.menu-footer-logo .cms-logo-image-stack{height:21px;max-width:210px;}.logo .cms-logo-image,.menu-footer-logo .cms-logo-image{height:21px;max-width:210px;}.menu-overlay .menu-address-section,.menu-overlay .menu-address-text{width:100%;min-width:0;max-width:100%;}}',
+      '@media (max-width:768px){.logo .cms-logo-text,.menu-footer-logo .cms-logo-text{font-size:20px;}.logo .cms-logo-image-stack,.menu-footer-logo .cms-logo-image-stack{height:18px;width:115px;max-width:115px;}.logo .cms-logo-image,.menu-footer-logo .cms-logo-image{width:115px;height:13px;max-width:115px;max-height:13px;}.menu-overlay .menu-address-section,.menu-overlay .menu-address-text{width:100%;min-width:0;max-width:100%;}}',
     ].join('\n');
     document.head.appendChild(style);
   }

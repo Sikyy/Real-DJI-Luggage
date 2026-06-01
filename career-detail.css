@@ -696,7 +696,7 @@ footer {
   width: 1px;
 }
 .footer-large-text {
-  background: url("https://framerusercontent.com/images/uDWkoxYOJd2scWEApx3U4Zoak0.svg?width=1406&height=165") center / cover no-repeat;
+  background: url("/assets/brand/dji-luggage-footer-logo.svg") center / cover no-repeat;
   color: transparent !important;
   display: block;
   font-size: 0 !important;
