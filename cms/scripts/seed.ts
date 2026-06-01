@@ -487,7 +487,6 @@ async function seed() {
         {
           heading: 'Support',
           links: [
-            { label: '404', url: '/404' },
             { label: 'Privacy Policy', url: '/privacy-policy' },
           ],
         },
@@ -496,7 +495,7 @@ async function seed() {
         { label: 'LinkedIn', url: 'https://www.linkedin.com/', icon: 'linkedin' },
         { label: 'X', url: 'https://x.com/', icon: 'x' },
         { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
-        { label: 'WhatsApp', url: 'https://wa.me/6281266189081', icon: 'whatsapp' },
+        { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
       ],
       copyright: '©2026 DJI Luggage. All rights reserved.',
       credit: 'Indonesian luggage manufacturer',

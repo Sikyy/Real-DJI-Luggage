@@ -351,7 +351,6 @@ async function ensureFooterColumnRows(client: DBClient) {
     {
       heading: 'Support',
       links: [
-        { label: '404', url: '/404' },
         { label: 'Privacy Policy', url: '/privacy-policy' },
       ],
     },
@@ -393,7 +392,7 @@ async function ensureSocialLinkRows(client: DBClient) {
     { label: 'LinkedIn', url: 'https://www.linkedin.com/', icon: 'linkedin' },
     { label: 'X', url: 'https://x.com/', icon: 'x' },
     { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
-    { label: 'WhatsApp', url: 'https://wa.me/6281266189081', icon: 'whatsapp' },
+    { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
   ]
 
   await client.execute({
@@ -605,7 +604,6 @@ async function seedSiteSettings(payload: Payload, locale: Locale) {
         {
           heading: '支持',
           links: [
-            { label: '404', url: '/404' },
             { label: '隐私政策', url: '/privacy-policy' },
           ],
         },
@@ -614,7 +612,7 @@ async function seedSiteSettings(payload: Payload, locale: Locale) {
         { label: 'LinkedIn', url: 'https://www.linkedin.com/', icon: 'linkedin' },
         { label: 'X', url: 'https://x.com/', icon: 'x' },
         { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
-        { label: 'WhatsApp', url: 'https://wa.me/6281266189081', icon: 'whatsapp' },
+        { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
       ],
       copyright: '©2026 DJI Luggage. 保留所有权利。',
       credit: '印度尼西亚行李箱制造商',
@@ -660,7 +658,6 @@ async function seedSiteSettings(payload: Payload, locale: Locale) {
         {
           heading: 'Dukungan',
           links: [
-            { label: '404', url: '/404' },
             { label: 'Kebijakan Privasi', url: '/privacy-policy' },
           ],
         },
@@ -669,7 +666,7 @@ async function seedSiteSettings(payload: Payload, locale: Locale) {
         { label: 'LinkedIn', url: 'https://www.linkedin.com/', icon: 'linkedin' },
         { label: 'X', url: 'https://x.com/', icon: 'x' },
         { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
-        { label: 'WhatsApp', url: 'https://wa.me/6281266189081', icon: 'whatsapp' },
+        { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
       ],
       copyright: '©2026 DJI Luggage. Hak cipta dilindungi.',
       credit: 'Produsen koper Indonesia',

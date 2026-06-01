@@ -30,7 +30,7 @@
 
   const COPY = UI_COPY[CURRENT_LOCALE] || UI_COPY[DEFAULT_LOCALE];
 
-  const iconNames = ['linkedin', 'x', 'instagram', 'whatsapp'];
+  const iconNames = ['linkedin', 'x', 'instagram', 'youtube'];
   const socialIconSvgs = {
     linkedin: '<svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>',
     x: '<svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
@@ -38,6 +38,12 @@
     youtube: '<svg viewBox="0 0 24 24" style="fill:none !important;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:currentColor;stroke:none"/></svg>',
     whatsapp: '<svg viewBox="0 0 24 24" style="fill:none !important;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M20.5 11.75a8.5 8.5 0 0 1-12.4 7.56L3.5 20.5l1.23-4.45A8.5 8.5 0 1 1 20.5 11.75z"/><path d="M9.25 8.75c.2-.47.43-.5.78-.5h.48c.16 0 .37.06.56.44l.63 1.48c.07.17.1.38-.04.56l-.36.45c-.13.17-.16.3-.06.49.35.69.92 1.33 1.51 1.78.58.44 1.06.64 1.27.73.2.09.34.08.49-.09l.58-.7c.17-.2.39-.25.62-.16l1.43.67c.23.11.38.25.4.41.05.45-.24 1.1-.66 1.48-.45.41-1.05.58-1.74.51-1.1-.11-2.36-.72-3.52-1.67-1.3-1.06-2.25-2.37-2.69-3.61-.28-.8-.21-1.45.32-2.27z"/></svg>',
   };
+  const DEFAULT_SOCIAL_LINKS = [
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/', icon: 'linkedin' },
+    { label: 'X', url: 'https://x.com/', icon: 'x' },
+    { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
+    { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
+  ];
 
   function escapeHTML(value) {
     return String(value || '')
@@ -475,16 +481,19 @@
       if (!el) return;
       setText('h4', column.heading, el);
       const links = el.querySelectorAll('a');
-      (column.links || []).forEach((item, linkIndex) => {
+      const visibleLinks = (column.links || []).filter((item) => !isFooter404Link(item));
+      visibleLinks.forEach((item, linkIndex) => {
         const link = links[linkIndex];
         if (!link) return;
         link.textContent = String(item.label || '').toUpperCase();
         setHref(link, item.url);
       });
+      Array.from(links).slice(visibleLinks.length).forEach((link) => link.remove());
     });
 
-    applySocialLinks(document.querySelectorAll('.menu-social .social-icon'), site.socialLinks || []);
-    applySocialLinks(document.querySelectorAll('footer .social-icons .social-icon'), site.socialLinks || []);
+    const socialLinks = normalizeSocialLinks(site.socialLinks);
+    applySocialLinks(document.querySelectorAll('.menu-social .social-icon'), socialLinks);
+    applySocialLinks(document.querySelectorAll('footer .social-icons .social-icon'), socialLinks);
 
     const copyrightSpans = document.querySelectorAll('footer .footer-copyright span');
     if (copyrightSpans[0] && site.copyright) copyrightSpans[0].textContent = site.copyright;
@@ -511,6 +520,20 @@
           '</span>',
         ].join('');
       }
+    });
+  }
+
+  function isFooter404Link(item) {
+    const label = String(item && item.label ? item.label : '').trim();
+    const url = String(item && item.url ? item.url : '').trim().split(/[?#]/)[0];
+    return label === '404' || stripLocalePrefix(url) === '/404';
+  }
+
+  function normalizeSocialLinks(socialLinks) {
+    const configured = Array.isArray(socialLinks) ? socialLinks : [];
+    return DEFAULT_SOCIAL_LINKS.map((fallback) => {
+      const match = configured.find((item) => item && (item.icon === fallback.icon || String(item.label || '').toLowerCase() === fallback.label.toLowerCase()));
+      return Object.assign({}, fallback, match || {}, { url: (match && match.url) || fallback.url });
     });
   }
 
