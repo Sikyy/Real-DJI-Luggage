@@ -88,6 +88,17 @@ header.menu-open .logo .cms-logo-image-dark {
   }
 }
 
+/* Match the source hero's right-column measure and align the frosted CTA
+   with the paragraph text, not the arrow column. */
+@media (min-width: 1025px) {
+  .hero-right {
+    max-width: 326px;
+  }
+  .hero-right > .btn {
+    margin-left: 26px;
+  }
+}
+
 /* ===== Menu overlay ===== */
 /* Item 1 — align Contact buttons (and bottom-row content) with the nav rows
    by matching the section-label spacing to the MAIN nav label (24px). */

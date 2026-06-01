@@ -2,8 +2,9 @@
   const CMS_BASE = window.DJI_CMS_BASE || 'http://localhost:3000';
   const SUPPORTED_LOCALES = ['en', 'id', 'zh'];
   const DEFAULT_LOCALE = 'en';
-  const DEFAULT_LOGO_LIGHT_URL = '/assets/brand/dji-luggage-logo-white.png';
-  const DEFAULT_LOGO_DARK_URL = '/assets/brand/dji-luggage-logo-black.png';
+  const LOGO_ASSET_VERSION = '20260601c';
+  const DEFAULT_LOGO_LIGHT_URL = '/assets/brand/dji-luggage-logo-white.png?v=20260601c';
+  const DEFAULT_LOGO_DARK_URL = '/assets/brand/dji-luggage-logo-black.png?v=20260601c';
 
   function detectLocale() {
     const firstSegment = window.location.pathname.split('/').filter(Boolean)[0];
@@ -337,10 +338,19 @@
     header.classList.add(firstThemedSection.getAttribute('data-header') === 'light' ? 'txt-light' : 'txt-dark');
   }
 
+  function versionLocalLogoUrl(url) {
+    if (!url) return url;
+    const base = String(url).split('?')[0];
+    if (/\/assets\/brand\/dji-luggage-logo-(white|black)\.png$/.test(base)) {
+      return base + '?v=' + LOGO_ASSET_VERSION;
+    }
+    return url;
+  }
+
   function logoImageUrls(site) {
     return {
-      light: site.externalLogoImageUrl || (site.logoImage && site.logoImage.url) || DEFAULT_LOGO_LIGHT_URL,
-      dark: site.externalDarkLogoImageUrl || (site.darkLogoImage && site.darkLogoImage.url) || DEFAULT_LOGO_DARK_URL,
+      light: versionLocalLogoUrl(site.externalLogoImageUrl || (site.logoImage && site.logoImage.url) || DEFAULT_LOGO_LIGHT_URL),
+      dark: versionLocalLogoUrl(site.externalDarkLogoImageUrl || (site.darkLogoImage && site.darkLogoImage.url) || DEFAULT_LOGO_DARK_URL),
     };
   }
 

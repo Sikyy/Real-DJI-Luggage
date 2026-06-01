@@ -62,7 +62,7 @@ export const SiteSettings: GlobalConfig = {
             {
               name: 'externalLogoImageUrl',
               type: 'text',
-              defaultValue: '/assets/brand/dji-luggage-logo-white.png',
+              defaultValue: '/assets/brand/dji-luggage-logo-white.png?v=20260601c',
               admin: {
                 condition: (_, siblingData) => siblingData?.logoDisplay === 'image',
                 description: 'White logo file URL. Used when no media upload is selected.',
@@ -80,7 +80,7 @@ export const SiteSettings: GlobalConfig = {
             {
               name: 'externalDarkLogoImageUrl',
               type: 'text',
-              defaultValue: '/assets/brand/dji-luggage-logo-black.png',
+              defaultValue: '/assets/brand/dji-luggage-logo-black.png?v=20260601c',
               admin: {
                 condition: (_, siblingData) => siblingData?.logoDisplay === 'image',
                 description: 'Black logo file URL. Used when no media upload is selected.',

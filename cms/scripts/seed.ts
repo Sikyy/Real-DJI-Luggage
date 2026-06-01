@@ -445,8 +445,8 @@ async function seed() {
       logoDisplay: 'image',
       logoAlt: 'DJI Luggage',
       logoHref: '/',
-      externalLogoImageUrl: '/assets/brand/dji-luggage-logo-white.png',
-      externalDarkLogoImageUrl: '/assets/brand/dji-luggage-logo-black.png',
+      externalLogoImageUrl: '/assets/brand/dji-luggage-logo-white.png?v=20260601c',
+      externalDarkLogoImageUrl: '/assets/brand/dji-luggage-logo-black.png?v=20260601c',
       requestQuoteLabel: 'Get a Quote',
       requestQuoteUrl: '/contact',
       mainNavigation: [
