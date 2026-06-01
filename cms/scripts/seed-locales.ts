@@ -383,7 +383,7 @@ async function ensureSocialLinkRows(client: DBClient) {
     sql: 'SELECT COUNT(*) as count FROM "site_settings_social_links"',
   })
 
-  if (Number(result.rows[0]?.count || 0) >= 4) return
+  if (Number(result.rows[0]?.count || 0) >= 5) return
 
   const siteSettings = await getGlobalParentId(client, 'site_settings')
   if (!siteSettings) return
@@ -393,6 +393,7 @@ async function ensureSocialLinkRows(client: DBClient) {
     { label: 'X', url: 'https://x.com/', icon: 'x' },
     { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
     { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
+    { label: 'WhatsApp', url: 'https://wa.me/6281266189081', icon: 'whatsapp' },
   ]
 
   await client.execute({
@@ -613,6 +614,7 @@ async function seedSiteSettings(payload: Payload, locale: Locale) {
         { label: 'X', url: 'https://x.com/', icon: 'x' },
         { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
         { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
+        { label: 'WhatsApp', url: 'https://wa.me/6281266189081', icon: 'whatsapp' },
       ],
       copyright: '©2026 DJI Luggage. 保留所有权利。',
       credit: '印度尼西亚行李箱制造商',
@@ -667,6 +669,7 @@ async function seedSiteSettings(payload: Payload, locale: Locale) {
         { label: 'X', url: 'https://x.com/', icon: 'x' },
         { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
         { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
+        { label: 'WhatsApp', url: 'https://wa.me/6281266189081', icon: 'whatsapp' },
       ],
       copyright: '©2026 DJI Luggage. Hak cipta dilindungi.',
       credit: 'Produsen koper Indonesia',

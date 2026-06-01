@@ -496,6 +496,7 @@ async function seed() {
         { label: 'X', url: 'https://x.com/', icon: 'x' },
         { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
         { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
+        { label: 'WhatsApp', url: 'https://wa.me/6281266189081', icon: 'whatsapp' },
       ],
       copyright: '©2026 DJI Luggage. All rights reserved.',
       credit: 'Indonesian luggage manufacturer',

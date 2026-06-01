@@ -30,7 +30,7 @@
 
   const COPY = UI_COPY[CURRENT_LOCALE] || UI_COPY[DEFAULT_LOCALE];
 
-  const iconNames = ['linkedin', 'x', 'instagram', 'youtube'];
+  const iconNames = ['linkedin', 'x', 'instagram', 'youtube', 'whatsapp'];
   const socialIconSvgs = {
     linkedin: '<svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>',
     x: '<svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
@@ -43,6 +43,7 @@
     { label: 'X', url: 'https://x.com/', icon: 'x' },
     { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
     { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
+    { label: 'WhatsApp', url: 'https://wa.me/6281266189081', icon: 'whatsapp' },
   ];
 
   function escapeHTML(value) {
@@ -501,6 +502,7 @@
   }
 
   function applySocialLinks(nodes, socialLinks) {
+    nodes = ensureSocialLinkNodes(nodes, socialLinks.length);
     socialLinks.forEach((item, index) => {
       const node = nodes[index];
       if (!node) return;
@@ -521,6 +523,22 @@
         ].join('');
       }
     });
+  }
+
+  function ensureSocialLinkNodes(nodes, count) {
+    const list = Array.from(nodes || []);
+    const parent = list[0] && list[0].parentElement;
+    if (!parent) return list;
+
+    while (list.length < count) {
+      const node = list[list.length - 1].cloneNode(false);
+      node.className = 'social-icon';
+      node.innerHTML = '';
+      parent.appendChild(node);
+      list.push(node);
+    }
+
+    return list;
   }
 
   function isFooter404Link(item) {
