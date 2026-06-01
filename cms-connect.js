@@ -2,9 +2,9 @@
   const CMS_BASE = window.DJI_CMS_BASE || 'http://localhost:3000';
   const SUPPORTED_LOCALES = ['en', 'id', 'zh'];
   const DEFAULT_LOCALE = 'en';
-  const LOGO_ASSET_VERSION = '20260601c';
-  const DEFAULT_LOGO_LIGHT_URL = '/assets/brand/dji-luggage-logo-white.png?v=20260601c';
-  const DEFAULT_LOGO_DARK_URL = '/assets/brand/dji-luggage-logo-black.png?v=20260601c';
+  const LOGO_ASSET_VERSION = '20260601d';
+  const DEFAULT_LOGO_LIGHT_URL = '/assets/brand/dji-luggage-logo-white.png?v=20260601d';
+  const DEFAULT_LOGO_DARK_URL = '/assets/brand/dji-luggage-logo-black.png?v=20260601d';
 
   function detectLocale() {
     const firstSegment = window.location.pathname.split('/').filter(Boolean)[0];
