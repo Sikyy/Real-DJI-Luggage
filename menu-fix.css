@@ -44,6 +44,50 @@ header.menu-open .logo .cms-logo-image-dark {
   opacity: 1;
 }
 
+/* Match the Framer header grid: three equal columns with the menu centered
+   in the middle column, independent from logo / CTA text width. */
+@media (min-width: 769px) {
+  header {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: center;
+    height: 72px;
+    padding: 0 16px;
+  }
+  header .logo {
+    justify-self: start;
+  }
+  header .hamburger {
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 32px;
+    padding: 0;
+    gap: 6px;
+    box-sizing: border-box;
+  }
+  header .hamburger span {
+    width: 20px;
+    height: 2px;
+  }
+  header .header-cta {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 115px;
+    height: 24px;
+    line-height: 12px;
+  }
+  body.menu-open {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+}
+
 /* ===== Menu overlay ===== */
 /* Item 1 — align Contact buttons (and bottom-row content) with the nav rows
    by matching the section-label spacing to the MAIN nav label (24px). */
