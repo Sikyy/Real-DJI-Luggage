@@ -137,8 +137,8 @@ header.menu-open .logo .cms-logo-image-dark {
 .menu-overlay .menu-nav a { justify-self: start; }
 .menu-overlay .menu-contact-section { text-align: left; }
 .menu-overlay .menu-bottom { padding-top: 84px; }
-.menu-overlay .menu-quick-section { flex: 0 0 204px; width: 204px; }
-.menu-overlay .menu-address-section { flex: 0 0 120px; width: 120px; margin-left: 186px; }
+.menu-overlay .menu-quick-section { flex: 0 0 256px; width: 256px; }
+.menu-overlay .menu-address-section { flex: 0 0 120px; width: 120px; margin-left: 134px; }
 .menu-overlay .menu-footer-logo { padding-top: 40px; }
 .menu-overlay .menu-footer-logo { margin-left: auto; margin-right: 2px; }
 .menu-overlay .menu-footer-logo svg { width: 171px; height: auto; }
@@ -150,6 +150,7 @@ header.menu-open .logo .cms-logo-image-dark {
   gap: 4px;
 }
 .menu-social .social-icon {
+  flex: 0 0 48px;
   width: 48px;
   height: 48px;
   border: none;
@@ -205,6 +206,7 @@ footer .social-icons {
   gap: 4px;
 }
 footer .social-icon {
+  flex: 0 0 48px;
   width: 48px;
   height: 48px;
   border: none;
