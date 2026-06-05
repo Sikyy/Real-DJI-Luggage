@@ -336,8 +336,8 @@
       <p>Sampling is where design intent meets production reality. Buyers can review structure, weight, finish, trolley movement, wheel feel, zipper performance, logo placement, interior layout, and packaging details before committing to a larger order.</p>
       <h4>Quality Checks Need To Be Built In</h4>
       <p>Luggage quality is shaped by many small details: material consistency, wheel assembly, handle strength, corner protection, stitching, zipper movement, color matching, logo position, and carton packing.</p>
-      <h4>Plan Packaging And Delivery Early</h4>
-      <p>Carton size, master packing, product labels, hangtags, barcode placement, and destination requirements should be discussed early because these details affect cost, warehousing, inspection, and final delivery readiness.</p>
+      <h4>Plan Packaging And Export Prep Early</h4>
+      <p>Carton size, master packing, product labels, hangtags, barcode placement, and destination requirements should be discussed early because these details affect cost, inspection, and final export readiness.</p>
       <h4>Build For The Next Order</h4>
       <p>DJI Luggage supports buyers who want a practical factory partner for long-term travel product development and repeatable production.</p>
       <a class="back-link" href="/newsroom/filters/all">View all</a>
@@ -382,9 +382,9 @@
     <div class="footer-large-text">DJI LUGGAGE</div>
   </footer>
 
-  <script defer src="/cms-connect.js?v=20260601v"></script>
+  <script defer src="/cms-connect.js?v=20260605a"></script>
   <script>
-    const CMS_BASE = 'http://localhost:3000';
+    const CMS_BASE = window.DJI_CMS_BASE || 'http://localhost:3000';
     const SUPPORTED_LOCALES = ['en', 'id', 'zh'];
     const DEFAULT_LOCALE = 'en';
     const firstSegment = location.pathname.split('/').filter(Boolean)[0];
@@ -425,29 +425,40 @@
         type: "News",
         image: "https://framerusercontent.com/images/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg"
       },
-      "building-a-private-label-travel-line": {
-        title: "Building A Private Label Travel Line",
+      "from-sample-to-production": {
+        title: "From Sample To Production",
         date: "9.01.25",
         author: "DJI Luggage Team",
         type: "News",
         image: "https://framerusercontent.com/images/CA2gOg0z0KVvO9JiKIDAroigUw.jpg?scale-down-to=1024&width=5191&height=3458"
       },
-      "packaging-and-export-prep-for-suitcases": {
-        title: "Packaging And Export Prep For Suitcases",
+      "building-a-private-label-travel-line": {
+        title: "Building A Private Label Travel Line",
         date: "8.29.25",
         author: "DJI Luggage Team",
         type: "Insights",
         image: "https://framerusercontent.com/images/pNkjoqFtJG8GbECTaKovqOFWvXI.jpg"
       },
-      "from-sample-to-production": {
-        title: "From Sample To Production",
+      "packaging-and-export-prep-for-suitcases": {
+        title: "Packaging And Export Prep For Suitcases",
         date: "8.12.25",
         author: "DJI Luggage Team",
         type: "News",
         image: "https://framerusercontent.com/images/qdVrKVWoQ6IYD1EWJSW1Z5nYMc.jpg"
       }
     };
-    const slug = location.pathname.split("/").filter(Boolean).pop();
+    const legacyArticleSlugs = {
+      "overcoming-global-logistics-challenges": "choosing-the-right-luggage-manufacturer",
+      "e-commerce-delivery-excellence": "oem-vs-odm-for-luggage-brands",
+      "transparency-through-real-time-tracking": "quality-checks-in-suitcase-production",
+      "optimize-your-global-supply-chain-today": "material-choices-for-hard-shell-luggage",
+      "tech-transforms-shipping-s-future": "planning-your-first-bulk-luggage-order",
+      "master-customs-compliance": "from-sample-to-production",
+      "sustainable-shipping-reduce-your-footprint": "building-a-private-label-travel-line",
+      "logistics-drives-business-growth": "packaging-and-export-prep-for-suitcases"
+    };
+    const rawSlug = location.pathname.split("/").filter(Boolean).pop();
+    const slug = legacyArticleSlugs[rawSlug] || rawSlug;
     const article = articles[slug] || articles["choosing-the-right-luggage-manufacturer"];
 
     function localizeUrl(url) {

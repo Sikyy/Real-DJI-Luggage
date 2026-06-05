@@ -29,6 +29,16 @@
   };
 
   const COPY = UI_COPY[CURRENT_LOCALE] || UI_COPY[DEFAULT_LOCALE];
+  const REVEAL_TOKEN_RE = /(\s+|[\u3400-\u9fff\uf900-\ufaff\u3040-\u30ff\uac00-\ud7af]|[^\s\u3400-\u9fff\uf900-\ufaff\u3040-\u30ff\uac00-\ud7af]+)/g;
+
+  function documentLang(locale) {
+    return locale === 'zh' ? 'zh-CN' : locale;
+  }
+
+  function applyLocaleToDocument() {
+    document.documentElement.lang = documentLang(CURRENT_LOCALE);
+    document.documentElement.dataset.locale = CURRENT_LOCALE;
+  }
 
   const iconNames = ['linkedin', 'x', 'instagram', 'youtube', 'whatsapp'];
   const socialIconSvgs = {
@@ -102,6 +112,17 @@
       const href = link.getAttribute('href');
       if (href) link.setAttribute('href', localizeUrl(href));
     });
+  }
+
+  function revealSegments(value) {
+    return String(value || '').trim().match(REVEAL_TOKEN_RE) || [];
+  }
+
+  function revealSpanHTML(value, spanClass) {
+    return revealSegments(value).map((segment) => {
+      if (/^\s+$/.test(segment)) return ' ';
+      return '<span class="' + spanClass + '">' + escapeHTML(segment) + '</span>';
+    }).join('');
   }
 
   function setFormStatus(form, message, tone) {
@@ -216,15 +237,13 @@
 
   function rewrapWordReveal(el, value) {
     if (!el || !value) return;
-    const words = String(value).trim().split(/\s+/);
-    el.innerHTML = words.map((word) => '<span class="wr-w">' + escapeHTML(word) + '</span>').join(' ');
+    el.innerHTML = revealSpanHTML(value, 'wr-w');
     el._w = el.querySelectorAll('.wr-w');
   }
 
   function wrapEmpowerWords(el) {
     if (!el) return;
-    const words = el.textContent.trim().split(/\s+/);
-    el.innerHTML = words.map((word) => '<span class="word">' + escapeHTML(word) + '</span>').join(' ');
+    el.innerHTML = revealSpanHTML(el.textContent, 'word');
     const spans = el.querySelectorAll('.word');
     function update() {
       const rect = el.getBoundingClientRect();
@@ -245,8 +264,7 @@
 
   function rewrapProductionWorkflowWords(el, value) {
     if (!el || !value) return;
-    const words = String(value).trim().split(/\s+/);
-    el.innerHTML = words.map((word) => '<span class="fi-word">' + escapeHTML(word) + '</span>').join(' ');
+    el.innerHTML = revealSpanHTML(value, 'fi-word');
     const spans = el.querySelectorAll('.fi-word');
     function update() {
       const rect = el.getBoundingClientRect();
@@ -847,7 +865,7 @@
       setImage(
         document.querySelector('.services-hero-bg'),
         imageUrlFrom(servicesPage.hero, 'externalBackgroundImageUrl', 'backgroundImage'),
-        servicesPage.hero.imageAlt || 'Warehouse shelving',
+        servicesPage.hero.imageAlt || 'Luggage manufacturing floor',
       );
     }
 
@@ -864,7 +882,7 @@
       setImage(
         document.querySelector('.aerial-highway img'),
         imageUrlFrom(servicesPage.aerial, 'externalImageUrl', 'image'),
-        servicesPage.aerial.imageAlt || 'Highway aerial view',
+        servicesPage.aerial.imageAlt || 'Luggage production workflow',
       );
       const labels = document.querySelectorAll('.aerial-label');
       (servicesPage.aerial.labels || []).forEach((item, index) => {
@@ -896,7 +914,7 @@
       setImage(
         document.querySelector('.industries-image img'),
         imageUrlFrom(servicesPage.industries, 'externalImageUrl', 'image'),
-        servicesPage.industries.imageAlt || 'Warehouse interior',
+        servicesPage.industries.imageAlt || 'Finished luggage storage',
       );
       const industries = servicesPage.industries.items || [];
       const nodes = document.querySelectorAll('.industry-name');
@@ -1146,6 +1164,9 @@
   }
 
   async function connect() {
+    applyLocaleToDocument();
+    localizeStaticLinks();
+
     try {
       const hasHome = Boolean(document.querySelector('.hero'));
       const hasAbout = Boolean(document.querySelector('.who-we-are') && document.querySelector('.key-metrics'));

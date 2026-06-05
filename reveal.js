@@ -6,6 +6,14 @@
   if (!els.length) return;
 
   function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  var tokenRe = /(\s+|[\u3400-\u9fff\uf900-\ufaff\u3040-\u30ff\uac00-\ud7af]|[^\s\u3400-\u9fff\uf900-\ufaff\u3040-\u30ff\uac00-\ud7af]+)/g;
+
+  function revealHTML(text) {
+    return (String(text || '').trim().match(tokenRe) || []).map(function (segment) {
+      if (/^\s+$/.test(segment)) return ' ';
+      return '<span class="wr-w">' + esc(segment) + '</span>';
+    }).join('');
+  }
 
   var style = document.createElement('style');
   style.textContent = '.word-reveal{opacity:1 !important;transform:none !important}' +
@@ -13,8 +21,7 @@
   document.head.appendChild(style);
 
   els.forEach(function (el) {
-    var words = el.textContent.trim().split(/\s+/);
-    el.innerHTML = words.map(function (w) { return '<span class="wr-w">' + esc(w) + '</span>'; }).join(' ');
+    el.innerHTML = revealHTML(el.textContent);
     el._w = el.querySelectorAll('.wr-w');
   });
 

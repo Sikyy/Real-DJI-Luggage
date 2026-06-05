@@ -22,6 +22,43 @@
     return search.toString();
   }
 
+  function documentLang(locale) {
+    return locale === 'zh' ? 'zh-CN' : locale;
+  }
+
+  function applyLocaleToDocument() {
+    document.documentElement.lang = documentLang(CURRENT_LOCALE);
+    document.documentElement.dataset.locale = CURRENT_LOCALE;
+  }
+
+  function isExternalUrl(url) {
+    return /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(String(url || ''));
+  }
+
+  function stripLocalePrefix(pathname) {
+    const parts = String(pathname || '/').split('/').filter(Boolean);
+    if (SUPPORTED_LOCALES.includes(parts[0])) parts.shift();
+    return '/' + parts.join('/');
+  }
+
+  function localizeUrl(url) {
+    if (!url || isExternalUrl(url) || !String(url).startsWith('/')) return url;
+    const [pathAndQuery, hash = ''] = String(url).split('#');
+    const [pathname, query = ''] = pathAndQuery.split('?');
+    const cleanPath = stripLocalePrefix(pathname);
+    const localizedPath = CURRENT_LOCALE === DEFAULT_LOCALE
+      ? cleanPath || '/'
+      : '/' + CURRENT_LOCALE + (cleanPath === '/' ? '' : cleanPath);
+    return localizedPath + (query ? '?' + query : '') + (hash ? '#' + hash : '');
+  }
+
+  function localizeStaticLinks() {
+    document.querySelectorAll('a[href^="/"]').forEach(function (link) {
+      const href = link.getAttribute('href');
+      if (href) link.setAttribute('href', localizeUrl(href));
+    });
+  }
+
   function escapeHTML(value) {
     return String(value || '')
       .replace(/&/g, '&amp;')
@@ -93,6 +130,8 @@
     return `<ul><li><p>${escapeHTML(text)}</p></li></ul>`;
   }
 
+  applyLocaleToDocument();
+
   document.title = `${job.title} - DJI Luggage`;
   document.body.innerHTML = `
     <header id="header" class="txt-dark">
@@ -156,7 +195,7 @@
         <div class="job-list responsibilities-list">
           ${listItem('Coordinate daily work with production, quality, purchasing, and buyer-facing teams.')}
           ${listItem('Keep product specifications, sample feedback, and order requirements clear and documented.')}
-          ${listItem('Track timelines, flag risks early, and help maintain reliable delivery standards.')}
+          ${listItem('Track timelines, flag risks early, and help maintain reliable production handoff standards.')}
           ${listItem('Support continuous improvement across luggage production, packing, and customer communication.')}
           ${listItem('Review buyer feedback and production data to improve future orders.')}
           ${listItem('Maintain practical documentation for samples, approvals, inspections, and handovers.')}
@@ -243,6 +282,7 @@
       </div>
     </footer>
   `;
+  localizeStaticLinks();
 
   const header = document.getElementById('header');
   const menuToggle = document.getElementById('menuToggle');
