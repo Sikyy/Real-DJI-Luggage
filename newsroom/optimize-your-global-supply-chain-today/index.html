@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <title>DJI Luggage Insights</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -154,14 +155,14 @@
       margin: 0;
       padding: 0;
       display: block;
-      overflow: visible;
+      overflow: hidden;
     }
     .article-media img {
       position: absolute;
       top: 0;
-      left: 484.2px;
+      right: 24px;
       display: block;
-      width: 1007.6px;
+      width: min(1007.6px, calc(100vw - 508.2px));
       max-width: none;
       height: 856.6px;
       object-fit: cover;
@@ -169,14 +170,16 @@
     }
     .article-body {
       max-width: none;
-      height: 1320.7px;
+      min-height: 760px;
       margin: 0;
-      padding: 0 0 0 530px;
+      padding: 0 24px 0 530px;
       display: block;
-      overflow: hidden;
+      overflow: visible;
+      box-sizing: border-box;
     }
     .article-body > * {
-      width: 768px;
+      width: min(768px, 100%);
+      max-width: 768px;
     }
     .article-body h4 {
       margin: 40px 0 0;
@@ -216,6 +219,7 @@
       gap: 28px;
       padding: 128px 32px;
       overflow: hidden;
+      background: #000;
       color: var(--white);
       text-align: center;
     }
@@ -223,7 +227,9 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .56)), url("https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg") center/cover;
+      background:
+        linear-gradient(rgba(0, 0, 0, .275), rgba(0, 0, 0, .28)),
+        #000 url("/assets/home/final-cta-bg.png") right center / auto calc(100% - clamp(24px, 4vw, 48px)) no-repeat;
     }
     .final-cta > * { position: relative; z-index: 1; }
     .final-cta h2 {
@@ -287,15 +293,52 @@
     }
     @media (max-width: 860px) {
       header { padding: 18px 20px; }
-      .article-hero { grid-template-columns: 1fr; padding: 132px 20px 44px; gap: 28px; }
-      .meta-grid { grid-template-columns: 1fr; }
-      .article-media, .article-body {
+      .article-hero {
         grid-template-columns: 1fr;
-        gap: 0;
+        height: auto;
+        padding: 132px 20px 44px;
+        gap: 28px;
+      }
+      .article-hero h1 {
+        position: static;
+        max-width: 100%;
+        font-size: 34px;
+        line-height: 38px;
+      }
+      .intro,
+      .intro > div:first-child,
+      .intro p,
+      .meta-grid {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        overflow: visible;
+      }
+      .meta-grid {
+        flex-direction: column;
+        gap: 18px;
+      }
+      .meta-item { width: 100%; }
+      .article-media, .article-body {
         padding-left: 20px;
         padding-right: 20px;
       }
-      .article-media img, .article-body > * { grid-column: 1; }
+      .article-media {
+        height: auto;
+        overflow: visible;
+      }
+      .article-media img {
+        position: static;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+      }
+      .article-body {
+        min-height: 0;
+        padding-top: 42px;
+      }
+      .article-body > * { width: 100%; max-width: 100%; }
       .footer-top, .footer-nav { flex-direction: column; }
       .footer-nav { gap: 28px; }
     }
@@ -368,6 +411,7 @@
           <h4>MAIN</h4>
           <a href="/">HOME</a>
           <a href="/services">MANUFACTURING</a>
+          <a href="/products">PRODUCTS</a>
           <a href="/about">ABOUT</a>
           <a href="/careers">CAREERS</a>
           <a href="/platform">CAPABILITIES</a>
@@ -382,7 +426,7 @@
     <div class="footer-large-text">DJI LUGGAGE</div>
   </footer>
 
-  <script defer src="/cms-connect.js?v=20260605a"></script>
+  <script defer src="/cms-connect.js?v=20260615a"></script>
   <script>
     const CMS_BASE = window.DJI_CMS_BASE || 'http://localhost:3000';
     const SUPPORTED_LOCALES = ['en', 'id', 'zh'];
@@ -395,56 +439,176 @@
         date: "10.31.25",
         author: "DJI Luggage Team",
         type: "Insights",
-        image: "https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg"
+        image: "https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg",
+        intro: "A practical buyer checklist for evaluating a luggage factory before starting an OEM or private-label suitcase program.",
+        contentSections: [
+          {
+            heading: "Start With Product Fit",
+            body: "A good luggage manufacturer should understand the product category you want to build: hard-shell suitcases, soft luggage, travel bags, nested sets, or private-label retail programs.\n\nBefore asking for a price, confirm whether the factory can support your target size range, shell or fabric direction, wheel system, trolley handle, lock type, lining, logo method, and packaging format."
+          },
+          {
+            heading: "Ask For Factory Evidence",
+            body: "Buyers should look beyond a short quotation. Useful evidence includes production photos, sample records, QC checkpoints, capacity information, export packing examples, and the documents needed for supplier review or buyer audits.\n\nIf a project requires specific certificates or test reports, clarify those requirements before sampling so the factory can confirm what is already available and what needs to be arranged."
+          },
+          {
+            heading: "Review Communication Rhythm",
+            body: "Luggage production has many small details, so communication matters. A dependable factory should keep the brief, sample feedback, material decisions, pre-production approval, in-line inspection, and packing updates visible.\n\nClear updates reduce misunderstandings and make repeat orders easier to manage."
+          }
+        ]
       },
       "oem-vs-odm-for-luggage-brands": {
         title: "OEM vs ODM For Luggage Brands",
         date: "10.02.25",
         author: "DJI Luggage Team",
         type: "Insights",
-        image: "https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg"
+        image: "https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg",
+        intro: "How luggage buyers can choose between manufacturing to an existing specification and developing a product with factory guidance.",
+        contentSections: [
+          {
+            heading: "OEM Starts With Your Specification",
+            body: "OEM is usually the right path when the buyer already has a defined product: size, shell material, color, wheel type, trolley handle, lock, lining, logo placement, packaging, and target quantity.\n\nThe factory role is to turn that specification into a sample, confirm production assumptions, and manufacture the approved details consistently."
+          },
+          {
+            heading: "ODM Starts With A Product Direction",
+            body: "ODM is useful when the buyer has a market idea but needs help turning it into a production-ready suitcase or travel goods line. The factory can suggest structure, material options, component choices, and practical ways to control cost.\n\nThis approach is common for new private-label brands or buyers expanding into luggage for the first time."
+          },
+          {
+            heading: "Many Projects Are Hybrid",
+            body: "A buyer may select an existing factory structure, then customize color, logo, lining, wheel choice, carton marks, and retail packaging. This hybrid approach can shorten development time while still creating a branded product line.\n\nThe best choice depends on timeline, budget, design ownership, and how much product differentiation the brand needs."
+          }
+        ]
       },
       "quality-checks-in-suitcase-production": {
         title: "Quality Checks In Suitcase Production",
         date: "9.27.25",
         author: "DJI Luggage Team",
         type: "News",
-        image: "https://framerusercontent.com/images/gtxhO5eQb8zTp6csYDNAsGA9k.jpg"
+        image: "https://framerusercontent.com/images/gtxhO5eQb8zTp6csYDNAsGA9k.jpg",
+        intro: "The production details that should be checked before a suitcase order leaves the factory.",
+        contentSections: [
+          {
+            heading: "Check Materials Before Assembly",
+            body: "Quality control starts before the suitcase is assembled. Shell sheets, fabric, lining, zippers, wheels, handles, locks, trims, and packaging materials should be checked against the approved sample and buyer requirements.\n\nEarly review helps catch color, finish, size, or component issues before they become production-wide problems."
+          },
+          {
+            heading: "Test Functional Components",
+            body: "Luggage depends on moving parts. Wheel rotation, trolley handle movement, zipper glide, lock function, stitching, handle strength, shell alignment, and interior layout should be checked during production.\n\nFor higher-risk orders, buyers may request extra stress checks, drop checks, carton checks, or third-party inspection."
+          },
+          {
+            heading: "Verify Final Packing",
+            body: "Final QC should include logo position, surface finish, accessories, hangtags, barcode labels, polybags, carton marks, carton size, and master packing.\n\nPacking details affect retail presentation, warehouse handling, customs review, and buyer receiving, so they should be confirmed before goods are handed over."
+          }
+        ]
       },
       "material-choices-for-hard-shell-luggage": {
         title: "Material Choices For Hard Shell Luggage",
         date: "9.17.25",
         author: "DJI Luggage Team",
         type: "Insights",
-        image: "https://framerusercontent.com/images/qerU0u7MgBoEnXdijYtcgsdtMTk.jpg"
+        image: "https://framerusercontent.com/images/qerU0u7MgBoEnXdijYtcgsdtMTk.jpg",
+        intro: "A buyer-focused guide to choosing ABS, PC, ABS+PC, or PP for hard-shell suitcase programs.",
+        contentSections: [
+          {
+            heading: "ABS For Practical Cost Control",
+            body: "ABS is often selected for cost-sensitive suitcase programs where buyers need a hard-shell look, stable color options, and practical production economics.\n\nIt can be a good fit for promotional ranges, entry-level retail lines, or markets where target price is the main driver."
+          },
+          {
+            heading: "PC And ABS+PC For A Stronger Feel",
+            body: "PC and ABS+PC options are used when buyers want a more premium shell feel, improved flexibility, or better impact performance compared with basic ABS.\n\nThe exact choice depends on target price, shell thickness, finish, size, and the durability expectations of the destination market."
+          },
+          {
+            heading: "PP For Lightweight Direction",
+            body: "PP can support lightweight hard-shell programs, but the design, mold, texture, and component pairing need to be reviewed carefully.\n\nFor any material, buyers should evaluate the full product, not only the shell: wheels, trolley handle, lock, zipper, lining, and packing all shape the final user experience."
+          }
+        ]
       },
       "planning-your-first-bulk-luggage-order": {
         title: "Planning Your First Bulk Luggage Order",
         date: "9.08.25",
         author: "DJI Luggage Team",
         type: "News",
-        image: "https://framerusercontent.com/images/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg"
+        image: "https://framerusercontent.com/images/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg",
+        intro: "A simple planning checklist for quantities, samples, production timing, and packing before placing a bulk suitcase order.",
+        contentSections: [
+          {
+            heading: "Clarify Quantity And Assortment",
+            body: "A first bulk order should define total quantity, size split, color split, set configuration, logo method, and packaging format. These details affect material purchasing, production planning, and unit cost.\n\nIf the order includes multiple colors or sizes, confirm whether each variation meets the factory's minimum production requirements."
+          },
+          {
+            heading: "Build Time For Sampling",
+            body: "Sampling is not only about appearance. Buyers should use the sample stage to review structure, color, shell or fabric feel, wheel movement, handle strength, lock type, lining, logo placement, and carton packing.\n\nA clear sample approval reduces the chance of changes during bulk production."
+          },
+          {
+            heading: "Confirm The Production Timeline",
+            body: "The production plan should include material lead time, sample approval, pre-production confirmation, bulk production, in-line inspection, final packing, and export handover.\n\nFor seasonal retail launches, work backward from the delivery date and leave enough time for approvals and inspection."
+          }
+        ]
       },
       "from-sample-to-production": {
         title: "From Sample To Production",
         date: "9.01.25",
         author: "DJI Luggage Team",
         type: "News",
-        image: "https://framerusercontent.com/images/CA2gOg0z0KVvO9JiKIDAroigUw.jpg?scale-down-to=1024&width=5191&height=3458"
+        image: "https://framerusercontent.com/images/CA2gOg0z0KVvO9JiKIDAroigUw.jpg?scale-down-to=1024&width=5191&height=3458",
+        intro: "How an approved luggage sample becomes a repeatable production standard for bulk orders.",
+        contentSections: [
+          {
+            heading: "Lock The Approved Sample",
+            body: "The approved sample should become the reference for bulk production. It should capture shell or fabric material, size, components, logo position, color, lining, packaging, and any buyer-specific instructions.\n\nIf changes are made after approval, they should be documented clearly before production starts."
+          },
+          {
+            heading: "Create A Production Standard",
+            body: "The factory needs a consistent reference for materials, bill of materials, component suppliers, color matching, workmanship requirements, and packing rules.\n\nThis standard helps production, QC, purchasing, and packing teams work from the same information."
+          },
+          {
+            heading: "Use Early Production Checks",
+            body: "Before scaling the full order, early production output should be checked against the approved sample. This is the moment to catch component, color, alignment, stitching, logo, or packing differences.\n\nOnce the standard is stable, the order can move through bulk production with clearer control."
+          }
+        ]
       },
       "building-a-private-label-travel-line": {
         title: "Building A Private Label Travel Line",
         date: "8.29.25",
         author: "DJI Luggage Team",
         type: "Insights",
-        image: "https://framerusercontent.com/images/pNkjoqFtJG8GbECTaKovqOFWvXI.jpg"
+        image: "https://framerusercontent.com/images/pNkjoqFtJG8GbECTaKovqOFWvXI.jpg",
+        intro: "What buyers should decide when building a private-label suitcase or travel goods range.",
+        contentSections: [
+          {
+            heading: "Define The Range Architecture",
+            body: "A private-label travel line may include carry-on, medium, large, nested sets, travel bags, organizers, or accessories. Buyers should decide which products form the core range and which are optional add-ons.\n\nA clear range plan helps control development time and avoid too many variations in the first order."
+          },
+          {
+            heading: "Make Branding Practical",
+            body: "Branding can include logo plates, embossing, printing, zipper pullers, hangtags, lining print, carton marks, inserts, and retail packaging.\n\nEach branding method has cost, MOQ, durability, and lead-time considerations, so it should be reviewed during sampling."
+          },
+          {
+            heading: "Plan For Repeat Orders",
+            body: "Private-label luggage works best when the factory keeps product specifications, approved colors, component choices, packing rules, and QC notes organized for repeat production.\n\nThat record makes replenishment and seasonal updates much easier."
+          }
+        ]
       },
       "packaging-and-export-prep-for-suitcases": {
         title: "Packaging And Export Prep For Suitcases",
         date: "8.12.25",
         author: "DJI Luggage Team",
         type: "News",
-        image: "https://framerusercontent.com/images/qdVrKVWoQ6IYD1EWJSW1Z5nYMc.jpg"
+        image: "https://framerusercontent.com/images/qdVrKVWoQ6IYD1EWJSW1Z5nYMc.jpg",
+        intro: "Why carton marks, labels, and packing details should be confirmed before suitcase production ends.",
+        contentSections: [
+          {
+            heading: "Confirm Retail And Export Packing",
+            body: "Packaging decisions should be made before final production. Buyers may need polybags, hangtags, inserts, barcode labels, warning labels, silica gel, master cartons, pallets, or retailer-specific packing rules.\n\nThese details affect inspection, cost, and receiving at the destination warehouse."
+          },
+          {
+            heading: "Review Carton Marks And Labels",
+            body: "Carton marks should match the buyer's purchase order, SKU structure, destination requirements, and warehouse instructions. Barcode placement and product labels should be checked before packing begins.\n\nIncorrect marks can slow down warehouse receiving and create avoidable rework."
+          },
+          {
+            heading: "Prepare For Handover",
+            body: "Before goods leave the factory, buyers often need packing lists, final photos, carton details, inspection notes, and shipping coordination information.\n\nA clean handover helps the buyer, forwarder, and warehouse work from the same order details."
+          }
+        ]
       }
     };
     const legacyArticleSlugs = {
@@ -507,7 +671,8 @@
 
     function applyArticle(post) {
       const title = post && post.title ? post.title : article.title;
-      const intro = post && post.intro ? post.intro : '';
+      const genericIntro = 'Practical notes from DJI Luggage on building reliable suitcase and travel product programs, from early product planning to repeatable production.';
+      const intro = post && post.intro && post.intro !== genericIntro ? post.intro : (article.intro || '');
       const author = post && post.author ? post.author : article.author;
       const type = post && post.category ? categoryLabel(post.category) : article.type;
       const imageUrl = cmsImageUrl(post) || article.image;
@@ -525,7 +690,9 @@
       image.src = imageUrl;
       image.alt = title;
 
-      const sections = post && Array.isArray(post.contentSections) ? post.contentSections : [];
+      const cmsSections = post && Array.isArray(post.contentSections) ? post.contentSections : [];
+      const usesGenericCmsSections = cmsSections.length && cmsSections[0] && cmsSections[0].heading === 'Start With A Clear Product Brief';
+      const sections = cmsSections.length && !usesGenericCmsSections ? cmsSections : (article.contentSections || cmsSections);
       if (!sections.length) return;
       const body = document.querySelector('.article-body');
       if (!body) return;

@@ -71,7 +71,7 @@ async function seed() {
     upsertByField(payload, 'team-members', 'name', 'Export Lead', {
       name: 'Export Lead',
       role: 'Buyer Coordination',
-      externalImageUrl: 'https://framerusercontent.com/images/MpL8d6ij0GvQ1VvuPLf1q4Sh5IU.png',
+      externalImageUrl: '/assets/generated/headshots/siky-export-lead-retouched.png',
       imageAlt: 'DJI Luggage export lead',
       sortOrder: 40,
       isActive: true,
@@ -87,36 +87,46 @@ async function seed() {
   ])
 
   const trustedLogos = await Promise.all([
-    upsertByField(payload, 'trusted-logos', 'name', 'OEM Buyers', {
-      name: 'OEM Buyers',
-      sourceType: 'sourceSymbol',
-      sourceSymbolId: 'trusted-logo-ipsum-bars',
-      viewBox: '0 0 267 116',
+    upsertByField(payload, 'trusted-logos', 'name', 'Vantiiear', {
+      name: 'Vantiiear',
+      sourceType: 'externalUrl',
+      externalUrl: '/assets/about/trusted-logos/vantiiear.png',
       sortOrder: 10,
       isActive: true,
     }),
-    upsertByField(payload, 'trusted-logos', 'name', 'Retail Partners', {
-      name: 'Retail Partners',
-      sourceType: 'sourceSymbol',
-      sourceSymbolId: 'trusted-logo-loop',
-      viewBox: '0 0 268 116',
+    upsertByField(payload, 'trusted-logos', 'name', 'KALA Y', {
+      name: 'KALA Y',
+      sourceType: 'externalUrl',
+      externalUrl: '/assets/about/trusted-logos/kalay.png',
       sortOrder: 20,
       isActive: true,
     }),
-    upsertByField(payload, 'trusted-logos', 'name', 'Corporate Programs', {
-      name: 'Corporate Programs',
-      sourceType: 'sourceSymbol',
-      sourceSymbolId: 'trusted-logo-logoipsum',
-      viewBox: '0 0 268 116',
+    upsertByField(payload, 'trusted-logos', 'name', 'Caran', {
+      name: 'Caran',
+      sourceType: 'externalUrl',
+      externalUrl: '/assets/about/trusted-logos/caran.png',
       sortOrder: 30,
       isActive: true,
     }),
-    upsertByField(payload, 'trusted-logos', 'name', 'Distributor Networks', {
-      name: 'Distributor Networks',
-      sourceType: 'sourceSymbol',
-      sourceSymbolId: 'trusted-logo-uam',
-      viewBox: '0 0 268 116',
+    upsertByField(payload, 'trusted-logos', 'name', 'Roaming', {
+      name: 'Roaming',
+      sourceType: 'externalUrl',
+      externalUrl: '/assets/about/trusted-logos/roaming.png',
       sortOrder: 40,
+      isActive: true,
+    }),
+    upsertByField(payload, 'trusted-logos', 'name', 'LETOO', {
+      name: 'LETOO',
+      sourceType: 'externalUrl',
+      externalUrl: '/assets/about/trusted-logos/letoo.png',
+      sortOrder: 50,
+      isActive: true,
+    }),
+    upsertByField(payload, 'trusted-logos', 'name', 'MIXI', {
+      name: 'MIXI',
+      sourceType: 'externalUrl',
+      externalUrl: '/assets/about/trusted-logos/mixi.png',
+      sortOrder: 60,
       isActive: true,
     }),
   ])
@@ -453,9 +463,9 @@ async function seed() {
         { label: 'Home', url: '/' },
         { label: 'About', url: '/about' },
         { label: 'Manufacturing', url: '/services' },
+        { label: 'Products', url: '/products' },
         { label: 'Capabilities', url: '/platform' },
         { label: 'Insights', url: '/newsroom/filters/all' },
-        { label: 'Careers', url: '/careers' },
       ],
       menuContact: {
         quickContactLabel: 'Quick Contact',
@@ -478,6 +488,7 @@ async function seed() {
           links: [
             { label: 'Home', url: '/' },
             { label: 'Manufacturing', url: '/services' },
+            { label: 'Products', url: '/products' },
             { label: 'About', url: '/about' },
             { label: 'Careers', url: '/careers' },
             { label: 'Capabilities', url: '/platform' },
@@ -493,7 +504,6 @@ async function seed() {
       ],
       socialLinks: [
         { label: 'LinkedIn', url: 'https://www.linkedin.com/', icon: 'linkedin' },
-        { label: 'X', url: 'https://x.com/', icon: 'x' },
         { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
         { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
         { label: 'WhatsApp', url: 'https://wa.me/6281266189081', icon: 'whatsapp' },
@@ -514,8 +524,8 @@ async function seed() {
           'DJI Luggage manufactures durable suitcase and travel bag programs for retailers, distributors, and growing private labels.',
         buttonLabel: 'Get a Quote',
         buttonUrl: '/contact',
-        posterUrl: 'https://framerusercontent.com/images/9oXIMPUOwaaTowc6iUbxkZ146KE.png',
-        videoUrl: 'https://framerusercontent.com/assets/B1E36n5Z6jDij8UJYkjAIGrRups.mp4',
+        posterUrl: '/assets/home/hero-poster.jpg',
+        videoUrl: '/assets/home/hero-video.mp4',
       },
       services: {
         label: 'What We Make',
@@ -597,7 +607,7 @@ async function seed() {
         heading: 'Start Your\nLuggage Program',
         buttonLabel: 'Get a Quote',
         buttonUrl: '/contact',
-        externalBackgroundImageUrl: 'https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg',
+        externalBackgroundImageUrl: '/assets/home/final-cta-bg.png',
       },
     },
   })
@@ -607,7 +617,7 @@ async function seed() {
     data: {
       metaTitle: 'About - DJI Luggage',
       pageTitle: 'About DJI Luggage',
-      externalHeroImageUrl: 'https://framerusercontent.com/images/2cLLtW9JseVLuB8Se1lBw03NAlI.jpg',
+      externalHeroImageUrl: '/assets/about/about-hero-traveler.jpg',
       whoWeAre: {
         label: 'Who We Are',
         heading:
@@ -668,7 +678,7 @@ async function seed() {
         heading: 'Start Your\nLuggage Program',
         buttonLabel: 'Get a Quote',
         buttonUrl: '/contact',
-        externalBackgroundImageUrl: 'https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg',
+        externalBackgroundImageUrl: '/assets/home/final-cta-bg.png',
       },
     },
   })
@@ -682,8 +692,8 @@ async function seed() {
         title: 'Manufacturing Services',
         description:
           'OEM, ODM, sampling, bulk production, and quality support for luggage and travel goods buyers.',
-        externalBackgroundImageUrl: 'https://framerusercontent.com/images/Qufuc7ZvvPRLp2ePWNlY4pH48w.jpg',
-        imageAlt: 'Warehouse shelving',
+        externalBackgroundImageUrl: '/assets/services/services-hero-concept.png',
+        imageAlt: 'conceptual luggage manufacturing services map',
       },
       focus: {
         label: 'Our Focus',
@@ -701,8 +711,8 @@ async function seed() {
         ],
       },
       aerial: {
-        externalImageUrl: 'https://framerusercontent.com/images/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg',
-        imageAlt: 'Highway aerial view',
+        externalImageUrl: '/assets/services/services-workflow-concept.png',
+        imageAlt: 'conceptual luggage service workflow routes',
         labels: [
           { label: 'OEM Luggage' },
           { label: 'ODM Development' },
@@ -718,23 +728,23 @@ async function seed() {
             title: 'OEM Private Label',
             description:
               'Manufacture luggage around your brand requirements, including logo placement, colors, packaging, trim choices, and retail or distributor needs.',
-            externalImageUrl: 'https://framerusercontent.com/images/hMpfNtZpREzFm2iw1HGpOPs7cg.jpg',
-            imageAlt: 'OEM luggage manufacturing',
+            externalImageUrl: '/assets/generated/luggage-work/luggage-work-thermoforming.png',
+            imageAlt: 'OEM luggage thermoforming production',
           },
           {
             number: '[02]',
             title: 'ODM Product Development',
             description:
               'Develop new suitcase and travel goods concepts through sample rounds, construction review, material options, and production-ready specification alignment.',
-            externalImageUrl: 'https://framerusercontent.com/images/qkMQq9Zs1gGZaibDwwhw42dog.jpg',
-            imageAlt: 'ODM luggage sample development',
+            externalImageUrl: '/assets/generated/luggage-work/luggage-work-assembly.png',
+            imageAlt: 'ODM luggage sample and handle assembly review',
           },
           {
             number: '[03]',
             title: 'Material And Component Sourcing',
             description:
               'Coordinate shell materials, fabric, wheels, trolley handles, zippers, locks, lining, labels, cartons, and other details needed for your product range.',
-            externalImageUrl: 'https://framerusercontent.com/images/JcvRxIUpdnFDa0zMeiuRidwGAg.jpg',
+            externalImageUrl: '/assets/generated/luggage-work/luggage-work-components.png',
             imageAlt: 'luggage materials and components',
           },
           {
@@ -742,8 +752,8 @@ async function seed() {
             title: 'Production And Quality Control',
             description:
               'Move approved samples into bulk production with practical inspection points, packing checks, and clear communication before order handover.',
-            externalImageUrl: 'https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg',
-            imageAlt: 'luggage production quality control',
+            externalImageUrl: '/assets/generated/luggage-work/luggage-work-export-prep.png',
+            imageAlt: 'luggage packing checks and export preparation',
           },
         ],
       },
@@ -767,7 +777,7 @@ async function seed() {
         heading: 'Start Your\nLuggage Program',
         buttonLabel: 'Get a Quote',
         buttonUrl: '/contact',
-        externalBackgroundImageUrl: 'https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg',
+        externalBackgroundImageUrl: '/assets/home/final-cta-bg.png',
       },
     },
   })
@@ -789,8 +799,8 @@ async function seed() {
           'Every order needs clear product data, sample approvals, production checkpoints, and buyer communication. Our workflow keeps those pieces connected.',
       },
       tabletMockup: {
-        externalImageUrl: 'https://framerusercontent.com/images/kbFgydLmMWcDx19m8RsDtfRriA.png',
-        imageAlt: 'Manufacturing planning dashboard',
+        externalImageUrl: '/assets/platform/how-we-build-dashboard.png',
+        imageAlt: 'DJI Luggage production workflow dashboard',
       },
       featureSections: [
         {
@@ -798,22 +808,22 @@ async function seed() {
           heading: 'Turn Requirements Into A Product Direction',
           body:
             'Share product type, target price, market, quantity, materials, colors, logo direction, and packaging needs. We translate the brief into sample priorities and practical manufacturing options.',
-          externalImageUrl: 'https://framerusercontent.com/images/6KnqYTEfv0yWM68b6hmLIAoLc.png',
-          imageAlt: 'luggage sample planning',
+          externalImageUrl: '/assets/platform/how-we-build-brief-to-sample.png',
+          imageAlt: 'luggage sample development interface',
         },
         {
           label: 'From Sample To Production',
           heading: 'Confirm Details Before Scaling The Order',
           body:
             'Once the sample is approved, the same details guide material preparation, assembly, quality checks, packing, and final buyer communication.',
-          externalImageUrl: 'https://framerusercontent.com/images/w0PuRzQLRi5FkQEk6dP4v42iv4.png',
-          imageAlt: 'luggage production tracking',
+          externalImageUrl: '/assets/platform/how-we-build-sample-to-production.png',
+          imageAlt: 'luggage production run interface',
         },
       ],
       whyChoose: {
         label: 'Why Choose Us',
-        body: 'Clear communication, practical manufacturing knowledge, and a production process built for repeat orders.',
-        externalBackgroundImageUrl: 'https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg',
+        body: 'Clear communication,\npractical manufacturing knowledge,\nand a production process\nbuilt for repeat orders.',
+        externalBackgroundImageUrl: '/assets/platform/why-choose-speed-blur.png',
       },
       highlights: {
         label: 'Features',
@@ -856,7 +866,7 @@ async function seed() {
         heading: 'Start Your\nLuggage Program',
         buttonLabel: 'Get a Quote',
         buttonUrl: '/contact',
-        externalBackgroundImageUrl: 'https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg',
+        externalBackgroundImageUrl: '/assets/home/final-cta-bg.png',
       },
     },
   })
@@ -887,7 +897,7 @@ async function seed() {
         heading: 'Start Your\nLuggage Program',
         buttonLabel: 'Get a Quote',
         buttonUrl: '/contact',
-        externalBackgroundImageUrl: 'https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg',
+        externalBackgroundImageUrl: '/assets/home/final-cta-bg.png',
       },
     },
   })
@@ -981,7 +991,7 @@ async function seed() {
         heading: 'Start Your\nLuggage Program',
         buttonLabel: 'Get a Quote',
         buttonUrl: '/contact',
-        externalBackgroundImageUrl: 'https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg',
+        externalBackgroundImageUrl: '/assets/home/final-cta-bg.png',
       },
     },
   })

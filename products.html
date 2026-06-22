@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Product Capabilities - DJI Luggage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-SemiBold.woff2') format('woff2');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Black.woff2') format('woff2');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --body-bg: #f3f4f6;
+      --yellow: #fedb5b;
+      --text-dark: #333333;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Geist', -apple-system, sans-serif;
+      color: var(--text-dark);
+      background: var(--body-bg);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== HEADER (white text for dark hero) ========== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 24px;
+      background: transparent;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.4s ease, border-color 0.4s ease;
+    }
+    header.scrolled {
+      background: rgba(243, 244, 246, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom-color: rgba(0,0,0,0.08);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .logo svg {
+      height: 13px;
+      width: auto;
+      fill: var(--white);
+      transition: fill 0.3s;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 101;
+      position: relative;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 1.5px;
+      background: var(--white);
+      transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.25s ease;
+      transform-origin: center;
+    }
+    .hamburger.active span:first-child {
+      transform: translateY(4.25px) rotate(45deg);
+    }
+    .hamburger.active span:last-child {
+      transform: translateY(-4.25px) rotate(-45deg);
+    }
+
+    .header-cta {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0;
+      color: var(--white);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: opacity 0.3s;
+    }
+    .header-cta:hover { opacity: 0.6; }
+    /* Adaptive header: transparent, text color follows the section behind it */
+    header.txt-dark .logo svg { fill: var(--black); }
+    header.txt-dark .hamburger span { background: var(--black); }
+    header.txt-dark .header-cta { color: var(--black); }
+    header.txt-light .logo svg { fill: var(--white); }
+    header.txt-light .hamburger span { background: var(--white); }
+    header.txt-light .header-cta { color: var(--white); }
+    header.menu-open .logo svg { fill: var(--black) !important; }
+    header.menu-open .hamburger span { background: var(--black) !important; }
+    header.menu-open .header-cta { color: var(--black) !important; }
+
+    /* When scrolled past hero, switch to dark text on light bg */
+    header.scrolled .logo svg { fill: var(--black); }
+    header.scrolled .hamburger span { background: var(--black); }
+    header.scrolled .header-cta { color: var(--black); }
+
+    /* ========== MENU OVERLAY ========== */
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 99;
+      background: var(--body-bg);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.5s;
+      overflow-y: auto;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    body.menu-open { overflow: hidden; }
+
+    .menu-overlay-content {
+      width: 100%;
+      min-height: 100vh;
+      padding: 72px 16px 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 64px;
+      padding: 0 80px;
+    }
+
+    .menu-nav-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(0, 0, 0);
+      margin-bottom: 24px;
+      line-height: 12px;
+    }
+
+    .menu-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 80px;
+      max-width: 700px;
+    }
+
+    .menu-nav a {
+      font-family: 'Geist', sans-serif;
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: -2px;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      line-height: 44px;
+      transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    .menu-overlay.active .menu-nav a {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .menu-overlay.active .menu-nav a:nth-child(1) { transition-delay: 0.05s; }
+    .menu-overlay.active .menu-nav a:nth-child(2) { transition-delay: 0.1s; }
+    .menu-overlay.active .menu-nav a:nth-child(3) { transition-delay: 0.15s; }
+    .menu-overlay.active .menu-nav a:nth-child(4) { transition-delay: 0.2s; }
+    .menu-overlay.active .menu-nav a:nth-child(5) { transition-delay: 0.25s; }
+    .menu-overlay.active .menu-nav a:nth-child(6) { transition-delay: 0.3s; }
+    .menu-nav:hover a { opacity: 0.4 !important; }
+    .menu-nav a:hover { opacity: 1 !important; }
+
+    .menu-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .menu-contact-section {
+      text-align: right;
+    }
+
+    .menu-section-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(51, 51, 51);
+      margin-bottom: 16px;
+      line-height: 12px;
+    }
+
+    .menu-contact-section .menu-section-label {
+      color: rgb(0, 0, 0);
+    }
+
+    .menu-contact-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .menu-btn {
+      width: 100%;
+      min-width: 184px;
+      text-align: center;
+      font-size: 16px;
+      padding: 10px 24px;
+    }
+
+    .menu-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-top: 32px;
+      border-top: 1px solid #d4d4d4;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    .menu-address-text {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgb(100, 100, 100);
+    }
+
+    .menu-footer-logo svg {
+      height: 24px;
+      width: auto;
+      fill: var(--text-dark);
+    }
+
+    .menu-social .social-icon {
+      border-color: rgba(0, 0, 0, 0.12);
+      color: var(--text-dark);
+    }
+    .menu-social .social-icon:hover {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.25);
+    }
+    .menu-social .social-icon svg { fill: var(--text-dark); }
+
+    /* Header menu-open state */
+    header.menu-open {
+      background: transparent !important;
+      backdrop-filter: none !important;
+      border-bottom-color: transparent !important;
+    }
+    header.menu-open .logo svg { fill: var(--text-dark); }
+    header.menu-open .hamburger span { background: var(--text-dark); }
+    header.menu-open .header-cta { color: var(--text-dark); }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 24px;
+      border-radius: 2px;
+      text-decoration: none;
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.64px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:active { transform: scale(0.97); }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--white);
+    }
+    .btn-dark:hover {
+      background: #222;
+    }
+
+    .btn-yellow {
+      background: var(--yellow);
+      color: var(--black);
+    }
+    .btn-yellow:hover { background: #f0cc40; }
+
+    .btn-frosted {
+      background: rgba(158, 158, 158, 0.4);
+      color: var(--white);
+    }
+    .btn-frosted:hover {
+      background: rgba(158, 158, 158, 0.6);
+    }
+
+    .btn-glass {
+      background: rgba(158, 158, 158, 0.35);
+      color: var(--white);
+      backdrop-filter: blur(8px);
+    }
+    .btn-glass:hover {
+      background: rgba(158, 158, 158, 0.55);
+    }
+
+    /* ========== SECTION LABEL ========== */
+    .section-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      color: #9e9e9e;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::before {
+      content: '+';
+      font-size: 13px;
+    }
+
+    /* ========== SOCIAL ICONS ========== */
+    .social-icons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .social-icon:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.3);
+    }
+    .social-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* ========== SCROLL ANIMATIONS ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ========== SERVICES HERO ========== */
+    .services-hero {
+      position: relative;
+      height: 485px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 48px;
+      padding: 0 32px 80px;
+      overflow: hidden;
+    }
+    .services-hero-bg {
+      position: absolute;
+      top: -78px;
+      left: -10%;
+      width: 120%;
+      height: 582px;
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(0.4);
+    }
+    .services-hero > *:not(.services-hero-bg) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .services-hero .section-label {
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .services-hero .section-label::before {
+      color: rgba(255,255,255,0.55);
+    }
+
+    .services-hero-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .services-hero-left {
+      flex: 0 0 700px;
+    }
+
+    .services-hero-title {
+      font-family: 'Geist', sans-serif;
+      font-size: 80px;
+      font-weight: 400;
+      line-height: 80px;
+      letter-spacing: -5.6px;
+      color: var(--white);
+    }
+
+    .services-hero-arrow {
+      display: none;
+    }
+
+    .services-hero-right {
+      max-width: 326px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .services-hero-desc {
+      font-family: 'Geist', sans-serif;
+      font-size: 21px;
+      font-weight: 400;
+      letter-spacing: -0.88px;
+      line-height: 26.4px;
+      color: var(--white);
+    }
+    .services-hero-desc .arrow {
+      display: none;
+    }
+    .services-hero-right .desc-arrow {
+      font-size: 16px;
+      color: var(--white);
+      flex-shrink: 0;
+      line-height: 1.4;
+    }
+
+    /* ========== SERVICES DIVIDER ========== */
+    .services-divider {
+      width: calc(100% - 64px);
+      margin: 0 32px;
+      height: 1px;
+      background: rgba(0,0,0,0.08);
+      border-radius: 100px;
+    }
+
+    /* ========== FULL WIDTH IMAGE ========== */
+    .hero-image {
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ========== OUR FOCUS ========== */
+    .our-focus {
+      background: var(--body-bg);
+      padding: 225px 32px 64px;
+    }
+
+    .our-focus-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(0,0,0,0.08);
+      margin-bottom: 32px;
+    }
+
+    .our-focus-layout {
+      display: flex;
+      gap: 160px;
+    }
+
+    .our-focus-left {
+      flex: 0 0 373.75px;
+    }
+
+    .our-focus-left .section-label {
+      margin-bottom: 0;
+    }
+
+    .our-focus-right {
+      flex: 1;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    .our-focus-right .our-focus-heading {
+      font-family: 'Geist', sans-serif;
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: -2px;
+      line-height: 44px;
+      color: rgb(51, 51, 51);
+    }
+
+    .our-focus-details {
+      display: flex;
+      flex-direction: row;
+      gap: 80px;
+    }
+
+    .our-focus-details p {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.64px;
+      line-height: 1.3;
+      color: rgb(0, 0, 0);
+      max-width: 300px;
+    }
+
+    /* ========== AERIAL HIGHWAY ========== */
+    .aerial-highway {
+      position: relative;
+      width: 100%;
+      height: 550px;
+      overflow: hidden;
+    }
+    .aerial-highway img {
+      height: 100%;
+      left: -5%;
+      position: absolute;
+      top: 0;
+      width: 110%;
+      object-fit: cover;
+      filter: brightness(0.72);
+    }
+    .aerial-highway::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: calc(100% / 5) calc(100% / 4);
+      pointer-events: none;
+    }
+    .aerial-highway-labels {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 1;
+    }
+    .aerial-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      letter-spacing: normal;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    /* ========== SERVICES DETAIL ========== */
+    .services-detail {
+      background: var(--body-bg);
+      padding: 319px 32px 169px;
+    }
+
+    .services-detail-title {
+      font-family: 'Geist', sans-serif;
+      font-size: 56px;
+      font-weight: 400;
+      letter-spacing: -2.8px;
+      line-height: 1.15;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      align-items: start;
+      gap: 10px;
+      padding: 24px 0 55px;
+      border-top: 1px solid #d4d4d4;
+    }
+
+    .service-item-number {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      color: #9e9e9e;
+      line-height: 12px;
+      grid-column: 1 / span 1;
+      padding-top: 0;
+    }
+
+    .service-item-content {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      align-items: start;
+      grid-column: 2 / span 6;
+    }
+
+    .service-item-image {
+      grid-column: 9 / span 4;
+      width: 100%;
+      height: 252px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .service-item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .service-item-name {
+      font-family: 'Geist', sans-serif;
+      font-size: 20.8px;
+      font-weight: 400;
+      letter-spacing: -0.832px;
+      line-height: 24.96px;
+      color: var(--black);
+      margin-bottom: 0;
+      grid-column: 1 / span 2;
+    }
+
+    .service-item-divider {
+      display: none;
+    }
+
+    .service-item-desc {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.64px;
+      line-height: 1.5;
+      color: var(--text-dark);
+      max-width: none;
+      grid-column: 4 / span 3;
+    }
+
+    /* ========== INDUSTRIES ========== */
+    .industries {
+      background: var(--body-bg);
+      padding: 0 32px 160px;
+    }
+
+    .industries-title {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.64px;
+      line-height: 20.8px;
+      color: var(--black);
+      margin-bottom: 80px;
+    }
+
+    .industries-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 663px) minmax(0, 663px);
+      gap: 80px;
+      align-items: start;
+    }
+
+    .industries-image {
+      border-radius: 4px;
+      overflow: hidden;
+      min-height: 596.8px;
+      height: 596.8px;
+    }
+    .industries-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .industries-content {
+      padding-top: 58px;
+    }
+
+    .industries-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 550px;
+    }
+
+    .industry-name {
+      font-family: 'Geist', sans-serif;
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: -2px;
+      line-height: 44px;
+      color: var(--black);
+      padding: 0;
+      border-bottom: none;
+      cursor: default;
+      transition: opacity 0.3s;
+    }
+    .industry-name:first-child {
+      border-top: none;
+    }
+    .industry-name:hover {
+      opacity: 0.5;
+    }
+
+    /* ========== FINAL CTA ========== */
+    .final-cta {
+      position: relative;
+      height: 414px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 128px 32px;
+      overflow: hidden;
+      background: #000;
+    }
+    .final-cta-bg {
+      position: absolute;
+      top: 0; left: clamp(32px, 10vw, 180px);
+      width: calc(100% - clamp(32px, 10vw, 180px)); height: 100%;
+      object-fit: contain;
+      object-position: right center;
+      transform: translateX(clamp(32px, 6vw, 120px));
+      background: #000;
+      z-index: 0;
+      filter: brightness(0.7);
+    }
+    .final-cta > *:not(.final-cta-bg) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .final-cta .section-label {
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 28px;
+    }
+    .final-cta .section-label::before {
+      content: '+';
+      font-size: 13px;
+    }
+
+    .final-cta h2,
+    .final-cta .cta-title {
+      font-family: 'Geist', sans-serif;
+      font-size: 80px;
+      font-weight: 400;
+      line-height: 80px;
+      letter-spacing: -5.6px;
+      color: rgb(228,228,228);
+      margin-bottom: 40px;
+    }
+    .cta-title .cta-char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .cta-title.visible .cta-char {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: rgb(4, 4, 4);
+      color: var(--white);
+      padding: 80px 16px 16px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-contact-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(158, 158, 158);
+      margin-bottom: 18px;
+    }
+
+    .footer-contact {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-contact h3 {
+      font-family: 'Geist', sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.88px;
+    }
+
+    .footer-contact .divider {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 72px;
+    }
+
+    .footer-nav-col h4 {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(158, 158, 158);
+      margin-bottom: 20px;
+    }
+
+    .footer-nav-col p {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 2;
+      color: rgb(255, 255, 255);
+      text-transform: uppercase;
+    }
+
+    .footer-nav-col a {
+      display: block;
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      margin-bottom: 6px;
+      transition: opacity 0.3s;
+    }
+    .footer-nav-col a:hover { opacity: 0.6; }
+
+    .footer-middle {
+      padding: 50px 0;
+    }
+
+    .footer-social-label {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: rgb(158, 158, 158);
+      margin-bottom: 18px;
+    }
+
+    .footer-bottom { padding: 40px 0 0; }
+
+    .footer-copyright {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .footer-copyright .sep {
+      width: 1px;
+      height: 14px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .footer-large-text {
+      position: relative;
+      font-family: 'Geist', sans-serif;
+      font-size: 20vw;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      color: rgba(255,255,255,0.07);
+      line-height: 0.85;
+      padding-bottom: 16px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+    .footer-registered {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: clamp(40px, 4vw, 64px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.07);
+      line-height: 1;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .services-hero { min-height: 350px; padding: 0 32px 60px; }
+      .services-hero-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 40px;
+      }
+      .services-hero-left { flex: 1; }
+      .services-hero-title { font-size: 56px; letter-spacing: -3px; }
+      .services-hero-right { max-width: 100%; }
+      .our-focus { padding: 120px 32px; }
+      .our-focus-layout { flex-direction: column; gap: 40px; }
+      .our-focus-right .our-focus-heading { font-size: 28px; line-height: 34px; }
+      .our-focus-details { flex-direction: column; gap: 24px; }
+      .our-focus-details p { max-width: 100%; }
+      .aerial-highway { height: 450px; }
+      .services-detail { padding: 100px 32px 0; }
+      .services-detail-title { font-size: 36px; }
+      .service-item { flex-direction: column; gap: 16px; }
+      .service-item-image { width: 100%; height: 200px; }
+      .service-item-name { font-size: 22px; }
+      .industries-title { font-size: 36px; margin-bottom: 36px; }
+      .industries-layout { grid-template-columns: 1fr; gap: 36px; }
+      .industries-image { min-height: 300px; }
+      .industries-content { padding-top: 0; }
+      .industries-list { width: 100%; }
+      .industry-name { font-size: 32px; }
+      .footer-top { flex-direction: column; gap: 48px; }
+      .footer-nav { gap: 36px; flex-wrap: wrap; }
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 18px 20px; }
+      .services-hero { min-height: 300px; padding: 0 20px 40px; gap: 24px; }
+      .services-hero-title { font-size: 40px; letter-spacing: -2px; line-height: 40px; }
+      .services-hero-desc { font-size: 16px; line-height: 1.4; }
+      .our-focus { padding: 80px 20px; }
+      .our-focus-right .our-focus-heading { font-size: 24px; line-height: 30px; }
+      .our-focus-details p { font-size: 14px; }
+      .aerial-highway { height: 300px; }
+      .aerial-highway-labels { flex-wrap: wrap; gap: 12px; padding: 0 20px; bottom: 20px; }
+      .services-detail { padding: 80px 20px 0; }
+      .services-detail-title { font-size: 32px; }
+      .service-item-name { font-size: 20px; }
+      .service-item-image { width: 100%; height: 180px; }
+      .industries { padding: 0 20px 100px; }
+      .industries-title { font-size: 32px; }
+      .industries-layout { grid-template-columns: 1fr; gap: 28px; }
+      .industries-list { width: 100%; }
+      .industry-name { font-size: 28px; letter-spacing: -1.4px; }
+      .final-cta { padding: 80px 20px; }
+      .final-cta h2 { font-size: 40px; line-height: 40px; letter-spacing: -2px; }
+      footer { padding: 48px 20px 0; }
+      .services-divider { width: calc(100% - 40px); margin: 0 20px; }
+      .menu-overlay-content { padding: 120px 20px 32px; }
+      .menu-nav { grid-template-columns: 1fr; gap: 8px; }
+      .menu-nav a { font-size: 36px; }
+      .menu-top { flex-direction: column; gap: 40px; }
+      .menu-contact-section { text-align: left; }
+      .menu-bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+  <link rel="stylesheet" href="/menu-fix.css?v=20260604a">
+  <script defer src="/menu-fix.js?v=20260531t"></script>
+  <script defer src="/cms-connect.js?v=20260615a"></script>
+</head>
+<body data-page="products">
+
+  <!-- HEADER -->
+  <header id="header">
+    <a href="/" class="logo" aria-label="DJI Luggage"><span class="cms-logo-image-stack" aria-label="DJI Luggage"><img class="cms-logo-image cms-logo-image-light" src="/assets/brand/dji-luggage-logo-white.png?v=20260601d" alt="DJI Luggage"><img class="cms-logo-image cms-logo-image-dark" src="/assets/brand/dji-luggage-logo-black.png?v=20260601d" alt=""></span></a>
+    <div class="hamburger" id="menuToggle">
+      <span></span>
+      <span></span>
+    </div>
+    <a href="/contact" class="header-cta">GET A QUOTE</a>
+  </header>
+
+  <!-- MENU OVERLAY -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-overlay-content">
+      <div class="menu-inner">
+      <div class="menu-top">
+        <div class="menu-nav-section">
+          <div class="menu-nav-label">Main</div>
+          <nav class="menu-nav">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/services">Services</a>
+            <a href="/products">Products</a>
+            <a href="/platform">Platform</a>
+            <a href="/newsroom/filters/all">Newsroom</a>
+          </nav>
+        </div>
+        <div class="menu-contact-section">
+          <div class="menu-section-label">Contact</div>
+          <div class="menu-contact-btns">
+            <a href="mailto:info@djiluggage.id" class="btn btn-dark menu-btn">Send Us A Message</a>
+            <a href="/contact" class="btn btn-yellow menu-btn">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="menu-bottom">
+        <div class="menu-quick-section">
+          <div class="menu-section-label">Quick Contact</div>
+          <div class="social-icons menu-social">
+            <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.1a4.9 4.9 0 1 0 0 9.8 4.9 4.9 0 0 0 0-9.8Zm0 2a2.9 2.9 0 1 1 0 5.8 2.9 2.9 0 0 1 0-5.8Zm5.2-.8a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z"/></svg></a>
+            <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 11.85a29 29 0 0 0-.46-5.43ZM9.75 15.02V8.48l5.75 3.27-5.75 3.27Z"/></svg></a>
+            <a href="#" class="social-icon" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.33 4.97L2.05 22l5.25-1.38a9.91 9.91 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 19.05 4.91 9.85 9.85 0 0 0 12.04 2Zm.01 18.15h-.01a8.22 8.22 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.19 8.19 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.83 2.42 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23Zm4.52-6.17c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.57.12-.17.25-.65.81-.8.98-.15.17-.3.19-.55.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.1-.5.11-.11.25-.3.37-.44.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43l-.49-.01c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09s.9 2.42 1.02 2.59c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg></a>
+          </div>
+        </div>
+        <div class="menu-address-section">
+          <div class="menu-section-label">Address</div>
+          <p class="menu-address-text">JL RAYA PARUNG BOGOR,<br>DESA/KELURAHAN KEMANG,<br>KEC. KEMANG, KAB. BOGOR,<br>PROVINSI JAWA BARAT,<br>KODE POS: 16310</p>
+        </div>
+        <div class="menu-footer-logo">
+          <span class="cms-logo-image-stack" aria-label="DJI Luggage"><img class="cms-logo-image cms-logo-image-light" src="/assets/brand/dji-luggage-logo-white.png?v=20260601d" alt="DJI Luggage"><img class="cms-logo-image cms-logo-image-dark" src="/assets/brand/dji-luggage-logo-black.png?v=20260601d" alt=""></span>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT CAPABILITIES HERO -->
+  <section class="services-hero">
+    <img class="services-hero-bg" src="/assets/services/services-hero-concept.png" alt="Conceptual luggage manufacturing services map" loading="eager">
+    <div class="section-label reveal">PRODUCT CAPABILITIES</div>
+    <div class="services-hero-content">
+      <div class="services-hero-left">
+        <h1 class="services-hero-title hero-anim-title">Product Capabilities</h1>
+        <div class="services-hero-arrow reveal">&darr;</div>
+      </div>
+      <div class="services-hero-right">
+        <span class="desc-arrow reveal">&#8627;</span>
+        <p class="services-hero-desc reveal">DJI Luggage builds suitcase, travel bag, and private-label luggage programs around practical materials, components, branding, and packing requirements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="services-divider"></div>
+
+  <!-- OUR FOCUS -->
+  <section class="our-focus" data-header="dark">
+    <div class="our-focus-divider"></div>
+    <div class="our-focus-layout">
+      <div class="our-focus-left">
+        <div class="section-label reveal">OUR FOCUS</div>
+      </div>
+      <div class="our-focus-right">
+        <h3 class="our-focus-heading word-reveal">We help buyers translate market requirements into factory-ready luggage products with clear material, component, branding, and packing options.</h3>
+        <div class="our-focus-details reveal reveal-delay-1">
+          <p>Our team supports ABS, PC, ABS+PC, PP, fabric, hybrid, and travel bag programs, including size planning, trims, wheels, handles, locks, lining, and retail packaging.</p>
+          <p>Use this page as a product-range map before sending drawings, target prices, reference samples, or private-label requirements for quotation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AERIAL HIGHWAY IMAGE -->
+  <section class="aerial-highway reveal">
+    <img src="/assets/services/services-workflow-concept.png" alt="Conceptual luggage service workflow routes" loading="lazy">
+    <div class="aerial-highway-labels">
+      <div class="aerial-label">+ HARD SHELL</div>
+      <div class="aerial-label">+ SOFT LUGGAGE</div>
+      <div class="aerial-label">+ TRAVEL BAGS</div>
+      <div class="aerial-label">+ PRIVATE LABEL</div>
+    </div>
+  </section>
+
+  <!-- PRODUCT DETAIL -->
+  <section class="services-detail" data-header="dark">
+    <h2 class="services-detail-title reveal">What We Can Build</h2>
+
+    <div class="service-item reveal">
+      <div class="service-item-number">[01]</div>
+      <div class="service-item-content">
+        <h3 class="service-item-name">Hard-Shell Suitcases</h3>
+        <div class="service-item-divider"></div>
+        <p class="service-item-desc">ABS, PC, ABS+PC, and PP suitcase programs for carry-on, medium, large, and nested set configurations, with molded shell, color, texture, and trim options.</p>
+      </div>
+      <div class="service-item-image">
+        <img src="/assets/generated/luggage-work/luggage-work-thermoforming.png" alt="OEM luggage thermoforming production" loading="lazy">
+      </div>
+    </div>
+
+    <div class="service-item reveal">
+      <div class="service-item-number">[02]</div>
+      <div class="service-item-content">
+        <h3 class="service-item-name">Soft-Side And Fabric Luggage</h3>
+        <div class="service-item-divider"></div>
+        <p class="service-item-desc">Fabric luggage with practical pocket layouts, zipper construction, reinforcement, lining, trolley systems, wheel assemblies, and retail-ready finishing.</p>
+      </div>
+      <div class="service-item-image">
+        <img src="/assets/generated/luggage-work/luggage-work-assembly.png" alt="ODM luggage sample and handle assembly review" loading="lazy">
+      </div>
+    </div>
+
+    <div class="service-item reveal">
+      <div class="service-item-number">[03]</div>
+      <div class="service-item-content">
+        <h3 class="service-item-name">Travel Bags And Duffels</h3>
+        <div class="service-item-divider"></div>
+        <p class="service-item-desc">Travel bags, weekender bags, organizer sets, and lightweight companion products for brands that want a broader travel goods line beyond suitcases.</p>
+      </div>
+      <div class="service-item-image">
+        <img src="/assets/generated/luggage-work/luggage-work-quality-control.png" alt="Luggage quality control inspection line" loading="lazy">
+      </div>
+    </div>
+
+    <div class="service-item reveal">
+      <div class="service-item-number">[04]</div>
+      <div class="service-item-content">
+        <h3 class="service-item-name">Private-Label Sets</h3>
+        <div class="service-item-divider"></div>
+        <p class="service-item-desc">Coordinated suitcase sets with logo placement, trim colors, hangtags, inserts, carton marks, barcode labels, and packing rules aligned to retail or distributor needs.</p>
+      </div>
+      <div class="service-item-image">
+        <img src="/assets/generated/luggage-work/luggage-work-export-prep.png" alt="Export-ready luggage cartons and pallets" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES -->
+  <section class="industries" data-header="dark">
+    <div class="industries-layout reveal">
+      <div class="industries-image">
+        <img src="https://framerusercontent.com/images/xuiGNeWrzpBf9F7gqvI7nHqMlg.webp" alt="Finished luggage storage" loading="lazy">
+      </div>
+      <div class="industries-content">
+        <h2 class="industries-title">Customization Range</h2>
+        <div class="industries-list">
+          <div class="industry-name">Shell Materials</div>
+          <div class="industry-name">Wheels And Trolleys</div>
+          <div class="industry-name">Locks And Zippers</div>
+          <div class="industry-name">Logo Placement</div>
+          <div class="industry-name">Interior Lining</div>
+          <div class="industry-name">Color Matching</div>
+          <div class="industry-name">Retail Packaging</div>
+          <div class="industry-name">Carton Marks</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <img class="final-cta-bg" src="/assets/home/final-cta-bg.png" alt="" loading="lazy">
+    <div class="section-label reveal">LET'S GET TO WORK</div>
+    <h2 class="cta-title" id="ctaTitle">Build Your<br>Luggage Line</h2>
+    <a href="/contact" class="btn btn-glass reveal">Get a Quote</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-contact-label">CONTACT</div>
+        <div class="footer-contact">
+          <h3>Let's Get Started</h3>
+          <div class="divider"></div>
+          <a href="/contact" class="btn btn-frosted" style="font-size:14px;">Get a Quote</a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <h4>ADDRESS</h4>
+          <p>JL RAYA PARUNG BOGOR,<br>DESA/KELURAHAN KEMANG,<br>KEC. KEMANG, KAB. BOGOR,<br>PROVINSI JAWA BARAT,<br>KODE POS: 16310</p>
+        </div>
+        <div class="footer-nav-col">
+          <h4>MAIN</h4>
+          <a href="/">HOME</a>
+          <a href="/services">SERVICES</a>
+          <a href="/products">PRODUCTS</a>
+          <a href="/about">ABOUT</a>
+          <a href="/careers">CAREERS</a>
+          <a href="/platform">PLATFORM</a>
+          <a href="/newsroom/filters/all">NEWSROOM</a>
+        </div>
+        <div class="footer-nav-col">
+          <h4>SUPPORT</h4>
+          <a href="/privacy-policy">PRIVACY POLICY</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-middle">
+      <div class="footer-social-label">QUICK CONTACT</div>
+      <div class="social-icons">
+        <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.1a4.9 4.9 0 1 0 0 9.8 4.9 4.9 0 0 0 0-9.8Zm0 2a2.9 2.9 0 1 1 0 5.8 2.9 2.9 0 0 1 0-5.8Zm5.2-.8a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z"/></svg></a>
+        <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 11.85a29 29 0 0 0-.46-5.43ZM9.75 15.02V8.48l5.75 3.27-5.75 3.27Z"/></svg></a>
+        <a href="#" class="social-icon" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.33 4.97L2.05 22l5.25-1.38a9.91 9.91 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 19.05 4.91 9.85 9.85 0 0 0 12.04 2Zm.01 18.15h-.01a8.22 8.22 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.19 8.19 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.83 2.42 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23Zm4.52-6.17c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.57.12-.17.25-.65.81-.8.98-.15.17-.3.19-.55.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.1-.5.11-.11.25-.3.37-.44.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43l-.49-.01c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09s.9 2.42 1.02 2.59c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        <span>&copy;2025. All right reserved</span>
+        <span class="sep"></span>
+        <span>Indonesian luggage manufacturer</span>
+      </div>
+      <div class="footer-large-text">DJI LUGGAGE</div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    // Header text color adapts to the section currently behind it
+    const navSections = Array.from(document.querySelectorAll('[data-header]'));
+    function updateHeaderTheme() {
+      const line = 37;
+      let theme = 'light';
+      for (const s of navSections) {
+        const r = s.getBoundingClientRect();
+        if (r.top <= line && r.bottom > line) { theme = s.dataset.header; break; }
+      }
+      header.classList.toggle('txt-dark', theme === 'dark');
+      header.classList.toggle('txt-light', theme !== 'dark');
+    }
+    window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+    window.addEventListener('resize', updateHeaderTheme);
+    updateHeaderTheme();
+
+    // Menu overlay toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function toggleMenu() {
+      menuOverlay.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      header.classList.toggle('menu-open');
+      document.body.classList.toggle('menu-open');
+    }
+
+    function closeMenu() {
+      menuOverlay.classList.remove('active');
+      menuToggle.classList.remove('active');
+      header.classList.remove('menu-open');
+      document.body.classList.remove('menu-open');
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+
+    // Close menu on nav link click
+    document.querySelectorAll('.menu-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+
+    // Close menu on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOverlay.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+
+    // Scroll reveal animations
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Immediately reveal elements already in viewport on page load
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add('visible');
+        }
+      });
+    });
+    // CTA title character-by-character scroll animation
+    (function() {
+      const ctaTitle = document.getElementById('ctaTitle');
+      if (!ctaTitle) return;
+      const html = ctaTitle.innerHTML;
+      let charIndex = 0;
+      const segments = html.split(/<br\s*\/?>/gi);
+      const processed = segments.map(segment => {
+        return segment.split('').map(function(char) {
+          charIndex++;
+          var display = char === ' ' ? '&nbsp;' : char;
+          return '<span class="cta-char" style="transition-delay:' + (charIndex * 0.025) + 's">' + display + '</span>';
+        }).join('');
+      }).join('<br>');
+      ctaTitle.innerHTML = processed;
+
+      const ctaObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            ctaTitle.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.3 });
+      ctaObserver.observe(ctaTitle);
+    })();
+  </script>
+
+  <script src="/hero-anim.js"></script>
+  <script src="/reveal.js?v=20260605a"></script>
+</body>
+</html>

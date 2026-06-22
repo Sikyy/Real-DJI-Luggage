@@ -234,7 +234,6 @@ export const SiteSettings: GlobalConfig = {
                   type: 'select',
                   options: [
                     { label: 'LinkedIn', value: 'linkedin' },
-                    { label: 'X', value: 'x' },
                     { label: 'Instagram', value: 'instagram' },
                     { label: 'YouTube', value: 'youtube' },
                     { label: 'WhatsApp', value: 'whatsapp' },

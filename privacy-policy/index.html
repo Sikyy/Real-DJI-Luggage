@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <title>Privacy Policy - DJI Luggage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -120,6 +121,7 @@
       gap: 28px;
       padding: 128px 32px;
       overflow: hidden;
+      background: #000;
       color: var(--white);
       text-align: center;
     }
@@ -127,7 +129,9 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .56)), url("https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg") center/cover;
+      background:
+        linear-gradient(rgba(0, 0, 0, .275), rgba(0, 0, 0, .28)),
+        #000 url("/assets/home/final-cta-bg.png") right center / auto calc(100% - clamp(24px, 4vw, 48px)) no-repeat;
     }
     .final-cta > * { position: relative; z-index: 1; }
     .final-cta h2 {
@@ -208,7 +212,7 @@
       .footer-nav { gap: 28px; }
     }
   </style>
-  <script defer src="/cms-connect.js?v=20260605a"></script>
+  <script defer src="/cms-connect.js?v=20260615a"></script>
 </head>
 <body>
   <header>
@@ -257,6 +261,7 @@
           <h4>MAIN</h4>
           <a href="/">HOME</a>
           <a href="/services">MANUFACTURING</a>
+          <a href="/products">PRODUCTS</a>
           <a href="/about">ABOUT</a>
           <a href="/careers">CAREERS</a>
           <a href="/platform">CAPABILITIES</a>

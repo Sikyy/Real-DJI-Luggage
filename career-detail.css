@@ -574,18 +574,22 @@ body.menu-open { overflow: hidden; }
   height: 414px;
   justify-content: center;
   overflow: hidden;
+  background: #000;
   padding: 128px 32px;
   position: relative;
   text-align: center;
 }
 .final-cta-bg {
-  filter: brightness(0.4);
+  filter: brightness(0.7);
   height: 100%;
-  left: 0;
-  object-fit: cover;
+  left: clamp(32px, 10vw, 180px);
+  object-fit: contain;
+  object-position: right center;
+  transform: translateX(clamp(32px, 6vw, 120px));
+  background: #000;
   position: absolute;
   top: 0;
-  width: 100%;
+  width: calc(100% - clamp(32px, 10vw, 180px));
   z-index: 0;
 }
 .final-cta > *:not(.final-cta-bg) {

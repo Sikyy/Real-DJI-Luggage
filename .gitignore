@@ -1,6 +1,7 @@
 .DS_Store
 -S
 .claude/
+.wrangler/
 
 # Environment and local data
 .env

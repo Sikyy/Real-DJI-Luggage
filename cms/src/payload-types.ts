@@ -747,7 +747,7 @@ export interface SiteSetting {
     | {
         label: string;
         url: string;
-        icon: 'linkedin' | 'x' | 'instagram' | 'youtube' | 'whatsapp';
+        icon: 'linkedin' | 'instagram' | 'youtube' | 'whatsapp';
         id?: string | null;
       }[]
     | null;

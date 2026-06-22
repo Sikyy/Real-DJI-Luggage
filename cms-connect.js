@@ -5,6 +5,59 @@
   const LOGO_ASSET_VERSION = '20260601d';
   const DEFAULT_LOGO_LIGHT_URL = '/assets/brand/dji-luggage-logo-white.png?v=20260601d';
   const DEFAULT_LOGO_DARK_URL = '/assets/brand/dji-luggage-logo-black.png?v=20260601d';
+  const HOME_HERO_VIDEO_URL = '/assets/home/hero-video.mp4';
+  const HOME_HERO_POSTER_URL = '/assets/home/hero-poster.jpg';
+  const LEGACY_HOME_HERO_VIDEO_URL = 'https://framerusercontent.com/assets/B1E36n5Z6jDij8UJYkjAIGrRups.mp4';
+  const LEGACY_HOME_HERO_POSTER_URL = 'https://framerusercontent.com/images/9oXIMPUOwaaTowc6iUbxkZ146KE.png';
+  const FINAL_CTA_BG_URL = '/assets/home/final-cta-bg.png';
+  const LEGACY_FINAL_CTA_BG_URL = 'https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg';
+  const ABOUT_HERO_IMAGE_URL = '/assets/about/about-hero-traveler.jpg';
+  const LEGACY_ABOUT_HERO_IMAGE_URL = 'https://framerusercontent.com/images/2cLLtW9JseVLuB8Se1lBw03NAlI.jpg';
+  const EXPORT_LEAD_IMAGE_URL = '/assets/generated/headshots/siky-export-lead-retouched.png';
+  const LEGACY_EXPORT_LEAD_IMAGE_URL = 'https://framerusercontent.com/images/MpL8d6ij0GvQ1VvuPLf1q4Sh5IU.png';
+  const ABOUT_TRUSTED_LOGOS = [
+    { name: 'Vantiiear', sourceType: 'externalUrl', externalUrl: '/assets/about/trusted-logos/vantiiear.png', isActive: true },
+    { name: 'KALA Y', sourceType: 'externalUrl', externalUrl: '/assets/about/trusted-logos/kalay.png', isActive: true },
+    { name: 'Caran', sourceType: 'externalUrl', externalUrl: '/assets/about/trusted-logos/caran.png', isActive: true },
+    { name: 'Roaming', sourceType: 'externalUrl', externalUrl: '/assets/about/trusted-logos/roaming.png', isActive: true },
+    { name: 'LETOO', sourceType: 'externalUrl', externalUrl: '/assets/about/trusted-logos/letoo.png', isActive: true },
+    { name: 'MIXI', sourceType: 'externalUrl', externalUrl: '/assets/about/trusted-logos/mixi.png', isActive: true },
+  ];
+  const LEGACY_TRUSTED_LOGO_NAMES = new Set(['OEM Buyers', 'Retail Partners', 'Corporate Programs', 'Distributor Networks']);
+  const LEGACY_TRUSTED_LOGO_SYMBOLS = new Set([
+    'trusted-logo-ipsum-bars',
+    'trusted-logo-loop',
+    'trusted-logo-logoipsum',
+    'trusted-logo-uam',
+  ]);
+  const SERVICES_HERO_BG_URL = '/assets/services/services-hero-concept.png';
+  const LEGACY_SERVICES_HERO_BG_URL = 'https://framerusercontent.com/images/Qufuc7ZvvPRLp2ePWNlY4pH48w.jpg';
+  const SERVICES_AERIAL_IMAGE_URL = '/assets/services/services-workflow-concept.png';
+  const LEGACY_SERVICES_AERIAL_IMAGE_URL = 'https://framerusercontent.com/images/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg';
+  const SERVICE_DETAIL_IMAGE_URLS = [
+    '/assets/generated/luggage-work/luggage-work-thermoforming.png',
+    '/assets/generated/luggage-work/luggage-work-assembly.png',
+    '/assets/generated/luggage-work/luggage-work-components.png',
+    '/assets/generated/luggage-work/luggage-work-export-prep.png',
+  ];
+  const LEGACY_SERVICE_DETAIL_IMAGE_URLS = [
+    'https://framerusercontent.com/images/hMpfNtZpREzFm2iw1HGpOPs7cg.jpg',
+    'https://framerusercontent.com/images/qkMQq9Zs1gGZaibDwwhw42dog.jpg',
+    'https://framerusercontent.com/images/JcvRxIUpdnFDa0zMeiuRidwGAg.jpg',
+    'https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg',
+  ];
+  const PLATFORM_TABLET_IMAGE_URL = '/assets/platform/how-we-build-dashboard.png';
+  const LEGACY_PLATFORM_TABLET_IMAGE_URL = 'https://framerusercontent.com/images/kbFgydLmMWcDx19m8RsDtfRriA.png';
+  const PLATFORM_FEATURE_IMAGE_URLS = [
+    '/assets/platform/how-we-build-brief-to-sample.png',
+    '/assets/platform/how-we-build-sample-to-production.png',
+  ];
+  const PLATFORM_WHY_CHOOSE_BG_URL = '/assets/platform/why-choose-speed-blur.png';
+  const LEGACY_PLATFORM_FEATURE_IMAGE_URLS = [
+    'https://framerusercontent.com/images/6KnqYTEfv0yWM68b6hmLIAoLc.png',
+    'https://framerusercontent.com/images/w0PuRzQLRi5FkQEk6dP4v42iv4.png',
+  ];
+  const LEGACY_PLATFORM_WHY_CHOOSE_BG_URL = 'https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg';
 
   function detectLocale() {
     const firstSegment = window.location.pathname.split('/').filter(Boolean)[0];
@@ -40,7 +93,7 @@
     document.documentElement.dataset.locale = CURRENT_LOCALE;
   }
 
-  const iconNames = ['linkedin', 'x', 'instagram', 'youtube', 'whatsapp'];
+  const iconNames = ['linkedin', 'instagram', 'youtube', 'whatsapp'];
   const socialIconSvgs = {
     linkedin: '<svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>',
     x: '<svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
@@ -50,7 +103,6 @@
   };
   const DEFAULT_SOCIAL_LINKS = [
     { label: 'LinkedIn', url: 'https://www.linkedin.com/', icon: 'linkedin' },
-    { label: 'X', url: 'https://x.com/', icon: 'x' },
     { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
     { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
     { label: 'WhatsApp', url: 'https://wa.me/6281266189081', icon: 'whatsapp' },
@@ -73,6 +125,49 @@
     if (value === undefined || value === null) return;
     const el = (root || document).querySelector(selector);
     if (el) el.textContent = value;
+  }
+
+  function formatWhyChooseBody(value) {
+    const text = String(value || '').trim();
+    const normalized = text.replace(/\s+/g, ' ');
+    const lineSets = {
+      'Clear communication, practical manufacturing knowledge, and a production process built for repeat orders.': [
+        'Clear communication,',
+        'practical manufacturing knowledge,',
+        'and a production process',
+        'built for repeat orders.',
+      ],
+      'Clear updates, practical production control, and repeatable luggage quality.': [
+        'Clear updates, practical',
+        'production control,',
+        'and repeatable',
+        'luggage quality.',
+      ],
+      '清晰沟通、实用制造经验，以及为复购订单设计的生产流程。': [
+        '清晰沟通、实用制造经验，',
+        '以及为复购订单设计的生产流程。',
+      ],
+      '清晰更新、实际生产控制，以及可复购的行李箱品质。': [
+        '清晰更新、实际生产控制，',
+        '以及可复购的行李箱品质。',
+      ],
+      'Komunikasi jelas, pengetahuan manufaktur praktis, dan proses produksi yang dibuat untuk repeat order.': [
+        'Komunikasi jelas, pengetahuan manufaktur praktis,',
+        'dan proses produksi yang dibuat untuk repeat order.',
+      ],
+      'Update jelas, kontrol produksi praktis, dan kualitas koper yang konsisten untuk repeat order.': [
+        'Update jelas, kontrol produksi praktis,',
+        'dan kualitas koper yang konsisten',
+        'untuk repeat order.',
+      ],
+    };
+    return lineBreakHTML((lineSets[normalized] || [text]).join('\n'));
+  }
+
+  function setWhyChooseBody(value) {
+    if (value === undefined || value === null) return;
+    const el = document.querySelector('.why-choose-text');
+    if (el) el.innerHTML = formatWhyChooseBody(value);
   }
 
   function isExternalUrl(url) {
@@ -219,7 +314,7 @@
     el.innerHTML = segments.map((segment) => {
       return segment.split('').map((char) => {
         charIndex += 1;
-        const display = char === ' ' ? '&nbsp;' : escapeHTML(char);
+        const display = char === ' ' ? ' ' : escapeHTML(char);
         return '<span class="' + spanClass + '" style="animation-delay:' + (charIndex * delayStep).toFixed(3) + 's;transition-delay:' + (charIndex * delayStep).toFixed(3) + 's">' + display + '</span>';
       }).join('');
     }).join('<br>');
@@ -230,7 +325,7 @@
     const text = String(value);
     el.setAttribute('aria-label', text);
     el.innerHTML = text.split('').map((char, index) => {
-      const display = char === ' ' ? '&nbsp;' : escapeHTML(char);
+      const display = char === ' ' ? ' ' : escapeHTML(char);
       return '<span class="hac" style="animation-delay:' + (index * 0.03).toFixed(2) + 's">' + display + '</span>';
     }).join('');
   }
@@ -309,6 +404,27 @@
     const external = item[externalField || 'externalImageUrl'];
     const upload = item[uploadField || 'image'];
     return external || (upload && upload.url) || '';
+  }
+
+  function isExportLeadMember(member) {
+    const name = String((member && member.name) || '').toLowerCase();
+    const role = String((member && member.role) || '').toLowerCase();
+    return (
+      name.includes('export lead') ||
+      name.includes('lead ekspor') ||
+      name.includes('出口负责人') ||
+      role.includes('buyer coordination') ||
+      role.includes('koordinasi pembeli') ||
+      role.includes('采购方协调')
+    );
+  }
+
+  function teamMemberImageUrl(member) {
+    const imageUrl = imageUrlFrom(member, 'externalImageUrl', 'image');
+    if (isExportLeadMember(member) || imageUrl === LEGACY_EXPORT_LEAD_IMAGE_URL) {
+      return EXPORT_LEAD_IMAGE_URL;
+    }
+    return imageUrl;
   }
 
   function setImage(img, src, alt) {
@@ -422,10 +538,29 @@
       const src = logo.externalUrl || (logo.media && logo.media.url);
       if (src) media = '<img src="' + escapeHTML(src) + '" alt="' + name + '">';
     }
+    if (!media) return '';
     const content = logo.destinationUrl
       ? '<a href="' + escapeHTML(logo.destinationUrl) + '" aria-label="' + name + '">' + media + '</a>'
       : media;
     return '<div class="trusted-logo-card">' + content + '</div>';
+  }
+
+  function logoHasRenderableMedia(logo) {
+    if (!logo || typeof logo !== 'object') return false;
+    if (logo.sourceType === 'sourceSymbol') return Boolean(logo.sourceSymbolId);
+    if (logo.sourceType === 'inlineSvg') return Boolean(logo.svgMarkup);
+    return Boolean(logo.externalUrl || (logo.media && logo.media.url));
+  }
+
+  function resolveTrustedLogos(logos) {
+    const active = (logos || []).filter((item) => item && typeof item === 'object' && item.isActive !== false);
+    const usesLegacyPlaceholders = active.some((logo) => (
+      LEGACY_TRUSTED_LOGO_NAMES.has(logo.name) ||
+      LEGACY_TRUSTED_LOGO_SYMBOLS.has(logo.sourceSymbolId)
+    ));
+    const renderable = active.filter(logoHasRenderableMedia);
+    if (!renderable.length || usesLegacyPlaceholders) return ABOUT_TRUSTED_LOGOS;
+    return renderable;
   }
 
   function rotateForCarouselStart(items, startOffset) {
@@ -498,9 +633,12 @@
     (site.footerColumns || []).forEach((column, index) => {
       const el = footerColumns[index + 1];
       if (!el) return;
-      setText('h4', column.heading, el);
+      const heading = String((column && column.heading) || '').trim();
+      const visibleLinks = getVisibleFooterLinks(column);
+      if (!heading && !visibleLinks.length) return;
+      if (heading) setText('h4', heading, el);
+      if (!visibleLinks.length) return;
       const links = el.querySelectorAll('a');
-      const visibleLinks = (column.links || []).filter((item) => !isFooter404Link(item));
       visibleLinks.forEach((item, linkIndex) => {
         const link = links[linkIndex];
         if (!link) return;
@@ -556,6 +694,11 @@
       list.push(node);
     }
 
+    while (list.length > count) {
+      const node = list.pop();
+      if (node) node.remove();
+    }
+
     return list;
   }
 
@@ -563,6 +706,13 @@
     const label = String(item && item.label ? item.label : '').trim();
     const url = String(item && item.url ? item.url : '').trim().split(/[?#]/)[0];
     return label === '404' || stripLocalePrefix(url) === '/404';
+  }
+
+  function getVisibleFooterLinks(column) {
+    return ((column && column.links) || []).filter((item) => {
+      if (isFooter404Link(item)) return false;
+      return String(item && item.label ? item.label : '').trim() && String(item && item.url ? item.url : '').trim();
+    });
   }
 
   function normalizeSocialLinks(socialLinks) {
@@ -576,7 +726,7 @@
   function applyFinalCta(finalCta) {
     if (!finalCta) return;
     const bg = document.querySelector('.final-cta-bg');
-    const bgUrl = finalCta.externalBackgroundImageUrl || (finalCta.backgroundImage && finalCta.backgroundImage.url);
+    const bgUrl = finalCtaBackgroundUrl(finalCta);
     if (bg && bgUrl) bg.setAttribute('src', bgUrl);
     setText('.final-cta .section-label', finalCta.label);
     const ctaTitle = document.getElementById('ctaTitle');
@@ -589,6 +739,70 @@
       button.textContent = finalCta.buttonLabel || button.textContent;
       setHref(button, finalCta.buttonUrl);
     }
+  }
+
+  function finalCtaBackgroundUrl(finalCta) {
+    const bgUrl = finalCta.externalBackgroundImageUrl || (finalCta.backgroundImage && finalCta.backgroundImage.url);
+    if (!bgUrl || bgUrl === LEGACY_FINAL_CTA_BG_URL) return FINAL_CTA_BG_URL;
+    return bgUrl;
+  }
+
+  function homeHeroVideoUrl(hero) {
+    const videoUrl = hero && hero.videoUrl;
+    if (!videoUrl || videoUrl === LEGACY_HOME_HERO_VIDEO_URL) return HOME_HERO_VIDEO_URL;
+    return videoUrl;
+  }
+
+  function homeHeroPosterUrl(hero) {
+    const posterUrl = hero && hero.posterUrl;
+    if (!posterUrl || posterUrl === LEGACY_HOME_HERO_POSTER_URL) return HOME_HERO_POSTER_URL;
+    return posterUrl;
+  }
+
+  function aboutHeroImageUrl(about) {
+    const heroUrl = imageUrlFrom(about, 'externalHeroImageUrl', 'heroImage');
+    if (!heroUrl || heroUrl === LEGACY_ABOUT_HERO_IMAGE_URL) return ABOUT_HERO_IMAGE_URL;
+    return heroUrl;
+  }
+
+  function serviceDetailImageUrl(item, index) {
+    const imageUrl = imageUrlFrom(item, 'externalImageUrl', 'image');
+    if (!imageUrl || imageUrl === LEGACY_SERVICE_DETAIL_IMAGE_URLS[index]) {
+      return SERVICE_DETAIL_IMAGE_URLS[index] || imageUrl;
+    }
+    return imageUrl;
+  }
+
+  function servicesHeroBgUrl(hero) {
+    const imageUrl = imageUrlFrom(hero, 'externalBackgroundImageUrl', 'backgroundImage');
+    if (!imageUrl || imageUrl === LEGACY_SERVICES_HERO_BG_URL) return SERVICES_HERO_BG_URL;
+    return imageUrl;
+  }
+
+  function servicesAerialImageUrl(aerial) {
+    const imageUrl = imageUrlFrom(aerial, 'externalImageUrl', 'image');
+    if (!imageUrl || imageUrl === LEGACY_SERVICES_AERIAL_IMAGE_URL) return SERVICES_AERIAL_IMAGE_URL;
+    return imageUrl;
+  }
+
+  function platformTabletImageUrl(tabletMockup) {
+    const imageUrl = imageUrlFrom(tabletMockup, 'externalImageUrl', 'image');
+    if (!imageUrl || imageUrl === LEGACY_PLATFORM_TABLET_IMAGE_URL) return PLATFORM_TABLET_IMAGE_URL;
+    return imageUrl;
+  }
+
+  function platformFeatureImageUrl(feature, index) {
+    const imageUrl = imageUrlFrom(feature, 'externalImageUrl', 'image');
+    if (!imageUrl || imageUrl === LEGACY_PLATFORM_FEATURE_IMAGE_URLS[index]) {
+      return PLATFORM_FEATURE_IMAGE_URLS[index] || imageUrl;
+    }
+    return imageUrl;
+  }
+
+  function platformWhyChooseBgUrl(whyChoose) {
+    const imageUrl = imageUrlFrom(whyChoose, 'externalBackgroundImageUrl', 'backgroundImage');
+    if (!imageUrl || imageUrl === LEGACY_PLATFORM_WHY_CHOOSE_BG_URL) return PLATFORM_WHY_CHOOSE_BG_URL;
+    return imageUrl;
   }
 
   function applyHomePage(home) {
@@ -606,9 +820,11 @@
       }
       const heroVideo = document.querySelector('.hero-video');
       const heroSource = document.querySelector('.hero-video source');
-      if (heroVideo && home.hero.posterUrl) heroVideo.setAttribute('poster', home.hero.posterUrl);
-      if (heroSource && home.hero.videoUrl && heroSource.getAttribute('src') !== home.hero.videoUrl) {
-        heroSource.setAttribute('src', home.hero.videoUrl);
+      const posterUrl = homeHeroPosterUrl(home.hero);
+      const videoUrl = homeHeroVideoUrl(home.hero);
+      if (heroVideo && posterUrl) heroVideo.setAttribute('poster', posterUrl);
+      if (heroSource && videoUrl && heroSource.getAttribute('src') !== videoUrl) {
+        heroSource.setAttribute('src', videoUrl);
         if (heroVideo && typeof heroVideo.load === 'function') heroVideo.load();
       }
     }
@@ -688,7 +904,7 @@
 
     if (home.finalCta) {
       const bg = document.querySelector('.final-cta-bg');
-      const bgUrl = home.finalCta.externalBackgroundImageUrl || (home.finalCta.backgroundImage && home.finalCta.backgroundImage.url);
+      const bgUrl = finalCtaBackgroundUrl(home.finalCta);
       if (bg && bgUrl) bg.setAttribute('src', bgUrl);
       setText('.final-cta .section-label', home.finalCta.label);
       const ctaTitle = document.getElementById('ctaTitle');
@@ -714,7 +930,7 @@
     }
 
     const heroImage = document.querySelector('.about-hero-image img');
-    const heroUrl = imageUrlFrom(about, 'externalHeroImageUrl', 'heroImage');
+    const heroUrl = aboutHeroImageUrl(about);
     if (heroImage && heroUrl) {
       heroImage.setAttribute('src', heroUrl);
       heroImage.setAttribute('alt', about.pageTitle || heroImage.getAttribute('alt') || 'DJI Luggage manufacturing');
@@ -796,14 +1012,17 @@
       });
     }
 
-    const trustedLogos = (about.trustedLogos || []).filter((item) => item && typeof item === 'object' && item.isActive !== false);
+    const trustedLogos = resolveTrustedLogos(about.trustedLogos);
     if (trustedLogos.length) {
       setText('.trusted-by > .section-label', (about.trustedLabel || 'Trusted By').toUpperCase());
       const trustedTrack = document.querySelector('.trusted-track');
       if (trustedTrack) {
         const repeated = [];
         for (let set = 0; set < 4; set += 1) {
-          trustedLogos.forEach((logo) => repeated.push(renderLogoCard(logo)));
+          trustedLogos.forEach((logo) => {
+            const card = renderLogoCard(logo);
+            if (card) repeated.push(card);
+          });
         }
         trustedTrack.innerHTML = repeated.join('');
       }
@@ -820,7 +1039,7 @@
         setText('.team-card-name', member.name, card);
         setText('.team-card-title', member.role, card);
         const img = card.querySelector('img');
-        const imageUrl = imageUrlFrom(member, 'externalImageUrl', 'image');
+        const imageUrl = teamMemberImageUrl(member);
         if (img && imageUrl) {
           img.setAttribute('src', imageUrl);
           img.setAttribute('alt', member.imageAlt || member.name || 'Team member');
@@ -828,19 +1047,9 @@
       });
     }
 
-    if (about.careersCta) {
-      setText('.careers-cta .section-label', (about.careersCta.label || 'Careers').toUpperCase());
-      setText('.careers-cta .about-heading', about.careersCta.heading);
-      const button = document.querySelector('.careers-cta .btn');
-      if (button) {
-        button.textContent = about.careersCta.buttonLabel || button.textContent;
-        setHref(button, about.careersCta.buttonUrl);
-      }
-    }
-
     if (about.finalCta) {
       const bg = document.querySelector('.final-cta-bg');
-      const bgUrl = about.finalCta.externalBackgroundImageUrl || (about.finalCta.backgroundImage && about.finalCta.backgroundImage.url);
+      const bgUrl = finalCtaBackgroundUrl(about.finalCta);
       if (bg && bgUrl) bg.setAttribute('src', bgUrl);
       setText('.final-cta .section-label', about.finalCta.label);
       const ctaTitle = document.getElementById('ctaTitle');
@@ -864,8 +1073,8 @@
       setText('.services-hero-desc', servicesPage.hero.description);
       setImage(
         document.querySelector('.services-hero-bg'),
-        imageUrlFrom(servicesPage.hero, 'externalBackgroundImageUrl', 'backgroundImage'),
-        servicesPage.hero.imageAlt || 'Luggage manufacturing floor',
+        servicesHeroBgUrl(servicesPage.hero),
+        servicesPage.hero.imageAlt || 'Conceptual luggage manufacturing services map',
       );
     }
 
@@ -881,8 +1090,8 @@
     if (servicesPage.aerial) {
       setImage(
         document.querySelector('.aerial-highway img'),
-        imageUrlFrom(servicesPage.aerial, 'externalImageUrl', 'image'),
-        servicesPage.aerial.imageAlt || 'Luggage production workflow',
+        servicesAerialImageUrl(servicesPage.aerial),
+        servicesPage.aerial.imageAlt || 'Conceptual luggage service workflow routes',
       );
       const labels = document.querySelectorAll('.aerial-label');
       (servicesPage.aerial.labels || []).forEach((item, index) => {
@@ -903,7 +1112,7 @@
         setText('.service-item-desc', item.description, node);
         setImage(
           node.querySelector('.service-item-image img'),
-          imageUrlFrom(item, 'externalImageUrl', 'image'),
+          serviceDetailImageUrl(item, index),
           item.imageAlt || item.title || 'Service image',
         );
       });
@@ -951,7 +1160,7 @@
     if (platform.tabletMockup) {
       setImage(
         document.querySelector('.tablet-mockup img'),
-        imageUrlFrom(platform.tabletMockup, 'externalImageUrl', 'image'),
+        platformTabletImageUrl(platform.tabletMockup),
         platform.tabletMockup.imageAlt || 'DJI Luggage production workflow',
       );
     }
@@ -966,17 +1175,17 @@
       setText('.feature-section-text', feature.body, section);
       setImage(
         section.querySelector('.feature-image-wrapper img'),
-        imageUrlFrom(feature, 'externalImageUrl', 'image'),
+        platformFeatureImageUrl(feature, index),
         feature.imageAlt || feature.heading || 'Platform feature',
       );
     });
 
     if (platform.whyChoose) {
       setSectionLabel(document.querySelector('.why-choose .section-label'), platform.whyChoose.label);
-      setText('.why-choose-text', platform.whyChoose.body);
+      setWhyChooseBody(platform.whyChoose.body);
       setImage(
         document.querySelector('.why-choose-bg'),
-        imageUrlFrom(platform.whyChoose, 'externalBackgroundImageUrl', 'backgroundImage'),
+        platformWhyChooseBgUrl(platform.whyChoose),
         '',
       );
     }
@@ -1169,8 +1378,8 @@
 
     try {
       const hasHome = Boolean(document.querySelector('.hero'));
-      const hasAbout = Boolean(document.querySelector('.who-we-are') && document.querySelector('.key-metrics'));
-      const hasServices = Boolean(document.querySelector('.services-hero') && document.querySelector('.services-detail'));
+      const hasAbout = Boolean(document.querySelector('.who-we-are') && document.querySelector('.our-reach'));
+      const hasServices = Boolean(!document.body.dataset.page && document.querySelector('.services-hero') && document.querySelector('.services-detail'));
       const hasPlatform = Boolean(document.querySelector('.page-header') && document.querySelector('.production-interface'));
       const hasNewsroom = Boolean(document.querySelector('.newsroom-hero') && document.querySelector('.news-grid'));
       const hasCareers = Boolean(document.querySelector('.careers-hero') && document.querySelector('.positions'));

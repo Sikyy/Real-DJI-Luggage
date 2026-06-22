@@ -20,14 +20,14 @@ const finalCta = {
     heading: '启动您的\n行李箱项目',
     buttonLabel: '获取报价',
     buttonUrl: '/contact',
-    externalBackgroundImageUrl: 'https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg',
+    externalBackgroundImageUrl: '/assets/home/final-cta-bg.png',
   },
   id: {
     label: 'Siap Mulai',
     heading: 'Mulai Program\nKoper Anda',
     buttonLabel: 'Minta Penawaran',
     buttonUrl: '/contact',
-    externalBackgroundImageUrl: 'https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg',
+    externalBackgroundImageUrl: '/assets/home/final-cta-bg.png',
   },
 }
 
@@ -308,9 +308,9 @@ async function ensureMainNavigationRows(client: DBClient) {
     { label: 'Home', url: '/' },
     { label: 'About', url: '/about' },
     { label: 'Manufacturing', url: '/services' },
+    { label: 'Products', url: '/products' },
     { label: 'Capabilities', url: '/platform' },
     { label: 'Insights', url: '/newsroom/filters/all' },
-    { label: 'Careers', url: '/careers' },
   ]
 
   await client.execute({
@@ -342,6 +342,7 @@ async function ensureFooterColumnRows(client: DBClient) {
       links: [
         { label: 'Home', url: '/' },
         { label: 'Manufacturing', url: '/services' },
+        { label: 'Products', url: '/products' },
         { label: 'About', url: '/about' },
         { label: 'Careers', url: '/careers' },
         { label: 'Capabilities', url: '/platform' },
@@ -383,14 +384,13 @@ async function ensureSocialLinkRows(client: DBClient) {
     sql: 'SELECT COUNT(*) as count FROM "site_settings_social_links"',
   })
 
-  if (Number(result.rows[0]?.count || 0) >= 5) return
+  if (Number(result.rows[0]?.count || 0) >= 4) return
 
   const siteSettings = await getGlobalParentId(client, 'site_settings')
   if (!siteSettings) return
 
   const rows = [
     { label: 'LinkedIn', url: 'https://www.linkedin.com/', icon: 'linkedin' },
-    { label: 'X', url: 'https://x.com/', icon: 'x' },
     { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
     { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
     { label: 'WhatsApp', url: 'https://wa.me/6281266189081', icon: 'whatsapp' },
@@ -572,9 +572,9 @@ async function seedSiteSettings(payload: Payload, locale: Locale) {
         { label: '首页', url: '/' },
         { label: '关于我们', url: '/about' },
         { label: '制造服务', url: '/services' },
+        { label: '产品能力', url: '/products' },
         { label: '制造能力', url: '/platform' },
         { label: '行业洞察', url: '/newsroom/filters/all' },
-        { label: '招聘', url: '/careers' },
       ],
       menuContact: {
         quickContactLabel: '快速联系',
@@ -596,6 +596,7 @@ async function seedSiteSettings(payload: Payload, locale: Locale) {
           links: [
             { label: '首页', url: '/' },
             { label: '制造服务', url: '/services' },
+            { label: '产品能力', url: '/products' },
             { label: '关于我们', url: '/about' },
             { label: '招聘', url: '/careers' },
             { label: '制造能力', url: '/platform' },
@@ -611,7 +612,6 @@ async function seedSiteSettings(payload: Payload, locale: Locale) {
       ],
       socialLinks: [
         { label: 'LinkedIn', url: 'https://www.linkedin.com/', icon: 'linkedin' },
-        { label: 'X', url: 'https://x.com/', icon: 'x' },
         { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
         { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
         { label: 'WhatsApp', url: 'https://wa.me/6281266189081', icon: 'whatsapp' },
@@ -626,9 +626,9 @@ async function seedSiteSettings(payload: Payload, locale: Locale) {
         { label: 'Beranda', url: '/' },
         { label: 'Tentang', url: '/about' },
         { label: 'Manufaktur', url: '/services' },
+        { label: 'Produk', url: '/products' },
         { label: 'Kapabilitas', url: '/platform' },
         { label: 'Wawasan', url: '/newsroom/filters/all' },
-        { label: 'Karier', url: '/careers' },
       ],
       menuContact: {
         quickContactLabel: 'Kontak Cepat',
@@ -651,6 +651,7 @@ async function seedSiteSettings(payload: Payload, locale: Locale) {
           links: [
             { label: 'Beranda', url: '/' },
             { label: 'Manufaktur', url: '/services' },
+            { label: 'Produk', url: '/products' },
             { label: 'Tentang', url: '/about' },
             { label: 'Karier', url: '/careers' },
             { label: 'Kapabilitas', url: '/platform' },
@@ -666,7 +667,6 @@ async function seedSiteSettings(payload: Payload, locale: Locale) {
       ],
       socialLinks: [
         { label: 'LinkedIn', url: 'https://www.linkedin.com/', icon: 'linkedin' },
-        { label: 'X', url: 'https://x.com/', icon: 'x' },
         { label: 'Instagram', url: 'https://www.instagram.com/', icon: 'instagram' },
         { label: 'YouTube', url: 'https://www.youtube.com/', icon: 'youtube' },
         { label: 'WhatsApp', url: 'https://wa.me/6281266189081', icon: 'whatsapp' },
@@ -721,8 +721,8 @@ async function seedHome(payload: Payload, locale: Locale) {
         description: 'DJI Luggage 为零售商、分销商和自有品牌制造耐用的行李箱与旅行包项目。',
         buttonLabel: '获取报价',
         buttonUrl: '/contact',
-        posterUrl: 'https://framerusercontent.com/images/9oXIMPUOwaaTowc6iUbxkZ146KE.png',
-        videoUrl: 'https://framerusercontent.com/assets/B1E36n5Z6jDij8UJYkjAIGrRups.mp4',
+        posterUrl: '/assets/home/hero-poster.jpg',
+        videoUrl: '/assets/home/hero-video.mp4',
       },
       services: {
         label: '我们制造什么',
@@ -792,8 +792,8 @@ async function seedHome(payload: Payload, locale: Locale) {
           'DJI Luggage memproduksi program koper dan travel bag yang tahan lama untuk retailer, distributor, dan private label yang berkembang.',
         buttonLabel: 'Minta Penawaran',
         buttonUrl: '/contact',
-        posterUrl: 'https://framerusercontent.com/images/9oXIMPUOwaaTowc6iUbxkZ146KE.png',
-        videoUrl: 'https://framerusercontent.com/assets/B1E36n5Z6jDij8UJYkjAIGrRups.mp4',
+        posterUrl: '/assets/home/hero-poster.jpg',
+        videoUrl: '/assets/home/hero-video.mp4',
       },
       services: {
         label: 'Apa Yang Kami Buat',
@@ -896,7 +896,7 @@ async function seedAbout(payload: Payload, locale: Locale) {
     zh: {
       metaTitle: '关于 - DJI Luggage',
       pageTitle: '关于 DJI Luggage',
-      externalHeroImageUrl: 'https://framerusercontent.com/images/2cLLtW9JseVLuB8Se1lBw03NAlI.jpg',
+      externalHeroImageUrl: '/assets/about/about-hero-traveler.jpg',
       whoWeAre: {
         label: '我们是谁',
         heading: '我们是一家位于茂物的行李箱制造商，帮助采购方把旅行用品想法落地为可靠的生产项目。',
@@ -950,7 +950,7 @@ async function seedAbout(payload: Payload, locale: Locale) {
     id: {
       metaTitle: 'Tentang - DJI Luggage',
       pageTitle: 'Tentang DJI Luggage',
-      externalHeroImageUrl: 'https://framerusercontent.com/images/2cLLtW9JseVLuB8Se1lBw03NAlI.jpg',
+      externalHeroImageUrl: '/assets/about/about-hero-traveler.jpg',
       whoWeAre: {
         label: 'Siapa Kami',
         heading:
@@ -1045,8 +1045,8 @@ async function seedServices(payload: Payload, locale: Locale) {
         label: '制造服务',
         title: '行李箱制造服务',
         description: '为行李箱与旅行用品采购方提供 OEM、ODM、打样、大货生产和质量支持。',
-        externalBackgroundImageUrl: 'https://framerusercontent.com/images/Qufuc7ZvvPRLp2ePWNlY4pH48w.jpg',
-        imageAlt: '仓储货架',
+        externalBackgroundImageUrl: '/assets/services/services-hero-concept.png',
+        imageAlt: '行李箱制造服务概念图',
       },
       focus: {
         label: '服务重点',
@@ -1057,8 +1057,8 @@ async function seedServices(payload: Payload, locale: Locale) {
         ],
       },
       aerial: {
-        externalImageUrl: 'https://framerusercontent.com/images/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg',
-        imageAlt: '道路航拍',
+        externalImageUrl: '/assets/services/services-workflow-concept.png',
+        imageAlt: '行李箱服务流程概念路径图',
         labels: [{ label: 'OEM 行李箱' }, { label: 'ODM 开发' }, { label: '质量控制' }, { label: '大货订单' }],
       },
       services: {
@@ -1068,29 +1068,29 @@ async function seedServices(payload: Payload, locale: Locale) {
             number: '[01]',
             title: 'OEM 自有品牌',
             description: '按照您的品牌要求制造行李箱，包括 Logo 位置、颜色、包装、配件选择和零售或分销需求。',
-            externalImageUrl: 'https://framerusercontent.com/images/hMpfNtZpREzFm2iw1HGpOPs7cg.jpg',
-            imageAlt: 'OEM 行李箱制造',
+            externalImageUrl: '/assets/generated/luggage-work/luggage-work-thermoforming.png',
+            imageAlt: 'OEM 行李箱热压成型生产',
           },
           {
             number: '[02]',
             title: 'ODM 产品开发',
             description: '通过多轮样品、结构评估、材料选择和量产规格确认，开发新的行李箱与旅行用品概念。',
-            externalImageUrl: 'https://framerusercontent.com/images/qkMQq9Zs1gGZaibDwwhw42dog.jpg',
-            imageAlt: 'ODM 行李箱样品开发',
+            externalImageUrl: '/assets/generated/luggage-work/luggage-work-assembly.png',
+            imageAlt: 'ODM 行李箱样品与拉杆组件审核',
           },
           {
             number: '[03]',
             title: '材料与配件采购',
             description: '协调箱壳材料、面料、轮子、拉杆、拉链、锁具、内里、标签、纸箱和产品系列需要的其他细节。',
-            externalImageUrl: 'https://framerusercontent.com/images/JcvRxIUpdnFDa0zMeiuRidwGAg.jpg',
+            externalImageUrl: '/assets/generated/luggage-work/luggage-work-components.png',
             imageAlt: '行李箱材料与配件',
           },
           {
             number: '[04]',
             title: '生产与质量控制',
             description: '将确认样品导入大货生产，并配合实用的检查点、包装检查和交付前沟通。',
-            externalImageUrl: 'https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg',
-            imageAlt: '行李箱生产质量控制',
+            externalImageUrl: '/assets/generated/luggage-work/luggage-work-export-prep.png',
+            imageAlt: '行李箱包装检查与出口准备',
           },
         ],
       },
@@ -1117,8 +1117,8 @@ async function seedServices(payload: Payload, locale: Locale) {
         label: 'Manufaktur',
         title: 'Layanan Manufaktur',
         description: 'Dukungan OEM, ODM, sampling, produksi massal, dan quality untuk pembeli koper dan travel goods.',
-        externalBackgroundImageUrl: 'https://framerusercontent.com/images/Qufuc7ZvvPRLp2ePWNlY4pH48w.jpg',
-        imageAlt: 'Rak gudang',
+        externalBackgroundImageUrl: '/assets/services/services-hero-concept.png',
+        imageAlt: 'visual konsep layanan manufaktur koper',
       },
       focus: {
         label: 'Fokus Kami',
@@ -1130,8 +1130,8 @@ async function seedServices(payload: Payload, locale: Locale) {
         ],
       },
       aerial: {
-        externalImageUrl: 'https://framerusercontent.com/images/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg',
-        imageAlt: 'Aerial jalan raya',
+        externalImageUrl: '/assets/services/services-workflow-concept.png',
+        imageAlt: 'peta konsep workflow layanan koper',
         labels: [{ label: 'Koper OEM' }, { label: 'Pengembangan ODM' }, { label: 'Quality Control' }, { label: 'Bulk Order' }],
       },
       services: {
@@ -1142,23 +1142,23 @@ async function seedServices(payload: Payload, locale: Locale) {
             title: 'OEM Private Label',
             description:
               'Memproduksi koper sesuai kebutuhan brand Anda, termasuk posisi logo, warna, kemasan, pilihan trim, dan kebutuhan retail atau distributor.',
-            externalImageUrl: 'https://framerusercontent.com/images/hMpfNtZpREzFm2iw1HGpOPs7cg.jpg',
-            imageAlt: 'manufaktur koper OEM',
+            externalImageUrl: '/assets/generated/luggage-work/luggage-work-thermoforming.png',
+            imageAlt: 'produksi thermoforming koper OEM',
           },
           {
             number: '[02]',
             title: 'Pengembangan Produk ODM',
             description:
               'Mengembangkan konsep koper dan travel goods baru melalui putaran sampel, review konstruksi, opsi material, dan penyelarasan spesifikasi siap produksi.',
-            externalImageUrl: 'https://framerusercontent.com/images/qkMQq9Zs1gGZaibDwwhw42dog.jpg',
-            imageAlt: 'pengembangan sampel koper ODM',
+            externalImageUrl: '/assets/generated/luggage-work/luggage-work-assembly.png',
+            imageAlt: 'review sampel koper ODM dan komponen trolley handle',
           },
           {
             number: '[03]',
             title: 'Sourcing Material Dan Komponen',
             description:
               'Mengkoordinasikan material shell, kain, roda, trolley handle, zipper, lock, lining, label, karton, dan detail lain yang dibutuhkan range produk Anda.',
-            externalImageUrl: 'https://framerusercontent.com/images/JcvRxIUpdnFDa0zMeiuRidwGAg.jpg',
+            externalImageUrl: '/assets/generated/luggage-work/luggage-work-components.png',
             imageAlt: 'material dan komponen koper',
           },
           {
@@ -1166,8 +1166,8 @@ async function seedServices(payload: Payload, locale: Locale) {
             title: 'Produksi Dan Quality Control',
             description:
               'Memindahkan sampel yang disetujui ke produksi massal dengan titik inspeksi praktis, packing check, dan komunikasi jelas sebelum handover order.',
-            externalImageUrl: 'https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg',
-            imageAlt: 'quality control produksi koper',
+            externalImageUrl: '/assets/generated/luggage-work/luggage-work-export-prep.png',
+            imageAlt: 'packing check dan persiapan ekspor koper',
           },
         ],
       },
@@ -1243,8 +1243,8 @@ async function seedPlatform(payload: Payload, locale: Locale) {
         body: '每个订单都需要清晰的产品资料、样品确认、生产检查点和采购方沟通。我们的工作流把这些环节连接起来。',
       },
       tabletMockup: {
-        externalImageUrl: 'https://framerusercontent.com/images/kbFgydLmMWcDx19m8RsDtfRriA.png',
-        imageAlt: '制造计划看板',
+        externalImageUrl: '/assets/platform/how-we-build-dashboard.png',
+        imageAlt: 'DJI Luggage 生产流程看板',
       },
       featureSections: [
         {
@@ -1252,22 +1252,22 @@ async function seedPlatform(payload: Payload, locale: Locale) {
           heading: '把产品要求转化为清晰方向',
           body:
             '提供产品类型、目标价格、市场、数量、材料、颜色、Logo 方向和包装需求。我们会把需求转化为样品重点和实际制造选择。',
-          externalImageUrl: 'https://framerusercontent.com/images/6KnqYTEfv0yWM68b6hmLIAoLc.png',
-          imageAlt: '行李箱样品规划',
+          externalImageUrl: '/assets/platform/how-we-build-brief-to-sample.png',
+          imageAlt: '行李箱样品开发界面',
         },
         {
           label: '从样品到生产',
           heading: '确认细节后再进入规模化生产',
           body:
             '样品确认后，同一套细节会指导材料准备、组装、质量检查、包装和最终采购方沟通。',
-          externalImageUrl: 'https://framerusercontent.com/images/w0PuRzQLRi5FkQEk6dP4v42iv4.png',
-          imageAlt: '行李箱生产跟进',
+          externalImageUrl: '/assets/platform/how-we-build-sample-to-production.png',
+          imageAlt: '行李箱大货生产跟进界面',
         },
       ],
       whyChoose: {
         label: '为什么选择我们',
-        body: '清晰沟通、实用制造经验，以及为复购订单设计的生产流程。',
-        externalBackgroundImageUrl: 'https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg',
+        body: '清晰更新、实际生产控制，\n以及可复购的行李箱品质。',
+        externalBackgroundImageUrl: '/assets/platform/why-choose-speed-blur.png',
       },
       highlights: {
         label: '特点',
@@ -1321,8 +1321,8 @@ async function seedPlatform(payload: Payload, locale: Locale) {
           'Setiap order membutuhkan data produk yang jelas, approval sampel, checkpoint produksi, dan komunikasi pembeli. Workflow kami menghubungkan semua bagian tersebut.',
       },
       tabletMockup: {
-        externalImageUrl: 'https://framerusercontent.com/images/kbFgydLmMWcDx19m8RsDtfRriA.png',
-        imageAlt: 'dashboard perencanaan manufaktur',
+        externalImageUrl: '/assets/platform/how-we-build-dashboard.png',
+        imageAlt: 'dashboard workflow produksi DJI Luggage',
       },
       featureSections: [
         {
@@ -1330,22 +1330,22 @@ async function seedPlatform(payload: Payload, locale: Locale) {
           heading: 'Ubah Kebutuhan Menjadi Arah Produk',
           body:
             'Bagikan tipe produk, target harga, pasar, jumlah, material, warna, arah logo, dan kebutuhan kemasan. Kami menerjemahkan brief menjadi prioritas sampel dan opsi manufaktur praktis.',
-          externalImageUrl: 'https://framerusercontent.com/images/6KnqYTEfv0yWM68b6hmLIAoLc.png',
-          imageAlt: 'perencanaan sampel koper',
+          externalImageUrl: '/assets/platform/how-we-build-brief-to-sample.png',
+          imageAlt: 'interface pengembangan sampel koper',
         },
         {
           label: 'Dari Sampel Ke Produksi',
           heading: 'Konfirmasi Detail Sebelum Order Diperbesar',
           body:
             'Setelah sampel disetujui, detail yang sama menjadi panduan untuk persiapan material, assembly, quality check, packing, dan komunikasi akhir dengan pembeli.',
-          externalImageUrl: 'https://framerusercontent.com/images/w0PuRzQLRi5FkQEk6dP4v42iv4.png',
-          imageAlt: 'tracking produksi koper',
+          externalImageUrl: '/assets/platform/how-we-build-sample-to-production.png',
+          imageAlt: 'interface tracking produksi koper',
         },
       ],
       whyChoose: {
         label: 'Mengapa Memilih Kami',
-        body: 'Komunikasi jelas, pengetahuan manufaktur praktis, dan proses produksi yang dibuat untuk repeat order.',
-        externalBackgroundImageUrl: 'https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg',
+        body: 'Update jelas, kontrol produksi praktis,\ndan kualitas koper yang konsisten\nuntuk repeat order.',
+        externalBackgroundImageUrl: '/assets/platform/why-choose-speed-blur.png',
       },
       highlights: {
         label: 'Fitur',
