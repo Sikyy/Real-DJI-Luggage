@@ -24,3 +24,4 @@ cms/media/
 *.log
 tmp/
 dist/
+sales-kit/
