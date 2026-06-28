@@ -421,44 +421,83 @@
       margin-bottom: 48px;
     }
 
-    /* ========== VALUES ========== */
+    /* ========== PRODUCT TYPES ========== */
+    .product-types {
+      background: var(--body-bg);
+      color: var(--text-dark);
+      padding: 112px 32px 160px;
+    }
+
+    .product-types-header {
+      display: grid;
+      grid-template-columns: minmax(180px, 280px) minmax(0, 1fr);
+      gap: 48px;
+      align-items: start;
+      border-top: 1px solid #d4d4d4;
+      padding-top: 48px;
+      margin-bottom: 48px;
+    }
+
+    .product-types .section-label {
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .product-types-title {
+      font-family: 'Geist', sans-serif;
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 46px;
+      color: var(--black);
+      max-width: 820px;
+    }
+
     .values {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
     }
 
     .value-card {
       position: relative;
-      padding: 64px 32px;
-      aspect-ratio: 4 / 5;
-      min-height: 0;
-      background-size: cover;
-      background-position: center;
-      overflow: clip;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      background: #fff;
+      border: 1px solid #e1e1e1;
+      overflow: hidden;
     }
 
-    .value-card:nth-child(1) {
-      background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-        url('/assets/home/value-craftsmanship-luggage.png');
+    .value-card-media {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      flex-shrink: 0;
     }
-    .value-card:nth-child(2) {
-      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-        url('/assets/home/value-reliable-production-luggage.png');
-    }
-    .value-card:nth-child(3) {
-      background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
-        url('/assets/home/value-long-term-partnership-travel.png');
+
+    .value-card-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .value-card-content {
-      position: sticky;
+      position: relative;
+      z-index: 1;
       width: 100%;
-      max-width: 426px;
+      max-width: none;
+      padding: 24px 24px 28px;
+      display: grid;
+      grid-template-rows: 36px 56px auto;
+      row-gap: 16px;
     }
-
-    .value-card:nth-child(1) .value-card-content { top: 300px; }
-    .value-card:nth-child(2) .value-card-content { top: 200px; }
-    .value-card:nth-child(3) .value-card-content { top: 100px; }
 
     .values .value-card.reveal {
       opacity: 1;
@@ -476,26 +515,26 @@
       justify-content: center;
       font-family: 'Geist', sans-serif;
       font-size: 12px;
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 16px;
+      color: rgba(0,0,0,0.7);
+      border-color: rgba(0,0,0,0.3);
     }
 
     .value-card h3 {
       font-family: 'Geist', sans-serif;
       font-size: 20.8px;
       font-weight: 400;
-      letter-spacing: -0.832px;
-      color: #e4e4e4;
-      margin-bottom: 16px;
+      letter-spacing: 0;
+      line-height: 26px;
+      color: var(--black);
     }
 
     .value-card p {
       font-family: 'Geist', sans-serif;
       font-size: 16px;
       font-weight: 400;
-      letter-spacing: -0.64px;
+      letter-spacing: 0;
       line-height: 20.8px;
-      color: #c9c9c9;
+      color: #333;
       max-width: 426px;
     }
 
@@ -1019,6 +1058,8 @@
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
 
     /* ========== MENU OVERLAY ========== */
     .menu-overlay {
@@ -1223,16 +1264,19 @@
       .services-cards-row { flex-direction: column; gap: 32px; }
       .news-card { flex: 0 0 300px; }
       .news-card-image { height: 380px; }
-      .values { grid-template-columns: 1fr; }
-      .value-card {
-        aspect-ratio: auto;
-        min-height: 400px;
-        padding: 48px 32px;
+      .product-types { padding: 96px 24px 128px; }
+      .product-types-header {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-bottom: 36px;
       }
-      .value-card-content { position: static; }
-      .value-card:nth-child(1),
-      .value-card:nth-child(2),
-      .value-card:nth-child(3) { padding-top: 48px; }
+      .product-types-title {
+        font-size: 32px;
+        line-height: 38px;
+      }
+      .values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .value-card-media { aspect-ratio: 1 / 1; }
+      .value-card-content { grid-template-rows: 36px 56px auto; }
       .steps { grid-template-columns: 1fr; gap: 28px; }
       .step-arrow { display: none; }
       .how-we-work-text { font-size: 28px; line-height: 34px; }
@@ -1264,6 +1308,23 @@
       }
       .hero-desc { font-size: 16px; line-height: 22px; }
       .services, .how-we-work, .newsroom, .final-cta { padding-left: 20px; padding-right: 20px; }
+      .product-types {
+        padding: 72px 20px 104px;
+      }
+      .product-types-header {
+        padding-top: 36px;
+        margin-bottom: 28px;
+      }
+      .product-types-title {
+        font-size: 28px;
+        line-height: 34px;
+      }
+      .values { grid-template-columns: 1fr; }
+      .value-card-media { padding: 20px; }
+      .value-card-content {
+        padding: 20px 20px 24px;
+        grid-template-rows: 36px auto auto;
+      }
       footer { padding: 48px 20px 0; }
       .final-cta h2 { font-size: 40px; line-height: 44px; letter-spacing: -2px; }
     }
@@ -1400,27 +1461,72 @@
     </div>
   </section>
 
-  <!-- VALUES -->
-  <section class="values" data-header="light">
-    <div class="value-card reveal">
-      <div class="value-card-content">
-        <div class="value-number">1</div>
-        <h3>Craftsmanship</h3>
-        <p>We focus on practical construction details that make luggage feel durable, useful, and ready for daily travel.</p>
-      </div>
+  <!-- PRODUCT TYPES -->
+  <section class="product-types" data-header="dark">
+    <div class="product-types-header">
+      <div class="section-label reveal"><span style="font-size:13px;">+</span> PRODUCT TYPES</div>
+      <h2 class="product-types-title reveal">Luggage types we produce for private label, wholesale, and custom travel goods programs.</h2>
     </div>
-    <div class="value-card reveal reveal-delay-1">
-      <div class="value-card-content">
-        <div class="value-number">2</div>
-        <h3>Reliable Production</h3>
-        <p>From sample approval to bulk order packing, our process is built around clarity, consistency, and follow-through.</p>
+    <div class="values">
+      <div class="value-card reveal">
+        <div class="value-card-media">
+          <img src="/product-images/home-pc-abs-zipper-suitcase.png" alt="PC and ABS zipper suitcase" loading="lazy">
+        </div>
+        <div class="value-card-content">
+          <div class="value-number">1</div>
+          <h3>PC / ABS Zipper Suitcases</h3>
+          <p>Lightweight hard-shell zipper luggage in PC, ABS, or PC+ABS blends, with practical finishes for wholesale and retail programs.</p>
+        </div>
       </div>
-    </div>
-    <div class="value-card reveal reveal-delay-2">
-      <div class="value-card-content">
-        <div class="value-number">3</div>
-        <h3>Long-Term Partnership</h3>
-        <p>We support buyers who want a steady manufacturing partner for new launches, seasonal programs, and repeat orders.</p>
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-card-media">
+          <img src="/product-images/home-pp-suitcase.png" alt="PP polypropylene suitcase" loading="lazy">
+        </div>
+        <div class="value-card-content">
+          <div class="value-number">2</div>
+          <h3>PP Suitcases</h3>
+          <p>Lightweight polypropylene suitcase projects with flexible shell direction, durable construction, and factory-ready component planning.</p>
+        </div>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-card-media">
+          <img src="/product-images/home-aluminum-frame-suitcase.png" alt="Aluminum frame suitcase" loading="lazy">
+        </div>
+        <div class="value-card-content">
+          <div class="value-number">3</div>
+          <h3>Aluminum Frame Suitcases</h3>
+          <p>Zipperless hard-shell luggage with aluminum frame structure, secure closures, reinforced corners, and refined hardware details.</p>
+        </div>
+      </div>
+      <div class="value-card reveal reveal-delay-3">
+        <div class="value-card-media">
+          <img src="/product-images/home-full-aluminum-suitcase.png" alt="Full aluminum suitcase" loading="lazy">
+        </div>
+        <div class="value-card-content">
+          <div class="value-number">4</div>
+          <h3>Full Aluminum Suitcases</h3>
+          <p>Premium all-aluminum luggage programs with metal body construction, protective corners, secure locks, and a high-end finish.</p>
+        </div>
+      </div>
+      <div class="value-card reveal reveal-delay-4">
+        <div class="value-card-media">
+          <img src="/product-images/home-fabric-suitcase.png" alt="Fabric suitcase" loading="lazy">
+        </div>
+        <div class="value-card-content">
+          <div class="value-number">5</div>
+          <h3>Fabric Suitcases</h3>
+          <p>Softside luggage and travel bag production with fabric selection, stitching, zipper, lining, pocket, and expandable storage options.</p>
+        </div>
+      </div>
+      <div class="value-card reveal reveal-delay-5">
+        <div class="value-card-media">
+          <img src="/product-images/home-special-custom-suitcase.png" alt="Special custom suitcase" loading="lazy">
+        </div>
+        <div class="value-card-content">
+          <div class="value-number">6</div>
+          <h3>Special Custom Suitcases</h3>
+          <p>Custom luggage projects for unusual structures, brand-specific functions, special trims, matching sets, and buyer-led product ideas.</p>
+        </div>
       </div>
     </div>
   </section>

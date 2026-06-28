@@ -851,13 +851,16 @@
     }
 
     const values = document.querySelectorAll('.values .value-card');
-    (home.values || []).forEach((value, index) => {
-      const el = values[index];
-      if (!el) return;
-      setText('.value-number', value.number, el);
-      setText('h3', value.title, el);
-      setText('p', value.description, el);
-    });
+    const homeValues = Array.isArray(home.values) ? home.values : [];
+    if (homeValues.length >= values.length) {
+      homeValues.forEach((value, index) => {
+        const el = values[index];
+        if (!el) return;
+        setText('.value-number', value.number, el);
+        setText('h3', value.title, el);
+        setText('p', value.description, el);
+      });
+    }
 
     if (home.technologyCta) {
       setSectionLabel(document.querySelector('.yellow-cta .section-label'), home.technologyCta.label);

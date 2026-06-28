@@ -747,18 +747,33 @@ async function seedHome(payload: Payload, locale: Locale) {
       values: [
         {
           number: '1',
-          title: '制造工艺',
-          description: '我们关注让行李箱更耐用、更实用、更适合日常旅行的结构细节。',
+          title: 'PC / ABS 拉链箱',
+          description: '轻量硬壳拉链箱，可做 PC、ABS 或 PC+ABS 材质，适合批发、电商和零售品牌系列。',
         },
         {
           number: '2',
-          title: '稳定生产',
-          description: '从样品确认到大货包装，我们的流程强调清晰、稳定和持续跟进。',
+          title: 'PP 行李箱',
+          description: '轻量 PP 箱项目，支持柔韧箱壳方向、耐用结构和量产前的配件规划。',
         },
         {
           number: '3',
-          title: '长期合作',
-          description: '我们支持需要稳定制造伙伴的新产品发布、季节项目和复购订单。',
+          title: '铝框行李箱',
+          description: '无拉链铝框结构，搭配安全锁扣、包角和更精致的五金细节。',
+        },
+        {
+          number: '4',
+          title: '纯铝行李箱',
+          description: '高端纯铝箱项目，支持金属箱体、保护包角、安全锁具和质感表面处理。',
+        },
+        {
+          number: '5',
+          title: '布箱',
+          description: '软箱和旅行包生产，覆盖面料选择、车缝、拉链、内里、口袋和扩展层设计。',
+        },
+        {
+          number: '6',
+          title: '特殊定制箱子',
+          description: '支持特殊结构、品牌专属功能、定制配件、套装组合和采购方主导的新箱型开发。',
         },
       ],
       technologyCta: {
@@ -822,18 +837,33 @@ async function seedHome(payload: Payload, locale: Locale) {
       values: [
         {
           number: '1',
-          title: 'Craftsmanship',
-          description: 'Kami fokus pada detail konstruksi yang membuat koper terasa kuat, berguna, dan siap untuk perjalanan harian.',
+          title: 'Koper Zipper PC / ABS',
+          description: 'Koper hard-shell zipper yang ringan dalam material PC, ABS, atau PC+ABS untuk program wholesale, e-commerce, dan retail.',
         },
         {
           number: '2',
-          title: 'Produksi Andal',
-          description: 'Dari approval sampel hingga packing order besar, proses kami dibuat untuk kejelasan, konsistensi, dan follow-through.',
+          title: 'Koper PP',
+          description: 'Proyek koper polypropylene ringan dengan arah shell fleksibel, konstruksi tahan lama, dan perencanaan komponen siap produksi.',
         },
         {
           number: '3',
-          title: 'Kemitraan Jangka Panjang',
-          description: 'Kami mendukung pembeli yang membutuhkan partner manufaktur stabil untuk peluncuran, program musiman, dan repeat order.',
+          title: 'Koper Frame Aluminium',
+          description: 'Koper hard-shell tanpa zipper dengan struktur frame aluminium, closure aman, sudut diperkuat, dan detail hardware rapi.',
+        },
+        {
+          number: '4',
+          title: 'Koper Aluminium Penuh',
+          description: 'Program koper premium all-aluminum dengan bodi metal, corner protection, lock aman, dan finishing high-end.',
+        },
+        {
+          number: '5',
+          title: 'Koper Kain',
+          description: 'Produksi softside luggage dan travel bag dengan pilihan fabric, jahitan, zipper, lining, pocket, dan ruang expandable.',
+        },
+        {
+          number: '6',
+          title: 'Koper Custom Khusus',
+          description: 'Proyek koper custom untuk struktur khusus, fungsi spesifik brand, trim khusus, set matching, dan ide produk dari pembeli.',
         },
       ],
       technologyCta: {

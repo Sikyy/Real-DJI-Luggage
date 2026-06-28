@@ -554,21 +554,39 @@ async function seed() {
       values: [
         {
           number: '1',
-          title: 'Craftsmanship',
+          title: 'PC / ABS Zipper Suitcases',
           description:
-            'We focus on practical construction details that make luggage feel durable, useful, and ready for daily travel.',
+            'Lightweight hard-shell zipper luggage in PC, ABS, or PC+ABS blends, with practical finishes for wholesale and retail programs.',
         },
         {
           number: '2',
-          title: 'Reliable Production',
+          title: 'PP Suitcases',
           description:
-            'From sample approval to bulk order packing, our process is built around clarity, consistency, and follow-through.',
+            'Lightweight polypropylene suitcase projects with flexible shell direction, durable construction, and factory-ready component planning.',
         },
         {
           number: '3',
-          title: 'Long-Term Partnership',
+          title: 'Aluminum Frame Suitcases',
           description:
-            'We support buyers who want a steady manufacturing partner for new launches, seasonal programs, and repeat orders.',
+            'Zipperless hard-shell luggage with aluminum frame structure, secure closures, reinforced corners, and refined hardware details.',
+        },
+        {
+          number: '4',
+          title: 'Full Aluminum Suitcases',
+          description:
+            'Premium all-aluminum luggage programs with metal body construction, protective corners, secure locks, and a high-end finish.',
+        },
+        {
+          number: '5',
+          title: 'Fabric Suitcases',
+          description:
+            'Softside luggage and travel bag production with fabric selection, stitching, zipper, lining, pocket, and expandable storage options.',
+        },
+        {
+          number: '6',
+          title: 'Special Custom Suitcases',
+          description:
+            'Custom luggage projects for unusual structures, brand-specific functions, special trims, matching sets, and buyer-led product ideas.',
         },
       ],
       technologyCta: {
