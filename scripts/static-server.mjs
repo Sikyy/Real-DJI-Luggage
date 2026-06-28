@@ -20,9 +20,11 @@ const mimeTypes = {
   '.mp4': 'video/mp4',
   '.png': 'image/png',
   '.svg': 'image/svg+xml',
+  '.txt': 'text/plain; charset=utf-8',
   '.webp': 'image/webp',
   '.woff': 'font/woff',
   '.woff2': 'font/woff2',
+  '.xml': 'application/xml; charset=utf-8',
 };
 
 function cleanPath(urlPath) {
@@ -84,7 +86,7 @@ function resolveStaticPath(urlPath) {
   return resolve(root, '404.html');
 }
 
-const compressibleTypes = new Set(['.html', '.css', '.js', '.json', '.svg']);
+const compressibleTypes = new Set(['.html', '.css', '.js', '.json', '.svg', '.txt', '.xml']);
 
 function cacheControlFor(extension) {
   // HTML must always revalidate so content/redirect updates propagate.

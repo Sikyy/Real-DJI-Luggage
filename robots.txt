@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://djiluggage.id/sitemap.xml

@@ -245,22 +245,25 @@
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const fields = Array.from(form.querySelectorAll('input'));
+      const inputs = Array.from(form.querySelectorAll('input:not([type="file"])'));
+      const selects = Array.from(form.querySelectorAll('select'));
+      const fileInput = form.querySelector('input[type="file"]');
       const textarea = form.querySelector('textarea');
       const button = form.querySelector('.quote-submit');
       const defaultLabel = button ? button.textContent : '';
+      const countryCode = selects[0] ? selects[0].value : '';
       const payload = {
-        productType: fieldValue(fields, 0),
-        orderQuantity: fieldValue(fields, 1),
-        companyName: fieldValue(fields, 2),
-        emailOrPhone: fieldValue(fields, 3),
-        customerName: fieldValue(fields, 4),
-        destinationMarket: fieldValue(fields, 5),
+        customerName: fieldValue(inputs, 0),
+        email: fieldValue(inputs, 1),
+        phone: (countryCode ? countryCode + ' ' : '') + fieldValue(inputs, 2),
+        companyName: fieldValue(inputs, 3),
+        businessCategory: selects[1] ? selects[1].value : '',
+        fileName: fileInput && fileInput.files && fileInput.files[0] ? fileInput.files[0].name : '',
         message: textarea && textarea.value ? textarea.value.trim() : '',
         sourceUrl: window.location.href,
       };
 
-      if (!payload.emailOrPhone) {
+      if (!payload.email && !fieldValue(inputs, 2)) {
         setFormStatus(form, COPY.contactRequired, 'error');
         return;
       }
