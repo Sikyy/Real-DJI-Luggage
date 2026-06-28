@@ -38,7 +38,12 @@
       }
     });
   }
-  window.addEventListener('scroll', update, { passive: true });
+  var revealTicking = false;
+  window.addEventListener('scroll', function () {
+    if (revealTicking) return;
+    revealTicking = true;
+    requestAnimationFrame(function () { update(); revealTicking = false; });
+  }, { passive: true });
   window.addEventListener('resize', update);
   update();
 })();

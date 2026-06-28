@@ -5,70 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <title>DJI Luggage - Indonesian Luggage Manufacturer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+  <meta name="description" content="DJI Luggage manufactures suitcases and travel luggage for global brands — OEM &amp; ODM development, production, quality control, and export from Indonesia.">
+  <link rel="canonical" href="https://djiluggage.id/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DJI Luggage">
+  <meta property="og:title" content="DJI Luggage - Indonesian Luggage Manufacturer">
+  <meta property="og:description" content="DJI Luggage manufactures suitcases and travel luggage for global brands — OEM &amp; ODM development, production, quality control, and export from Indonesia.">
+  <meta property="og:url" content="https://djiluggage.id/">
+  <meta property="og:image" content="https://djiluggage.id/assets/og/dji-luggage-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DJI Luggage - Indonesian Luggage Manufacturer">
+  <meta name="twitter:description" content="DJI Luggage manufactures suitcases and travel luggage for global brands — OEM &amp; ODM development, production, quality control, and export from Indonesia.">
+  <meta name="twitter:image" content="https://djiluggage.id/assets/og/dji-luggage-og.jpg">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"DJI Luggage","url":"https://djiluggage.id/","logo":"https://djiluggage.id/assets/brand/dji-luggage-logo-black.png","image":"https://djiluggage.id/assets/og/dji-luggage-og.jpg","description":"Indonesian luggage and suitcase manufacturer offering OEM & ODM development, production, quality control, and export.","email":"info@djiluggage.id","address":{"@type":"PostalAddress","addressLocality":"Bogor","addressCountry":"ID"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"DJI Luggage","url":"https://djiluggage.id/"}
+  </script>
+
+  <link rel="preload" href="/assets/fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <style>@font-face{font-family:'Fragment Mono';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/FragmentMono-Regular.woff2') format('woff2')}</style>
+  <link rel="stylesheet" href="/site.css?v=20260628b">
   <style>
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Medium.woff2') format('woff2');
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-SemiBold.woff2') format('woff2');
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Black.woff2') format('woff2');
-      font-weight: 900;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --black: #000000;
-      --white: #ffffff;
-      --body-bg: #f3f4f6;
-      --yellow: #fedb5b;
-      --text-dark: #333333;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Geist', -apple-system, sans-serif;
-      color: var(--white);
-      background: var(--body-bg);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
     /* ========== HEADER ========== */
     header {
       position: fixed;
@@ -150,6 +111,8 @@
       padding: 32px 32px 64px;
       overflow: hidden;
       background: #333 url('/assets/home/hero-poster.jpg') center/cover no-repeat;
+      background-image: image-set(url('/assets/home/hero-poster.webp') type('image/webp'),
+        url('/assets/home/hero-poster.jpg') type('image/jpeg'));
     }
 
     .hero-video {
@@ -440,14 +403,23 @@
     .value-card:nth-child(1) {
       background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
         url('/assets/home/value-craftsmanship-luggage.png');
+      background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+        image-set(url('/assets/home/value-craftsmanship-luggage.webp') type('image/webp'),
+        url('/assets/home/value-craftsmanship-luggage.png') type('image/png'));
     }
     .value-card:nth-child(2) {
       background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
         url('/assets/home/value-reliable-production-luggage.png');
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        image-set(url('/assets/home/value-reliable-production-luggage.webp') type('image/webp'),
+        url('/assets/home/value-reliable-production-luggage.png') type('image/png'));
     }
     .value-card:nth-child(3) {
       background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
         url('/assets/home/value-long-term-partnership-travel.png');
+      background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+        image-set(url('/assets/home/value-long-term-partnership-travel.webp') type('image/webp'),
+        url('/assets/home/value-long-term-partnership-travel.png') type('image/png'));
     }
 
     .value-card-content {
@@ -507,6 +479,9 @@
       color: var(--white);
       background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
         url('/assets/home/how-we-work-luggage-order.png') center/cover no-repeat;
+      background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+        image-set(url('/assets/home/how-we-work-luggage-order.webp') type('image/webp'),
+        url('/assets/home/how-we-work-luggage-order.png') type('image/png'));
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -1268,9 +1243,9 @@
       .final-cta h2 { font-size: 40px; line-height: 44px; letter-spacing: -2px; }
     }
   </style>
-  <link rel="stylesheet" href="/menu-fix.css?v=20260604a">
+  <link rel="stylesheet" href="/menu-fix.css?v=20260628a">
   <script defer src="/menu-fix.js?v=20260531t"></script>
-  <script defer src="/cms-connect.js?v=20260615a"></script>
+  <script defer src="/cms-connect.js?v=20260628a"></script>
 </head>
 <body>
 
@@ -1296,7 +1271,7 @@
             <a href="/about">About</a>
             <a href="/services">Services</a>
             <a href="/products">Products</a>
-            <a href="/platform">Platform</a>
+            <a href="/process">Production Workflow</a>
             <a href="/newsroom/filters/all">Newsroom</a>
           </nav>
         </div>
@@ -1315,7 +1290,7 @@
             <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
             <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.1a4.9 4.9 0 1 0 0 9.8 4.9 4.9 0 0 0 0-9.8Zm0 2a2.9 2.9 0 1 1 0 5.8 2.9 2.9 0 0 1 0-5.8Zm5.2-.8a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z"/></svg></a>
             <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 11.85a29 29 0 0 0-.46-5.43ZM9.75 15.02V8.48l5.75 3.27-5.75 3.27Z"/></svg></a>
-            <a href="#" class="social-icon" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.33 4.97L2.05 22l5.25-1.38a9.91 9.91 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 19.05 4.91 9.85 9.85 0 0 0 12.04 2Zm.01 18.15h-.01a8.22 8.22 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.19 8.19 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.83 2.42 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23Zm4.52-6.17c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.57.12-.17.25-.65.81-.8.98-.15.17-.3.19-.55.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.1-.5.11-.11.25-.3.37-.44.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43l-.49-.01c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09s.9 2.42 1.02 2.59c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg></a>
+            <a href="https://wa.me/8619816891233" class="social-icon" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.33 4.97L2.05 22l5.25-1.38a9.91 9.91 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 19.05 4.91 9.85 9.85 0 0 0 12.04 2Zm.01 18.15h-.01a8.22 8.22 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.19 8.19 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.83 2.42 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23Zm4.52-6.17c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.57.12-.17.25-.65.81-.8.98-.15.17-.3.19-.55.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.1-.5.11-.11.25-.3.37-.44.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43l-.49-.01c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09s.9 2.42 1.02 2.59c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg></a>
           </div>
         </div>
         <div class="menu-address-section">
@@ -1472,7 +1447,7 @@
     <div class="news-carousel" id="newsCarousel">
       <a href="/newsroom/choosing-the-right-luggage-manufacturer" class="news-card">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg" alt="" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/cdkra1msE338pRZAmYqBqbSgQ.webp"><img src="/assets/framer/cdkra1msE338pRZAmYqBqbSgQ.jpg" alt="" loading="lazy"></picture>
           <div class="news-card-tag">Insights</div>
         </div>
         <div class="news-card-info">
@@ -1485,7 +1460,7 @@
       </a>
       <a href="/newsroom/oem-vs-odm-for-luggage-brands" class="news-card">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg" alt="" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/VwHCLdxNIeTIUpNRcVkneH3p68.webp"><img src="/assets/framer/VwHCLdxNIeTIUpNRcVkneH3p68.jpg" alt="" loading="lazy"></picture>
           <div class="news-card-tag">Insights</div>
         </div>
         <div class="news-card-info">
@@ -1498,7 +1473,7 @@
       </a>
       <a href="/newsroom/quality-checks-in-suitcase-production" class="news-card">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/gtxhO5eQb8zTp6csYDNAsGA9k.jpg" alt="" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/gtxhO5eQb8zTp6csYDNAsGA9k.webp"><img src="/assets/framer/gtxhO5eQb8zTp6csYDNAsGA9k.jpg" alt="" loading="lazy"></picture>
           <div class="news-card-tag">News</div>
         </div>
         <div class="news-card-info">
@@ -1511,7 +1486,7 @@
       </a>
       <a href="/newsroom/material-choices-for-hard-shell-luggage" class="news-card">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/qerU0u7MgBoEnXdijYtcgsdtMTk.jpg" alt="" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/qerU0u7MgBoEnXdijYtcgsdtMTk.webp"><img src="/assets/framer/qerU0u7MgBoEnXdijYtcgsdtMTk.jpg" alt="" loading="lazy"></picture>
           <div class="news-card-tag">Insights</div>
         </div>
         <div class="news-card-info">
@@ -1524,7 +1499,7 @@
       </a>
       <a href="/newsroom/planning-your-first-bulk-luggage-order" class="news-card">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg" alt="" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/dIpxXeu2nK0wcdN1Ri0jBE0Aw.webp"><img src="/assets/framer/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg" alt="" loading="lazy"></picture>
           <div class="news-card-tag">News</div>
         </div>
         <div class="news-card-info">
@@ -1541,7 +1516,7 @@
 
   <!-- FINAL CTA -->
   <section class="final-cta" data-header="light">
-    <img class="final-cta-bg" src="/assets/home/final-cta-bg.png" alt="" loading="lazy">
+    <picture><source type="image/webp" srcset="/assets/home/final-cta-bg.webp"><img class="final-cta-bg" src="/assets/home/final-cta-bg.png" alt="" loading="lazy"></picture>
     <div class="section-label reveal" style="color:rgba(255,255,255,0.55);margin-bottom:28px;">LET'S GET TO WORK</div>
     <h2 class="cta-title" id="ctaTitle">Build Your<br>Luggage Line</h2>
     <a href="/contact" class="btn btn-glass reveal">Get a Quote</a>
@@ -1570,7 +1545,7 @@
           <a href="/products">PRODUCTS</a>
           <a href="/about">ABOUT</a>
           <a href="/careers">CAREERS</a>
-          <a href="/platform">PLATFORM</a>
+          <a href="/process">PRODUCTION WORKFLOW</a>
           <a href="/newsroom/filters/all">NEWSROOM</a>
         </div>
         <div class="footer-nav-col">
@@ -1585,12 +1560,12 @@
         <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
         <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.1a4.9 4.9 0 1 0 0 9.8 4.9 4.9 0 0 0 0-9.8Zm0 2a2.9 2.9 0 1 1 0 5.8 2.9 2.9 0 0 1 0-5.8Zm5.2-.8a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z"/></svg></a>
         <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 11.85a29 29 0 0 0-.46-5.43ZM9.75 15.02V8.48l5.75 3.27-5.75 3.27Z"/></svg></a>
-        <a href="#" class="social-icon" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.33 4.97L2.05 22l5.25-1.38a9.91 9.91 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 19.05 4.91 9.85 9.85 0 0 0 12.04 2Zm.01 18.15h-.01a8.22 8.22 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.19 8.19 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.83 2.42 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23Zm4.52-6.17c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.57.12-.17.25-.65.81-.8.98-.15.17-.3.19-.55.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.1-.5.11-.11.25-.3.37-.44.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43l-.49-.01c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09s.9 2.42 1.02 2.59c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg></a>
+        <a href="https://wa.me/8619816891233" class="social-icon" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.33 4.97L2.05 22l5.25-1.38a9.91 9.91 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 19.05 4.91 9.85 9.85 0 0 0 12.04 2Zm.01 18.15h-.01a8.22 8.22 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.19 8.19 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.83 2.42 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23Zm4.52-6.17c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.57.12-.17.25-.65.81-.8.98-.15.17-.3.19-.55.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.1-.5.11-.11.25-.3.37-.44.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43l-.49-.01c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09s.9 2.42 1.02 2.59c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg></a>
       </div>
     </div>
     <div class="footer-bottom">
       <div class="footer-copyright">
-        <span>&copy;2025. All right reserved</span>
+        <span>&copy;2026. All rights reserved</span>
         <span class="sep"></span>
         <span>Indonesian luggage manufacturer</span>
       </div>
@@ -1614,7 +1589,12 @@
       header.classList.toggle('header-solid', solid);
       header.classList.toggle('header-dark', solid || theme === 'dark');
     }
-    window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+    let headerThemeTicking = false;
+    window.addEventListener('scroll', () => {
+      if (headerThemeTicking) return;
+      headerThemeTicking = true;
+      requestAnimationFrame(() => { updateHeaderTheme(); headerThemeTicking = false; });
+    }, { passive: true });
     window.addEventListener('resize', updateHeaderTheme);
     updateHeaderTheme();
 
@@ -1898,6 +1878,12 @@
       requestAnimationFrame(() => {
         jumpTo(startOffset());
         startAutoAdvance();
+      });
+
+      // Pause auto-advance while the tab is hidden to avoid background work.
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopAutoAdvance();
+        else startAutoAdvance();
       });
     })();
 

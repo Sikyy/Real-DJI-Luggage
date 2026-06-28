@@ -800,3 +800,6 @@ footer {
   .menu-overlay .menu-footer-logo { display: none; }
   footer { padding: 48px 20px 0; }
 }
+
+/* <picture> wrappers must not establish a box (final-cta-bg covers the section). */
+picture { display: contents; }
