@@ -5,70 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <title>About - DJI Luggage</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+  <meta name="description" content="An Indonesian luggage manufacturer supporting brands with sampling, production, quality control, and export.">
+  <link rel="canonical" href="https://djiluggage.id/about">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DJI Luggage">
+  <meta property="og:title" content="About - DJI Luggage">
+  <meta property="og:description" content="An Indonesian luggage manufacturer supporting brands with sampling, production, quality control, and export.">
+  <meta property="og:url" content="https://djiluggage.id/about">
+  <meta property="og:image" content="https://djiluggage.id/assets/og/dji-luggage-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About - DJI Luggage">
+  <meta name="twitter:description" content="An Indonesian luggage manufacturer supporting brands with sampling, production, quality control, and export.">
+  <meta name="twitter:image" content="https://djiluggage.id/assets/og/dji-luggage-og.jpg">
+
+  <link rel="preload" href="/assets/fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <style>@font-face{font-family:'Fragment Mono';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/FragmentMono-Regular.woff2') format('woff2')}</style>
+  <link rel="stylesheet" href="/site.css?v=20260628b">
   <style>
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Medium.woff2') format('woff2');
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-SemiBold.woff2') format('woff2');
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Black.woff2') format('woff2');
-      font-weight: 900;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --black: #000000;
-      --white: #ffffff;
-      --body-bg: #f3f4f6;
-      --yellow: #fedb5b;
-      --text-dark: #333333;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Geist', -apple-system, sans-serif;
-      color: var(--text-dark);
-      background: var(--body-bg);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
     /* ========== HEADER (Dark text variant for sub-pages) ========== */
     header {
       position: fixed;
@@ -449,6 +404,8 @@
       height: 552px;
       overflow: hidden;
       background-image: url('/assets/about/about-hero-traveler.jpg');
+      background-image: image-set(url('/assets/about/about-hero-traveler.webp') type('image/webp'),
+        url('/assets/about/about-hero-traveler.jpg') type('image/jpeg'));
       background-position: center center;
       background-size: 110vw 110vh;
       background-attachment: fixed;
@@ -1682,7 +1639,7 @@
 
   <!-- 2. HERO IMAGE -->
   <div class="about-hero-image">
-    <img src="/assets/about/about-hero-traveler.jpg" alt="Male traveler pulling an aluminum suitcase through a station" loading="lazy">
+    <picture><source type="image/webp" srcset="/assets/about/about-hero-traveler.webp"><img src="/assets/about/about-hero-traveler.jpg" alt="Male traveler pulling an aluminum suitcase through a station" loading="lazy"></picture>
   </div>
 
   <!-- 3. WHO WE ARE -->
@@ -1743,7 +1700,7 @@
     </div>
     <div class="reach-pin" aria-hidden="true"></div>
     <div class="reach-globe" aria-hidden="true">
-      <video src="https://framerusercontent.com/assets/euvxzcjhbUUqkHE2xg8ip1m5lIo.mp4" autoplay muted loop playsinline preload="auto"></video>
+      <video src="/assets/framer/euvxzcjhbUUqkHE2xg8ip1m5lIo.mp4" autoplay muted loop playsinline preload="auto"></video>
       <div class="reach-globe-gradient"></div>
     </div>
   </section>
@@ -1758,7 +1715,7 @@
           <h2 class="about-heading word-reveal">DJI Luggage turns practical factory capability into measurable production performance.</h2>
         </div>
         <div class="metrics-media-copy">
-          <img class="metrics-image" src="https://framerusercontent.com/images/SmKpJArNfpH0J4YgHNcqsyxuyEA.jpg?scale-down-to=1024&amp;width=5418&amp;height=3612" alt="person on computer">
+          <picture><source type="image/webp" srcset="/assets/framer/SmKpJArNfpH0J4YgHNcqsyxuyEA.webp"><img class="metrics-image" src="/assets/framer/SmKpJArNfpH0J4YgHNcqsyxuyEA.jpg" alt="person on computer" loading="lazy" decoding="async"></picture>
           <p class="metrics-subtext">From sampling to bulk orders, we track the details that matter: timing, consistency, workmanship, and export readiness.</p>
         </div>
       </div>
@@ -1842,21 +1799,21 @@
     <div class="testimonial-slider" data-slider="testimonials">
       <div class="testimonial-track" data-testimonial-track>
         <article class="testimonial-slide active">
-          <img src="https://framerusercontent.com/images/qkMQq9Zs1gGZaibDwwhw42dog.jpg?width=3000&amp;height=2248" alt="factory overview shot" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/qkMQq9Zs1gGZaibDwwhw42dog.webp"><img src="/assets/framer/qkMQq9Zs1gGZaibDwwhw42dog.jpg" alt="factory overview shot" loading="lazy"></picture>
           <div class="testimonial-content">
             <p class="testimonial-quote">"The sampling process was clear, fast, and practical for our launch plan."</p>
             <div class="testimonial-company">TechCorp</div>
           </div>
         </article>
         <article class="testimonial-slide">
-          <img src="https://framerusercontent.com/images/gvhFBMsq7CqzGkGuVh2v7bOU4CE.jpg?scale-down-to=4096&amp;width=5464&amp;height=3640" alt="luggage materials" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/gvhFBMsq7CqzGkGuVh2v7bOU4CE.webp"><img src="/assets/framer/gvhFBMsq7CqzGkGuVh2v7bOU4CE.jpg" alt="luggage materials" loading="lazy"></picture>
           <div class="testimonial-content">
             <p class="testimonial-quote">"Reliable, efficient, and always communicative during production."</p>
             <div class="testimonial-company">GreenLeaf Organics</div>
           </div>
         </article>
         <article class="testimonial-slide">
-          <img src="https://framerusercontent.com/images/ttsW2lp4NVYHyV30luZYHR1UMg.jpg?width=3936&amp;height=2214" alt="luggage production" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/ttsW2lp4NVYHyV30luZYHR1UMg.webp"><img src="/assets/framer/ttsW2lp4NVYHyV30luZYHR1UMg.jpg" alt="luggage production" loading="lazy"></picture>
           <div class="testimonial-content">
             <p class="testimonial-quote">"Their QC feedback helped us avoid costly changes after mass production."</p>
             <div class="testimonial-company">Luna Interiors</div>
@@ -1907,18 +1864,18 @@
         </symbol>
       </svg>
       <div class="trusted-track">
-        <div class="trusted-logo-card"><img src="/assets/about/trusted-logos/vantiiear.png" alt="Vantiiear"></div>
-        <div class="trusted-logo-card"><img src="/assets/about/trusted-logos/kalay.png" alt="KALA Y"></div>
-        <div class="trusted-logo-card"><img src="/assets/about/trusted-logos/caran.png" alt="Caran"></div>
-        <div class="trusted-logo-card"><img src="/assets/about/trusted-logos/roaming.png" alt="Roaming"></div>
-        <div class="trusted-logo-card"><img src="/assets/about/trusted-logos/letoo.png" alt="LETOO"></div>
-        <div class="trusted-logo-card"><img src="/assets/about/trusted-logos/mixi.png" alt="MIXI"></div>
-        <div class="trusted-logo-card"><img src="/assets/about/trusted-logos/vantiiear.png" alt="Vantiiear"></div>
-        <div class="trusted-logo-card"><img src="/assets/about/trusted-logos/kalay.png" alt="KALA Y"></div>
-        <div class="trusted-logo-card"><img src="/assets/about/trusted-logos/caran.png" alt="Caran"></div>
-        <div class="trusted-logo-card"><img src="/assets/about/trusted-logos/roaming.png" alt="Roaming"></div>
-        <div class="trusted-logo-card"><img src="/assets/about/trusted-logos/letoo.png" alt="LETOO"></div>
-        <div class="trusted-logo-card"><img src="/assets/about/trusted-logos/mixi.png" alt="MIXI"></div>
+        <div class="trusted-logo-card"><picture><source type="image/webp" srcset="/assets/about/trusted-logos/vantiiear.webp"><img src="/assets/about/trusted-logos/vantiiear.png" alt="Vantiiear" loading="lazy" decoding="async"></picture></div>
+        <div class="trusted-logo-card"><picture><source type="image/webp" srcset="/assets/about/trusted-logos/kalay.webp"><img src="/assets/about/trusted-logos/kalay.png" alt="KALA Y" loading="lazy" decoding="async"></picture></div>
+        <div class="trusted-logo-card"><picture><source type="image/webp" srcset="/assets/about/trusted-logos/caran.webp"><img src="/assets/about/trusted-logos/caran.png" alt="Caran" loading="lazy" decoding="async"></picture></div>
+        <div class="trusted-logo-card"><picture><source type="image/webp" srcset="/assets/about/trusted-logos/roaming.webp"><img src="/assets/about/trusted-logos/roaming.png" alt="Roaming" loading="lazy" decoding="async"></picture></div>
+        <div class="trusted-logo-card"><picture><source type="image/webp" srcset="/assets/about/trusted-logos/letoo.webp"><img src="/assets/about/trusted-logos/letoo.png" alt="LETOO" loading="lazy" decoding="async"></picture></div>
+        <div class="trusted-logo-card"><picture><source type="image/webp" srcset="/assets/about/trusted-logos/mixi.webp"><img src="/assets/about/trusted-logos/mixi.png" alt="MIXI" loading="lazy" decoding="async"></picture></div>
+        <div class="trusted-logo-card"><picture><source type="image/webp" srcset="/assets/about/trusted-logos/vantiiear.webp"><img src="/assets/about/trusted-logos/vantiiear.png" alt="Vantiiear" loading="lazy" decoding="async"></picture></div>
+        <div class="trusted-logo-card"><picture><source type="image/webp" srcset="/assets/about/trusted-logos/kalay.webp"><img src="/assets/about/trusted-logos/kalay.png" alt="KALA Y" loading="lazy" decoding="async"></picture></div>
+        <div class="trusted-logo-card"><picture><source type="image/webp" srcset="/assets/about/trusted-logos/caran.webp"><img src="/assets/about/trusted-logos/caran.png" alt="Caran" loading="lazy" decoding="async"></picture></div>
+        <div class="trusted-logo-card"><picture><source type="image/webp" srcset="/assets/about/trusted-logos/roaming.webp"><img src="/assets/about/trusted-logos/roaming.png" alt="Roaming" loading="lazy" decoding="async"></picture></div>
+        <div class="trusted-logo-card"><picture><source type="image/webp" srcset="/assets/about/trusted-logos/letoo.webp"><img src="/assets/about/trusted-logos/letoo.png" alt="LETOO" loading="lazy" decoding="async"></picture></div>
+        <div class="trusted-logo-card"><picture><source type="image/webp" srcset="/assets/about/trusted-logos/mixi.webp"><img src="/assets/about/trusted-logos/mixi.png" alt="MIXI" loading="lazy" decoding="async"></picture></div>
       </div>
     </div>
   </section>
@@ -1944,61 +1901,31 @@
         <article class="team-card">
           <div class="team-card-info"><div><div class="team-card-name">Matt Longst</div><div class="team-card-title">CLO</div></div></div>
           <div class="team-card-image">
-            <img src="https://framerusercontent.com/images/miYR1uyIgPn1OuV5Tbi4b9GKSg.png" alt="Matt Longst" loading="lazy">
+            <picture><source type="image/webp" srcset="/assets/about/team/matt-longst.webp"><img src="/assets/about/team/matt-longst.png" alt="Matt Longst" loading="lazy"></picture>
           </div>
         </article>
         <article class="team-card">
           <div class="team-card-info"><div><div class="team-card-name">Export Lead</div><div class="team-card-title">Buyer Coordination</div></div></div>
           <div class="team-card-image">
-            <img src="/assets/generated/headshots/siky-export-lead-retouched.png" alt="DJI Luggage export lead" loading="lazy">
+            <picture><source type="image/webp" srcset="/assets/generated/headshots/siky-export-lead-retouched.webp"><img src="/assets/generated/headshots/siky-export-lead-retouched.png" alt="DJI Luggage export lead" loading="lazy"></picture>
           </div>
         </article>
         <article class="team-card">
           <div class="team-card-info"><div><div class="team-card-name">Melanie Lumon</div><div class="team-card-title">CSO</div></div></div>
           <div class="team-card-image">
-            <img src="https://framerusercontent.com/images/d9QoUUypywk33NzCK1txqmi0Rc.png" alt="Melanie Lumon" loading="lazy">
+            <picture><source type="image/webp" srcset="/assets/about/team/melanie-lumon.webp"><img src="/assets/about/team/melanie-lumon.png" alt="Melanie Lumon" loading="lazy"></picture>
           </div>
         </article>
         <article class="team-card">
           <div class="team-card-info"><div><div class="team-card-name">John Mossier</div><div class="team-card-title">CEO</div></div></div>
           <div class="team-card-image">
-            <img src="https://framerusercontent.com/images/GUp8VdbqJAnhfOr7NK5rhb7iz4.png" alt="John Mossier" loading="lazy">
+            <picture><source type="image/webp" srcset="/assets/about/team/john-mossier.webp"><img src="/assets/about/team/john-mossier.png" alt="John Mossier" loading="lazy"></picture>
           </div>
         </article>
         <article class="team-card">
           <div class="team-card-info"><div><div class="team-card-name">Stacy Freed</div><div class="team-card-title">CTO</div></div></div>
           <div class="team-card-image">
-            <img src="https://framerusercontent.com/images/IJzILYgo1giGLlbhYFoQxnkTYQ.png" alt="Stacy Freed" loading="lazy">
-          </div>
-        </article>
-        <article class="team-card">
-          <div class="team-card-info"><div><div class="team-card-name">Matt Longst</div><div class="team-card-title">CLO</div></div></div>
-          <div class="team-card-image">
-            <img src="https://framerusercontent.com/images/miYR1uyIgPn1OuV5Tbi4b9GKSg.png" alt="Matt Longst" loading="lazy">
-          </div>
-        </article>
-        <article class="team-card">
-          <div class="team-card-info"><div><div class="team-card-name">Export Lead</div><div class="team-card-title">Buyer Coordination</div></div></div>
-          <div class="team-card-image">
-            <img src="/assets/generated/headshots/siky-export-lead-retouched.png" alt="DJI Luggage export lead" loading="lazy">
-          </div>
-        </article>
-        <article class="team-card">
-          <div class="team-card-info"><div><div class="team-card-name">Melanie Lumon</div><div class="team-card-title">CSO</div></div></div>
-          <div class="team-card-image">
-            <img src="https://framerusercontent.com/images/d9QoUUypywk33NzCK1txqmi0Rc.png" alt="Melanie Lumon" loading="lazy">
-          </div>
-        </article>
-        <article class="team-card">
-          <div class="team-card-info"><div><div class="team-card-name">John Mossier</div><div class="team-card-title">CEO</div></div></div>
-          <div class="team-card-image">
-            <img src="https://framerusercontent.com/images/GUp8VdbqJAnhfOr7NK5rhb7iz4.png" alt="John Mossier" loading="lazy">
-          </div>
-        </article>
-        <article class="team-card">
-          <div class="team-card-info"><div><div class="team-card-name">Stacy Freed</div><div class="team-card-title">CTO</div></div></div>
-          <div class="team-card-image">
-            <img src="https://framerusercontent.com/images/IJzILYgo1giGLlbhYFoQxnkTYQ.png" alt="Stacy Freed" loading="lazy">
+            <picture><source type="image/webp" srcset="/assets/about/team/stacy-freed.webp"><img src="/assets/about/team/stacy-freed.png" alt="Stacy Freed" loading="lazy"></picture>
           </div>
         </article>
       </div>
@@ -2007,7 +1934,7 @@
 
   <!-- 10. FINAL CTA -->
   <section class="final-cta">
-    <img class="final-cta-bg" src="/assets/home/final-cta-bg.png" alt="" loading="lazy">
+    <picture><source type="image/webp" srcset="/assets/home/final-cta-bg.webp"><img class="final-cta-bg" src="/assets/home/final-cta-bg.png" alt="" loading="lazy"></picture>
     <div class="section-label reveal" style="color:rgba(255,255,255,0.55);margin-bottom:28px;">LET'S GET TO WORK</div>
     <h2 class="cta-title" id="ctaTitle">Build Your<br>Luggage Line</h2>
     <a href="/contact" class="btn btn-glass reveal">Get a Quote</a>
@@ -2056,7 +1983,7 @@
     </div>
     <div class="footer-bottom">
       <div class="footer-copyright">
-        <span>&copy;2025. All right reserved</span>
+        <span>&copy;2026. All rights reserved</span>
         <span class="sep"></span>
         <span>Indonesian luggage manufacturer</span>
       </div>
@@ -2079,7 +2006,12 @@
       header.classList.toggle('txt-dark', theme === 'dark');
       header.classList.toggle('txt-light', theme !== 'dark');
     }
-    window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+    let headerThemeTicking = false;
+    window.addEventListener('scroll', () => {
+      if (headerThemeTicking) return;
+      headerThemeTicking = true;
+      requestAnimationFrame(() => { updateHeaderTheme(); headerThemeTicking = false; });
+    }, { passive: true });
     window.addEventListener('resize', updateHeaderTheme);
     updateHeaderTheme();
 
@@ -2239,6 +2171,12 @@
       const sourceCards = (isRepeated ? initialCards.slice(0, midpoint) : initialCards)
         .map(card => card.cloneNode(true));
       const slideCount = sourceCards.length;
+      // Single team member: no marquee/clones, hide the prev/next arrows.
+      if (slideCount <= 1) {
+        prev.style.display = 'none';
+        next.style.display = 'none';
+        return;
+      }
       const startOffset = Math.min(3, Math.max(0, slideCount - 1));
       let index = slideCount + startOffset;
       let isAnimating = false;
@@ -2350,6 +2288,6 @@
     })();
   </script>
 
-  <script src="/reveal.js?v=20260605a"></script>
+  <script src="/reveal.js?v=20260628a"></script>
 </body>
 </html>

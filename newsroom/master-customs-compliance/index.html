@@ -5,19 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <title>DJI Luggage Insights</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <style>@font-face{font-family:'Fragment Mono';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/FragmentMono-Regular.woff2') format('woff2')}</style>
   <style>
     @font-face {
       font-family: "Geist";
-      src: url("https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Regular.woff2") format("woff2");
+      src: url("/assets/fonts/Geist-Regular.woff2") format("woff2");
       font-weight: 400;
       font-display: swap;
     }
     @font-face {
       font-family: "Geist";
-      src: url("https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Black.woff2") format("woff2");
+      src: url("/assets/fonts/Geist-Black.woff2") format("woff2");
       font-weight: 900;
       font-display: swap;
     }
@@ -230,6 +229,9 @@
       background:
         linear-gradient(rgba(0, 0, 0, .275), rgba(0, 0, 0, .28)),
         #000 url("/assets/home/final-cta-bg.png") right center / auto calc(100% - clamp(24px, 4vw, 48px)) no-repeat;
+      background-image:
+        linear-gradient(rgba(0, 0, 0, .275), rgba(0, 0, 0, .28)),
+        image-set(url("/assets/home/final-cta-bg.webp") type("image/webp"), url("/assets/home/final-cta-bg.png") type("image/png"));
     }
     .final-cta > * { position: relative; z-index: 1; }
     .final-cta h2 {
@@ -439,7 +441,7 @@
         date: "10.31.25",
         author: "DJI Luggage Team",
         type: "Insights",
-        image: "https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg",
+        image: "/assets/framer/cdkra1msE338pRZAmYqBqbSgQ.webp",
         intro: "A practical buyer checklist for evaluating a luggage factory before starting an OEM or private-label suitcase program.",
         contentSections: [
           {
@@ -461,7 +463,7 @@
         date: "10.02.25",
         author: "DJI Luggage Team",
         type: "Insights",
-        image: "https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg",
+        image: "/assets/framer/VwHCLdxNIeTIUpNRcVkneH3p68.webp",
         intro: "How luggage buyers can choose between manufacturing to an existing specification and developing a product with factory guidance.",
         contentSections: [
           {
@@ -483,7 +485,7 @@
         date: "9.27.25",
         author: "DJI Luggage Team",
         type: "News",
-        image: "https://framerusercontent.com/images/gtxhO5eQb8zTp6csYDNAsGA9k.jpg",
+        image: "/assets/framer/gtxhO5eQb8zTp6csYDNAsGA9k.webp",
         intro: "The production details that should be checked before a suitcase order leaves the factory.",
         contentSections: [
           {
@@ -505,7 +507,7 @@
         date: "9.17.25",
         author: "DJI Luggage Team",
         type: "Insights",
-        image: "https://framerusercontent.com/images/qerU0u7MgBoEnXdijYtcgsdtMTk.jpg",
+        image: "/assets/framer/qerU0u7MgBoEnXdijYtcgsdtMTk.webp",
         intro: "A buyer-focused guide to choosing ABS, PC, ABS+PC, or PP for hard-shell suitcase programs.",
         contentSections: [
           {
@@ -527,7 +529,7 @@
         date: "9.08.25",
         author: "DJI Luggage Team",
         type: "News",
-        image: "https://framerusercontent.com/images/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg",
+        image: "/assets/framer/dIpxXeu2nK0wcdN1Ri0jBE0Aw.webp",
         intro: "A simple planning checklist for quantities, samples, production timing, and packing before placing a bulk suitcase order.",
         contentSections: [
           {
@@ -549,7 +551,7 @@
         date: "9.01.25",
         author: "DJI Luggage Team",
         type: "News",
-        image: "https://framerusercontent.com/images/CA2gOg0z0KVvO9JiKIDAroigUw.jpg?scale-down-to=1024&width=5191&height=3458",
+        image: "/assets/framer/CA2gOg0z0KVvO9JiKIDAroigUw.webp",
         intro: "How an approved luggage sample becomes a repeatable production standard for bulk orders.",
         contentSections: [
           {
@@ -571,7 +573,7 @@
         date: "8.29.25",
         author: "DJI Luggage Team",
         type: "Insights",
-        image: "https://framerusercontent.com/images/pNkjoqFtJG8GbECTaKovqOFWvXI.jpg",
+        image: "/assets/framer/pNkjoqFtJG8GbECTaKovqOFWvXI.webp",
         intro: "What buyers should decide when building a private-label suitcase or travel goods range.",
         contentSections: [
           {
@@ -593,7 +595,7 @@
         date: "8.12.25",
         author: "DJI Luggage Team",
         type: "News",
-        image: "https://framerusercontent.com/images/qdVrKVWoQ6IYD1EWJSW1Z5nYMc.jpg",
+        image: "/assets/framer/qdVrKVWoQ6IYD1EWJSW1Z5nYMc.webp",
         intro: "Why carton marks, labels, and packing details should be confirmed before suitcase production ends.",
         contentSections: [
           {

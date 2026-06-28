@@ -231,7 +231,7 @@
     </main>
 
     <section class="final-cta" data-header="light">
-      <img class="final-cta-bg" src="/assets/home/final-cta-bg.png" alt="" loading="lazy">
+      <picture><source type="image/webp" srcset="/assets/home/final-cta-bg.webp"><img class="final-cta-bg" src="/assets/home/final-cta-bg.png" alt="" loading="lazy"></picture>
       <div class="section-label">Ready To Build</div>
       <h2 class="cta-title">Start Your<br>Luggage Program</h2>
       <a href="/contact" class="btn btn-glass">Get a Quote</a>

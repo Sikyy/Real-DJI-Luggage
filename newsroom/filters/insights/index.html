@@ -5,70 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <title>Insights - DJI Luggage</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <style>@font-face{font-family:'Fragment Mono';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/FragmentMono-Regular.woff2') format('woff2')}</style>
+  <link rel="stylesheet" href="/site.css?v=20260628b">
   <style>
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Medium.woff2') format('woff2');
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-SemiBold.woff2') format('woff2');
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Black.woff2') format('woff2');
-      font-weight: 900;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --black: #000000;
-      --white: #ffffff;
-      --body-bg: #f3f4f6;
-      --yellow: #fedb5b;
-      --text-dark: #333333;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Geist', -apple-system, sans-serif;
-      color: var(--text-dark);
-      background: var(--body-bg);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
     /* ========== HEADER (Dark text variant) ========== */
     header {
       position: fixed;
@@ -934,7 +874,7 @@
       <!-- Row 1 -->
       <a href="/newsroom/choosing-the-right-luggage-manufacturer" class="news-card reveal" data-category="insights">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg" alt="Luggage manufacturing facility" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/cdkra1msE338pRZAmYqBqbSgQ.webp"><img src="/assets/framer/cdkra1msE338pRZAmYqBqbSgQ.jpg" alt="Luggage manufacturing facility" loading="lazy"></picture>
           <div class="news-card-tag">INSIGHTS</div>
         </div>
         <div class="news-card-info">
@@ -947,7 +887,7 @@
       </a>
       <a href="/newsroom/oem-vs-odm-for-luggage-brands" class="news-card reveal reveal-delay-1" data-category="insights">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg" alt="OEM and ODM luggage samples" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/VwHCLdxNIeTIUpNRcVkneH3p68.webp"><img src="/assets/framer/VwHCLdxNIeTIUpNRcVkneH3p68.jpg" alt="OEM and ODM luggage samples" loading="lazy"></picture>
           <div class="news-card-tag">INSIGHTS</div>
         </div>
         <div class="news-card-info">
@@ -960,7 +900,7 @@
       </a>
       <a href="/newsroom/quality-checks-in-suitcase-production" class="news-card reveal reveal-delay-2" data-category="news">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/gtxhO5eQb8zTp6csYDNAsGA9k.jpg" alt="Suitcase quality inspection" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/gtxhO5eQb8zTp6csYDNAsGA9k.webp"><img src="/assets/framer/gtxhO5eQb8zTp6csYDNAsGA9k.jpg" alt="Suitcase quality inspection" loading="lazy"></picture>
           <div class="news-card-tag">NEWS</div>
         </div>
         <div class="news-card-info">
@@ -975,7 +915,7 @@
       <!-- Row 2 -->
       <a href="/newsroom/material-choices-for-hard-shell-luggage" class="news-card reveal" data-category="insights">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/qerU0u7MgBoEnXdijYtcgsdtMTk.jpg" alt="Luggage materials" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/qerU0u7MgBoEnXdijYtcgsdtMTk.webp"><img src="/assets/framer/qerU0u7MgBoEnXdijYtcgsdtMTk.jpg" alt="Luggage materials" loading="lazy"></picture>
           <div class="news-card-tag">INSIGHTS</div>
         </div>
         <div class="news-card-info">
@@ -988,7 +928,7 @@
       </a>
       <a href="/newsroom/planning-your-first-bulk-luggage-order" class="news-card reveal reveal-delay-1" data-category="news">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg" alt="Bulk luggage order planning" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/dIpxXeu2nK0wcdN1Ri0jBE0Aw.webp"><img src="/assets/framer/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg" alt="Bulk luggage order planning" loading="lazy"></picture>
           <div class="news-card-tag">NEWS</div>
         </div>
         <div class="news-card-info">
@@ -1001,7 +941,7 @@
       </a>
       <a href="/newsroom/from-sample-to-production" class="news-card reveal reveal-delay-2" data-category="news">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/CA2gOg0z0KVvO9JiKIDAroigUw.jpg?scale-down-to=1024&width=5191&height=3458" alt="Sample to production workflow" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/CA2gOg0z0KVvO9JiKIDAroigUw.webp"><img src="/assets/framer/CA2gOg0z0KVvO9JiKIDAroigUw.jpg" alt="Sample to production workflow" loading="lazy"></picture>
           <div class="news-card-tag">NEWS</div>
         </div>
         <div class="news-card-info">
@@ -1016,7 +956,7 @@
       <!-- Row 3 (only 2 cards) -->
       <a href="/newsroom/building-a-private-label-travel-line" class="news-card reveal" data-category="insights">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/pNkjoqFtJG8GbECTaKovqOFWvXI.jpg" alt="Private label luggage" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/pNkjoqFtJG8GbECTaKovqOFWvXI.webp"><img src="/assets/framer/pNkjoqFtJG8GbECTaKovqOFWvXI.jpg" alt="Private label luggage" loading="lazy"></picture>
           <div class="news-card-tag">INSIGHTS</div>
         </div>
         <div class="news-card-info">
@@ -1029,7 +969,7 @@
       </a>
       <a href="/newsroom/packaging-and-export-prep-for-suitcases" class="news-card reveal reveal-delay-1" data-category="news">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/qdVrKVWoQ6IYD1EWJSW1Z5nYMc.jpg" alt="Suitcase packaging and export prep" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/qdVrKVWoQ6IYD1EWJSW1Z5nYMc.webp"><img src="/assets/framer/qdVrKVWoQ6IYD1EWJSW1Z5nYMc.jpg" alt="Suitcase packaging and export prep" loading="lazy"></picture>
           <div class="news-card-tag">NEWS</div>
         </div>
         <div class="news-card-info">
@@ -1045,7 +985,7 @@
 
   <!-- FINAL CTA -->
   <section class="final-cta">
-    <img class="final-cta-bg" src="/assets/home/final-cta-bg.png" alt="" loading="lazy">
+    <picture><source type="image/webp" srcset="/assets/home/final-cta-bg.webp"><img class="final-cta-bg" src="/assets/home/final-cta-bg.png" alt="" loading="lazy"></picture>
     <div class="section-label reveal" style="color:rgba(255,255,255,0.55);margin-bottom:28px;">LET'S GET TO WORK</div>
     <h2 class="cta-title" id="ctaTitle">Build Your<br>Luggage Line</h2>
     <a href="/contact" class="btn btn-glass reveal">Get a Quote</a>
@@ -1094,7 +1034,7 @@
     </div>
     <div class="footer-bottom">
       <div class="footer-copyright">
-        <span>&copy;2025. All right reserved</span>
+        <span>&copy;2026. All rights reserved</span>
         <span class="sep"></span>
         <span>Indonesian luggage manufacturer</span>
       </div>
@@ -1117,7 +1057,12 @@
       header.classList.toggle('txt-dark', theme === 'dark');
       header.classList.toggle('txt-light', theme !== 'dark');
     }
-    window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+    let headerThemeTicking = false;
+    window.addEventListener('scroll', () => {
+      if (headerThemeTicking) return;
+      headerThemeTicking = true;
+      requestAnimationFrame(() => { updateHeaderTheme(); headerThemeTicking = false; });
+    }, { passive: true });
     window.addEventListener('resize', updateHeaderTheme);
     updateHeaderTheme();
 

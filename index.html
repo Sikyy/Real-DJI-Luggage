@@ -5,70 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <title>DJI Luggage - Indonesian Luggage Manufacturer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+  <meta name="description" content="DJI Luggage manufactures suitcases and travel luggage for global brands — OEM &amp; ODM development, production, quality control, and export from Indonesia.">
+  <link rel="canonical" href="https://djiluggage.id/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DJI Luggage">
+  <meta property="og:title" content="DJI Luggage - Indonesian Luggage Manufacturer">
+  <meta property="og:description" content="DJI Luggage manufactures suitcases and travel luggage for global brands — OEM &amp; ODM development, production, quality control, and export from Indonesia.">
+  <meta property="og:url" content="https://djiluggage.id/">
+  <meta property="og:image" content="https://djiluggage.id/assets/og/dji-luggage-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DJI Luggage - Indonesian Luggage Manufacturer">
+  <meta name="twitter:description" content="DJI Luggage manufactures suitcases and travel luggage for global brands — OEM &amp; ODM development, production, quality control, and export from Indonesia.">
+  <meta name="twitter:image" content="https://djiluggage.id/assets/og/dji-luggage-og.jpg">
+
+  <link rel="preload" href="/assets/fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <style>@font-face{font-family:'Fragment Mono';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/FragmentMono-Regular.woff2') format('woff2')}</style>
+  <link rel="stylesheet" href="/site.css?v=20260628b">
   <style>
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Medium.woff2') format('woff2');
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-SemiBold.woff2') format('woff2');
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Geist';
-      src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Black.woff2') format('woff2');
-      font-weight: 900;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --black: #000000;
-      --white: #ffffff;
-      --body-bg: #f3f4f6;
-      --yellow: #fedb5b;
-      --text-dark: #333333;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Geist', -apple-system, sans-serif;
-      color: var(--white);
-      background: var(--body-bg);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
     /* ========== HEADER ========== */
     header {
       position: fixed;
@@ -150,6 +105,8 @@
       padding: 32px 32px 64px;
       overflow: hidden;
       background: #333 url('/assets/home/hero-poster.jpg') center/cover no-repeat;
+      background-image: image-set(url('/assets/home/hero-poster.webp') type('image/webp'),
+        url('/assets/home/hero-poster.jpg') type('image/jpeg'));
     }
 
     .hero-video {
@@ -440,14 +397,23 @@
     .value-card:nth-child(1) {
       background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
         url('/assets/home/value-craftsmanship-luggage.png');
+      background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+        image-set(url('/assets/home/value-craftsmanship-luggage.webp') type('image/webp'),
+        url('/assets/home/value-craftsmanship-luggage.png') type('image/png'));
     }
     .value-card:nth-child(2) {
       background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
         url('/assets/home/value-reliable-production-luggage.png');
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        image-set(url('/assets/home/value-reliable-production-luggage.webp') type('image/webp'),
+        url('/assets/home/value-reliable-production-luggage.png') type('image/png'));
     }
     .value-card:nth-child(3) {
       background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
         url('/assets/home/value-long-term-partnership-travel.png');
+      background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+        image-set(url('/assets/home/value-long-term-partnership-travel.webp') type('image/webp'),
+        url('/assets/home/value-long-term-partnership-travel.png') type('image/png'));
     }
 
     .value-card-content {
@@ -507,6 +473,9 @@
       color: var(--white);
       background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
         url('/assets/home/how-we-work-luggage-order.png') center/cover no-repeat;
+      background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+        image-set(url('/assets/home/how-we-work-luggage-order.webp') type('image/webp'),
+        url('/assets/home/how-we-work-luggage-order.png') type('image/png'));
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -1472,7 +1441,7 @@
     <div class="news-carousel" id="newsCarousel">
       <a href="/newsroom/choosing-the-right-luggage-manufacturer" class="news-card">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/cdkra1msE338pRZAmYqBqbSgQ.jpg" alt="" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/cdkra1msE338pRZAmYqBqbSgQ.webp"><img src="/assets/framer/cdkra1msE338pRZAmYqBqbSgQ.jpg" alt="" loading="lazy"></picture>
           <div class="news-card-tag">Insights</div>
         </div>
         <div class="news-card-info">
@@ -1485,7 +1454,7 @@
       </a>
       <a href="/newsroom/oem-vs-odm-for-luggage-brands" class="news-card">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/VwHCLdxNIeTIUpNRcVkneH3p68.jpg" alt="" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/VwHCLdxNIeTIUpNRcVkneH3p68.webp"><img src="/assets/framer/VwHCLdxNIeTIUpNRcVkneH3p68.jpg" alt="" loading="lazy"></picture>
           <div class="news-card-tag">Insights</div>
         </div>
         <div class="news-card-info">
@@ -1498,7 +1467,7 @@
       </a>
       <a href="/newsroom/quality-checks-in-suitcase-production" class="news-card">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/gtxhO5eQb8zTp6csYDNAsGA9k.jpg" alt="" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/gtxhO5eQb8zTp6csYDNAsGA9k.webp"><img src="/assets/framer/gtxhO5eQb8zTp6csYDNAsGA9k.jpg" alt="" loading="lazy"></picture>
           <div class="news-card-tag">News</div>
         </div>
         <div class="news-card-info">
@@ -1511,7 +1480,7 @@
       </a>
       <a href="/newsroom/material-choices-for-hard-shell-luggage" class="news-card">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/qerU0u7MgBoEnXdijYtcgsdtMTk.jpg" alt="" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/qerU0u7MgBoEnXdijYtcgsdtMTk.webp"><img src="/assets/framer/qerU0u7MgBoEnXdijYtcgsdtMTk.jpg" alt="" loading="lazy"></picture>
           <div class="news-card-tag">Insights</div>
         </div>
         <div class="news-card-info">
@@ -1524,7 +1493,7 @@
       </a>
       <a href="/newsroom/planning-your-first-bulk-luggage-order" class="news-card">
         <div class="news-card-image">
-          <img src="https://framerusercontent.com/images/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg" alt="" loading="lazy">
+          <picture><source type="image/webp" srcset="/assets/framer/dIpxXeu2nK0wcdN1Ri0jBE0Aw.webp"><img src="/assets/framer/dIpxXeu2nK0wcdN1Ri0jBE0Aw.jpg" alt="" loading="lazy"></picture>
           <div class="news-card-tag">News</div>
         </div>
         <div class="news-card-info">
@@ -1541,7 +1510,7 @@
 
   <!-- FINAL CTA -->
   <section class="final-cta" data-header="light">
-    <img class="final-cta-bg" src="/assets/home/final-cta-bg.png" alt="" loading="lazy">
+    <picture><source type="image/webp" srcset="/assets/home/final-cta-bg.webp"><img class="final-cta-bg" src="/assets/home/final-cta-bg.png" alt="" loading="lazy"></picture>
     <div class="section-label reveal" style="color:rgba(255,255,255,0.55);margin-bottom:28px;">LET'S GET TO WORK</div>
     <h2 class="cta-title" id="ctaTitle">Build Your<br>Luggage Line</h2>
     <a href="/contact" class="btn btn-glass reveal">Get a Quote</a>
@@ -1590,7 +1559,7 @@
     </div>
     <div class="footer-bottom">
       <div class="footer-copyright">
-        <span>&copy;2025. All right reserved</span>
+        <span>&copy;2026. All rights reserved</span>
         <span class="sep"></span>
         <span>Indonesian luggage manufacturer</span>
       </div>
@@ -1614,7 +1583,12 @@
       header.classList.toggle('header-solid', solid);
       header.classList.toggle('header-dark', solid || theme === 'dark');
     }
-    window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+    let headerThemeTicking = false;
+    window.addEventListener('scroll', () => {
+      if (headerThemeTicking) return;
+      headerThemeTicking = true;
+      requestAnimationFrame(() => { updateHeaderTheme(); headerThemeTicking = false; });
+    }, { passive: true });
     window.addEventListener('resize', updateHeaderTheme);
     updateHeaderTheme();
 
@@ -1898,6 +1872,12 @@
       requestAnimationFrame(() => {
         jumpTo(startOffset());
         startAutoAdvance();
+      });
+
+      // Pause auto-advance while the tab is hidden to avoid background work.
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopAutoAdvance();
+        else startAutoAdvance();
       });
     })();
 

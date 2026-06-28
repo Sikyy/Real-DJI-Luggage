@@ -2,6 +2,7 @@ import { createReadStream, existsSync, statSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createBrotliCompress, createGzip } from 'node:zlib';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const port = Number(process.env.PORT || 8767);
@@ -83,20 +84,51 @@ function resolveStaticPath(urlPath) {
   return resolve(root, '404.html');
 }
 
+const compressibleTypes = new Set(['.html', '.css', '.js', '.json', '.svg']);
+
+function cacheControlFor(extension) {
+  // HTML must always revalidate so content/redirect updates propagate.
+  if (extension === '.html') return 'no-store';
+  // Fonts + query-versioned CSS/JS (?v=) never change for a given URL -> immutable.
+  if (['.woff2', '.woff', '.css', '.js'].includes(extension)) {
+    return 'public, max-age=31536000, immutable';
+  }
+  // Images/video aren't content-hashed; cache long but allow revalidation on replace.
+  return 'public, max-age=2592000';
+}
+
 function sendFile(request, response, filePath) {
   const extension = extname(filePath);
   const statusCode = filePath.endsWith(`${sep}404.html`) ? 404 : 200;
-  response.writeHead(statusCode, {
-    'Cache-Control': extension === '.html' ? 'no-store' : 'public, max-age=60',
+  const headers = {
+    'Cache-Control': cacheControlFor(extension),
     'Content-Type': mimeTypes[extension] || 'application/octet-stream',
-  });
+  };
+
+  const acceptEncoding = String(request.headers['accept-encoding'] || '');
+  let encoding = null;
+  if (compressibleTypes.has(extension)) {
+    headers.Vary = 'Accept-Encoding';
+    if (/\bbr\b/.test(acceptEncoding)) encoding = 'br';
+    else if (/\bgzip\b/.test(acceptEncoding)) encoding = 'gzip';
+  }
+  if (encoding) headers['Content-Encoding'] = encoding;
+
+  response.writeHead(statusCode, headers);
 
   if (request.method === 'HEAD') {
     response.end();
     return;
   }
 
-  createReadStream(filePath).pipe(response);
+  const source = createReadStream(filePath);
+  if (encoding === 'br') {
+    source.pipe(createBrotliCompress()).pipe(response);
+  } else if (encoding === 'gzip') {
+    source.pipe(createGzip()).pipe(response);
+  } else {
+    source.pipe(response);
+  }
 }
 
 const server = createServer((request, response) => {
