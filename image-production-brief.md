@@ -22,9 +22,12 @@
 | 图片位 | 对应文案 | 建议尺寸 | 画面方向 |
 |---|---|---:|---|
 | 首页 Hero 视频/封面 | `Manufacturing Luggage For Growing Brands`；`We help brands develop, produce, inspect, and prepare luggage orders for export.` | 视频/图：`3840 x 2160` 或 `2560 x 1440` | 最重要首屏。建议用行李箱生产线、成品箱陈列、工厂质检或包装出货的横向大场景。左下和右下留暗区给标题和描述。 |
-| Values 卡片 1 | `Community`；`We work closely with buyers, product teams, and importers...` | `1200 x 1500` | 买家/团队沟通、样品评审、会议桌上有行李箱样品。 |
-| Values 卡片 2 | `Innovation`；`Our sample and production teams solve product details early...` | `1200 x 1500` | 材料、拉杆、轮子、锁具、内衬等细节研发或样品打样。 |
-| Values 卡片 3 | `Sustainability`；`We help clients choose durable structures, sensible packaging...` | `1200 x 1500` | 耐用材料、可持续包装、整洁仓储或纸箱打包，风格务实。 |
+| 产品类型卡片 1 | `PC / ABS Zipper Suitcases` | `1200 x 1500` | PC、ABS 或 PC+ABS 拉链硬壳箱，突出轻量、外壳质感、颜色和轮子/拉杆细节。 |
+| 产品类型卡片 2 | `PP Suitcases` | `1200 x 1500` | 轻量 PP 箱，最好展示箱壳纹理、抗冲击/柔韧感或成品套装。 |
+| 产品类型卡片 3 | `Aluminum Frame Suitcases` | `1200 x 1500` | 铝框无拉链箱，突出铝框、锁扣、包角和五金细节。 |
+| 产品类型卡片 4 | `Full Aluminum Suitcases` | `1200 x 1500` | 纯铝箱高端产品照，突出金属箱体、护角、锁具和表面处理。 |
+| 产品类型卡片 5 | `Fabric Suitcases` | `1200 x 1500` | 布箱/软箱或旅行包，突出面料、车缝、拉链、外袋和可扩展结构。 |
+| 产品类型卡片 6 | `Special Custom Suitcases` | `1200 x 1500` | 特殊定制箱子，展示特殊结构、品牌专属功能、异形箱、配件细节或定制套装。 |
 | Yellow CTA 内联小图 1 | 句子里的 `Practical [image] manufacturing helps...` | `640 x 480` | 近景：工厂操作、缝纫/装配/质检手部细节。实际显示很小，主体要大。 |
 | Yellow CTA 内联小图 2 | 句子里的 `...helps [image] luggage brands scale.` | `640 x 480` | 近景：成品行李箱、轮子/拉杆/箱壳细节、成品堆放。 |
 | How We Work 背景 | `DJI Luggage keeps product development grounded...`；步骤 `Plan / Sample / Produce` | `2880 x 1800` | 横向大图，适合生产流程、样品台、包装线或工厂纵深。页面有深色遮罩和网格，主体不要太暗。 |
