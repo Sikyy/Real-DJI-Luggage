@@ -116,6 +116,7 @@ header.menu-open .logo .cms-logo-image-dark {
 .menu-overlay .menu-nav:hover a { opacity: 1 !important; }
 .menu-overlay .menu-nav a {
   padding-left: 0;
+  white-space: nowrap;
   transform: none !important;
   transition:
     opacity .65s cubic-bezier(.19, 1, .22, 1),
@@ -131,7 +132,7 @@ header.menu-open .logo .cms-logo-image-dark {
   grid-auto-flow: column;
   grid-template-rows: repeat(3, auto);
   grid-template-columns: 300px 1fr;
-  max-width: 700px;
+  max-width: 780px;
 }
 .menu-overlay .menu-inner { transform: translateY(9px); }
 .menu-overlay .menu-nav a { justify-self: start; }

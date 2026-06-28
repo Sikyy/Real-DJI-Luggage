@@ -1,0 +1,65 @@
+    @font-face {
+      font-family: 'Geist';
+      src: url('/assets/fonts/Geist-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('/assets/fonts/Geist-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('/assets/fonts/Geist-SemiBold.woff2') format('woff2');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('/assets/fonts/Geist-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Geist';
+      src: url('/assets/fonts/Geist-Black.woff2') format('woff2');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --body-bg: #f3f4f6;
+      --yellow: #fedb5b;
+      --text-dark: #333333;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Geist', -apple-system, sans-serif;
+      color: var(--text-dark);
+      background: var(--body-bg);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+
+
+/* <picture> wrappers must not establish a box, or absolutely-positioned
+   background <img>s (e.g. .final-cta-bg) collapse against the inline picture. */
+picture { display: contents; }
