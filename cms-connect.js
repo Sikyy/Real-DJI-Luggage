@@ -448,7 +448,7 @@
       '.menu-footer-logo .cms-logo-image-light{opacity:0;}',
       '.menu-footer-logo .cms-logo-image-dark{opacity:1;}',
       'header.txt-light .logo .cms-logo-text{color:#fff;}',
-      'header.txt-dark .logo .cms-logo-text,header.header-solid .logo .cms-logo-text,header.header-dark .logo .cms-logo-text,header.scrolled .logo .cms-logo-text,header.menu-open .logo .cms-logo-text{color:#000;}',
+      'header.txt-dark .logo .cms-logo-text,header.header-solid .logo .cms-logo-text,header.header-dark .logo .cms-logo-text,header.scrolled .logo .cms-logo-text,header.menu-open .logo .cms-logo-text{color:var(--text-dark,#333);}',
       'header.txt-light .logo .cms-logo-image-light{opacity:1;}',
       'header.txt-light .logo .cms-logo-image-dark{opacity:0;}',
       'header.txt-dark .logo .cms-logo-image-light,header.header-solid .logo .cms-logo-image-light,header.header-dark .logo .cms-logo-image-light,header.scrolled .logo .cms-logo-image-light,header.menu-open .logo .cms-logo-image-light{opacity:0;}',

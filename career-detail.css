@@ -53,7 +53,7 @@ header {
   z-index: 100;
 }
 header.txt-dark .logo,
-header.menu-open .logo { color: var(--black); }
+header.menu-open .logo { color: var(--text-dark); }
 header.txt-dark .hamburger span,
 header.menu-open .hamburger span { background: var(--black); }
 header.txt-dark .header-cta,
@@ -68,7 +68,7 @@ header.menu-open {
 
 .logo {
   align-items: center;
-  color: var(--black);
+  color: var(--text-dark);
   display: flex;
   font-size: 23px;
   font-style: italic;
@@ -78,6 +78,20 @@ header.menu-open {
   text-decoration: none;
   transition: color 0.4s ease;
   white-space: nowrap;
+}
+.logo:link,
+.logo:visited {
+  color: var(--text-dark);
+}
+header.txt-light .logo:link,
+header.txt-light .logo:visited {
+  color: var(--white);
+}
+header.txt-dark .logo:link,
+header.txt-dark .logo:visited,
+header.menu-open .logo:link,
+header.menu-open .logo:visited {
+  color: var(--text-dark);
 }
 .logo svg {
   fill: var(--black);

@@ -13,18 +13,37 @@
   white-space: nowrap;
 }
 .logo {
+  text-decoration: none;
   transition: color .35s ease;
+}
+.logo:link,
+.logo:visited {
+  color: var(--white, #fff);
 }
 .menu-footer-logo {
   color: var(--text-dark, #333);
 }
-header.txt-light .logo { color: var(--white, #fff); }
+header.txt-light .logo,
+header.txt-light .logo:link,
+header.txt-light .logo:visited {
+  color: var(--white, #fff);
+}
 header.txt-dark .logo,
+header.txt-dark .logo:link,
+header.txt-dark .logo:visited,
 header.header-solid .logo,
+header.header-solid .logo:link,
+header.header-solid .logo:visited,
 header.header-dark .logo,
+header.header-dark .logo:link,
+header.header-dark .logo:visited,
 header.scrolled .logo,
-header.menu-open .logo {
-  color: var(--black, #000);
+header.scrolled .logo:link,
+header.scrolled .logo:visited,
+header.menu-open .logo,
+header.menu-open .logo:link,
+header.menu-open .logo:visited {
+  color: var(--text-dark, #333);
 }
 .logo .cms-logo-image-stack,
 .menu-footer-logo .cms-logo-image-stack {
