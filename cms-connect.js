@@ -2,9 +2,6 @@
   const CMS_BASE = window.DJI_CMS_BASE || 'http://localhost:3000';
   const SUPPORTED_LOCALES = ['en', 'id', 'zh'];
   const DEFAULT_LOCALE = 'en';
-  const LOGO_ASSET_VERSION = '20260601d';
-  const DEFAULT_LOGO_LIGHT_URL = '/assets/brand/dji-luggage-logo-white.png?v=20260601d';
-  const DEFAULT_LOGO_DARK_URL = '/assets/brand/dji-luggage-logo-black.png?v=20260601d';
   const HOME_HERO_VIDEO_URL = '/assets/home/hero-video.mp4';
   const HOME_HERO_POSTER_URL = '/assets/home/hero-poster.jpg';
   const LEGACY_HOME_HERO_VIDEO_URL = 'https://framerusercontent.com/assets/B1E36n5Z6jDij8UJYkjAIGrRups.mp4';
@@ -441,7 +438,7 @@
     const style = document.createElement('style');
     style.id = 'dji-cms-brand-styles';
     style.textContent = [
-      '.logo .cms-logo-text,.menu-footer-logo .cms-logo-text{display:inline-block;font-family:Geist,Switzer,Inter,"Helvetica Neue",Arial,sans-serif;font-size:23px;font-style:italic;font-weight:700;line-height:1;letter-spacing:0;white-space:nowrap;transition:color .35s ease;}',
+      '.logo .cms-logo-text,.menu-footer-logo .cms-logo-text{display:inline-block;font-family:Geist,Switzer,Inter,"Helvetica Neue",Arial,sans-serif;font-size:23px;font-style:italic;font-weight:900;line-height:1;letter-spacing:0;white-space:nowrap;transition:color .35s ease;}',
       '.logo .cms-logo-text,.logo:link .cms-logo-text,.logo:visited .cms-logo-text{color:var(--white,#fff);}',
       '.menu-footer-logo .cms-logo-text{color:var(--text-dark,#080808);}',
       '.logo .cms-logo-image-stack,.menu-footer-logo .cms-logo-image-stack{display:inline-grid;align-items:center;height:18px;width:115px;max-width:115px;}',
@@ -482,34 +479,8 @@
     header.classList.add(firstThemedSection.getAttribute('data-header') === 'light' ? 'txt-light' : 'txt-dark');
   }
 
-  function versionLocalLogoUrl(url) {
-    if (!url) return url;
-    const base = String(url).split('?')[0];
-    if (/\/assets\/brand\/dji-luggage-logo-(white|black)\.png$/.test(base)) {
-      return base + '?v=' + LOGO_ASSET_VERSION;
-    }
-    return url;
-  }
-
-  function logoImageUrls(site) {
-    return {
-      light: versionLocalLogoUrl(site.externalLogoImageUrl || (site.logoImage && site.logoImage.url) || DEFAULT_LOGO_LIGHT_URL),
-      dark: versionLocalLogoUrl(site.externalDarkLogoImageUrl || (site.darkLogoImage && site.darkLogoImage.url) || DEFAULT_LOGO_DARK_URL),
-    };
-  }
-
   function renderBrandLogo(site, large) {
     const label = site.logoLabel || site.brandName || 'DJI LUGGAGE';
-    const alt = site.logoAlt || label;
-    if (site.logoDisplay === 'image') {
-      const imageUrls = logoImageUrls(site);
-      return [
-        '<span class="cms-logo-image-stack" aria-label="' + escapeHTML(alt) + '">',
-        '<img class="cms-logo-image cms-logo-image-light" src="' + escapeHTML(imageUrls.light) + '" alt="' + escapeHTML(alt) + '">',
-        '<img class="cms-logo-image cms-logo-image-dark" src="' + escapeHTML(imageUrls.dark) + '" alt="">',
-        '</span>',
-      ].join('');
-    }
     return '<span class="cms-logo-text' + (large ? ' cms-logo-text-large' : '') + '">' + escapeHTML(label) + '</span>';
   }
 

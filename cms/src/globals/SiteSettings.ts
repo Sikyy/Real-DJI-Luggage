@@ -33,7 +33,7 @@ export const SiteSettings: GlobalConfig = {
             {
               name: 'logoDisplay',
               type: 'select',
-              defaultValue: 'image',
+              defaultValue: 'text',
               options: [
                 { label: 'Text', value: 'text' },
                 { label: 'Image', value: 'image' },

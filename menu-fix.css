@@ -1,6 +1,31 @@
 /* Site refinements for the DJI Luggage static frontend. */
 
 /* ===== Static brand fallback ===== */
+.logo,
+.menu-footer-logo {
+  color: var(--white, #fff);
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 23px;
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+.logo {
+  transition: color .35s ease;
+}
+.menu-footer-logo {
+  color: var(--text-dark, #333);
+}
+header.txt-light .logo { color: var(--white, #fff); }
+header.txt-dark .logo,
+header.header-solid .logo,
+header.header-dark .logo,
+header.scrolled .logo,
+header.menu-open .logo {
+  color: var(--black, #000);
+}
 .logo .cms-logo-image-stack,
 .menu-footer-logo .cms-logo-image-stack {
   display: inline-grid;

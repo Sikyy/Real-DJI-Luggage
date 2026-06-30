@@ -52,13 +52,13 @@ header {
   transition: background 0.4s ease, border-color 0.4s ease;
   z-index: 100;
 }
-header.txt-dark .logo svg,
-header.menu-open .logo svg { fill: var(--black); }
+header.txt-dark .logo,
+header.menu-open .logo { color: var(--black); }
 header.txt-dark .hamburger span,
 header.menu-open .hamburger span { background: var(--black); }
 header.txt-dark .header-cta,
 header.menu-open .header-cta { color: var(--black); }
-header.txt-light .logo svg { fill: var(--white); }
+header.txt-light .logo { color: var(--white); }
 header.txt-light .hamburger span { background: var(--white); }
 header.txt-light .header-cta { color: var(--white); }
 header.menu-open {
@@ -68,8 +68,16 @@ header.menu-open {
 
 .logo {
   align-items: center;
+  color: var(--black);
   display: flex;
+  font-size: 23px;
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1;
   text-decoration: none;
+  transition: color 0.4s ease;
+  white-space: nowrap;
 }
 .logo svg {
   fill: var(--black);

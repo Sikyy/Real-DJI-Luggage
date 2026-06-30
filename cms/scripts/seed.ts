@@ -452,7 +452,7 @@ async function seed() {
     data: {
       brandName: 'DJI Luggage',
       logoLabel: 'DJI LUGGAGE',
-      logoDisplay: 'image',
+      logoDisplay: 'text',
       logoAlt: 'DJI Luggage',
       logoHref: '/',
       externalLogoImageUrl: '/assets/brand/dji-luggage-logo-white.png?v=20260601d',
