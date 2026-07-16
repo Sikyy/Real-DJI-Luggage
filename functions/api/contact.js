@@ -1,5 +1,5 @@
 const DEFAULT_TO_EMAIL = 'info@djiluggage.id'
-const DEFAULT_FROM_EMAIL = 'noreply@djiluggage.id'
+const DEFAULT_FROM_EMAIL = 'website@djiluggage.id'
 const DEFAULT_FROM_NAME = 'DJI Luggage Website'
 const MAX_FIELD_LENGTH = 500
 const MAX_MESSAGE_LENGTH = 4000
@@ -153,7 +153,6 @@ export async function onRequestPost({ request, env }) {
           replyTo,
           subject,
           text,
-          to,
         }),
       })
 

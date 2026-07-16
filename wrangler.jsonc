@@ -4,7 +4,7 @@
   "pages_build_output_dir": "dist",
   "vars": {
     "CONTACT_TO_EMAIL": "info@djiluggage.id",
-    "CONTACT_FROM_EMAIL": "noreply@djiluggage.id",
+    "CONTACT_FROM_EMAIL": "website@djiluggage.id",
     "CONTACT_FROM_NAME": "DJI Luggage Website"
   },
   "services": [
