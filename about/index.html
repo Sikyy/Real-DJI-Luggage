@@ -42,9 +42,9 @@
       border-bottom: 0;
     }
     header.scrolled {
-      background: rgba(0, 0, 0, 0.92);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(12px);
-      border-bottom-color: transparent;
+      border-bottom-color: rgba(0,0,0,0.08);
     }
 
     .logo {
@@ -58,7 +58,7 @@
       fill: var(--black);
       transition: fill 0.4s ease;
     }
-    header.scrolled .logo svg { fill: var(--white); }
+    header.scrolled .logo svg { fill: var(--black); }
 
     .hamburger {
       display: flex;
@@ -77,7 +77,7 @@
       transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.25s ease, background 0.4s ease;
       transform-origin: center;
     }
-    header.scrolled .hamburger span { background: var(--white); }
+    header.scrolled .hamburger span { background: var(--black); }
     .hamburger.active span:first-child {
       transform: translateY(4.25px) rotate(45deg);
     }
@@ -112,7 +112,7 @@
     header.menu-open .logo svg { fill: var(--black) !important; }
     header.menu-open .hamburger span { background: var(--black) !important; }
     header.menu-open .header-cta { color: var(--black) !important; }
-    header.scrolled .header-cta { color: var(--white); }
+    header.scrolled .header-cta { color: var(--black); }
 
     /* Header menu-open state */
     header.menu-open {
@@ -811,7 +811,7 @@
       opacity: 0.96;
     }
 
-    /* ========== 6. COMPLIANCE & QC ========== */
+    /* ========== 6. FACTORY PROOF ========== */
     .compliance-lab {
       background: #040404;
       color: var(--white);
@@ -928,6 +928,46 @@
       color: rgba(255,255,255,0.78);
     }
 
+    .factory-proof-media {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 12px;
+    }
+
+    .factory-proof-media figure {
+      min-height: 260px;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #151515;
+    }
+
+    .factory-proof-media figure:first-child {
+      grid-row: span 2;
+    }
+
+    .factory-proof-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      display: block;
+      object-fit: cover;
+      filter: brightness(.82);
+    }
+
+    .factory-proof-media figcaption {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      line-height: 1.35;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.86);
+    }
     /* ========== 7. TESTIMONIALS ========== */
     .testimonials {
       position: relative;
@@ -1168,7 +1208,7 @@
     .our-team {
       position: relative;
       height: 973px;
-      background: linear-gradient(rgb(243, 244, 246) 42%, rgb(201, 201, 201) 100%);
+      background: #fff;
       padding: 180px 0 0 32px;
       overflow: hidden;
     }
@@ -1200,7 +1240,7 @@
     }
 
     .team-arrow {
-      background: rgb(231, 233, 236);
+      background: #fff;
       color: var(--black);
     }
 
@@ -1517,6 +1557,8 @@
       .stats-grid { max-width: 100%; }
       .compliance-layout { grid-template-columns: 1fr; gap: 48px; }
       .compliance-grid { grid-template-columns: 1fr; }
+      .factory-proof-media { grid-template-columns: 1fr; }
+      .factory-proof-media figure:first-child { grid-row: auto; }
       .compliance-card { min-height: 280px; }
       .testimonials { height: 720px; }
       .testimonial-content { top: 250px; max-width: calc(100% - 64px); }
@@ -1549,6 +1591,7 @@
       .compliance-copy { font-size: 16px; }
       .compliance-card h3 { font-size: 24px; letter-spacing: -1px; }
       .compliance-proof { grid-template-columns: 1fr; }
+      .factory-proof-media img { min-height: 220px; }
       .testimonials { height: 640px; }
       .testimonial-slide img {
         top: -63px;
@@ -1575,7 +1618,7 @@
   </style>
   <link rel="stylesheet" href="/menu-fix.css?v=20260630a">
   <script defer src="/menu-fix.js?v=20260531t"></script>
-  <script defer src="/cms-connect.js?v=20260630a"></script>
+  <script defer src="/cms-connect.js?v=20260716a"></script>
 </head>
 <body>
 
@@ -1744,54 +1787,68 @@
   </section>
 
   <!-- 6. COMPLIANCE & QC -->
-  <section class="compliance-lab" data-header="light">
+  <section class="compliance-lab" id="factory-proof" data-header="light">
     <div class="compliance-layout">
       <div class="compliance-intro reveal">
-        <div class="section-label">CERTIFICATION / COMPLIANCE / QC</div>
-        <h2 class="compliance-heading word-reveal">Factory evidence buyers can review before production scales.</h2>
-        <p class="compliance-copy">For OEM and private-label programs, we help buyers organize the documents, checkpoints, and inspection records that make sampling, production, and export handover easier to verify.</p>
+        <div class="section-label">FACTORY PROOF</div>
+        <h2 class="compliance-heading word-reveal">Factory proof buyers can verify before production scales.</h2>
+        <p class="compliance-copy">Review capacity, production line coverage, QC checkpoints, certification support, export experience, and production-floor visuals before moving from sample approval to bulk order.</p>
       </div>
       <div class="compliance-content">
         <div class="compliance-grid">
           <article class="compliance-card reveal">
             <div>
-              <div class="compliance-card-kicker">Audit Readiness</div>
-              <h3>Certification & factory profile support</h3>
+              <div class="compliance-card-kicker">Capacity</div>
+              <h3>80k units annual luggage capacity</h3>
             </div>
             <ul>
-              <li>Factory profile, business license, and supplier questionnaire support</li>
-              <li>Buyer audit preparation for production, HR, safety, and documentation review</li>
-              <li>Certificate and test-report archive when project requirements are confirmed</li>
+              <li>75-person team supporting sampling, production coordination, QC, and export prep</li>
+              <li>Production planning for repeat OEM and private-label luggage programs</li>
+              <li>Capacity and schedule reviewed before confirmed bulk order slots</li>
             </ul>
           </article>
           <article class="compliance-card reveal reveal-delay-1">
             <div>
-              <div class="compliance-card-kicker">Compliance</div>
-              <h3>Market and material requirement checks</h3>
+              <div class="compliance-card-kicker">Production Lines</div>
+              <h3>Shell, assembly, packing, and export workflow</h3>
             </div>
             <ul>
-              <li>Material declaration coordination for shell, fabric, lining, trims, and packaging</li>
-              <li>Label, barcode, carton mark, warning text, and destination-market review</li>
-              <li>Buyer-specific document pack for private-label and distributor programs</li>
+              <li>Shell material, lining, wheels, locks, handles, branding, and carton details tracked</li>
+              <li>Sample notes translated into line-ready production requirements</li>
+              <li>Packaging, labels, barcode, and carton marks prepared by buyer market</li>
             </ul>
           </article>
           <article class="compliance-card reveal reveal-delay-2">
             <div>
-              <div class="compliance-card-kicker">Quality Control</div>
-              <h3>Inspection checkpoints built into the order</h3>
+              <div class="compliance-card-kicker">QC / Certificates</div>
+              <h3>Inspection checkpoints and document support</h3>
             </div>
             <ul>
               <li>Incoming material, color, shell, stitching, zipper, lock, wheel, and trolley checks</li>
-              <li>Pre-production sample confirmation before bulk production starts</li>
-              <li>In-line and final packing review with photo or video updates for buyers</li>
+              <li>Pre-production sample approval, in-line inspection, and final packing review</li>
+              <li>Factory profile, certificate archive, and buyer audit document support</li>
             </ul>
           </article>
         </div>
-        <div class="compliance-proof reveal reveal-delay-2" aria-label="Quality evidence examples">
-          <div class="compliance-proof-item">Pre-production sample approval</div>
-          <div class="compliance-proof-item">In-line inspection notes</div>
-          <div class="compliance-proof-item">Final packing review</div>
-          <div class="compliance-proof-item">Photo and video updates</div>
+        <div class="compliance-proof reveal reveal-delay-2" aria-label="Factory proof highlights">
+          <div class="compliance-proof-item">Annual capacity: 80k units</div>
+          <div class="compliance-proof-item">Production lines for shell, assembly, packing</div>
+          <div class="compliance-proof-item">Incoming, in-line, and final QC checkpoints</div>
+          <div class="compliance-proof-item">Export documentation and buyer audit support</div>
+        </div>
+        <div class="factory-proof-media reveal reveal-delay-2" aria-label="Factory production photos">
+          <figure>
+            <img src="/assets/generated/luggage-work/luggage-work-assembly.webp" alt="Luggage assembly line" loading="lazy">
+            <figcaption>Production line and assembly workflow</figcaption>
+          </figure>
+          <figure>
+            <img src="/assets/generated/luggage-work/luggage-work-quality-control.webp" alt="Luggage quality control checkpoint" loading="lazy">
+            <figcaption>QC checkpoint for shell, wheels, handle, and finish</figcaption>
+          </figure>
+          <figure>
+            <img src="/assets/generated/luggage-work/luggage-work-export-prep.webp" alt="Luggage export packing preparation" loading="lazy">
+            <figcaption>Carton, label, and export packing preparation</figcaption>
+          </figure>
         </div>
       </div>
     </div>
@@ -2017,6 +2074,19 @@
     }, { passive: true });
     window.addEventListener('resize', updateHeaderTheme);
     updateHeaderTheme();
+
+    function scrollToCurrentHashTarget() {
+      if (!window.location.hash) return;
+      const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+      if (!target) return;
+      const headerOffset = 72;
+      const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+      updateHeaderTheme();
+    }
+    window.addEventListener('load', () => setTimeout(scrollToCurrentHashTarget, 80));
+    window.addEventListener('hashchange', () => setTimeout(scrollToCurrentHashTarget, 0));
+    requestAnimationFrame(scrollToCurrentHashTarget);
 
     // Scroll reveal animations
     const revealObserver = new IntersectionObserver((entries) => {

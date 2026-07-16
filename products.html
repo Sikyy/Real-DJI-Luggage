@@ -41,7 +41,7 @@
       transition: background 0.4s ease, border-color 0.4s ease;
     }
     header.scrolled {
-      background: rgba(243, 244, 246, 0.95);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(12px);
       border-bottom-color: rgba(0,0,0,0.08);
     }
@@ -384,7 +384,7 @@
     /* ========== SERVICES HERO ========== */
     .services-hero {
       position: relative;
-      height: 485px;
+      height: 449px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -394,13 +394,12 @@
     }
     .services-hero-bg {
       position: absolute;
-      top: -78px;
+      top: -74px;
       left: -10%;
       width: 120%;
-      height: 582px;
+      height: 538px;
       object-fit: cover;
       z-index: 0;
-      filter: brightness(0.4);
     }
     .services-hero > *:not(.services-hero-bg) {
       position: relative;
@@ -420,7 +419,7 @@
     .services-hero-content {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: flex-end;
     }
 
     .services-hero-left {
@@ -547,14 +546,111 @@
       max-width: 300px;
     }
 
-    /* ========== AERIAL HIGHWAY ========== */
-    .aerial-highway {
+    /* ========== BEST SELLERS ========== */
+    .best-sellers {
+      background: #fff;
+      padding: 92px 32px 84px;
+      text-align: center;
+    }
+
+    .best-sellers-kicker {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      line-height: 1.4;
+      text-transform: uppercase;
+      color: #333;
+      margin-bottom: 34px;
+    }
+
+    .best-sellers-title {
+      font-family: 'Geist', sans-serif;
+      font-size: 42px;
+      font-weight: 400;
+      letter-spacing: 10px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #333;
+      margin-bottom: 70px;
+    }
+
+    .best-sellers-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 34px;
+      align-items: start;
+    }
+
+    .best-seller-card {
+      display: block;
+      min-width: 0;
+      color: inherit;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .best-seller-media {
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .best-seller-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 18px rgba(0,0,0,0.08));
+    }
+
+    .best-seller-name {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      line-height: 1.55;
+      text-transform: uppercase;
+      color: #3d3d3d;
+      min-height: 62px;
+      overflow-wrap: anywhere;
+    }
+
+    .best-sellers-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 190px;
+      height: 62px;
+      margin-top: 64px;
+      padding: 0 34px;
+      border: 1px solid #222;
+      background: #151515;
+      color: #f7f7f7;
+      font-family: 'Fragment Mono', monospace;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .best-sellers-cta:hover {
+      background: transparent;
+      color: #151515;
+    }
+
+    /* ========== PRODUCT SHOWCASE ========== */
+    .product-showcase {
       position: relative;
       width: 100%;
       height: 550px;
       overflow: hidden;
     }
-    .aerial-highway img {
+    .product-showcase img,
+    .product-showcase video {
       height: 100%;
       left: -5%;
       position: absolute;
@@ -563,7 +659,7 @@
       object-fit: cover;
       filter: brightness(0.72);
     }
-    .aerial-highway::after {
+    .product-showcase::after {
       content: '';
       position: absolute;
       inset: 0;
@@ -573,7 +669,7 @@
       background-size: calc(100% / 5) calc(100% / 4);
       pointer-events: none;
     }
-    .aerial-highway-labels {
+    .product-showcase-labels {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -584,7 +680,7 @@
       padding: 0 40px;
       z-index: 1;
     }
-    .aerial-label {
+    .product-showcase-label {
       font-family: 'Fragment Mono', monospace;
       font-size: 12px;
       letter-spacing: normal;
@@ -592,151 +688,172 @@
       color: #fff;
     }
 
-    /* ========== SERVICES DETAIL ========== */
-    .services-detail {
+    /* ========== PRODUCT LINEUP ========== */
+    .product-lineup {
       background: var(--body-bg);
-      padding: 319px 32px 169px;
+      padding: 160px 32px 128px;
     }
 
-    .services-detail-title {
+    .product-lineup-header {
+      max-width: 980px;
+      margin-bottom: 72px;
+    }
+
+    .product-lineup-kicker {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: normal;
+      line-height: 16px;
+      color: #6f6f6f;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .product-lineup-title {
       font-family: 'Geist', sans-serif;
       font-size: 56px;
       font-weight: 400;
       letter-spacing: -2.8px;
       line-height: 1.15;
       color: var(--black);
-      margin-bottom: 14px;
+      max-width: 920px;
     }
 
-    .service-item {
+    .product-lineup-grid {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      align-items: start;
-      gap: 10px;
-      padding: 24px 0 55px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .product-line-card {
       border-top: 1px solid #d4d4d4;
+      padding-top: 20px;
     }
 
-    .service-item-number {
-      font-family: 'Fragment Mono', monospace;
-      font-size: 12px;
-      font-weight: 400;
-      color: #9e9e9e;
-      line-height: 12px;
-      grid-column: 1 / span 1;
-      padding-top: 0;
-    }
-
-    .service-item-content {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
-      align-items: start;
-      grid-column: 2 / span 6;
-    }
-
-    .service-item-image {
-      grid-column: 9 / span 4;
+    .product-line-media {
       width: 100%;
-      height: 252px;
+      aspect-ratio: 1.06;
       border-radius: 4px;
       overflow: hidden;
+      background: #f4f4f4;
+      margin-bottom: 22px;
     }
-    .service-item-image img {
+
+    .product-line-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .service-item-name {
-      font-family: 'Geist', sans-serif;
-      font-size: 20.8px;
+    .product-line-number {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
       font-weight: 400;
-      letter-spacing: -0.832px;
-      line-height: 24.96px;
+      color: #9e9e9e;
+      line-height: 12px;
+      margin-bottom: 32px;
+    }
+
+    .product-line-name {
+      font-family: 'Geist', sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.88px;
+      line-height: 1.18;
       color: var(--black);
-      margin-bottom: 0;
-      grid-column: 1 / span 2;
+      margin-bottom: 18px;
     }
 
-    .service-item-divider {
-      display: none;
-    }
-
-    .service-item-desc {
+    .product-line-desc {
       font-family: 'Geist', sans-serif;
       font-size: 16px;
       font-weight: 400;
       letter-spacing: -0.64px;
       line-height: 1.5;
       color: var(--text-dark);
-      max-width: none;
-      grid-column: 4 / span 3;
     }
 
-    /* ========== INDUSTRIES ========== */
-    .industries {
+    /* ========== PRODUCT STUDIO ========== */
+    .product-studio {
       background: var(--body-bg);
       padding: 0 32px 160px;
     }
 
-    .industries-title {
-      font-family: 'Geist', sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      letter-spacing: -0.64px;
-      line-height: 20.8px;
-      color: var(--black);
-      margin-bottom: 80px;
-    }
-
-    .industries-layout {
+    .product-studio-layout {
       display: grid;
-      grid-template-columns: minmax(0, 663px) minmax(0, 663px);
-      gap: 80px;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 72px;
       align-items: start;
     }
 
-    .industries-image {
+    .product-studio-media {
       border-radius: 4px;
       overflow: hidden;
-      min-height: 596.8px;
-      height: 596.8px;
+      height: 640px;
+      background: #f4f4f4;
     }
-    .industries-image img {
+    .product-studio-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .industries-content {
-      padding-top: 58px;
+    .product-studio-content {
+      padding-top: 42px;
     }
 
-    .industries-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      width: 550px;
-    }
-
-    .industry-name {
+    .product-studio-title {
       font-family: 'Geist', sans-serif;
-      font-size: 40px;
+      font-size: 52px;
       font-weight: 400;
-      letter-spacing: -2px;
-      line-height: 44px;
+      letter-spacing: -2.6px;
+      line-height: 1.08;
       color: var(--black);
-      padding: 0;
-      border-bottom: none;
-      cursor: default;
-      transition: opacity 0.3s;
+      max-width: 680px;
+      margin-bottom: 28px;
     }
-    .industry-name:first-child {
-      border-top: none;
+
+    .product-studio-copy {
+      font-family: 'Geist', sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      letter-spacing: -0.68px;
+      line-height: 1.55;
+      color: var(--text-dark);
+      max-width: 610px;
     }
-    .industry-name:hover {
-      opacity: 0.5;
+
+    .product-spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 28px;
+      margin-top: 56px;
+    }
+
+    .product-spec {
+      border-top: 1px solid #d4d4d4;
+      padding: 18px 0 22px;
+    }
+
+    .product-spec-name {
+      display: block;
+      font-family: 'Fragment Mono', monospace;
+      font-size: 12px;
+      letter-spacing: normal;
+      line-height: 16px;
+      color: #6f6f6f;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .product-spec p {
+      font-family: 'Geist', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: -0.8px;
+      line-height: 1.22;
+      color: var(--black);
     }
 
     /* ========== FINAL CTA ========== */
@@ -947,18 +1064,19 @@
       .our-focus-right .our-focus-heading { font-size: 28px; line-height: 34px; }
       .our-focus-details { flex-direction: column; gap: 24px; }
       .our-focus-details p { max-width: 100%; }
-      .aerial-highway { height: 450px; }
-      .services-detail { padding: 100px 32px 0; }
-      .services-detail-title { font-size: 36px; }
-      .service-item { flex-direction: column; gap: 16px; }
-      .service-item-image { width: 100%; height: 200px; }
-      .service-item-name { font-size: 22px; }
-      .industries-title { font-size: 36px; margin-bottom: 36px; }
-      .industries-layout { grid-template-columns: 1fr; gap: 36px; }
-      .industries-image { min-height: 300px; }
-      .industries-content { padding-top: 0; }
-      .industries-list { width: 100%; }
-      .industry-name { font-size: 32px; }
+      .best-sellers { padding: 78px 24px 72px; }
+      .best-sellers-title { font-size: 34px; letter-spacing: 7px; margin-bottom: 54px; }
+      .best-sellers-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 42px 24px; }
+      .best-seller-name { min-height: 0; }
+      .product-showcase { height: 450px; }
+      .product-lineup { padding: 104px 32px 96px; }
+      .product-lineup-title { font-size: 36px; letter-spacing: -1.8px; }
+      .product-lineup-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 20px; }
+      .product-studio { padding: 0 32px 112px; }
+      .product-studio-layout { grid-template-columns: 1fr; gap: 36px; }
+      .product-studio-media { height: 360px; }
+      .product-studio-content { padding-top: 0; }
+      .product-studio-title { font-size: 36px; letter-spacing: -1.8px; }
       .footer-top { flex-direction: column; gap: 48px; }
       .footer-nav { gap: 36px; flex-wrap: wrap; }
     }
@@ -971,17 +1089,27 @@
       .our-focus { padding: 80px 20px; }
       .our-focus-right .our-focus-heading { font-size: 24px; line-height: 30px; }
       .our-focus-details p { font-size: 14px; }
-      .aerial-highway { height: 300px; }
-      .aerial-highway-labels { flex-wrap: wrap; gap: 12px; padding: 0 20px; bottom: 20px; }
-      .services-detail { padding: 80px 20px 0; }
-      .services-detail-title { font-size: 32px; }
-      .service-item-name { font-size: 20px; }
-      .service-item-image { width: 100%; height: 180px; }
-      .industries { padding: 0 20px 100px; }
-      .industries-title { font-size: 32px; }
-      .industries-layout { grid-template-columns: 1fr; gap: 28px; }
-      .industries-list { width: 100%; }
-      .industry-name { font-size: 28px; letter-spacing: -1.4px; }
+      .best-sellers { padding: 64px 16px; }
+      .best-sellers-kicker { font-size: 11px; letter-spacing: 2.4px; margin-bottom: 24px; }
+      .best-sellers-title { font-size: 28px; letter-spacing: 5px; margin-bottom: 42px; }
+      .best-sellers-grid { display: flex; gap: 18px; overflow-x: auto; padding: 0 4px 16px; scroll-snap-type: x mandatory; }
+      .best-seller-card { flex: 0 0 72%; scroll-snap-align: center; }
+      .best-seller-name { font-size: 12px; letter-spacing: 2px; }
+      .best-sellers-cta { width: 100%; max-width: 240px; height: 56px; margin-top: 42px; }
+      .product-showcase { height: 300px; }
+      .product-showcase-labels { flex-wrap: wrap; gap: 12px; padding: 0 20px; }
+      .product-lineup { padding: 80px 20px 72px; }
+      .product-lineup-header { margin-bottom: 44px; }
+      .product-lineup-title { font-size: 32px; letter-spacing: -1.6px; }
+      .product-lineup-grid { grid-template-columns: 1fr; gap: 36px; }
+      .product-line-number { margin-bottom: 22px; }
+      .product-line-name { font-size: 20px; }
+      .product-studio { padding: 0 20px 96px; }
+      .product-studio-layout { grid-template-columns: 1fr; gap: 28px; }
+      .product-studio-media { height: 320px; }
+      .product-studio-title { font-size: 32px; letter-spacing: -1.6px; }
+      .product-spec-grid { grid-template-columns: 1fr; margin-top: 40px; }
+      .product-spec p { font-size: 18px; }
       .final-cta { padding: 80px 20px; }
       .final-cta h2 { font-size: 40px; line-height: 40px; letter-spacing: -2px; }
       footer { padding: 48px 20px 0; }
@@ -996,7 +1124,7 @@
   </style>
   <link rel="stylesheet" href="/menu-fix.css?v=20260630a">
   <script defer src="/menu-fix.js?v=20260531t"></script>
-  <script defer src="/cms-connect.js?v=20260630a"></script>
+  <script defer src="/cms-connect.js?v=20260716a"></script>
 </head>
 <body data-page="products">
 
@@ -1058,8 +1186,7 @@
 
   <!-- PRODUCT CAPABILITIES HERO -->
   <section class="services-hero">
-    <picture><source type="image/webp" srcset="/assets/services/services-hero-concept.webp"><img class="services-hero-bg" src="/assets/services/services-hero-concept.png" alt="Conceptual luggage manufacturing services map" loading="eager"></picture>
-    <div class="section-label reveal">PRODUCT CAPABILITIES</div>
+    <img class="services-hero-bg" src="/assets/products/product-capabilities-hero.png" alt="White aluminum luggage carried in a refined interior" loading="eager">
     <div class="services-hero-content">
       <div class="services-hero-left">
         <h1 class="services-hero-title hero-anim-title">Product Capabilities</h1>
@@ -1092,87 +1219,116 @@
     </div>
   </section>
 
-  <!-- AERIAL HIGHWAY IMAGE -->
-  <section class="aerial-highway reveal">
-    <picture><source type="image/webp" srcset="/assets/services/services-workflow-concept.webp"><img src="/assets/services/services-workflow-concept.png" alt="Conceptual luggage service workflow routes" loading="lazy"></picture>
-    <div class="aerial-highway-labels">
-      <div class="aerial-label">+ HARD SHELL</div>
-      <div class="aerial-label">+ SOFT LUGGAGE</div>
-      <div class="aerial-label">+ TRAVEL BAGS</div>
-      <div class="aerial-label">+ PRIVATE LABEL</div>
+  <!-- BEST SELLERS -->
+  <section class="best-sellers" data-header="dark">
+    <p class="best-sellers-kicker reveal">Our best sellers</p>
+    <h2 class="best-sellers-title reveal reveal-delay-1">All Collections</h2>
+    <div class="best-sellers-grid">
+      <a class="best-seller-card reveal" href="/products/roaming-aluminum-frame-zipperless-luggage-khaki-green">
+        <div class="best-seller-media">
+          <img src="/assets/products/roaming-best-sellers/roaming-aluminum-frame-khaki-green.png" alt="Roaming Aluminum Frame zipperless luggage Khaki green" loading="lazy">
+        </div>
+        <h3 class="best-seller-name">Roaming Aluminum Frame zipperless luggage Khaki green</h3>
+      </a>
+      <a class="best-seller-card reveal reveal-delay-1" href="/products/roaming-aluminum-frame-zipperless-luggage-pink">
+        <div class="best-seller-media">
+          <img src="/assets/products/roaming-best-sellers/roaming-aluminum-frame-pink.png" alt="Roaming Aluminum Frame zipperless luggage pink" loading="lazy">
+        </div>
+        <h3 class="best-seller-name">Roaming Aluminum Frame zipperless luggage pink</h3>
+      </a>
+      <a class="best-seller-card reveal reveal-delay-2" href="/products/roaming-aluminum-frame-zipperless-luggage-grey">
+        <div class="best-seller-media">
+          <img src="/assets/products/roaming-best-sellers/roaming-aluminum-frame-grey.png" alt="Roaming Aluminum Frame zipperless luggage Grey" loading="lazy">
+        </div>
+        <h3 class="best-seller-name">Roaming Aluminum Frame zipperless luggage Grey</h3>
+      </a>
+      <a class="best-seller-card reveal reveal-delay-3" href="/products/roaming-aluminum-frame-zipperless-luggage-blue-copy">
+        <div class="best-seller-media">
+          <img src="/assets/products/roaming-best-sellers/roaming-aluminum-frame-black.png" alt="Roaming Aluminum Frame zipperless luggage black" loading="lazy">
+        </div>
+        <h3 class="best-seller-name">Roaming Aluminum Frame zipperless luggage black</h3>
+      </a>
+      <a class="best-seller-card reveal reveal-delay-3" href="/products/roaming-aluminum-frame-zipperless-luggage-white-copy">
+        <div class="best-seller-media">
+          <img src="/assets/products/roaming-best-sellers/roaming-aluminum-frame-white.png" alt="Roaming Aluminum Frame zipperless luggage white" loading="lazy">
+        </div>
+        <h3 class="best-seller-name">Roaming Aluminum Frame zipperless luggage white</h3>
+      </a>
+    </div>
+    <a class="best-sellers-cta reveal" href="/collections/all">View all</a>
+  </section>
+
+  <!-- PRODUCT SHOWCASE -->
+  <section class="product-showcase reveal">
+    <video src="/assets/products/hard-shell-showcase.mp4" aria-label="Hard shell luggage showcase video" autoplay muted loop playsinline preload="metadata"></video>
+    <div class="product-showcase-labels">
+      <div class="product-showcase-label">+ ALUMINUM FRAME</div>
+      <div class="product-showcase-label">+ HARD SHELL</div>
+      <div class="product-showcase-label">+ SOFT SIDE</div>
+      <div class="product-showcase-label">+ PRIVATE LABEL</div>
     </div>
   </section>
 
-  <!-- PRODUCT DETAIL -->
-  <section class="services-detail" data-header="dark">
-    <h2 class="services-detail-title reveal">What We Can Build</h2>
-
-    <div class="service-item reveal">
-      <div class="service-item-number">[01]</div>
-      <div class="service-item-content">
-        <h3 class="service-item-name">Hard-Shell Suitcases</h3>
-        <div class="service-item-divider"></div>
-        <p class="service-item-desc">ABS, PC, ABS+PC, and PP suitcase programs for carry-on, medium, large, and nested set configurations, with molded shell, color, texture, and trim options.</p>
-      </div>
-      <div class="service-item-image">
-        <picture><source type="image/webp" srcset="/assets/generated/luggage-work/luggage-work-thermoforming.webp"><img src="/assets/generated/luggage-work/luggage-work-thermoforming.png" alt="OEM luggage thermoforming production" loading="lazy"></picture>
-      </div>
+  <!-- PRODUCT LINEUP -->
+  <section class="product-lineup" data-header="dark">
+    <div class="product-lineup-header reveal">
+      <p class="product-lineup-kicker">Product Range</p>
+      <h2 class="product-lineup-title">A focused luggage range for retail, distributor, and private-label programs.</h2>
     </div>
 
-    <div class="service-item reveal">
-      <div class="service-item-number">[02]</div>
-      <div class="service-item-content">
-        <h3 class="service-item-name">Soft-Side And Fabric Luggage</h3>
-        <div class="service-item-divider"></div>
-        <p class="service-item-desc">Fabric luggage with practical pocket layouts, zipper construction, reinforcement, lining, trolley systems, wheel assemblies, and retail-ready finishing.</p>
-      </div>
-      <div class="service-item-image">
-        <picture><source type="image/webp" srcset="/assets/generated/luggage-work/luggage-work-assembly.webp"><img src="/assets/generated/luggage-work/luggage-work-assembly.png" alt="ODM luggage sample and handle assembly review" loading="lazy"></picture>
-      </div>
-    </div>
+    <div class="product-lineup-grid">
+      <article class="product-line-card reveal">
+        <div class="product-line-number">[01]</div>
+        <div class="product-line-media">
+          <img src="/assets/products/roaming-catalog/roaming-aluminum-frame-zipperless-luggage-white-1.png" alt="White aluminum frame luggage" loading="lazy">
+        </div>
+        <h3 class="product-line-name">Aluminum Frame Luggage</h3>
+        <p class="product-line-desc">Zipperless frame cases with clean vertical shells, reinforced corners, and carry-on to checked sizes.</p>
+      </article>
 
-    <div class="service-item reveal">
-      <div class="service-item-number">[03]</div>
-      <div class="service-item-content">
-        <h3 class="service-item-name">Travel Bags And Duffels</h3>
-        <div class="service-item-divider"></div>
-        <p class="service-item-desc">Travel bags, weekender bags, organizer sets, and lightweight companion products for brands that want a broader travel goods line beyond suitcases.</p>
-      </div>
-      <div class="service-item-image">
-        <picture><source type="image/webp" srcset="/assets/generated/luggage-work/luggage-work-quality-control.webp"><img src="/assets/generated/luggage-work/luggage-work-quality-control.png" alt="Luggage quality control inspection line" loading="lazy"></picture>
-      </div>
-    </div>
+      <article class="product-line-card reveal">
+        <div class="product-line-number">[02]</div>
+        <div class="product-line-media">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-silver-1.png" alt="Silver all aluminum zipperless luggage" loading="lazy">
+        </div>
+        <h3 class="product-line-name">All-Aluminum Builds</h3>
+        <p class="product-line-desc">Metal shell programs for buyers that want a premium, structured suitcase with a stronger hardware story.</p>
+      </article>
 
-    <div class="service-item reveal">
-      <div class="service-item-number">[04]</div>
-      <div class="service-item-content">
-        <h3 class="service-item-name">Private-Label Sets</h3>
-        <div class="service-item-divider"></div>
-        <p class="service-item-desc">Coordinated suitcase sets with logo placement, trim colors, hangtags, inserts, carton marks, barcode labels, and packing rules aligned to retail or distributor needs.</p>
-      </div>
-      <div class="service-item-image">
-        <picture><source type="image/webp" srcset="/assets/generated/luggage-work/luggage-work-export-prep.webp"><img src="/assets/generated/luggage-work/luggage-work-export-prep.png" alt="Export-ready luggage cartons and pallets" loading="lazy"></picture>
-      </div>
+      <article class="product-line-card reveal">
+        <div class="product-line-number">[03]</div>
+        <div class="product-line-media">
+          <img src="/assets/products/roaming-catalog/aluminum-suitcase-blue-1.png" alt="Blue hard shell suitcase" loading="lazy">
+        </div>
+        <h3 class="product-line-name">Hard-Shell Suitcases</h3>
+        <p class="product-line-desc">Durable molded suitcase ranges with color, texture, wheel, trolley, and interior options.</p>
+      </article>
+
+      <article class="product-line-card reveal">
+        <div class="product-line-number">[04]</div>
+        <div class="product-line-media">
+          <img src="/assets/products/roaming-catalog/roaming-aluminum-frame-zipperless-luggage-pink-1.png" alt="Pink aluminum frame luggage" loading="lazy">
+        </div>
+        <h3 class="product-line-name">Color-Matched Sets</h3>
+        <p class="product-line-desc">Coordinated product families with matching finishes, trim colors, branding, packaging, and carton rules.</p>
+      </article>
     </div>
   </section>
 
-  <!-- INDUSTRIES -->
-  <section class="industries" data-header="dark">
-    <div class="industries-layout reveal">
-      <div class="industries-image">
+  <!-- PRODUCT STUDIO -->
+  <section class="product-studio" data-header="dark">
+    <div class="product-studio-layout reveal">
+      <div class="product-studio-media">
         <picture><source type="image/webp" srcset="/assets/framer/xuiGNeWrzpBf9F7gqvI7nHqMlg.webp"><img src="/assets/framer/xuiGNeWrzpBf9F7gqvI7nHqMlg.webp" alt="Finished luggage storage" loading="lazy"></picture>
       </div>
-      <div class="industries-content">
-        <h2 class="industries-title">Customization Range</h2>
-        <div class="industries-list">
-          <div class="industry-name">Shell Materials</div>
-          <div class="industry-name">Wheels And Trolleys</div>
-          <div class="industry-name">Locks And Zippers</div>
-          <div class="industry-name">Logo Placement</div>
-          <div class="industry-name">Interior Lining</div>
-          <div class="industry-name">Color Matching</div>
-          <div class="industry-name">Retail Packaging</div>
-          <div class="industry-name">Carton Marks</div>
+      <div class="product-studio-content">
+        <h2 class="product-studio-title">Materials, parts, and brand details stay configurable.</h2>
+        <p class="product-studio-copy">Products can be adapted around target price, destination market, and retail channel, from shell selection and component grade to logo application and carton labeling.</p>
+        <div class="product-spec-grid">
+          <div class="product-spec"><span class="product-spec-name">Shells</span><p>ABS, PC, ABS+PC, PP, aluminum frame, texture, gloss, and matte finishes.</p></div>
+          <div class="product-spec"><span class="product-spec-name">Mobility</span><p>Spinner wheels, trolley systems, handles, corner guards, and replacement parts.</p></div>
+          <div class="product-spec"><span class="product-spec-name">Security</span><p>TSA locks, zipperless frames, zipper pulls, combination locks, and hardware colors.</p></div>
+          <div class="product-spec"><span class="product-spec-name">Branding</span><p>Logo plates, embossing, printed liners, hangtags, inserts, barcodes, and outer cartons.</p></div>
         </div>
       </div>
     </div>

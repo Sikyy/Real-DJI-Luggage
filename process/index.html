@@ -42,13 +42,13 @@
       transition: background 0.4s ease, border-bottom-color 0.4s ease;
     }
     header.scrolled {
-      background: rgba(0,0,0,0.92);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(12px);
-      border-bottom-color: transparent;
+      border-bottom-color: rgba(0,0,0,0.08);
     }
-    header.scrolled .logo svg { fill: #fff; }
-    header.scrolled .hamburger span { background: #fff; }
-    header.scrolled .header-cta { color: #fff; }
+    header.scrolled .logo svg { fill: var(--black); }
+    header.scrolled .hamburger span { background: var(--black); }
+    header.scrolled .header-cta { color: var(--black); }
 
     .logo {
       display: flex;
@@ -410,7 +410,7 @@
       aspect-ratio: 1 / 1;
       height: auto;
       object-fit: cover;
-      background: #e8e8e8;
+      background: #fff;
       border-radius: 12px;
     }
 
@@ -974,7 +974,7 @@
   </style>
   <link rel="stylesheet" href="/menu-fix.css?v=20260630a">
   <script defer src="/menu-fix.js?v=20260531t"></script>
-  <script defer src="/cms-connect.js?v=20260630a"></script>
+  <script defer src="/cms-connect.js?v=20260716a"></script>
 </head>
 <body>
 

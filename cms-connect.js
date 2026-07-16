@@ -1,5 +1,6 @@
 (function () {
   const CMS_BASE = window.DJI_CMS_BASE || 'http://localhost:3000';
+  const CONTACT_ENDPOINT = window.DJI_CONTACT_ENDPOINT || '/api/contact';
   const SUPPORTED_LOCALES = ['en', 'id', 'zh'];
   const DEFAULT_LOCALE = 'en';
   const HOME_HERO_VIDEO_URL = '/assets/home/hero-video.mp4';
@@ -259,6 +260,8 @@
         message: textarea && textarea.value ? textarea.value.trim() : '',
         sourceUrl: window.location.href,
       };
+      payload.emailOrPhone = [payload.email, payload.phone].filter(Boolean).join(' / ');
+      payload.productType = payload.businessCategory;
 
       if (!payload.email && !fieldValue(inputs, 2)) {
         setFormStatus(form, COPY.contactRequired, 'error');
@@ -271,7 +274,7 @@
       }
 
       try {
-        const response = await fetch(CMS_BASE + '/api/contact-submissions', {
+        const response = await fetch(CONTACT_ENDPOINT, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

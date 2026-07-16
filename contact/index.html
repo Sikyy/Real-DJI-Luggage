@@ -42,7 +42,7 @@
       transition: background 0.4s ease, border-color 0.4s ease;
     }
     header.scrolled {
-      background: rgba(243, 244, 246, 0.95);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(12px);
       border-bottom-color: rgba(0,0,0,0.08);
     }
@@ -109,6 +109,12 @@
     header.scrolled .logo svg { fill: var(--black); }
     header.scrolled .hamburger span { background: var(--black); }
     header.scrolled .header-cta { color: var(--black); }
+    header.txt-dark:not(.scrolled):not(.menu-open) .logo,
+    header.txt-dark:not(.scrolled):not(.menu-open) .logo:link,
+    header.txt-dark:not(.scrolled):not(.menu-open) .logo:visited {
+      color: var(--white) !important;
+    }
+    header.txt-dark:not(.scrolled):not(.menu-open) .logo svg { fill: var(--white); }
 
     /* ========== MENU OVERLAY ========== */
     .menu-overlay {
@@ -599,7 +605,7 @@
       letter-spacing: -2.8px;
       line-height: 1.15;
       color: var(--black);
-      margin-bottom: 80px;
+      margin-bottom: 34px;
     }
 
     .service-item {
@@ -971,7 +977,7 @@
   </style>
   <link rel="stylesheet" href="/menu-fix.css?v=20260630a">
   <script defer src="/menu-fix.js?v=20260531t"></script>
-  <script defer src="/cms-connect.js?v=20260630a"></script>
+  <script defer src="/cms-connect.js?v=20260716a"></script>
 </head>
 <body>
 
@@ -1045,22 +1051,13 @@
       background: #2a2a2a;
     }
     .contact-hero-bg {
-      height: 100%;
-      left: -813.4px;
-      object-fit: cover;
       position: absolute;
-      top: 0;
-      width: 2278.5px;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: right center;
       z-index: 0;
-    }
-    .contact-hero::after {
-      content: '';
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 38%, rgba(0,0,0,0) 55%);
-    }
-    .contact-hero-grid {
-      position: absolute; inset: 0; z-index: 1; pointer-events: none;
-      background: url('/assets/framer/JcuFjKTuj2SCFBQDFdYoNXayY.svg') center / 100% 100% no-repeat;
     }
     .contact-hero-text {
       position: absolute;
@@ -1278,8 +1275,7 @@
     }
   </style>
   <section class="contact-hero" data-header="dark">
-    <picture><source type="image/webp" srcset="/assets/framer/q7ovq9XPzUbvhCNfkFPPkWTTxw.webp"><img class="contact-hero-bg" src="/assets/framer/q7ovq9XPzUbvhCNfkFPPkWTTxw.jpg" alt="" loading="eager"></picture>
-    <div class="contact-hero-grid"></div>
+    <img class="contact-hero-bg" src="/assets/contact/contact-hero-luggage.png" alt="" loading="eager">
     <div class="contact-hero-text">
       <div class="contact-email"><span class="arrow">&#8627;</span> info@djiluggage.id</div>
       <h1 class="contact-title">Contact Us</h1>

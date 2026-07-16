@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Roaming All Aluminum zipperless luggage Silver</title>
+  <link rel="preload" href="/assets/fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/site.css?v=20260628b">
+  <link rel="stylesheet" href="/menu-fix.css?v=20260630a">
+  <style>
+    @font-face {
+      font-family: 'Instrument Sans';
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+      src: url('https://www.roamingluggage.com/cdn/fonts/instrument_sans/instrumentsans_n4.db86542ae5e1596dbdb28c279ae6c2086c4c5bfa.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Nunito';
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+      src: url('https://www.roamingluggage.com/cdn/fonts/nunito/nunito_n4.fc49103dc396b42cae9460289072d384b6c6eb63.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Nunito';
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+      src: url('https://www.roamingluggage.com/cdn/fonts/nunito/nunito_n7.37cf9b8cf43b3322f7e6e13ad2aad62ab5dc9109.woff2') format('woff2');
+    }
+    body { background: #fff; color: #1c1c1c; }
+    body.page-collection { background: #fff; }
+    .catalog-dji-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; height: 72px; padding: 0 16px; background: transparent; border-bottom: 1px solid rgba(0,0,0,.08); }
+    .catalog-dji-header .logo { justify-self: start; color: #333 !important; text-decoration: none; }
+    .catalog-dji-header .hamburger { justify-self: center; width: 48px; height: 32px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+    .catalog-dji-header .hamburger span { width: 20px; height: 2px; display: block; background: #333; transition: transform .35s cubic-bezier(.19, 1, .22, 1), opacity .25s ease; transform-origin: center; }
+    .catalog-dji-header .hamburger.active span:first-child { transform: translateY(4px) rotate(45deg); }
+    .catalog-dji-header .hamburger.active span:last-child { transform: translateY(-4px) rotate(-45deg); }
+    .catalog-dji-header .header-cta { justify-self: end; color: #333; font-family: 'Fragment Mono', monospace; font-size: 12px; letter-spacing: 0; text-decoration: none; text-transform: uppercase; }
+    .menu-overlay { position: fixed; inset: 0; z-index: 99; background: #fff; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .5s cubic-bezier(.19, 1, .22, 1), visibility .5s; overflow-y: auto; }
+    .menu-overlay.active { opacity: 1; visibility: visible; pointer-events: auto; }
+    body.menu-open { overflow: hidden; }
+    .menu-overlay-content { min-height: 100vh; padding: 72px 16px 16px; display: flex; flex-direction: column; }
+    .menu-inner { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 64px; padding: 0 80px; }
+    .menu-top { display: flex; justify-content: space-between; gap: 80px; }
+    .menu-nav-label, .menu-section-label { font-family: 'Fragment Mono', monospace; font-size: 12px; text-transform: uppercase; color: #000; margin-bottom: 24px; }
+    .menu-nav { display: grid; grid-template-columns: 300px 1fr; grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: 10px 80px; max-width: 780px; }
+    .menu-nav a { font-family: 'Geist', sans-serif; font-size: 40px; letter-spacing: -2px; line-height: 44px; color: #000; text-decoration: none; transition: opacity .65s cubic-bezier(.19, 1, .22, 1), padding-left .65s cubic-bezier(.19, 1, .22, 1); }
+    .menu-nav a:hover { opacity: .65; padding-left: 18px; }
+    .menu-contact-btns { display: grid; gap: 10px; width: 186px; }
+    .menu-btn { height: 43px; display: flex; align-items: center; justify-content: center; border: 1px solid #111; font-family: 'Fragment Mono', monospace; font-size: 11px; color: #111; text-decoration: none; text-transform: uppercase; }
+    .menu-btn-dark { background: #111; color: #fff; }
+    .menu-btn-yellow { background: #fedb5b; color: #111; border-color: #fedb5b; }
+    .menu-bottom { display: flex; justify-content: space-between; align-items: flex-start; gap: 56px; padding-top: 84px; }
+    .menu-address-text { color: #000; font-size: 16px; line-height: 20.8px; }
+    .menu-footer-logo { color: #333; }
+    .catalog-shell { padding: 132px 32px 96px; background: #fff; }
+    .catalog-kicker { font-family: 'Fragment Mono', monospace; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; text-align: center; color: #404040; }
+    .catalog-title { margin-top: 28px; font-size: 44px; font-weight: 400; letter-spacing: 10px; line-height: 1.1; text-transform: uppercase; text-align: center; color: #2e2e2e; }
+    .catalog-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 76px; padding-top: 18px; border-top: 1px solid rgba(0,0,0,.12); font-family: 'Fragment Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #5b5b5b; }
+    .catalog-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 62px 34px; margin-top: 38px; }
+    .catalog-card { min-width: 0; color: inherit; text-align: center; text-decoration: none; }
+    .catalog-card-media { aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; background: #fff; overflow: hidden; }
+    .catalog-card-media img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 18px 18px rgba(0,0,0,.08)); transition: transform .35s ease; }
+    .catalog-card:hover .catalog-card-media img { transform: translateY(-4px) scale(1.02); }
+    .catalog-card-title { margin-top: 22px; font-family: 'Fragment Mono', monospace; font-size: 12px; font-weight: 400; letter-spacing: 2.4px; line-height: 1.55; text-transform: uppercase; min-height: 58px; }
+    .product-shell { display: grid; grid-template-columns: minmax(0, .55fr) minmax(0, .45fr); grid-template-areas: "gallery info"; column-gap: 80px; padding: 132px 48px 72px; background: #fff; align-items: start; font-family: 'Nunito', 'Geist', sans-serif; }
+    .product-gallery-wrap { grid-area: gallery; display: grid; grid-template-columns: 56px minmax(0, 1fr); column-gap: 48px; align-items: start; padding-top: 25px; }
+    .product-thumbs { display: flex; flex-direction: column; gap: 27px; max-height: 720px; overflow: auto; padding-right: 0; position: sticky; top: 96px; }
+    .product-thumb { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; padding: 4px; border: 1px solid transparent; background: transparent; cursor: pointer; }
+    .product-thumb.is-active { border-color: #1d1d1d; }
+    .product-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .product-main-media { display: flex; align-items: flex-start; justify-content: center; background: #fff; overflow: hidden; }
+    .product-main-image { width: 94%; max-width: 940px; height: auto; object-fit: contain; display: block; }
+    .product-info { grid-area: info; position: sticky; top: 96px; align-self: start; padding-top: 27px; font-family: 'Nunito', 'Geist', sans-serif; color: #1c1c1c; }
+    .product-eyebrow { font-family: 'Instrument Sans', 'Geist', sans-serif; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: rgba(28,28,28,.65); line-height: 1.7; }
+    .product-title { margin-top: 14px; font-family: 'Instrument Sans', 'Geist', sans-serif; font-size: 25px; font-weight: 400; letter-spacing: .18em; line-height: 1.15; text-transform: uppercase; color: #1c1c1c; }
+    .option-label { margin-top: 33px; font-size: 14px; line-height: 1.65; color: #1c1c1c; }
+    .option-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .option-chip { min-height: 42px; display: flex; align-items: center; justify-content: center; padding: 9px 16px; border: 1px solid #d0d0d0; background: transparent; color: rgba(28,28,28,.65); font: inherit; font-size: 14px; letter-spacing: 0; line-height: 1.65; cursor: pointer; }
+    .option-chip.is-active { border-color: #1c1c1c; color: #1c1c1c; }
+    .color-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .color-swatch { width: 68px; height: 68px; display: flex; align-items: center; justify-content: center; padding: 7px; border: 1px solid #d0d0d0; background: transparent; text-decoration: none; }
+    .color-swatch.is-active { border-color: #1f1f1f; }
+    .color-swatch img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .quantity-selector { width: 128px; height: 44px; margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; border: 1px solid #d0d0d0; }
+    .quantity-selector button { height: 100%; border: 0; background: transparent; color: #1c1c1c; font-size: 20px; line-height: 1; cursor: pointer; }
+    .quantity-selector span { text-align: center; font-size: 14px; }
+    .product-actions { display: grid; gap: 16px; margin-top: 32px; }
+    .product-button { display: flex; align-items: center; justify-content: center; height: 44px; border: 1px solid #cfcfcf; text-decoration: none; font-family: 'Instrument Sans', 'Geist', sans-serif; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; }
+    .product-button { color: #151515; background: transparent; }
+    .product-faq-layout { margin-top: 36px; display: grid; grid-template-columns: minmax(210px, .9fr) minmax(0, 1.1fr); gap: 30px; align-items: start; border-top: 1px solid #d0d0d0; }
+    .product-inquiry-panel { margin-top: 0; padding-top: 0; border-top: 0; }
+    .product-inquiry-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+    .product-inquiry-item { min-height: 0; border: 0; border-bottom: 1px solid #d0d0d0; padding: 15px 0; background: transparent; }
+    .product-inquiry-label { display: block; margin-bottom: 7px; font-family: 'Instrument Sans', 'Geist', sans-serif; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: rgba(28,28,28,.56); }
+    .product-inquiry-item strong { display: block; font-size: 13px; font-weight: 700; line-height: 1.35; color: #1c1c1c; }
+    .product-inquiry-item p { margin: 5px 0 0; font-size: 12px; line-height: 1.45; color: rgba(28,28,28,.68); }
+    .product-button-primary { color: #fff; background: #111; border-color: #111; }
+    .product-action-note { margin: 0; max-width: 560px; font-size: 13px; line-height: 1.55; color: rgba(28,28,28,.66); }
+    .product-copy { margin-top: 36px; border-top: 1px solid rgba(0,0,0,.12); padding-top: 24px; font-size: 15px; line-height: 1.65; color: #444; }
+    .product-accordions { margin-top: 0; border-top: 0; }
+    .product-accordions details { border-bottom: 1px solid #d0d0d0; }
+    .product-accordions summary { min-height: 62px; display: flex; align-items: center; justify-content: space-between; font-family: 'Instrument Sans', 'Geist', sans-serif; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; }
+    .product-accordions summary::after { content: '+'; font-family: 'Nunito', sans-serif; font-size: 22px; letter-spacing: 0; }
+    .product-accordions p { padding: 0 0 18px; color: rgba(28,28,28,.75); font-size: 14px; line-height: 1.65; }
+    .detail-media { padding: 0; background: #fff; border-top: 1px solid #d7d7d7; }
+    .detail-media img { width: 100%; display: block; }
+    .roaming-lower { background: #fff; color: #1c1c1c; font-family: 'Nunito', 'Geist', sans-serif; }
+    .roaming-features { padding: 72px 48px 82px; border-top: 1px solid #d8d8d8; background: #fff; }
+    .roaming-lower-title { margin: 0 0 42px; font-family: 'Instrument Sans', 'Geist', sans-serif; font-size: 24px; font-weight: 400; letter-spacing: .22em; line-height: 1.2; text-transform: uppercase; color: #2b2b2b; }
+    .roaming-feature-grid { display: grid; gap: 30px; }
+    .roaming-feature-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .roaming-feature-grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 58px; }
+    .roaming-feature-card { min-width: 0; }
+    .roaming-feature-card video { width: 100%; aspect-ratio: .75; display: block; object-fit: cover; background: #111; }
+    .roaming-feature-card h3 { margin: 24px 0 12px; font-family: 'Nunito', 'Geist', sans-serif; font-size: 26px; font-weight: 400; line-height: 1.2; color: #222; }
+    .roaming-feature-card p { margin: 0; font-size: 15px; line-height: 1.65; color: #3f3f3f; }
+    .roaming-story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 560px; border-top: 1px solid #d8d8d8; background: #fff; }
+    .roaming-story.reverse .roaming-story-media { order: 2; }
+    .roaming-story.reverse .roaming-story-copy { order: 1; }
+    .roaming-story-media img { width: 100%; height: 100%; min-height: 560px; display: block; object-fit: cover; }
+    .roaming-story-copy { display: flex; flex-direction: column; justify-content: center; padding: 76px 8vw; }
+    .roaming-story-copy h2 { margin: 0 0 24px; font-family: 'Instrument Sans', 'Geist', sans-serif; font-size: clamp(36px, 4vw, 64px); font-weight: 400; letter-spacing: 0; line-height: 1.05; color: #1f1f1f; }
+    .roaming-story-copy p { margin: 0; max-width: 680px; font-size: 17px; line-height: 1.7; color: #343434; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 24px; border-radius: 2px; text-decoration: none; font-family: 'Geist', sans-serif; font-size: 16px; font-weight: 400; letter-spacing: -0.64px; cursor: pointer; border: none; transition: all .3s ease; position: relative; overflow: hidden; }
+    .btn:active { transform: scale(.97); }
+    .btn-frosted { background: rgba(158,158,158,.4); color: #fff; }
+    .btn-frosted:hover { background: rgba(158,158,158,.6); }
+    footer { background: rgb(4,4,4); color: #fff; padding: 80px 16px 16px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .footer-contact-label { font-family: 'Fragment Mono', monospace; font-size: 12px; font-weight: 400; text-transform: uppercase; color: rgb(158,158,158); margin-bottom: 18px; }
+    .footer-contact { display: flex; align-items: center; gap: 24px; }
+    .footer-contact h3 { margin: 0; font-family: 'Geist', sans-serif; font-size: 22px; font-weight: 400; letter-spacing: -.88px; }
+    .footer-contact .divider { width: 1px; height: 36px; background: rgba(255,255,255,.25); }
+    .footer-nav { display: flex; gap: 72px; }
+    .footer-nav-col h4 { margin: 0 0 20px; font-family: 'Fragment Mono', monospace; font-size: 12px; font-weight: 400; text-transform: uppercase; color: rgb(158,158,158); }
+    .footer-nav-col p { margin: 0; font-family: 'Fragment Mono', monospace; font-size: 12px; font-weight: 400; line-height: 2; color: #fff; text-transform: uppercase; }
+    .footer-nav-col a { display: block; font-family: 'Fragment Mono', monospace; font-size: 12px; font-weight: 400; text-transform: uppercase; color: #fff; text-decoration: none; margin-bottom: 6px; transition: opacity .3s; }
+    .footer-nav-col a:hover { opacity: .6; }
+    .footer-middle { padding: 50px 0; }
+    .footer-social-label { font-family: 'Fragment Mono', monospace; font-size: 12px; font-weight: 400; text-transform: uppercase; color: rgb(158,158,158); margin-bottom: 18px; }
+    .social-icons { display: flex; gap: 8px; }
+    .social-icon { width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.15); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; transition: all .3s; }
+    .social-icon:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.3); }
+    .social-icon svg { width: 18px; height: 18px; fill: currentColor; }
+    .footer-bottom { padding: 40px 0 0; }
+    .footer-copyright { font-family: 'Fragment Mono', monospace; font-size: 12px; font-weight: 400; color: rgba(255,255,255,.35); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+    .footer-copyright .sep { width: 1px; height: 14px; background: rgba(255,255,255,.25); }
+    .footer-large-text { position: relative; font-family: 'Geist', sans-serif; font-size: 20vw; font-weight: 900; letter-spacing: .03em; color: rgba(255,255,255,.07); line-height: .85; padding-bottom: 16px; overflow: hidden; white-space: nowrap; text-transform: uppercase; }
+    .catalog-footer { display: flex; justify-content: space-between; gap: 24px; padding: 42px 32px; background: #050505; color: #fff; font-family: 'Fragment Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+    @media (max-width: 1024px) { .footer-top { flex-direction: column; gap: 48px; } .footer-nav { gap: 36px; flex-wrap: wrap; } }
+    @media (max-width: 1180px) { .catalog-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .product-shell { grid-template-columns: 1fr; grid-template-areas: "gallery" "info"; padding: 112px 32px 80px; } .product-info { position: static; max-width: 820px; width: 100%; justify-self: center; } }
+    @media (max-width: 768px) { .product-faq-layout { grid-template-columns: 1fr; gap: 18px; } .product-accordions { border-top: 1px solid #d0d0d0; } .catalog-dji-header { height: 68px; padding: 0 20px; } .catalog-shell { padding: 110px 18px 72px; } .catalog-title { font-size: 30px; letter-spacing: 5px; } .catalog-toolbar { align-items: flex-start; flex-direction: column; margin-top: 48px; } .catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 38px 18px; } .catalog-card-title { font-size: 11px; letter-spacing: 1.6px; } .menu-inner { padding: 0 20px; } .menu-top, .menu-bottom { flex-direction: column; gap: 40px; } .menu-nav { grid-template-columns: 1fr; grid-auto-flow: row; } .menu-nav a { font-size: 36px; line-height: 40px; } .product-shell { padding: 96px 18px 56px; gap: 24px; } .product-gallery-wrap { display: flex; flex-direction: column; gap: 16px; padding-top: 0; } .product-main-image { width: 100%; max-width: 100%; } .product-thumbs { order: 2; position: static; flex-direction: row; gap: 14px; max-height: none; overflow-x: auto; padding: 0 0 6px; } .product-thumb { width: 58px; height: 58px; flex: 0 0 58px; } .product-main-media { order: 1; min-height: auto; } .product-info { order: 3; padding-top: 0; } .product-title { font-size: 24px; letter-spacing: .14em; } .option-chip { min-height: 42px; } .color-swatch { width: 58px; height: 58px; } .roaming-features { padding: 48px 18px 56px; } .roaming-feature-grid.three, .roaming-feature-grid.two { grid-template-columns: 1fr; } .roaming-feature-grid.two { margin-top: 30px; } .roaming-story, .roaming-story.reverse { grid-template-columns: 1fr; } .roaming-story.reverse .roaming-story-media, .roaming-story.reverse .roaming-story-copy { order: initial; } .roaming-story-media img { min-height: 320px; } .roaming-story-copy { padding: 46px 24px; } footer { padding: 48px 20px 0; } .footer-contact { flex-wrap: wrap; gap: 16px; } .footer-nav { width: 100%; } .footer-copyright { flex-wrap: wrap; } .catalog-footer { flex-direction: column; padding: 34px 20px; } }
+  </style>
+</head>
+<body class="page-product">
+  <header id="header" class="catalog-dji-header txt-dark">
+    <a href="/" class="logo" aria-label="DJI Luggage">DJI LUGGAGE</a>
+    <button class="hamburger" id="menuToggle" type="button" aria-label="Open menu" aria-controls="menuOverlay">
+      <span></span>
+      <span></span>
+    </button>
+    <a href="/contact" class="header-cta">GET A QUOTE</a>
+  </header>
+
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-overlay-content">
+      <div class="menu-inner">
+        <div class="menu-top">
+          <div class="menu-nav-section">
+            <div class="menu-nav-label">Main</div>
+            <nav class="menu-nav">
+              <a href="/">Home</a>
+              <a href="/about">About</a>
+              <a href="/services">Services</a>
+              <a href="/products">Products</a>
+              <a href="/process">Production Workflow</a>
+              <a href="/newsroom/filters/all">Newsroom</a>
+            </nav>
+          </div>
+          <div class="menu-contact-section">
+            <div class="menu-section-label">Contact</div>
+            <div class="menu-contact-btns">
+              <a href="mailto:info@djiluggage.id" class="menu-btn menu-btn-dark">Send Us A Message</a>
+              <a href="/contact" class="menu-btn menu-btn-yellow">Get a Quote</a>
+            </div>
+          </div>
+        </div>
+        <div class="menu-bottom">
+          <div>
+            <div class="menu-section-label">Address</div>
+            <p class="menu-address-text">JL RAYA PARUNG BOGOR,<br>DESA/KELURAHAN KEMANG,<br>KEC. KEMANG, KAB. BOGOR,<br>PROVINSI JAWA BARAT,<br>KODE POS: 16310</p>
+          </div>
+          <div class="menu-footer-logo">DJI LUGGAGE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main class="product-shell">
+      <section class="product-gallery-wrap" aria-label="Product gallery">
+        <nav class="product-thumbs" aria-label="Product images"><button class="product-thumb is-active" type="button" data-product-thumb="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-1.jpg" aria-label="View image 1">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-1.jpg" alt="Roaming All Aluminum zipperless luggage Silver thumbnail 1" loading="eager">
+        </button>
+<button class="product-thumb" type="button" data-product-thumb="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-2.jpg" aria-label="View image 2">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-2.jpg" alt="Roaming All Aluminum zipperless luggage Silver thumbnail 2" loading="lazy">
+        </button>
+<button class="product-thumb" type="button" data-product-thumb="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-3.jpg" aria-label="View image 3">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-3.jpg" alt="Roaming All Aluminum zipperless luggage Silver thumbnail 3" loading="lazy">
+        </button>
+<button class="product-thumb" type="button" data-product-thumb="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-4.jpg" aria-label="View image 4">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-4.jpg" alt="Roaming All Aluminum zipperless luggage Silver thumbnail 4" loading="lazy">
+        </button>
+<button class="product-thumb" type="button" data-product-thumb="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-5.jpg" aria-label="View image 5">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-5.jpg" alt="Roaming All Aluminum zipperless luggage Silver thumbnail 5" loading="lazy">
+        </button>
+<button class="product-thumb" type="button" data-product-thumb="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-6.jpg" aria-label="View image 6">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-6.jpg" alt="Roaming All Aluminum zipperless luggage Silver thumbnail 6" loading="lazy">
+        </button>
+<button class="product-thumb" type="button" data-product-thumb="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-7.jpg" aria-label="View image 7">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-7.jpg" alt="Roaming All Aluminum zipperless luggage Silver thumbnail 7" loading="lazy">
+        </button>
+<button class="product-thumb" type="button" data-product-thumb="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-8.jpg" aria-label="View image 8">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-8.jpg" alt="Roaming All Aluminum zipperless luggage Silver thumbnail 8" loading="lazy">
+        </button>
+<button class="product-thumb" type="button" data-product-thumb="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-9.jpg" aria-label="View image 9">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-9.jpg" alt="Roaming All Aluminum zipperless luggage Silver thumbnail 9" loading="lazy">
+        </button>
+<button class="product-thumb" type="button" data-product-thumb="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-10.jpg" aria-label="View image 10">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-10.jpg" alt="Roaming All Aluminum zipperless luggage Silver thumbnail 10" loading="lazy">
+        </button>
+<button class="product-thumb" type="button" data-product-thumb="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-11.jpg" aria-label="View image 11">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-11.jpg" alt="Roaming All Aluminum zipperless luggage Silver thumbnail 11" loading="lazy">
+        </button>
+<button class="product-thumb" type="button" data-product-thumb="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-12.jpg" aria-label="View image 12">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-12.jpg" alt="Roaming All Aluminum zipperless luggage Silver thumbnail 12" loading="lazy">
+        </button></nav>
+        <section class="product-main-media">
+          <img class="product-main-image" src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-1.jpg" alt="Roaming All Aluminum zipperless luggage Silver" loading="eager">
+        </section>
+      </section>
+      <aside class="product-info">
+        <p class="product-eyebrow">ROAMING</p>
+        <h1 class="product-title">Roaming All Aluminum zipperless luggage Silver</h1>
+        <div class="option-label">Size:</div>
+        <div class="option-grid"><button class="option-chip is-active" type="button" data-size-option aria-pressed="true">20 Inch-Carry-On</button><button class="option-chip" type="button" data-size-option aria-pressed="false">24 Inch-Medium</button></div>
+        <div class="option-label">Color:</div>
+        <div class="color-grid"><a class="color-swatch" href="/products/roaming-all-aluminum-zipperless-luggage-black" aria-label="Roaming All Aluminum zipperless luggage black">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-black-gallery-1.png" alt="Roaming All Aluminum zipperless luggage black" loading="lazy">
+        </a>
+<a class="color-swatch" href="/products/roaming-all-aluminum-zipperless-luggage-grey" aria-label="Roaming All Aluminum zipperless luggage Grey">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-gallery-1.png" alt="Roaming All Aluminum zipperless luggage Grey" loading="lazy">
+        </a>
+<a class="color-swatch" href="/products/roaming-all-aluminum-zipperless-luggage-grey-1" aria-label="Roaming All Aluminum zipperless luggage Grey">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-1-gallery-1.jpg" alt="Roaming All Aluminum zipperless luggage Grey" loading="lazy">
+        </a>
+<a class="color-swatch" href="/products/roaming-all-aluminum-zipperless-luggage-silver-black-copy" aria-label="Roaming All Aluminum zipperless luggage Greyish black">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-silver-black-copy-gallery-1.jpg" alt="Roaming All Aluminum zipperless luggage Greyish black" loading="lazy">
+        </a>
+<a class="color-swatch" href="/products/roaming-all-aluminum-zipperless-luggage-silver" aria-label="Roaming All Aluminum zipperless luggage Silver">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-silver-gallery-1.png" alt="Roaming All Aluminum zipperless luggage Silver" loading="lazy">
+        </a>
+<a class="color-swatch is-active" href="/products/roaming-all-aluminum-zipperless-luggage-grey-copy" aria-label="Roaming All Aluminum zipperless luggage Silver">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-gallery-1.jpg" alt="Roaming All Aluminum zipperless luggage Silver" loading="lazy">
+        </a>
+<a class="color-swatch" href="/products/roaming-all-aluminum-zipperless-luggage-silver-copy" aria-label="Roaming All Aluminum zipperless luggage Silver black">
+          <img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-silver-copy-gallery-1.jpg" alt="Roaming All Aluminum zipperless luggage Silver black" loading="lazy">
+        </a></div>
+        <div class="product-actions">
+          <a class="product-button product-button-primary" href="/contact?product=Roaming%20All%20Aluminum%20zipperless%20luggage%20Silver">Request a Quote</a>
+          <p class="product-action-note">Send target quantity, destination market, target price, and any artwork or sample references. Our team will reply with MOQ, lead time, and customization options.</p>
+        </div>
+        <div class="product-faq-layout">
+        <div class="product-inquiry-panel" aria-label="B2B inquiry details">
+          <div class="product-inquiry-grid">
+            <div class="product-inquiry-item">
+              <span class="product-inquiry-label">MOQ</span>
+              <strong>Project-based MOQ</strong>
+              <p>Confirmed by material, color, logo method, and packing scope.</p>
+            </div>
+            <div class="product-inquiry-item">
+              <span class="product-inquiry-label">Sample Lead Time</span>
+              <strong>7-15 working days</strong>
+              <p>After artwork, component direction, and sample details are approved.</p>
+            </div>
+            <div class="product-inquiry-item">
+              <span class="product-inquiry-label">Bulk Lead Time</span>
+              <strong>35-55 days</strong>
+              <p>Estimated after deposit, approved sample, and material confirmation.</p>
+            </div>
+            <div class="product-inquiry-item">
+              <span class="product-inquiry-label">Custom Logo</span>
+              <strong>Badge, print, lining, puller, carton mark</strong>
+              <p>Branding options can be matched to private-label requirements.</p>
+            </div>
+            <div class="product-inquiry-item">
+              <span class="product-inquiry-label">Carton Specs</span>
+              <strong>Export carton and retail pack options</strong>
+              <p>Carton marks, barcode labels, manuals, hangtags, and PE bags available.</p>
+            </div>
+            <div class="product-inquiry-item">
+              <span class="product-inquiry-label">Materials</span>
+              <strong>PC, ABS, PP, aluminum frame, fabric options</strong>
+              <p>Shell, lining, lock, wheel, handle, and trim choices quoted by brief.</p>
+            </div>
+            <div class="product-inquiry-item">
+              <span class="product-inquiry-label">Available Sizes</span>
+              <strong>20 / 24 / 26 / 28 inch</strong>
+              <p>Carry-on, medium, medium-plus, large, and nested set programs.</p>
+            </div>
+            <div class="product-inquiry-item">
+              <span class="product-inquiry-label">Buyer Inputs</span>
+              <strong>Quantity, market, target price, timeline</strong>
+              <p>Share a tech pack or reference sample to speed up quotation.</p>
+            </div>
+          </div>
+        </div>
+        <div class="product-accordions">
+          <details>
+            <summary>【Product Packaging and Content】</summary>
+            <p>Overall Dimensions: The 20-inch luggage 37.6 cm × 22.6 cm × 58.4 cm (14.8 in × 8.9 in × 23 in), including wheels and telescoping handle; weight: 4.38 kg (9.66 lbs).This lightweight yet highly durable carry-on suitcase is engineered for optimal travel efficiency, combining robust construction with thoughtful functional design. With a generous 39-liter packing capacity, it accommodates essential travel needs without compromising portability. To preserve exterior appearance and extend product longevity, a complimentary protective luggage cover is included.<br />
+<br />
+<br />
+Overall Dimensions and Capacity: The 24-inch luggage 37.6 cm 30.5 cm 65.5 cm (14.8 in 12.0 in 25.8 in), including wheels and telescoping handle; weight: 4.88 kg (10.76 lbs). This lightweight, impact-resistant carry-on luggage is designed to balance convenience, structural integrity, and ergonomic usability. Featuring a spacious 60-liter internal volume, it supports extended travel requirements while maintaining compliance with major airline cabin baggage allowances. A complimentary protective luggage cover is provided to safeguard surface finish and enhance long-term aesthetic retention</p>
+          </details>
+<details>
+            <summary>【High-Quality Accessories】</summary>
+            <p>ROAMING Wide-Profile Telescopic Handle System: Features an ergonomically optimized wide-base telescopic handle, seamlessly integrated along the suitcase&#39;s lateral edge-eliminating internal space compromise. Its balanced geometry enhances stability and maneuverability while preventing fabric creasing on folded garments</p>
+          </details>
+<details>
+            <summary>【Durable Corner Protectors】</summary>
+            <p>Full Aluminum-Magnesium Alloy Hard Shell: Engineered to withstand extreme temperatures up to 982C (1800F); fully compliant with international aviation safety standards; delivers exceptional structural integrity and long-term durability</p>
+          </details>
+<details>
+            <summary>【Sleek Industrial Design】</summary>
+            <p>TSA-Approved Zipperless Closure System: Dual integrated TSA-approved combination locks ensure secure, tamper-evident protection for checked baggage during international air travel</p>
+          </details>
+<details>
+            <summary>【Polycarbonate Luggage with Aluminum Frame】</summary>
+            <p>Enhanced Mobility and Protection: Equipped with four premium 360 double-spinner wheels for silent, omnidirectional maneuverability; reinforced metal corner guards and elevated side bumper feet provide comprehensive impact resistance and surface protection</p>
+          </details>
+        </div>
+        </div>
+      </aside>
+    </main>
+    <section class="detail-media"><img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-grey-copy-detail-1.jpg" alt="Roaming All Aluminum zipperless luggage Silver product detail 1" loading="lazy"></section>
+    <section class="roaming-lower">
+    <section class="roaming-features">
+      <h2 class="roaming-lower-title">Features</h2>
+      <div class="roaming-feature-grid three"><article class="roaming-feature-card">
+          <video autoplay muted loop playsinline preload="metadata" poster="/assets/products/roaming-catalog/lower-feature-1-poster.jpg">
+            <source src="/assets/products/roaming-catalog/lower-feature-1-video.mp4" type="video/mp4">
+          </video>
+          <h3>Polycarbonate material</h3>
+          <p>This product is made of polycarbonate (PC), which is not prone to cracking and can protect your belongings from the risk of impact and fracture. In addition, it will not deform even at extreme temperatures ranging from -40&deg;C to 120&deg;C, demonstrating excellent heat resistance.</p>
+        </article>
+<article class="roaming-feature-card">
+          <video autoplay muted loop playsinline preload="metadata" poster="/assets/products/roaming-catalog/lower-feature-2-poster.jpg">
+            <source src="/assets/products/roaming-catalog/lower-feature-2-video.mp4" type="video/mp4">
+          </video>
+          <h3>Aluminum-Magnesium Barrier</h3>
+          <p>The corner radius and closure are both made of 6-series aluminum-magnesium alloy. Through reinforced design, the risk of damage is minimized and the luggage is safely protected during the journey.</p>
+        </article>
+<article class="roaming-feature-card">
+          <video autoplay muted loop playsinline preload="metadata" poster="/assets/products/roaming-catalog/lower-feature-3-poster.jpg">
+            <source src="/assets/products/roaming-catalog/lower-feature-3-video.mp4" type="video/mp4">
+          </video>
+          <h3>Collision prevention design</h3>
+          <p>Thickened ergonomic alloy guard ring provides effective protection, buffering and safeguarding for the box body.</p>
+        </article></div>
+<div class="roaming-feature-grid two"><article class="roaming-feature-card">
+          <video autoplay muted loop playsinline preload="metadata" poster="/assets/products/roaming-catalog/lower-feature-4-poster.jpg">
+            <source src="/assets/products/roaming-catalog/lower-feature-4-video.mp4" type="video/mp4">
+          </video>
+          <h3>spinner wheels</h3>
+          <p>Smooth 360&deg; spinner wheels turn every surface into your runway. Glide effortlessly from airport tiles to cobblestone streets.</p>
+        </article>
+<article class="roaming-feature-card">
+          <video autoplay muted loop playsinline preload="metadata" poster="/assets/products/roaming-catalog/lower-feature-5-poster.jpg">
+            <source src="/assets/products/roaming-catalog/lower-feature-5-video.mp4" type="video/mp4">
+          </video>
+          <h3>The soft sound is like a gentle breeze blowing past.</h3>
+          <p>When the precision bearing wheels roll, there is almost no noise. The journey will be on smooth roads, with the noise controlled within 40dB. It is close to the quietness of a library at night. In the deep night, one drags the suitcase, leaving only the soft footsteps.</p>
+        </article></div>
+    </section>
+    <section class="roaming-story">
+      <div class="roaming-story-media"><img src="/assets/products/roaming-catalog/lower-story-1.webp" alt="Trustworthy" loading="lazy"></div>
+      <div class="roaming-story-copy">
+        <h2>Trustworthy</h2>
+        <p>The ROAMING brand was established in 2012. It was designed by a Red Dot Award-winning designer. It has won the Muse Design Award in the United States. Each product adheres to original design! It has received the choice of over 3,000,000 consumers.</p>
+      </div>
+    </section>
+<section class="roaming-story reverse">
+      <div class="roaming-story-media"><img src="/assets/products/roaming-catalog/lower-story-2.webp" alt="The journey is life, and the luggage is a companion." loading="lazy"></div>
+      <div class="roaming-story-copy">
+        <h2>The journey is life, and the luggage is a companion.</h2>
+        <p>In the fast-paced and consumer-oriented modern life, we still attach great importance to the emotional connection with consumers, expecting to bring them a carefree and free lifestyle. Life is like a journey. The suitcases we use now are even more a precious choice for us regarding life.</p>
+      </div>
+    </section>
+  </section>
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div>
+        <div class="footer-contact-label">CONTACT</div>
+        <div class="footer-contact">
+          <h3>Let's Get Started</h3>
+          <div class="divider"></div>
+          <a href="/contact" class="btn btn-frosted" style="font-size:14px;">Get a Quote</a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <h4>ADDRESS</h4>
+          <p>JL RAYA PARUNG BOGOR,<br>DESA/KELURAHAN KEMANG,<br>KEC. KEMANG, KAB. BOGOR,<br>PROVINSI JAWA BARAT,<br>KODE POS: 16310</p>
+        </div>
+        <div class="footer-nav-col">
+          <h4>MAIN</h4>
+          <a href="/">HOME</a>
+          <a href="/services">SERVICES</a>
+          <a href="/products">PRODUCTS</a>
+          <a href="/about">ABOUT</a>
+          <a href="/careers">CAREERS</a>
+          <a href="/process">PRODUCTION WORKFLOW</a>
+          <a href="/newsroom/filters/all">NEWSROOM</a>
+        </div>
+        <div class="footer-nav-col">
+          <h4>SUPPORT</h4>
+          <a href="/privacy-policy">PRIVACY POLICY</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-middle">
+      <div class="footer-social-label">QUICK CONTACT</div>
+      <div class="social-icons">
+        <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.1a4.9 4.9 0 1 0 0 9.8 4.9 4.9 0 0 0 0-9.8Zm0 2a2.9 2.9 0 1 1 0 5.8 2.9 2.9 0 0 1 0-5.8Zm5.2-.8a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z"/></svg></a>
+        <a href="#" class="social-icon"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 11.85a29 29 0 0 0-.46-5.43ZM9.75 15.02V8.48l5.75 3.27-5.75 3.27Z"/></svg></a>
+        <a href="https://wa.me/8619816891233" class="social-icon" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.33 4.97L2.05 22l5.25-1.38a9.91 9.91 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 19.05 4.91 9.85 9.85 0 0 0 12.04 2Zm.01 18.15h-.01a8.22 8.22 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.19 8.19 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.83 2.42 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23Zm4.52-6.17c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.57.12-.17.25-.65.81-.8.98-.15.17-.3.19-.55.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.1-.5.11-.11.25-.3.37-.44.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43l-.49-.01c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09s.9 2.42 1.02 2.59c.12.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        <span>&copy;2026. All rights reserved</span>
+        <span class="sep"></span>
+        <span>Indonesian luggage manufacturer</span>
+      </div>
+      <div class="footer-large-text">DJI LUGGAGE</div>
+    </div>
+  </footer>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const header = document.getElementById('header');
+    function closeMenu() {
+      menuOverlay?.classList.remove('active');
+      menuToggle?.classList.remove('active');
+      header?.classList.remove('menu-open');
+      document.body.classList.remove('menu-open');
+    }
+    menuToggle?.addEventListener('click', () => {
+      menuOverlay?.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      header?.classList.toggle('menu-open');
+      document.body.classList.toggle('menu-open');
+    });
+    document.querySelectorAll('.menu-nav a').forEach((link) => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenu();
+    });
+    document.addEventListener('click', (event) => {
+      const thumb = event.target.closest('[data-product-thumb]');
+      if (!thumb) return;
+      const mainImage = document.querySelector('.product-main-image');
+      if (!mainImage) return;
+      mainImage.src = thumb.dataset.productThumb;
+      document.querySelectorAll('[data-product-thumb]').forEach((button) => button.classList.remove('is-active'));
+      thumb.classList.add('is-active');
+    });
+    document.addEventListener('click', (event) => {
+      const option = event.target.closest('[data-size-option]');
+      if (!option) return;
+      const group = option.closest('.option-grid');
+      group?.querySelectorAll('[data-size-option]').forEach((button) => {
+        button.classList.remove('is-active');
+        button.setAttribute('aria-pressed', 'false');
+      });
+      option.classList.add('is-active');
+      option.setAttribute('aria-pressed', 'true');
+    });
+  </script>
+</body>
+</html>

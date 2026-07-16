@@ -1,0 +1,9 @@
+{
+  "name": "dji-luggage-static-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-pages.mjs"
+  }
+}

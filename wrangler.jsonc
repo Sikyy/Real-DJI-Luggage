@@ -1,0 +1,10 @@
+{
+  "name": "new-djiluggage-luggage",
+  "compatibility_date": "2026-07-16",
+  "pages_build_output_dir": "dist",
+  "vars": {
+    "CONTACT_TO_EMAIL": "info@djiluggage.id",
+    "CONTACT_FROM_EMAIL": "noreply@djiluggage.id",
+    "CONTACT_FROM_NAME": "DJI Luggage Website"
+  }
+}

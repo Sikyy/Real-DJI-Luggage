@@ -41,7 +41,7 @@
       transition: background 0.4s ease, border-color 0.4s ease;
     }
     header.scrolled {
-      background: rgba(243, 244, 246, 0.95);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(12px);
       border-bottom-color: rgba(0,0,0,0.08);
     }
@@ -384,7 +384,7 @@
     /* ========== SERVICES HERO ========== */
     .services-hero {
       position: relative;
-      height: 485px;
+      height: 449px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -394,13 +394,12 @@
     }
     .services-hero-bg {
       position: absolute;
-      top: -78px;
+      top: -74px;
       left: -10%;
       width: 120%;
-      height: 582px;
+      height: 538px;
       object-fit: cover;
       z-index: 0;
-      filter: brightness(0.4);
     }
     .services-hero > *:not(.services-hero-bg) {
       position: relative;
@@ -420,7 +419,7 @@
     .services-hero-content {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: flex-end;
     }
 
     .services-hero-left {
@@ -996,7 +995,7 @@
   </style>
   <link rel="stylesheet" href="/menu-fix.css?v=20260630a">
   <script defer src="/menu-fix.js?v=20260531t"></script>
-  <script defer src="/cms-connect.js?v=20260630a"></script>
+  <script defer src="/cms-connect.js?v=20260716a"></script>
 </head>
 <body>
 
@@ -1058,8 +1057,7 @@
 
   <!-- SERVICES HERO -->
   <section class="services-hero">
-    <picture><source type="image/webp" srcset="/assets/services/services-hero-concept.webp"><img class="services-hero-bg" src="/assets/services/services-hero-concept.png" alt="Conceptual luggage manufacturing services map" loading="eager"></picture>
-    <div class="section-label reveal">SERVICES</div>
+    <img class="services-hero-bg" src="/assets/services/services-hero-luggage.png" alt="Silver aluminum luggage beside a leather sofa" loading="eager">
     <div class="services-hero-content">
       <div class="services-hero-left">
         <h1 class="services-hero-title hero-anim-title">Our Services</h1>
