@@ -8,13 +8,14 @@
     "enabled": true
   },
   "vars": {
+    "CONTACT_TO_EMAIL": "info@djiluggage.id",
     "CONTACT_FROM_EMAIL": "website@djiluggage.id",
     "CONTACT_FROM_NAME": "DJI Luggage Website"
   },
   "send_email": [
     {
       "name": "EMAIL",
-      "destination_address": "yyymalicious@gmail.com",
+      "destination_address": "info@djiluggage.id",
       "allowed_sender_addresses": [
         "website@djiluggage.id"
       ]
