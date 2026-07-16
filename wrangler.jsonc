@@ -6,5 +6,11 @@
     "CONTACT_TO_EMAIL": "info@djiluggage.id",
     "CONTACT_FROM_EMAIL": "noreply@djiluggage.id",
     "CONTACT_FROM_NAME": "DJI Luggage Website"
-  }
+  },
+  "services": [
+    {
+      "binding": "EMAIL_SERVICE",
+      "service": "djiluggage-contact-email"
+    }
+  ]
 }
