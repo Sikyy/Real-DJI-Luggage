@@ -10,7 +10,8 @@
   "services": [
     {
       "binding": "EMAIL_SERVICE",
-      "service": "djiluggage-contact-email"
+      "service": "djiluggage-contact-email",
+      "environment": "production"
     }
   ]
 }

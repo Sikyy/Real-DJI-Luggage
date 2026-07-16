@@ -1,0 +1,23 @@
+{
+  "name": "djiluggage-contact-email",
+  "main": "worker.js",
+  "compatibility_date": "2026-07-16",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "CONTACT_FROM_EMAIL": "website@djiluggage.id",
+    "CONTACT_FROM_NAME": "DJI Luggage Website"
+  },
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "destination_address": "yyymalicious@gmail.com",
+      "allowed_sender_addresses": [
+        "website@djiluggage.id"
+      ]
+    }
+  ]
+}
