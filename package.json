@@ -4,6 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build-pages.mjs"
+    "build": "node scripts/build-pages.mjs",
+    "prerender:careers": "node scripts/prerender-careers.mjs --apply",
+    "prerender:careers:check": "node scripts/prerender-careers.mjs",
+    "sitemap": "node scripts/build-sitemap.mjs",
+    "sitemap:check": "node scripts/build-sitemap.mjs --check",
+    "structured-data": "node scripts/build-structured-data.mjs",
+    "structured-data:check": "node scripts/build-structured-data.mjs --check"
   }
 }

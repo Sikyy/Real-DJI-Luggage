@@ -7,11 +7,9 @@ const root = path.resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = path.join(root, 'dist')
 
 const includeDirs = new Set([
-  '404',
   'about',
   'careers',
   'collections',
-  'comparison',
   'contact',
   'newsroom',
   'privacy-policy',
@@ -22,7 +20,8 @@ const includeDirs = new Set([
 
 const includeFileExtensions = new Set(['.css', '.html', '.js', '.svg', '.txt', '.xml'])
 const includeFiles = new Set(['_headers', '_redirects'])
-const excludeNames = new Set(['.DS_Store'])
+// 模板文件仅供本地开发服务器（static-server.mjs）兜底使用，不发布到生产环境。
+const excludeNames = new Set(['.DS_Store', 'article-template.html', 'career-template.html'])
 
 function shouldCopyFile(name) {
   if (excludeNames.has(name)) return false
@@ -72,12 +71,13 @@ async function walkFiles(dir, files = []) {
 
 function collectAssetReferences(text) {
   const references = new Set()
-  const quotedPathRe = /["'(]\/(assets|product-images)\/[^"'?#)\s]+/g
+  // 同时匹配相对路径（"/assets/x.png"）与绝对 URL（"https://djiluggage.id/assets/x.png"）。
+  // og:image / twitter:image 用的是绝对 URL，旧正则只认引号后紧跟 "/assets/"，会漏掉它们。
+  const pathRe = /["'(](?:https?:\/\/[^"'/\s]+)?(\/(?:assets|product-images)\/[^"'?#)\s]+)/g
   const srcsetRe = /srcset=["']([^"']+)["']/g
 
-  for (const match of text.matchAll(quotedPathRe)) {
-    const raw = match[0].slice(1)
-    references.add(raw.replace(/^\//, ''))
+  for (const match of text.matchAll(pathRe)) {
+    references.add(match[1].slice(1))
   }
 
   for (const match of text.matchAll(srcsetRe)) {

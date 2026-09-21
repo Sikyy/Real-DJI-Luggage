@@ -27,7 +27,20 @@
 /newsroom/master-customs-compliance /newsroom/from-sample-to-production 301
 /newsroom/sustainable-shipping-reduce-your-footprint /newsroom/building-a-private-label-travel-line 301
 /newsroom/logistics-drives-business-growth /newsroom/packaging-and-export-prep-for-suitcases 301
-/id / 200
-/id/* /:splat 200
-/zh / 200
-/zh/* /:splat 200
+# 旧职位 slug（目录已重命名）→ 新 slug，避免旧 URL 变 404
+/careers/head-of-marketing /careers/production-supervisor/ 301
+/careers/head-of-marketing/ /careers/production-supervisor/ 301
+/careers/product-manager /careers/quality-control-specialist/ 301
+/careers/product-manager/ /careers/quality-control-specialist/ 301
+/careers/project-manager /careers/sample-development-technician/ 301
+/careers/project-manager/ /careers/sample-development-technician/ 301
+/careers/software-developer /careers/export-sales-coordinator/ 301
+/careers/software-developer/ /careers/export-sales-coordinator/ 301
+
+# 已废弃的多语言前缀。站内不存在 zh/ id/ 目录，此前用 200 重写会让 Google
+# 把它们当作独立页面收录（重复内容）。改为 301 收敛到英文版。
+# 注意：若将来真要上线中文/印尼语版本，需删掉这 4 行。
+/id / 301
+/id/* /:splat 301
+/zh / 301
+/zh/* /:splat 301
