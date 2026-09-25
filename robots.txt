@@ -1,3 +1,70 @@
+# robots.txt — https://djiluggage.id
+#
+# Full crawl access is intended for search engines and for AI answer engines.
+# AI crawlers are named explicitly so the policy is deliberate rather than
+# inherited from the "*" group. See /llms.txt for a machine-readable summary.
+
+# --- Search engines ---------------------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# --- AI answer engines (these fetch pages to cite them) ---------------------
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# --- AI training / model crawlers -------------------------------------------
+# Allowed on purpose: brand and product facts should be available to the models
+# that answer buyer questions. Move any of these to "Disallow: /" to opt out of
+# training-only crawling without affecting the answer engines above.
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# --- Everything else --------------------------------------------------------
 User-agent: *
 Allow: /
 

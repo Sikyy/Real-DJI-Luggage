@@ -10,6 +10,17 @@
     "sitemap": "node scripts/build-sitemap.mjs",
     "sitemap:check": "node scripts/build-sitemap.mjs --check",
     "structured-data": "node scripts/build-structured-data.mjs",
-    "structured-data:check": "node scripts/build-structured-data.mjs --check"
+    "structured-data:check": "node scripts/build-structured-data.mjs --check",
+    "seo-geo": "node scripts/seo-geo/run.mjs",
+    "seo-geo:refresh": "node scripts/seo-geo/run.mjs --refresh",
+    "seo-geo:fetch": "node scripts/seo-geo/run.mjs --only-fetch",
+    "audit:corpus": "node scripts/site-audit/corpus.mjs",
+    "audit:analyze": "node scripts/site-audit/analyze.mjs",
+    "audit:verdicts": "node scripts/site-audit/audit.mjs",
+    "audit:schema": "node scripts/site-audit/schema-facts.mjs",
+    "audit:report": "node scripts/site-audit/report.mjs",
+    "audit:benchmark": "node scripts/site-audit/benchmark.mjs",
+    "ai:visibility": "node scripts/site-audit/ai-visibility.mjs",
+    "audit:plan": "node scripts/site-audit/plan.mjs"
   }
 }

@@ -304,6 +304,19 @@
       transition: opacity 0.5s ease;
     }
 
+    /* ========== ANSWER SUMMARY ========== */
+    .answer-block {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.64px;
+      line-height: 22px;
+      color: var(--text-dark);
+      width: 100%;
+      max-width: 760px;
+      text-align: left;
+    }
+
     /* ========== TABLET MOCKUP ========== */
     .tablet-mockup {
       background: var(--body-bg);
@@ -981,7 +994,7 @@
   <!-- HEADER -->
   <header id="header">
     <a href="/" class="logo" aria-label="DJI Luggage">DJI LUGGAGE</a>
-    <div class="hamburger" id="menuToggle">
+    <div class="hamburger" id="menuToggle" role="button" tabindex="0" aria-label="Open menu" aria-expanded="false" aria-controls="menuOverlay">
       <span></span>
       <span></span>
     </div>
@@ -1054,6 +1067,7 @@
     <div class="production-interface-layout">
       <div class="section-label reveal" style="margin-bottom:0;">PRODUCTION WORKFLOW</div>
       <p class="production-interface-text" id="productionInterfaceText">One clear process connects product ideas, sampling, production, inspection, and export preparation.</p>
+      <p class="answer-block reveal">Luggage production at DJI Luggage runs in stages: brief and material selection, sample development, approved sample, bulk production, inspection, then export packing. Sample development takes about 7-15 working days after artwork and component direction are approved, and bulk production runs 25-55 days from deposit and approved sample. Two 1,500-tonne injection machines and 100% in-house mould making support 30,000 units a month, about 70% hard shell. Inspection follows QB/T 2155-2018: a 900 mm loaded drop onto 45-grade steel, wheel runs of 8 km on a cement drum plus 4 km on a cleated conveyor with wear within 2 mm, 40 kg and 60 kg stacking for four continuous hours, and 16-hour salt spray. Packing covers single or nested sets, dust bags, corner protection and desiccant. Finished cases are sent to SGS for third-party testing, and packing is produced to EU PPWR, US CONEG and REACH requirements.</p>
     </div>
   </section>
 

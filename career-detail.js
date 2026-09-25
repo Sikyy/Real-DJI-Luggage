@@ -110,7 +110,7 @@
   document.body.innerHTML = `
     <header id="header" class="txt-dark">
       <a href="/" class="logo">${brandLogo}</a>
-      <div class="hamburger" id="menuToggle"><span></span><span></span></div>
+      <div class="hamburger" id="menuToggle" role="button" tabindex="0" aria-label="Open menu" aria-expanded="false" aria-controls="menuOverlay"><span></span><span></span></div>
       <a href="/contact" class="header-cta">GET A QUOTE</a>
     </header>
 
@@ -287,12 +287,26 @@
     document.body.classList.remove('menu-open');
   }
 
+  function syncMenuA11y() {
+    var open = menuOverlay.classList.contains('active');
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+
   menuToggle.addEventListener('click', function () {
     menuOverlay.classList.toggle('active');
     menuToggle.classList.toggle('active');
     header.classList.toggle('menu-open');
     document.body.classList.toggle('menu-open');
+    syncMenuA11y();
   });
+  menuToggle.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+      event.preventDefault();
+      menuToggle.click();
+    }
+  });
+  syncMenuA11y();
   document.querySelectorAll('.menu-nav a').forEach(link => link.addEventListener('click', closeMenu));
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') closeMenu();

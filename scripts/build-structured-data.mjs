@@ -45,10 +45,25 @@ function toIso(mdy) {
 // ---------------------------------------------------------------- 各类 schema
 function productSchema(rel) {
   const html = read(rel)
+  const slug = path.basename(path.dirname(rel))
+  // 只看页面本体，排除 <script>：脚本里出现的 "[data-size-option]" 选择器
+  // 会被属性正则误当成标签内容，之前就是这样把 JS 写进了 JSON-LD。
+  const markup = html.replace(/<script[\s\S]*?<\/script>/gi, '')
+
+  // 只收本产品自己的图库。原实现把 colour swatch 与 lower-feature 等
+  // 其他产品/通用素材也算了进来，导致 Product.image 混入他款图片。
   const gallery = [...new Set(
-    [...html.matchAll(/\/assets\/products\/roaming-catalog\/[^"']+?\.(?:png|jpg|jpeg|webp)/g)].map((m) => SITE + m[0]),
-  )].slice(0, 8)
-  const sizeList = [...new Set([...html.matchAll(/data-size-option[^>]*>([^<]+)</g)].map((m) => m[1]))]
+    [...markup.matchAll(/\/assets\/products\/roaming-catalog\/[^"'\s]+?\.(?:png|jpg|jpeg|webp)/g)]
+      .map((m) => m[0])
+      .filter((p) => path.basename(p).startsWith(slug)),
+  )].slice(0, 8).map((p) => SITE + p)
+
+  // data-size-option 是无值布尔属性，必须锚定在 <button ...> 开标签内。
+  const sizeList = [...new Set(
+    [...markup.matchAll(/<button\b[^>]*\bdata-size-option\b[^>]*>([^<]+)<\/button>/g)]
+      .map((m) => unescapeHtml(m[1]).trim())
+      .filter(Boolean),
+  )]
 
   return {
     '@context': 'https://schema.org',

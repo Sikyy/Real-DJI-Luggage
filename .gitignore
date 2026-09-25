@@ -25,3 +25,6 @@ cms/media/
 tmp/
 dist/
 sales-kit/
+
+# SEO / GEO 分析的抓取缓存与模型原始答案
+.seo-geo/

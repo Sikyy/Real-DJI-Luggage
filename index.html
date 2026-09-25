@@ -1304,7 +1304,7 @@
   <!-- HEADER -->
   <header id="header">
     <a href="/" class="logo" aria-label="DJI Luggage">DJI LUGGAGE</a>
-    <div class="hamburger" id="menuToggle">
+    <div class="hamburger" id="menuToggle" role="button" tabindex="0" aria-label="Open menu" aria-expanded="false" aria-controls="menuOverlay">
       <span></span>
       <span></span>
     </div>
@@ -1388,7 +1388,7 @@
           <div class="section-label reveal" style="margin-bottom:0;display:flex;align-items:center;gap:8px;"><span style="font-size:13px;">+</span> WHAT WE DO</div>
         </div>
         <div class="services-right">
-          <h3 class="services-intro" id="empowerText">We support OEM and ODM luggage programs with sample development, production planning, quality checks, and export-ready packaging.</h3>
+          <h2 class="services-intro" id="empowerText">We support OEM and ODM luggage programs with sample development, production planning, quality checks, and export-ready packaging.</h2>
           <div class="services-cards-row reveal">
             <div class="service-card">
               <div class="service-card-line"></div>
@@ -1466,12 +1466,12 @@
       </div>
       <div class="value-card reveal reveal-delay-3">
         <div class="value-card-media">
-          <img src="/product-images/home-full-aluminum-suitcase.png" alt="Full aluminum suitcase" loading="lazy">
+          <img src="/product-images/Polycarbonate-Zipper-Suitcase.png" alt="Polycarbonate suitcase" loading="lazy">
         </div>
         <div class="value-card-content">
           <div class="value-number">4</div>
-          <h3>Full Aluminum Suitcases</h3>
-          <p>Premium all-aluminum luggage programs with metal body construction, protective corners, secure locks, and a high-end finish.</p>
+          <h3>Polycarbonate Suitcases</h3>
+          <p>Polycarbonate hard-shell programs with molded shells, protective corners, and custom color, wheel, and hardware options.</p>
         </div>
       </div>
       <div class="value-card reveal reveal-delay-4">
@@ -1726,7 +1726,7 @@
       const processed = segments.map(segment => {
         return segment.split('').map(function(char) {
           charIndex++;
-          var display = char === ' ' ? ' ' : char;
+          var display = char === ' ' ? '&nbsp;' : char;
           return '<span class="char" style="animation-delay:' + (charIndex * 0.02) + 's">' + display + '</span>';
         }).join('');
       }).join('<br>');

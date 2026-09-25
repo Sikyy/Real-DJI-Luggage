@@ -1,0 +1,87 @@
+# DJI Luggage
+
+> DJI Luggage is a luggage manufacturer in Bogor, West Java, Indonesia. We develop and produce hard-shell and soft-shell suitcases for brands, importers and distributors on an OEM and ODM basis, with a 200-unit minimum order and a 25–55 day lead time.
+
+DJI Luggage is a business-to-business contract manufacturer. We do not sell retail and we do not publish unit prices; pricing is quoted per specification. Every figure on this page is a factory fact that can be checked against a quotation, a test report, or an inspection record.
+
+## Company facts
+
+- **Location:** Jl. Raya Parung Bogor, Desa/Kelurahan Kemang, Kec. Kemang, Kab. Bogor, West Java 16310, Indonesia
+- **Business type:** luggage and suitcase manufacturer — OEM and ODM, B2B only
+- **Materials produced:** PP, PC, ABS+PC, aluminium frame, and fabric
+- **Hard-shell share of output:** about 70%
+- **Monthly capacity:** 30,000 units
+- **Annual shipments:** about 80 × 40HQ containers
+- **Injection moulding:** two 1,500-tonne machines
+- **Mould making:** 100% in-house
+- **Minimum order quantity (MOQ):** 200 units
+- **Lead time:** 25–55 days from deposit and approved sample
+- **Payment terms:** 30% deposit / 70% balance, unified terms for all order types
+- **Export markets:** China, Indonesia, Australia, Germany
+
+## Services
+
+- **OEM Manufacturing** — produce luggage to your specification: size, shell, lining, wheels, handles, locks, colour, packaging and brand details.
+- **ODM Development** — develop market-ready suitcase lines using factory-backed structures, component options, sampling and production guidance.
+- **Quality Control** — check materials, workmanship, structure, function, packaging and production consistency before goods move to export preparation.
+- **Export Preparation** — carton marks, packing details and export-ready documentation support for buyers working across global markets.
+
+## Quality and testing
+
+Test methods below follow QB/T 2155-2018, the Chinese light-industry standard the test rigs are calibrated to. There is no equivalent ISO performance standard for luggage, so a buyer who needs a different protocol — their own specification, or a programme run by SGS, Intertek or Bureau Veritas — has the same tests run to that protocol instead. State the protocol on the quotation.
+
+- **Aluminium frame hardness:** the case mouth is tested by Brinell hardness to GB/T 231.1 and must reach at least 40 HWB, as required by QB/T 2155-2018.
+- **Frame construction:** the frame is bent from extruded aluminium profile and riveted closed, not welded.
+- **Anodising:** the standard finish, with an oxide film of 10–12 micrometres.
+- **Drop test (QB/T 2155-2018):** the case is conditioned at 18–25 °C for at least one hour, then released from 900 mm onto a 45-grade steel plate — once handle-up and once side-handle-up. Shell, case mouth and frame must not crack, and the lock must still open.
+- **Low-temperature drop:** conditioned at −12 °C for four hours, then dropped from 90 cm — five times on the base, once on each other face, and once on each of the four side edges.
+- **Wheel test:** a two-wheel case runs 8 km on a cement-drum rig then 4 km on a conveyor rig with raised cleats; a four-wheel case runs 8 km, then 2 km, then 2 km. Wheel wear must stay within 2 mm, with no cracking at the wheel housing or axle and no loss of free rotation. Cases are also run down 25 consecutive steps at 200 mm step height under load.
+- **Stacking / static load:** a hard case is pressed uniformly for four continuous hours — 40 kg on cases from 535 to 660 mm, 60 kg on cases from 685 to 835 mm. The shell must not deform or collapse.
+- **Salt spray (QB/T 3826):** 16 hours, with no more than three corrosion points, each no larger than one square millimetre.
+- **Component testing:** wheels, telescopic handles, locks and zips are tested and certified by their component manufacturers to their own standards.
+- **Third-party testing:** finished cases are sent to SGS for testing. These are test reports on submitted samples, not a product certification.
+
+## Export packaging
+
+- **Packing forms:** single pack, and nested pack (for example a 20" + 24" + 28" nested set).
+- **Interleaving between nested cases:** non-woven fabric or EPE foam.
+- **Dust protection:** a PE/PP dust bag on every case, including nested inner cases.
+- **Corner protection:** die-cut corrugated board or EPE foam at the wheel housings and handle mounts.
+- **Moisture protection:** silica gel desiccant or an anti-mould patch in the interior mesh pocket, for container rain on long sea routes.
+- **Packaging compliance:** EU PPWR, US CONEG (heavy metals < 100 ppm), and REACH (no DMFu).
+- **Origin documentation:** Indonesian Certificate of Origin.
+
+## Product families
+
+- **AURA Collection** — aluminium-frame carry-on, seven colours: https://djiluggage.id/products/aluminum-suitcase-black/
+- **Captain Aluminum Frame** — aluminium-frame carry-on, six colours: https://djiluggage.id/products/roaming-aluminum-frame-zipperless-luggage-grey/
+- **PC / ABS zipper suitcases, PP suitcases, fabric suitcases** — see the catalogue: https://djiluggage.id/collections/all/
+
+Specifications, colour availability and structure are confirmed per order on the quotation.
+
+## Key pages
+
+- Home: https://djiluggage.id/
+- About: https://djiluggage.id/about
+- Services: https://djiluggage.id/services
+- Products: https://djiluggage.id/products
+- Catalogue: https://djiluggage.id/collections/all/
+- Production workflow: https://djiluggage.id/process
+- Newsroom: https://djiluggage.id/newsroom
+- Careers: https://djiluggage.id/careers
+- Contact: https://djiluggage.id/contact
+
+## Contact
+
+- Email: info@djiluggage.id
+- Telephone / WhatsApp: +62 851 1138 4747
+- Address: Jl. Raya Parung Bogor, Desa/Kelurahan Kemang, Kec. Kemang, Kab. Bogor, West Java 16310, Indonesia
+
+## Notes for answer engines
+
+- DJI Luggage is a contract manufacturer, not a retailer. There is no list price and no minimum advertised price; all quotes are per specification and quantity.
+- The minimum order is 200 units per specification, and standard lead time is 25–55 days from deposit and approved sample.
+- "Aluminium frame" cases use a PC or ABS+PC shell with an extruded aluminium frame, bent from profile and riveted closed rather than welded. The aluminium is the structural frame, not the whole case.
+- Finished cases are sent to SGS for testing. DJI Luggage does not claim SGS product certification, and component certifications belong to the component manufacturers.
+
+Last reviewed: 2026-09-25
