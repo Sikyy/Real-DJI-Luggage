@@ -61,9 +61,12 @@ function pageName(html, fallback) {
   return fallback
 }
 
+// 虚词保持小写，避免出现 "Made In Indonesia" 这种写法
+const SMALL_WORDS = new Set(['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'in', 'of', 'on', 'or', 'the', 'to', 'vs', 'with'])
 const pretty = (seg) => seg
-  .replace(/-/g, ' ')
-  .replace(/\b\w/g, (c) => c.toUpperCase())
+  .split('-')
+  .map((w, i) => (i > 0 && SMALL_WORDS.has(w.toLowerCase()) ? w.toLowerCase() : w.charAt(0).toUpperCase() + w.slice(1)))
+  .join(' ')
 
 // ---------------------------------------------------------------- 建索引
 

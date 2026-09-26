@@ -97,12 +97,23 @@ for (const slug of Object.keys(jobs)) {
     console.log(`${slug}  !! 未找到 body 标记，跳过`)
     continue
   }
-  const next = html.replace(
-    re,
-    `<body data-job-slug="${slug}">\n  ${renderBody(slug)}\n</body>`,
-  )
+
+  // <body> 里除了职位内容，还住着两段站点级代码：GTM 的 <noscript> 与 cookie
+  // 同意横幅。整体替换 body 会把它们一起抹掉，所以先从旧 body 里取出来再放回去。
+  const oldBody = html.match(re)[0]
+  const gtm = oldBody.match(/[ \t]*<!-- Google Tag Manager \(noscript\) -->[\s\S]*?<!-- End Google Tag Manager \(noscript\) -->/)
+  const consent = oldBody.match(/[ \t]*<!-- Cookie consent banner -->[\s\S]*?<!-- End cookie consent banner -->/)
+
+  const parts = [`<body data-job-slug="${slug}">`]
+  if (gtm) parts.push(gtm[0].trim())
+  parts.push(`  ${renderBody(slug)}`)
+  if (consent) parts.push(consent[0].trim())
+  parts.push('</body>')
+
+  const next = html.replace(re, parts.join('\n'))
   if (APPLY) writeFileSync(file, next, 'utf8')
   console.log(
-    `${slug.padEnd(32)} body ${html.length} → ${next.length} bytes  (+${next.length - html.length})`,
+    `${slug.padEnd(32)} body ${html.length} → ${next.length} bytes  (+${next.length - html.length})` +
+      `${gtm ? '' : '  !! 未找到 GTM noscript'}${consent ? '' : '  !! 未找到同意横幅'}`,
   )
 }
