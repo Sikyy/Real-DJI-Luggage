@@ -217,7 +217,7 @@ const PAGES = [
         { p: 'Zipper and zipperless closures are both available. Wheels, handles, locks and lining are quoted against your brief; component minimums come from their own manufacturers.' },
       ] },
       { h2: 'How OEM differs from ODM', blocks: [
-        { p: 'OEM gives you a product that is yours alone, and asks you to invest in tooling and sampling. ODM starts from a structure we already produce and adapts it, which reaches market faster and costs less. Both run under the same commercial terms here. If you have not chosen yet, the comparison on our <a href="/newsroom/oem-vs-odm-for-luggage-brands/">OEM vs ODM guide</a> sets out the trade-offs.' },
+        { p: 'OEM gives you a product that is yours alone, and asks you to invest in tooling and sampling. An <a href="/services/luggage-odm/">ODM programme</a> starts from a structure we already produce and adapts it, which reaches market faster and costs less. Both run under the same commercial terms here. If you have not chosen yet, the comparison on our <a href="/newsroom/oem-vs-odm-for-luggage-brands/">OEM vs ODM guide</a> sets out the trade-offs.' },
       ] },
       { h2: 'Testing and evidence', blocks: [
         { p: 'Structural testing follows QB/T 2155-2018: a drop from 900 mm onto 45-grade steel after conditioning at 18-25 °C, a low-temperature drop from 90 cm after four hours at -12 °C, wheel runs of 8 km on a cement drum plus 4 km on a cleated conveyor with wear within 2 mm, stacking of 40 kg or 60 kg for four continuous hours depending on case size, and 16-hour salt spray to QB/T 3826. On aluminium frame cases the case mouth is tested by Brinell hardness to GB/T 231.1 and must reach at least 40 HWB.' },
@@ -271,7 +271,7 @@ const PAGES = [
           'You are extending an existing line and the structure is not the selling point',
           'You want stock on shelf within a quarter rather than designing from zero',
         ] },
-        { p: 'Many brands enter with ODM, learn which models sell, then move the winners to OEM once volume justifies tooling. Our <a href="/newsroom/oem-vs-odm-for-luggage-brands/">OEM vs ODM guide</a> covers that sequence in detail.' },
+        { p: 'Many brands enter with ODM, learn which models sell, then move the winners to <a href="/services/luggage-oem/">OEM</a> once volume justifies tooling. Our <a href="/newsroom/oem-vs-odm-for-luggage-brands/">OEM vs ODM guide</a> covers that sequence in detail.' },
       ] },
       { h2: 'Testing and evidence', blocks: [
         { p: 'ODM structures are tested to the same standard as OEM programmes, QB/T 2155-2018: a 900 mm loaded drop onto 45-grade steel, a low-temperature drop from 90 cm at -12 °C, wheel runs of 8 km plus 4 km with wear within 2 mm, four-hour stacking at 40 kg or 60 kg, and 16-hour salt spray to QB/T 3826. Finished cases are sent to SGS for testing, which produces test reports on submitted samples rather than a product certification.' },
@@ -296,7 +296,7 @@ const PAGES = [
     sections: [
       { h2: 'What building your own brand involves', blocks: [
         { p: 'You do not need a factory, a tool shop or a product team to launch a luggage brand. What you need is a product definition and a manufacturer willing to build to it. You supply the brief and the brand; we handle structure, tooling, sampling, production, inspection and export packing.', lead: true },
-        { p: 'It can run two ways. As OEM, where you define the product from your own design. As ODM, where you adapt a structure we already produce. The second route reaches market faster and costs less, which is usually how a first range gets launched.' },
+        { p: 'It can run two ways. As OEM, where you define the product from your own design. As ODM, where you adapt a structure we already produce. The second route reaches market faster and costs less, which is usually how a first range gets launched. The trade-off between them is set out in <a href="/newsroom/oem-vs-odm-for-luggage-brands/">OEM vs ODM for luggage brands</a>.' },
       ] },
       { h2: 'Branding methods we apply', blocks: [
         { table: { head: ['Method', 'Where it goes', 'Notes'], rows: [

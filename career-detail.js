@@ -142,7 +142,7 @@
                 <a href="/services/">Manufacturing</a>
                 <a href="/products/">Products</a>
                 <a href="/process/">Capabilities</a>
-                <a href="/newsroom/filters/all/">Insights</a>
+                <a href="/newsroom/">Insights</a>
               </nav>
             </div>
             <div class="menu-contact-section">
@@ -254,7 +254,7 @@
             <a href="/compliance/">COMPLIANCE</a>
             <a href="/careers/">CAREERS</a>
             <a href="/process/">CAPABILITIES</a>
-            <a href="/newsroom/filters/all/">INSIGHTS</a>
+            <a href="/newsroom/">INSIGHTS</a>
           </div>
           <div class="footer-nav-col">
             <h4>SUPPORT</h4>
