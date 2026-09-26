@@ -11,53 +11,61 @@
 (function () {
   'use strict';
 
-  var KEY = 'dji_consent_v1';
-  var banner = document.getElementById('cookieBanner');
-  var settings = document.getElementById('cookieSettings');
-  if (!banner) return;
+  // 职位详情页会在运行时用 document.body.innerHTML 整体重建 body，横幅与页脚入口
+  // 都是新节点，先前绑定的监听器随之失效。所以这里包成可重复调用的函数并挂到
+  // window 上，谁重建了 DOM 谁负责再调一次 —— 比重新追加 <script> 可靠。
+  function initConsent() {
+    var KEY = 'dji_consent_v1';
+    var banner = document.getElementById('cookieBanner');
+    var settings = document.getElementById('cookieSettings');
+    if (!banner) return;
 
-  /** 直接用 dataLayer.push，避免依赖 gtag() 是否已加载 */
-  function pushConsent(state) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(['consent', 'update', { analytics_storage: state }]);
-  }
+    /** 直接用 dataLayer.push，避免依赖 gtag() 是否已加载 */
+    function pushConsent(state) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(['consent', 'update', { analytics_storage: state }]);
+    }
 
-  function read() {
-    try { return localStorage.getItem(KEY); } catch (e) { return null; }
-  }
+    function read() {
+      try { return localStorage.getItem(KEY); } catch (e) { return null; }
+    }
 
-  function write(value) {
-    try { localStorage.setItem(KEY, value); } catch (e) { /* 隐私模式下忽略 */ }
-  }
+    function write(value) {
+      try { localStorage.setItem(KEY, value); } catch (e) { /* 隐私模式下忽略 */ }
+    }
 
-  function apply(state) {
-    write(state);
-    pushConsent(state);
-    banner.hidden = true;
-    if (settings) settings.hidden = false;
-  }
+    function apply(state) {
+      write(state);
+      pushConsent(state);
+      banner.hidden = true;
+      if (settings) settings.hidden = false;
+    }
 
-  banner.addEventListener('click', function (event) {
-    var button = event.target.closest('[data-consent]');
-    if (!button) return;
-    apply(button.getAttribute('data-consent'));
-  });
-
-  // 允许随时撤回或更改选择
-  if (settings) {
-    settings.addEventListener('click', function (event) {
-      // 页脚里是个 <a href="#">，阻止默认锚点跳转
-      event.preventDefault();
-      banner.hidden = false;
-      settings.hidden = true;
+    banner.addEventListener('click', function (event) {
+      var button = event.target.closest('[data-consent]');
+      if (!button) return;
+      apply(button.getAttribute('data-consent'));
     });
+
+    // 允许随时撤回或更改选择
+    if (settings) {
+      settings.addEventListener('click', function (event) {
+        // 页脚里是个 <a href="#">，阻止默认锚点跳转
+        event.preventDefault();
+        banner.hidden = false;
+        settings.hidden = true;
+      });
+    }
+
+    var stored = read();
+    if (stored === 'granted' || stored === 'denied') {
+      banner.hidden = true;
+      if (settings) settings.hidden = false;
+    } else {
+      banner.hidden = false;
+    }
   }
 
-  var stored = read();
-  if (stored === 'granted' || stored === 'denied') {
-    banner.hidden = true;
-    if (settings) settings.hidden = false;
-  } else {
-    banner.hidden = false;
-  }
-})();
+  window.__initConsent = initConsent;
+  initConsent();
+  })();

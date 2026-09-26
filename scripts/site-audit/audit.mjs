@@ -10,13 +10,14 @@
  */
 
 import { readFileSync, writeFileSync } from 'node:fs';
+import * as siteDir from './site-dir.mjs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { loadApiKey, callJev } from '../seo-geo/jev.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
-const SITE_DIR = join(ROOT, '.seo-geo', 'site');
+const { SITE_DIR, LABEL } = siteDir;
 const abs = (p) => join(ROOT, p);
 
 const corpus = JSON.parse(readFileSync(join(SITE_DIR, 'corpus.json'), 'utf8'));

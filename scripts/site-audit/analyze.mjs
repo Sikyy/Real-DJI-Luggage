@@ -16,13 +16,14 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import * as siteDir from './site-dir.mjs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { loadApiKey, callJev } from '../seo-geo/jev.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
-const SITE_DIR = join(ROOT, '.seo-geo', 'site');
+const { SITE_DIR, LABEL } = siteDir;
 const abs = (p) => join(ROOT, p);
 
 const argv = process.argv.slice(2);
@@ -464,5 +465,5 @@ if (want('schema')) {
 /* ==================================================================== */
 
 writeFileSync(outPath, JSON.stringify(findings, null, 2));
-console.log(`\n▶ 判断完成，写入 .seo-geo/site/findings.json`);
+console.log(`\n▶ 判断完成，写入 ${relative(ROOT, join(SITE_DIR, 'findings.json'))}`);
 console.log(`  Jev 用量：输入 ${usageTotal.input_tokens} / 输出 ${usageTotal.output_tokens} tokens（${model}）`);

@@ -47,6 +47,14 @@ const listBlock = (arr) =>
 const SIDEBAR =
   'DJI Luggage is a Bogor-based luggage manufacturer supporting OEM, ODM, and private-label buyers.'
 
+// 结尾 CTA 与页脚在 career-detail.js 里只有 ${socialIcons} 一个插值。
+// 直接取出来复用，避免在预渲染脚本里再维护一份副本。
+const socialIcons = (src.match(/const socialIcons = `([\s\S]*?)`;/) || [, ''])[1]
+const fill = (block) => (block || '').replace(/\$\{socialIcons\}/g, socialIcons).trim()
+const ctaBlock = fill(src.match(/[ \t]*<section class="final-cta"[\s\S]*?<\/section>/)?.[0])
+const footerBlock = fill(src.match(/[ \t]*<footer[\s\S]*?<\/footer>/)?.[0])
+if (!ctaBlock || !footerBlock) throw new Error('未能从 career-detail.js 取到 final-cta 或 footer')
+
 function renderBody(slug) {
   const job = jobs[slug]
   if (!job) throw new Error(`jobs 中缺少 ${slug}`)
@@ -80,7 +88,11 @@ ${listBlock(basic)}
 ${listBlock(preferred)}
         </div>
       </section>
-    </main>`
+    </main>
+
+    ${ctaBlock}
+
+    ${footerBlock}`
 }
 
 console.log('模式:', APPLY ? 'APPLY（写入）' : 'DRY-RUN（只预览）')

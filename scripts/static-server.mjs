@@ -105,8 +105,11 @@ const compressibleTypes = new Set(['.html', '.css', '.js', '.json', '.svg', '.tx
 function cacheControlFor(extension) {
   // HTML must always revalidate so content/redirect updates propagate.
   if (extension === '.html') return 'no-store';
-  // Fonts + query-versioned CSS/JS (?v=) never change for a given URL -> immutable.
-  if (['.woff2', '.woff', '.css', '.js'].includes(extension)) {
+  // CSS/JS 一律不缓存：本地预览时改了文件必须立刻可见。生产由 Cloudflare 按
+  // ?v= 版本号长缓存，若这里也标 immutable，改完不升版本号就会被旧文件骗到。
+  if (['.css', '.js'].includes(extension)) return 'no-store';
+  // 字体是内容寻址之外的静态资源，可以长缓存。
+  if (['.woff2', '.woff'].includes(extension)) {
     return 'public, max-age=31536000, immutable';
   }
   // Images/video aren't content-hashed; cache long but allow revalidation on replace.

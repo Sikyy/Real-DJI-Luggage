@@ -107,6 +107,14 @@
   applyLocaleToDocument();
 
   document.title = `${job.title} - DJI Luggage`;
+  // GTM 的 <noscript> 与 cookie 同意横幅住在 <body> 里。整体重建 body 会把它们
+  // 一起抹掉 —— 横幅不再出现、页脚的 COOKIE SETTINGS 也失去目标。先取出来，
+  // 重建后原位放回，并重新执行 consent.js，让它按 localStorage 恢复横幅状态。
+  const gtmNoscript = document.querySelector('body > noscript');
+  const cookieBanner = document.getElementById('cookieBanner');
+  const gtmHTML = gtmNoscript ? gtmNoscript.outerHTML : '';
+  const bannerHTML = cookieBanner ? cookieBanner.outerHTML : '';
+
   document.body.innerHTML = `
     <header id="header" class="txt-dark">
       <a href="/" class="logo">${brandLogo}</a>
@@ -210,8 +218,8 @@
 
     <section class="final-cta" data-header="light">
       <picture><source type="image/webp" srcset="/assets/home/final-cta-bg.webp"><img class="final-cta-bg" src="/assets/home/final-cta-bg.png" alt="" loading="lazy"></picture>
-      <div class="section-label">Ready To Build</div>
-      <h2 class="cta-title">Start Your<br>Luggage Program</h2>
+      <div class="section-label">LET'S GET TO WORK</div>
+      <h2 class="cta-title">Build Your<br>Luggage Line</h2>
       <a href="/contact" class="btn btn-glass">Get a Quote</a>
     </section>
 
@@ -263,6 +271,11 @@
     </footer>
   `;
   localizeStaticLinks();
+
+  if (gtmHTML) document.body.insertAdjacentHTML('afterbegin', gtmHTML);
+  if (bannerHTML) document.body.insertAdjacentHTML('beforeend', bannerHTML);
+  // 新横幅与新页脚入口都需要重新绑定，直接复用 consent.js 暴露的初始化函数
+  if (typeof window.__initConsent === 'function') window.__initConsent();
 
   const header = document.getElementById('header');
   const menuToggle = document.getElementById('menuToggle');

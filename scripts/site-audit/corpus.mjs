@@ -20,10 +20,9 @@ import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { extract } from '../seo-geo/extract.mjs';
+import * as siteDir from './site-dir.mjs';
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
-const SITE_DIR = join(ROOT, '.seo-geo', 'site');
-const SITE = 'https://djiluggage.id';
+const { ROOT, SITE, SITE_DIR } = siteDir;
 const REFRESH = process.argv.includes('--refresh');
 const UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0 Safari/537.36';
@@ -35,6 +34,7 @@ const abs = (p) => join(ROOT, p);
 
 const norm = (u) => {
   let s = String(u).trim().replace(/^https?:\/\/(www\.)?djiluggage\.id/i, '');
+  s = s.replace(new RegExp('^' + SITE.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'), '');
   s = s.split('#')[0].split('?')[0];
   if (!s.startsWith('/')) s = '/' + s;
   if (s.length > 1 && s.endsWith('/')) s = s.slice(0, -1);
@@ -403,6 +403,6 @@ console.log(
     `  页面 ${corpus.pages.length}（sitemap 内 ${corpus.pages.filter((p) => p.inSitemap).length}） · 内链边 ${edges.length} · 真断链 ${corpus.brokenLinks.length} · 孤岛页 ${orphans.length}`,
   );
 console.log(`  相似对(≥0.3) ${similar.length} · 聚类 ${clusters.length} · 重复文件对 ${duplicates.length} · 旧 URL ${legacy.length}`);
-console.log(`  写入 .seo-geo/site/corpus.json`);
+console.log(`  写入 ${relative(ROOT, join(SITE_DIR, 'corpus.json'))}`);
 if (clusters.length) console.log(`\n  同质聚类：\n${clusters.map((c) => '   - ' + c.join('  |  ')).join('\n')}`);
 if (orphans.length) console.log(`\n  孤岛页：${orphans.join(', ')}`);

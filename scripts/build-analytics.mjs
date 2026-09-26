@@ -27,7 +27,7 @@ const GTM_ID = 'GTM-5X3JF2HN'
 // 同意选择在 localStorage 中的键名（同时用 consent.js 与 <head> 默认值脚本读写）
 const CONSENT_KEY = 'dji_consent_v1'
 // 静态资源版本号：改动 consent.css / consent.js 后需要递增，以绕过长期缓存
-const ASSET_VERSION = '20260925a'
+const ASSET_VERSION = '20260926b'
 
 // 不参与注入的目录（与 build-pages.mjs 的发布范围保持一致，另加本地工具目录）
 const SKIP_DIRS = new Set([
@@ -128,7 +128,24 @@ let written = 0
 
 for (const file of files) {
   const rel = path.relative(root, file)
-  let html = readFileSync(file, 'utf8')
+  const raw = readFileSync(file, 'utf8')
+  let html = raw
+
+  // 归一化：把历史遗留的 consent.css / consent.js 版本号收敛到当前 ASSET_VERSION，
+  // 并去掉重复标签。否则每次提升 ASSET_VERSION，consent.css 的 marker 都会失配，
+  // 于是被再插一份，同一页出现两个版本。
+  html = html.replace(/(\/consent\.(?:css|js)\?v=)[0-9a-z]+/g, `$1${ASSET_VERSION}`)
+  for (const re of [
+    /[ \t]*<link rel="stylesheet" href="\/consent\.css\?v=[^"]*">\n?/g,
+    /[ \t]*<script src="\/consent\.js\?v=[^"]*"><\/script>\n?/g,
+  ]) {
+    const tags = html.match(re) || []
+    if (tags.length > 1) {
+      let first = true
+      html = html.replace(re, (m) => (first ? ((first = false), m) : ''))
+    }
+  }
+
   const before = html
   const added = []
 
@@ -148,9 +165,12 @@ for (const file of files) {
     added.push(...missing.map((p) => p.name))
   }
 
-  if (html === before) continue
+  if (html === raw) continue
 
-  if (CHECK) { incomplete.push(`${rel} — 缺 ${added.join(', ')}`); continue }
+  if (CHECK) {
+    incomplete.push(added.length ? `${rel} — 缺 ${added.join(', ')}` : `${rel} — consent 资源版本号未归一`)
+    continue
+  }
 
   writeFileSync(file, html, 'utf8')
   written++
