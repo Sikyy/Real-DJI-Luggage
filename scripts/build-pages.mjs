@@ -8,9 +8,12 @@ const outDir = path.join(root, 'dist')
 
 const includeDirs = new Set([
   'about',
+  'aluminum-frame-luggage',
+  'aluminum-luggage',
   'careers',
   'collections',
   'contact',
+  'made-in-indonesia',
   'newsroom',
   'privacy-policy',
   'process',
@@ -27,6 +30,21 @@ function shouldCopyFile(name) {
   if (excludeNames.has(name)) return false
   if (includeFiles.has(name)) return true
   return includeFileExtensions.has(path.extname(name))
+}
+
+// 防呆：带 index.html 的顶级目录必须在白名单里，否则它会被静默地排除在
+// 发布产物之外 —— 站点源码看起来正常，线上却是 404。新增落地页目录时最容易踩。
+const omittedDirs = (await readdir(root, { withFileTypes: true }))
+  .filter((e) => e.isDirectory() && !includeDirs.has(e.name) && !e.name.startsWith('.'))
+  .map((e) => e.name)
+  .filter((name) => existsSync(path.join(root, name, 'index.html')))
+  .filter((name) => !['node_modules', 'dist', 'functions', 'scripts', 'product-images'].includes(name))
+
+if (omittedDirs.length) {
+  throw new Error(
+    `以下目录含 index.html 但不在 includeDirs 白名单中，会被静默排除：\n  ${omittedDirs.join('\n  ')}\n` +
+      '请把它们加入 scripts/build-pages.mjs 的 includeDirs。',
+  )
 }
 
 await rm(outDir, { force: true, recursive: true })
