@@ -66,10 +66,10 @@
 # 三个 filters 页与 /newsroom/ 渲染同一份列表且共用同一 canonical，合并到 /newsroom/
 /newsroom/filters/all /newsroom/ 301
 /newsroom/filters/all/ /newsroom/ 301
-/newsroom/filters/insights /newsroom/ 301
-/newsroom/filters/insights/ /newsroom/ 301
-/newsroom/filters/news /newsroom/ 301
-/newsroom/filters/news/ /newsroom/ 301
+/newsroom/filters/insights /newsroom/#insights 301
+/newsroom/filters/insights/ /newsroom/#insights 301
+/newsroom/filters/news /newsroom/#news 301
+/newsroom/filters/news/ /newsroom/#news 301
 
 # 已废弃的多语言前缀。站内不存在 zh/ id/ 目录，此前用 200 重写会让 Google
 # 把它们当作独立页面收录（重复内容）。改为 301 收敛到英文版。

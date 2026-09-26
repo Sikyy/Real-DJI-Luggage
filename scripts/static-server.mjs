@@ -158,8 +158,10 @@ function loadRedirects() {
   if (!existsSync(file)) return [];
   return readFileSync(file, 'utf8')
     .split('\n')
-    .map((line) => line.split('#')[0].trim())
-    .filter(Boolean)
+    .map((line) => line.trim())
+    // Cloudflare 只把「以 # 开头」的行当注释。若像早先那样剥掉行内所有 #，
+    // 目标里的片段（如 /newsroom/#insights）会被吃掉，状态码也会退化。
+    .filter((line) => line && !line.startsWith('#'))
     .map((line) => line.split(/\s+/))
     .filter((parts) => parts.length >= 2)
     .map(([from, to, status]) => ({ from, to, status: Number(status) || 302 }));

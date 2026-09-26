@@ -904,9 +904,9 @@
     <hr class="newsroom-divider">
 
     <div class="filter-tabs reveal">
-      <a href="/newsroom/" class="filter-tab active" data-filter="all"><span class="filter-tab-track"><span>All</span><span>All</span></span></a>
-      <a href="/newsroom/filters/insights/" class="filter-tab" data-filter="insights"><span class="filter-tab-track"><span>Insights</span><span>Insights</span></span></a>
-      <a href="/newsroom/filters/news/" class="filter-tab" data-filter="news"><span class="filter-tab-track"><span>News</span><span>News</span></span></a>
+      <a href="/newsroom/#all" class="filter-tab active" data-filter="all"><span class="filter-tab-track"><span>All</span><span>All</span></span></a>
+      <a href="/newsroom/#insights" class="filter-tab" data-filter="insights"><span class="filter-tab-track"><span>Insights</span><span>Insights</span></span></a>
+      <a href="/newsroom/#news" class="filter-tab" data-filter="news"><span class="filter-tab-track"><span>News</span><span>News</span></span></a>
     </div>
 
     <!-- 3-column article grid -->
@@ -1180,7 +1180,12 @@
     const filterTabs = document.querySelectorAll('.filter-tab');
     const newsCards = document.querySelectorAll('.news-card');
 
+    // 筛选状态放在 hash 里：既能分享/收藏某个筛选视图，又不会再产生
+    // /newsroom/filters/* 这类与列表页重复的独立 URL（那些现在 301 回本页）。
+    // 旧的路径形式继续识别，方便历史链接在重定向到位前也能正确筛选。
     function getFilterFromPath() {
+      const fromHash = (window.location.hash || '').replace('#', '');
+      if (['all', 'insights', 'news'].includes(fromHash)) return fromHash;
       const match = window.location.pathname.match(/\/newsroom\/filters\/(all|insights|news)\/?$/);
       return match ? match[1] : 'all';
     }
@@ -1201,7 +1206,7 @@
       });
 
       if (updatePath) {
-        history.pushState({ filter }, '', `/newsroom/filters/${filter}`);
+        history.pushState({ filter }, '', filter === 'all' ? '/newsroom/' : `/newsroom/#${filter}`);
       }
 
       const titlePrefix = { all: 'All', insights: 'Insights', news: 'News' }[filter] || 'All';
