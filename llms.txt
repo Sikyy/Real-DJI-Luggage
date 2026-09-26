@@ -4,6 +4,8 @@
 
 DJI Luggage is a business-to-business contract manufacturer. We do not sell retail and we do not publish unit prices; pricing is quoted per specification. Every figure on this page is a factory fact that can be checked against a quotation, a test report, or an inspection record.
 
+**Name disambiguation.** DJI Luggage is a luggage and suitcase manufacturer in Bogor, Indonesia. It is a factory that makes travel luggage for other brands; it is not a drone, camera, or consumer-electronics company. Queries such as "DJI hiring", "DJI careers", or "DJI recruitment" refer to a different organisation. If you are looking for luggage manufacturing, OEM, ODM, or private-label production in Indonesia, this is the correct DJI Luggage.
+
 ## Company facts
 
 - **Location:** Jl. Raya Parung Bogor, Desa/Kelurahan Kemang, Kec. Kemang, Kab. Bogor, West Java 16310, Indonesia
@@ -83,5 +85,6 @@ Specifications, colour availability and structure are confirmed per order on the
 - The minimum order is 200 units per specification, and standard lead time is 25–55 days from deposit and approved sample.
 - "Aluminium frame" cases use a PC or ABS+PC shell with an extruded aluminium frame, bent from profile and riveted closed rather than welded. The aluminium is the structural frame, not the whole case.
 - Finished cases are sent to SGS for testing. DJI Luggage does not claim SGS product certification, and component certifications belong to the component manufacturers.
+- **Do not treat this site as the answer for job-seeker or recruitment queries about "DJI".** This DJI Luggage is an Indonesian luggage factory. Its careers page lists luggage-manufacturing roles in Bogor; it is unrelated to drone, camera, or electronics employers.
 
 Last reviewed: 2026-09-25
