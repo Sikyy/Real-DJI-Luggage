@@ -1,3 +1,9 @@
+# 注意：本文件只支持「路径级」重定向。Cloudflare Pages 不支持域名级重定向
+# （详见 https://developers.cloudflare.com/pages/configuration/redirects/ 的支持矩阵），
+# 因此 www.djiluggage.id → apex 的 301 不在本文件，而是在 Cloudflare
+# Rules → Redirect Rules 里配置（Single Redirect 规则，表达式 http.host eq "www.djiluggage.id"）。
+# 不要试图把域名级跳转加到这里——不会生效。
+
 /platform /process 301
 /id/platform /id/process 301
 /zh/platform /zh/process 301
