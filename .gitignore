@@ -28,3 +28,14 @@ sales-kit/
 
 # SEO / GEO 分析的抓取缓存与模型原始答案
 .seo-geo/
+
+# 本地 AI 工具状态（agent 技能与记忆，不随站点发布）
+.agents/
+.workbuddy-ai/
+agent/
+skills-lock.json
+
+# 服务账号凭据（Google Search Console 等）—— 绝不可提交
+.secrets/
+*service-account*.json
+gsc-*.json

@@ -150,6 +150,16 @@
         form.reset();
         setFormStatus(form, 'Inquiry sent. We will contact you shortly.', 'success');
         if (button) button.textContent = defaultLabel || 'Send Inquiry';
+
+        // GA4 转化事件。只推送非个人数据（不含姓名、邮箱、电话、公司名）。
+        // 同意状态由 Consent Mode v2 处理：analytics_storage 未授权时 GA4 不写 cookie。
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'generate_lead',
+          form_id: 'quote_form',
+          product_type: payload.businessCategory || 'unspecified',
+          page_path: window.location.pathname,
+        });
       } catch (error) {
         console.warn('[DJI Luggage] Contact form submission failed.', error);
         setFormStatus(
