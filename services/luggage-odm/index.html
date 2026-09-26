@@ -1037,6 +1037,31 @@
     }
     .lp-inner a { color: #000; text-decoration: underline; text-underline-offset: 3px; }
     .lp-lead { font-size: 18px !important; line-height: 27px !important; }
+    .lp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 28px 0 0; }
+    .lp-card { display: flex; flex-direction: column; border: 1px solid #d4d4d4; background: #fafafa; }
+    /* 占位图。拿到真实项目照片后，在页面数据里给该卡片加 image 字段即可，
+       渲染器会自动输出带 img 的版本（见下方 block() 的 cards 分支）。
+       注意：不要在 CSS 注释里写以斜杠开头的资源路径，构建脚本会把它当成
+       真实引用去校验，找不到就报错。 */
+    .lp-card-media {
+      aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center;
+      background: repeating-linear-gradient(45deg, #ededed 0 10px, #e3e3e3 10px 20px);
+      border-bottom: 1px solid #d4d4d4;
+    }
+    .lp-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .lp-card-media span {
+      font-family: 'Fragment Mono', monospace; font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(0,0,0,.42);
+    }
+    .lp-card-body { padding: 18px 18px 22px; display: flex; flex-direction: column; gap: 10px; }
+    .lp-card-body h3 { margin: 0 !important; font-size: 17px; line-height: 22px; }
+    .lp-card-meta {
+      font-family: 'Fragment Mono', monospace; font-size: 10px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(0,0,0,.5);
+    }
+    .lp-card-body ul { margin: 0; padding-left: 18px; }
+    .lp-card-body li { font-size: 14px; line-height: 21px; }
+    @media (max-width: 900px) { .lp-cards { grid-template-columns: 1fr; } }
     @media (max-width: 768px) {
       .lp-section { padding: 32px 20px 64px; }
       .lp-inner h2 { font-size: 22px; line-height: 28px; margin-top: 40px; }

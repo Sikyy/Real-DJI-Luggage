@@ -73,6 +73,31 @@ const LP_CSS = `  <style>
     }
     .lp-inner a { color: #000; text-decoration: underline; text-underline-offset: 3px; }
     .lp-lead { font-size: 18px !important; line-height: 27px !important; }
+    .lp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 28px 0 0; }
+    .lp-card { display: flex; flex-direction: column; border: 1px solid #d4d4d4; background: #fafafa; }
+    /* 占位图。拿到真实项目照片后，在页面数据里给该卡片加 image 字段即可，
+       渲染器会自动输出带 img 的版本（见下方 block() 的 cards 分支）。
+       注意：不要在 CSS 注释里写以斜杠开头的资源路径，构建脚本会把它当成
+       真实引用去校验，找不到就报错。 */
+    .lp-card-media {
+      aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center;
+      background: repeating-linear-gradient(45deg, #ededed 0 10px, #e3e3e3 10px 20px);
+      border-bottom: 1px solid #d4d4d4;
+    }
+    .lp-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .lp-card-media span {
+      font-family: 'Fragment Mono', monospace; font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(0,0,0,.42);
+    }
+    .lp-card-body { padding: 18px 18px 22px; display: flex; flex-direction: column; gap: 10px; }
+    .lp-card-body h3 { margin: 0 !important; font-size: 17px; line-height: 22px; }
+    .lp-card-meta {
+      font-family: 'Fragment Mono', monospace; font-size: 10px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(0,0,0,.5);
+    }
+    .lp-card-body ul { margin: 0; padding-left: 18px; }
+    .lp-card-body li { font-size: 14px; line-height: 21px; }
+    @media (max-width: 900px) { .lp-cards { grid-template-columns: 1fr; } }
     @media (max-width: 768px) {
       .lp-section { padding: 32px 20px 64px; }
       .lp-inner h2 { font-size: 22px; line-height: 28px; margin-top: 40px; }
@@ -86,6 +111,22 @@ function block(b) {
   if (b.h3) return `      <h3>${b.h3}</h3>`
   if (b.p) return `      <p${b.lead ? ' class="lp-lead"' : ''}>${b.p}</p>`
   if (b.ul) return `      <ul>\n${b.ul.map((li) => `        <li>${li}</li>`).join('\n')}\n      </ul>`
+  if (b.cards) {
+    const cards = b.cards
+      .map((c) => {
+        const media = c.image
+          ? `        <div class="lp-card-media"><img src="${c.image}" alt="${c.imageAlt || ''}" loading="lazy"></div>`
+          : `        <div class="lp-card-media" role="img" aria-label="Placeholder image"><span>Image placeholder</span></div>`
+        const meta = c.meta ? `\n          <div class="lp-card-meta">${c.meta}</div>` : ''
+        const points =
+          c.points && c.points.length
+            ? `\n          <ul>\n${c.points.map((x) => `            <li>${x}</li>`).join('\n')}\n          </ul>`
+            : ''
+        return `        <article class="lp-card">\n${media}\n          <div class="lp-card-body">\n            <h3>${c.title}</h3>${meta}${points}\n          </div>\n        </article>`
+      })
+      .join('\n')
+    return `      <div class="lp-cards">\n${cards}\n      </div>`
+  }
   if (b.table) {
     const head = `        <tr>${b.table.head.map((h) => `<th>${h}</th>`).join('')}</tr>`
     const rows = b.table.rows.map((r) => `        <tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('\n')
@@ -350,6 +391,42 @@ const PAGES = [
           ['Europe', 'Germany'],
         ] } },
         { p: 'Destination requirements drive the packing specification. Tell us the market at the quotation stage and we quote the documentation and packaging set for that market rather than discovering a gap at shipment.' },
+      ] },
+      { h2: 'Programme formats, and where the obligations sit', blocks: [
+        { p: 'The three ways a programme can start differ in how much compliance documentation has to be created. This is the practical difference, using the terms we actually quote.', lead: true },
+        { cards: [
+          {
+            title: 'ODM: start from a structure in production',
+            meta: 'Least documentation to create',
+            points: [
+              'The shell or frame already runs, and its test history already exists',
+              'What changes is branding, colour and packing',
+              'Sample development is 7-15 working days',
+              'Minimum order is 200 units per specification',
+            ],
+          },
+          {
+            title: 'OEM: build to your own specification',
+            meta: 'New tooling, new test round',
+            points: [
+              'Your drawings, technical pack or reference sample',
+              'Tooling made in-house, on two 1,500-tonne injection machines',
+              'The applicable standard set is settled before sampling begins',
+              'Lead time is 25-55 days from deposit and approved sample',
+            ],
+          },
+          {
+            title: 'Private label: your brand from the first order',
+            meta: 'Your name on the product',
+            points: [
+              'Branding on the case, the lining, the hardware and the carton',
+              'Exclusivity on branding, packaging and colour',
+              'The underlying structure may be shared where it is an ODM base',
+              'Payment is 30% deposit, 70% balance',
+            ],
+          },
+        ] },
+        { p: 'In all three formats the buyer is the supplier of record in the destination market, which is where the ACL, EU and US packaging duties attach. What changes is how much has to be built from scratch: an ODM start inherits a structure and its documentation, while an OEM programme creates both. We do not publish client names, or performance figures we cannot evidence. If your programme needs project references or a factory audit, raise it at the quotation stage and we will tell you plainly what we can provide.' },
       ] },
       { h2: 'What we do not claim', blocks: [
         { p: 'Buyers are shown a lot of compliance and environmental language that cannot be checked. We would rather state the boundaries of what we can evidence:' },

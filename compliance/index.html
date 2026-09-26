@@ -1037,6 +1037,31 @@
     }
     .lp-inner a { color: #000; text-decoration: underline; text-underline-offset: 3px; }
     .lp-lead { font-size: 18px !important; line-height: 27px !important; }
+    .lp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 28px 0 0; }
+    .lp-card { display: flex; flex-direction: column; border: 1px solid #d4d4d4; background: #fafafa; }
+    /* 占位图。拿到真实项目照片后，在页面数据里给该卡片加 image 字段即可，
+       渲染器会自动输出带 img 的版本（见下方 block() 的 cards 分支）。
+       注意：不要在 CSS 注释里写以斜杠开头的资源路径，构建脚本会把它当成
+       真实引用去校验，找不到就报错。 */
+    .lp-card-media {
+      aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center;
+      background: repeating-linear-gradient(45deg, #ededed 0 10px, #e3e3e3 10px 20px);
+      border-bottom: 1px solid #d4d4d4;
+    }
+    .lp-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .lp-card-media span {
+      font-family: 'Fragment Mono', monospace; font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(0,0,0,.42);
+    }
+    .lp-card-body { padding: 18px 18px 22px; display: flex; flex-direction: column; gap: 10px; }
+    .lp-card-body h3 { margin: 0 !important; font-size: 17px; line-height: 22px; }
+    .lp-card-meta {
+      font-family: 'Fragment Mono', monospace; font-size: 10px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(0,0,0,.5);
+    }
+    .lp-card-body ul { margin: 0; padding-left: 18px; }
+    .lp-card-body li { font-size: 14px; line-height: 21px; }
+    @media (max-width: 900px) { .lp-cards { grid-template-columns: 1fr; } }
     @media (max-width: 768px) {
       .lp-section { padding: 32px 20px 64px; }
       .lp-inner h2 { font-size: 22px; line-height: 28px; margin-top: 40px; }
@@ -1249,6 +1274,51 @@
         <tr><td>Europe</td><td>Germany</td></tr>
       </table>
       <p>Destination requirements drive the packing specification. Tell us the market at the quotation stage and we quote the documentation and packaging set for that market rather than discovering a gap at shipment.</p>
+
+      <h2>Programme formats, and where the obligations sit</h2>
+      <p class="lp-lead">The three ways a programme can start differ in how much compliance documentation has to be created. This is the practical difference, using the terms we actually quote.</p>
+      <div class="lp-cards">
+        <article class="lp-card">
+        <div class="lp-card-media" role="img" aria-label="Placeholder image"><span>Image placeholder</span></div>
+          <div class="lp-card-body">
+            <h3>ODM: start from a structure in production</h3>
+          <div class="lp-card-meta">Least documentation to create</div>
+          <ul>
+            <li>The shell or frame already runs, and its test history already exists</li>
+            <li>What changes is branding, colour and packing</li>
+            <li>Sample development is 7-15 working days</li>
+            <li>Minimum order is 200 units per specification</li>
+          </ul>
+          </div>
+        </article>
+        <article class="lp-card">
+        <div class="lp-card-media" role="img" aria-label="Placeholder image"><span>Image placeholder</span></div>
+          <div class="lp-card-body">
+            <h3>OEM: build to your own specification</h3>
+          <div class="lp-card-meta">New tooling, new test round</div>
+          <ul>
+            <li>Your drawings, technical pack or reference sample</li>
+            <li>Tooling made in-house, on two 1,500-tonne injection machines</li>
+            <li>The applicable standard set is settled before sampling begins</li>
+            <li>Lead time is 25-55 days from deposit and approved sample</li>
+          </ul>
+          </div>
+        </article>
+        <article class="lp-card">
+        <div class="lp-card-media" role="img" aria-label="Placeholder image"><span>Image placeholder</span></div>
+          <div class="lp-card-body">
+            <h3>Private label: your brand from the first order</h3>
+          <div class="lp-card-meta">Your name on the product</div>
+          <ul>
+            <li>Branding on the case, the lining, the hardware and the carton</li>
+            <li>Exclusivity on branding, packaging and colour</li>
+            <li>The underlying structure may be shared where it is an ODM base</li>
+            <li>Payment is 30% deposit, 70% balance</li>
+          </ul>
+          </div>
+        </article>
+      </div>
+      <p>In all three formats the buyer is the supplier of record in the destination market, which is where the ACL, EU and US packaging duties attach. What changes is how much has to be built from scratch: an ODM start inherits a structure and its documentation, while an OEM programme creates both. We do not publish client names, or performance figures we cannot evidence. If your programme needs project references or a factory audit, raise it at the quotation stage and we will tell you plainly what we can provide.</p>
 
       <h2>What we do not claim</h2>
       <p>Buyers are shown a lot of compliance and environmental language that cannot be checked. We would rather state the boundaries of what we can evidence:</p>
