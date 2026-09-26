@@ -1,0 +1,92 @@
+/* Cookie 同意横幅 —— 与站点现有排版语言保持一致（Geist + Fragment Mono，细边框，无圆角） */
+
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  background: #fff;
+  border-top: 1px solid #e1e1e1;
+  padding: 20px 24px;
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.cookie-banner[hidden] { display: none; }
+
+.cookie-banner-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.cookie-banner-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 19px;
+  color: #333;
+  max-width: 780px;
+}
+
+.cookie-banner-text a {
+  color: #333;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.cookie-btn {
+  font-family: 'Fragment Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border: 1px solid #1c1c1c;
+  background: #fff;
+  color: #1c1c1c;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.cookie-btn:hover { background: #1c1c1c; color: #fff; }
+
+.cookie-btn-accept { background: #1c1c1c; color: #fff; }
+.cookie-btn-accept:hover { background: #000; border-color: #000; }
+
+/* 已作出选择后保留一个可撤回入口 */
+.cookie-settings {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 199;
+  font-family: 'Fragment Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #333;
+  background: #fff;
+  border: 1px solid #e1e1e1;
+  padding: 8px 12px;
+  cursor: pointer;
+  opacity: 0.72;
+  transition: opacity 0.25s ease;
+}
+
+.cookie-settings:hover { opacity: 1; }
+.cookie-settings[hidden] { display: none; }
+
+@media (max-width: 768px) {
+  .cookie-banner { padding: 16px; }
+  .cookie-banner-text { font-size: 13px; line-height: 18px; }
+  .cookie-banner-actions { width: 100%; }
+  .cookie-btn { flex: 1; }
+}

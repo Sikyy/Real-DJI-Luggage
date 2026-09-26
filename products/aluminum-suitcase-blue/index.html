@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Consent Mode v2 defaults (must run before Google Tag Manager) -->
+  <script>(function(){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+  gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+  try{if(localStorage.getItem('dji_consent_v1')==='granted'){gtag('consent','update',{analytics_storage:'granted'})}}catch(e){}})();</script>
+  <!-- End Consent Mode v2 defaults -->
+  <link rel="stylesheet" href="/consent.css?v=20260925a">
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -540,5 +546,18 @@ Exclusive Bonus: Stickers + Custom-fit PEVA Suitcase Cover+Luggage Tags</p>
       option.setAttribute('aria-pressed', 'true');
     });
   </script>
+  <!-- Cookie consent banner -->
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" hidden>
+    <div class="cookie-banner-inner">
+      <p class="cookie-banner-text">We use cookies for analytics, to understand how this site is used. You can accept or decline. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
+      <div class="cookie-banner-actions">
+        <button type="button" class="cookie-btn" data-consent="denied">Decline</button>
+        <button type="button" class="cookie-btn cookie-btn-accept" data-consent="granted">Accept</button>
+      </div>
+    </div>
+  </div>
+  <button type="button" id="cookieSettings" class="cookie-settings" hidden>Cookie settings</button>
+  <script src="/consent.js?v=20260925a"></script>
+  <!-- End cookie consent banner -->
 </body>
 </html>

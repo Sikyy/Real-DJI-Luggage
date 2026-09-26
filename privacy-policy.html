@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Consent Mode v2 defaults (must run before Google Tag Manager) -->
+  <script>(function(){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+  gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+  try{if(localStorage.getItem('dji_consent_v1')==='granted'){gtag('consent','update',{analytics_storage:'granted'})}}catch(e){}})();</script>
+  <!-- End Consent Mode v2 defaults -->
+  <link rel="stylesheet" href="/consent.css?v=20260925a">
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -261,9 +267,9 @@
         <p>DJI Luggage respects your privacy. This Privacy Policy explains how we collect, use, and protect information you share with us through this website, quotation requests, inquiry forms, email, WhatsApp, and other business communications.</p>
         <p>We may collect contact and business information such as your name, company name, email address, phone number, destination market, requested product type, order quantity, project notes, and any details you choose to send when discussing luggage manufacturing, OEM, ODM, sampling, or bulk production.</p>
         <p>We may also collect basic technical information, including IP address, browser type, device type, pages visited, and website usage data. This helps us maintain the website, understand buyer interest, improve content, and protect the site from misuse.</p>
-        <p><strong>Cookies and analytics.</strong> This website uses cookies and similar technologies to measure how the site is used. We use Google Tag Manager and Google Analytics 4, both provided by Google. These tools set first-party cookies — including <em>_ga</em> and <em>_ga_&lt;container-id&gt;</em> — that distinguish one browser from another and record the pages visited, the referring source, the approximate location derived from IP address, device and browser type, and session duration. Google Analytics cookies are retained for up to two years. We use this data in aggregate to understand which products, pages, and markets interest buyers, and to improve the website.</p>
+        <p><strong>Cookies and analytics.</strong> This website uses cookies and similar technologies to measure how the site is used, and only after you agree to them. We use Google Tag Manager and Google Analytics 4, both provided by Google. When analytics consent is given, these tools set first-party cookies — including <em>_ga</em> and <em>_ga_&lt;container-id&gt;</em> — that distinguish one browser from another and record the pages visited, the referring source, the approximate location derived from IP address, device and browser type, and session duration. Google Analytics cookies are retained for up to two years. We use this data in aggregate to understand which products, pages, and markets interest buyers, and to improve the website.</p>
         <p><strong>Third parties and international transfers.</strong> Google acts as our service provider for website analytics and stores this data on its own infrastructure, which may be located outside Indonesia, including in the United States. Google's handling of that data is governed by Google's own privacy policy. We do not sell analytics data, and we do not use it to build advertising profiles or to serve advertising on this website.</p>
-        <p><strong>Your choices.</strong> You can block, delete, or restrict cookies at any time through your browser settings, and you can install Google's Analytics opt-out browser add-on. If you are in a jurisdiction that requires consent before analytics cookies are set, you can withhold that consent by disabling cookies in your browser before using the site. Blocking cookies does not prevent you from using this website, requesting a quotation, or contacting us. You may also write to info@djiluggage.id to ask what analytics data relates to your visit.</p>
+        <p><strong>Your choices.</strong> Analytics cookies are set only after you choose Accept in the cookie banner. If you decline, or make no choice, analytics storage remains denied and no analytics cookies are written. You can change or withdraw your choice at any time using the Cookie settings control shown on every page. You can also block, delete, or restrict cookies through your browser settings, and you can install Google's Analytics opt-out browser add-on. Declining cookies does not prevent you from using this website, requesting a quotation, or contacting us. You may also write to info@djiluggage.id to ask what analytics data relates to your visit.</p>
         <p>We use your information to respond to inquiries, prepare quotations, coordinate samples, discuss production requirements, provide customer support, improve our services, and maintain business records. We do not sell your personal information.</p>
         <p>We may share limited information with trusted service providers who help us operate the website, manage communications, process business records, or support customer service. We may also disclose information when required by law, regulation, legal process, or a legitimate request from authorities.</p>
         <p>We use reasonable administrative and technical safeguards to protect your information. No online system is completely secure, so please avoid sending sensitive personal or financial details through open website forms unless requested through an appropriate business channel.</p>
@@ -311,5 +317,18 @@
     </div>
     <div class="footer-large-text">DJI LUGGAGE</div>
   </footer>
+  <!-- Cookie consent banner -->
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" hidden>
+    <div class="cookie-banner-inner">
+      <p class="cookie-banner-text">We use cookies for analytics, to understand how this site is used. You can accept or decline. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
+      <div class="cookie-banner-actions">
+        <button type="button" class="cookie-btn" data-consent="denied">Decline</button>
+        <button type="button" class="cookie-btn cookie-btn-accept" data-consent="granted">Accept</button>
+      </div>
+    </div>
+  </div>
+  <button type="button" id="cookieSettings" class="cookie-settings" hidden>Cookie settings</button>
+  <script src="/consent.js?v=20260925a"></script>
+  <!-- End cookie consent banner -->
 </body>
 </html>
