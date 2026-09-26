@@ -46,6 +46,17 @@ function insideRoot(filePath) {
   return filePath === root || (relative.startsWith(sep) && !relative.includes('..'));
 }
 
+// 真实存在的静态文件优先。只有页面在仓库里确实不存在时，才回退到模板，
+// 这样本地预览与 Cloudflare Pages 的实际行为一致（Pages 永远读真实文件）。
+function realPageFor(safePath) {
+  const filePath = resolve(root, '.' + safePath);
+  if (!insideRoot(filePath)) return null;
+  const asIndex = join(filePath, 'index.html');
+  if (existsSync(asIndex) && statSync(asIndex).isFile()) return asIndex;
+  if (existsSync(filePath) && statSync(filePath).isFile()) return filePath;
+  return null;
+}
+
 function resolveStaticPath(urlPath) {
   const safePath = cleanPath(urlPath);
   const withoutTrailingSlash = safePath.replace(/\/index\.html$/, '');
@@ -53,6 +64,9 @@ function resolveStaticPath(urlPath) {
   if (withoutTrailingSlash === '/404') {
     return resolve(root, '404.html');
   }
+
+  const realPage = realPageFor(safePath);
+  if (realPage) return realPage;
 
   if (withoutTrailingSlash.match(/^\/newsroom\/filters\/[^/]+$/)) {
     return resolve(root, 'newsroom.html');

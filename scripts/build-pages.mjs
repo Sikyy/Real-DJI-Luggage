@@ -8,8 +8,6 @@ const outDir = path.join(root, 'dist')
 
 const includeDirs = new Set([
   'about',
-  'aluminum-frame-luggage',
-  'aluminum-luggage',
   'careers',
   'collections',
   'contact',

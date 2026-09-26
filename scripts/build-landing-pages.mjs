@@ -242,15 +242,15 @@ const PAGES = [
   {
     out: 'services/private-label-luggage/index.html',
     path: '/services/private-label-luggage',
-    title: 'Private Label Luggage Manufacturing | Indonesia Factory',
-    description: 'Private label luggage manufacturing in Indonesia: your brand on the case, the lining and the carton. MOQ 200 units, 25-55 day lead time, OEM and ODM.',
-    h1: 'Private Label Luggage Manufacturing',
-    heroDesc: 'Your name on the product, the lining, the hardware and the carton - produced to your specification in Bogor, Indonesia.',
+    title: 'Build Your Own Luggage Brand | OEM Factory in Indonesia',
+    description: 'Launch your own luggage brand: your name on the case, the lining and the carton, produced to your brief in Indonesia. MOQ 200 units, 25-55 day lead time.',
+    h1: 'Build Your Own Luggage Brand',
+    heroDesc: 'From brief to branded stock: your name on the case, the lining, the hardware and the carton, produced in Bogor, Indonesia.',
     service: { name: 'Private Label Luggage Manufacturing', type: 'Private label luggage production' },
     sections: [
-      { h2: 'What a private label programme involves', blocks: [
-        { p: 'Private label means the product carries your name and nobody else\'s. It can run as OEM, where you define the product, or as ODM, where you adapt a structure we already produce. Either way, three decisions have to be settled before sampling: the shell or fabric direction, the branding method, and the packaging.', lead: true },
-        { p: 'Everything else - wheels, telescopic handle, locks, lining, interior layout - can be adapted from structures already in production, which is what keeps a private label launch affordable.' },
+      { h2: 'What building your own brand involves', blocks: [
+        { p: 'You do not need a factory, a tool shop or a product team to launch a luggage brand. What you need is a product definition and a manufacturer willing to build to it. You supply the brief and the brand; we handle structure, tooling, sampling, production, inspection and export packing.', lead: true },
+        { p: 'It can run two ways. As OEM, where you define the product from your own design. As ODM, where you adapt a structure we already produce. The second route reaches market faster and costs less, which is usually how a first range gets launched.' },
       ] },
       { h2: 'Branding methods we apply', blocks: [
         { table: { head: ['Method', 'Where it goes', 'Notes'], rows: [
@@ -271,118 +271,22 @@ const PAGES = [
         ] },
         { p: 'The minimum applies per specification - so a programme with three colours is quoted as three specifications unless the colour change does not affect tooling or components.' },
       ] },
+      { h2: 'Your brand, on every surface', blocks: [
+        { p: 'A branded case carries your identity at six points. Deciding all six before sampling is what stops a launch slipping into a second sampling round.' },
+      ] },
       { h2: 'Packaging built for the destination market', blocks: [
         { p: 'Export packing is either single pack or nested pack. Nested sets place a 20-inch case inside a 24-inch inside a 28-inch, cutting freight volume per unit. Inside the carton: non-woven fabric or EPE foam between nested cases, a PE or PP dust bag on every case including nested inners, die-cut corrugated board or EPE foam at the wheel housings and handle mounts, and silica gel desiccant or an anti-mould patch in the interior mesh pocket for container rain on long sea routes.' },
         { p: 'Packing is produced to EU PPWR, US CONEG with heavy metals below 100 ppm, and REACH with no DMFu. Origin documentation is the Indonesian Certificate of Origin.' },
       ] },
       { h2: 'Questions buyers ask', blocks: [
-        { p: '<strong>Can the whole range be exclusive to us?</strong> Branding, packaging, colour and component selection can be exclusive. The underlying structure may be shared where it is an ODM base.' },
+        { p: '<strong>Is the whole range exclusive to my brand?</strong> Branding, packaging, colour and component selection can be exclusive. The underlying structure may be shared where it is an ODM base.' },
         { p: '<strong>Do you handle retail-ready packaging?</strong> Yes - carton marks, barcode labels, hangtags, manuals and PE bags are prepared by destination market.' },
         { p: '<strong>What do you need from us to quote?</strong> Product type and size range, shell direction, branding method, target market, target price and expected quantity. The <a href="/contact">quote form</a> collects exactly those.' },
       ] },
     ],
   },
 
-  // ------------------------------------------------------------ 4. Aluminium frame
-  {
-    out: 'aluminum-frame-luggage/index.html',
-    path: '/aluminum-frame-luggage',
-    title: 'Aluminum Frame Luggage Manufacturing | OEM & ODM Factory',
-    description: 'How aluminum frame luggage is made: extruded profile, riveted frame, anodised finish and a case mouth tested to at least 40 HWB. OEM and ODM from Indonesia.',
-    h1: 'Aluminum Frame Luggage Manufacturing',
-    heroDesc: 'How an aluminium frame case is actually built - the profile, the riveting, the anodising and the tests behind it.',
-    service: { name: 'Aluminum Frame Luggage Manufacturing', type: 'Aluminium frame luggage production' },
-    sections: [
-      { h2: 'What an aluminium frame case is', blocks: [
-        { p: 'An aluminium frame case is not a solid aluminium body. It is a polycarbonate or ABS+PC shell joined to an extruded aluminium profile frame that runs around the case mouth. The aluminium carries the load at the opening - the point where a zippered case fails first - and the shell provides the body. The frame is bent from profile and riveted closed, not welded.', lead: true },
-        { p: 'That distinction matters when you are comparing quotations. A supplier describing a case as entirely aluminium while quoting a polycarbonate shell is describing two different products.' },
-      ] },
-      { h2: 'How the frame is made', blocks: [
-        { table: { head: ['Step', 'Where it happens', 'What it involves'], rows: [
-          ['Extrusion', 'Specialist profile plant', 'Aluminium is extruded into the frame profile. Extrusion is a specialist process and is normally outsourced, including by large factories.'],
-          ['Anodising', 'Specialist plant', 'The anodic oxide layer that gives the frame its finish and corrosion resistance. Standard finish, oxide film of 10-12 micrometres.'],
-          ['Cutting and punching', 'In-house', 'Profile is cut to the case perimeter and punched for rivet positions.'],
-          ['Bending', 'In-house', 'Profile is bent to the case corner radius - the step that decides how cleanly the frame meets the shell.'],
-          ['Riveting', 'In-house', 'The frame is closed and fixed around the case mouth by riveting rather than welding.'],
-          ['Frame-to-shell fixing', 'In-house', 'Frame and shell are joined and the case mouth aligned before assembly.'],
-        ] } },
-        { p: 'We are explicit about which steps are ours. Extrusion and anodising being outsourced is normal in this industry and not a weakness; what matters is that mould making, bending, riveting and alignment stay inside our own plant.' },
-      ] },
-      { h2: 'Frame hardness: the number to ask for', blocks: [
-        { p: 'The aluminium case mouth is tested by Brinell hardness to GB/T 231.1 and must reach at least 40 HWB. This is a requirement of QB/T 2155-2018 itself, not an optional extra. A frame below that figure will deform at the opening long before the shell fails, which is why a frame quotation without a hardness figure is incomplete.' },
-      ] },
-      { h2: 'Testing that applies to aluminium frame cases', blocks: [
-        { ul: [
-          'Case mouth hardness: Brinell, minimum 40 HWB to GB/T 231.1',
-          'Salt spray: 16 hours to QB/T 3826, with no more than three corrosion points, each no larger than one square millimetre',
-          'Drop: conditioned at 18-25 °C, released from 900 mm onto 45-grade steel, once handle-up and once side-handle-up, to QB/T 2155-2018',
-          'Low-temperature drop: conditioned at -12 °C for four hours, then dropped from 90 cm',
-          'Wheel and trolley testing: 8 km on a cement drum plus 4 km on a cleated conveyor, with wheel wear within 2 mm',
-        ] },
-        { p: 'Finished cases are sent to SGS for testing, which produces test reports on submitted samples rather than a product certification.' },
-      ] },
-      { h2: 'Materials and finishes', blocks: [
-        { p: 'Shells are polycarbonate or ABS+PC. Frame profiles are 6-series aluminium-magnesium alloy, with the corner radius and closure made from the same alloy family. Anodising is the standard finish; the oxide film is specified at 10-12 micrometres. Four colourways are in current production across the frame range, and custom anodising is quoted per programme.' },
-      ] },
-      { h2: 'Ordering aluminium frame luggage', blocks: [
-        { ul: [
-          'Minimum order: 200 units per specification',
-          'Lead time: 25-55 days from deposit and approved sample',
-          'Payment: 30% deposit, 70% balance',
-          'Monthly capacity: 30,000 units, about 70% of it hard shell, from two 1,500-tonne injection machines and 100% in-house mould making',
-        ] },
-        { p: 'See the current frame range in the <a href="/collections/all/">catalogue</a>, or read how frame and full-aluminium constructions differ on the <a href="/aluminum-luggage/">aluminium luggage overview</a>.' },
-      ] },
-    ],
-  },
 
-  // ------------------------------------------------------------ 5. Aluminium (category)
-  {
-    out: 'aluminum-luggage/index.html',
-    path: '/aluminum-luggage',
-    title: 'Aluminum Luggage: Frame, Corners and Trim | DJI Luggage',
-    description: 'Where aluminium is used in luggage: frame, corners, handle tubes and trim. Which parts are aluminium, why it matters, and how it compares with polycarbonate.',
-    h1: 'Aluminum Luggage: Where the Metal Actually Goes',
-    heroDesc: 'Aluminium appears in four places on a suitcase. Which ones a case uses decides what it weighs, what it costs and where it fails.',
-    service: { name: 'Aluminum Luggage Manufacturing', type: 'Aluminium luggage production' },
-    sections: [
-      { h2: 'Four places aluminium appears on a suitcase', blocks: [
-        { p: 'Aluminium is a material choice, not a single product category. On a suitcase it turns up in four distinct places, and a case can use any combination of them. Knowing which ones a quotation includes is the difference between comparing like with like and comparing marketing copy.', lead: true },
-        { table: { head: ['Part', 'What it does', 'What changes if it is aluminium'], rows: [
-          ['Case mouth frame', 'Runs around the opening; carries load where a zippered case fails first', 'Distributes impact at the opening; tested to at least 40 HWB'],
-          ['Corner protectors', 'Absorbs the impacts a case actually receives in transit', 'Reinforced corners reduce shell cracking at the radius'],
-          ['Telescopic handle tubes', 'Takes the bending load when the case is pulled', 'Resists deformation under a loaded, extended trolley'],
-          ['Trim and hardware', 'Locks, badges, guard rings', 'Finish and perceived quality; the least structural of the four'],
-        ] } },
-      ] },
-      { h2: 'Frame construction versus a solid metal body', blocks: [
-        { p: 'A case described as "aluminium" may use an aluminium frame around a polycarbonate or ABS+PC shell, or it may be a solid aluminium body. They are different products with different weights, prices and failure modes. Our aluminium range is the frame construction: a PC or ABS+PC shell with an extruded aluminium profile frame, bent from profile and riveted closed rather than welded.' },
-        { p: 'If a supplier describes a case as entirely aluminium while quoting a polycarbonate shell, the specification is inconsistent and should be resolved before you pay for a sample. The <a href="/aluminum-frame-luggage/">aluminium frame page</a> sets out exactly how that construction is built, step by step.' },
-      ] },
-      { h2: 'Aluminium or polycarbonate: how to decide', blocks: [
-        { table: { head: ['Question', 'Points to an aluminium frame', 'Points to a polycarbonate shell'], rows: [
-          ['What does it have to survive?', 'Frequent handling, hard impacts at the opening', 'General travel where weight matters more'],
-          ['What price band is it sold in?', 'Premium and mid-premium', 'Volume and value ranges'],
-          ['Is weight a selling point?', 'No - buyers accept the weight for rigidity', 'Yes - lighter cases are easier to sell and ship'],
-          ['How is it merchandised?', 'Displayed, handled, compared in store', 'Sold online on specification and price'],
-        ] } },
-        { p: 'Most ranges use both. A brand will carry an aluminium frame line at the top and polycarbonate or PP below it, which is why our own catalogue runs <a href="/collections/all/">four product families</a> side by side.' },
-      ] },
-      { h2: 'Testing an aluminium case against the standard', blocks: [
-        { p: 'Structural testing follows QB/T 2155-2018. The aluminium-specific requirements are the case mouth Brinell hardness - at least 40 HWB to GB/T 231.1 - and 16-hour salt spray to QB/T 3826, because an anodised frame is exposed to the same handling as the shell. Drop, low-temperature drop, wheel and stacking testing apply to the completed case regardless of shell material.' },
-        { p: 'One point many quotations get wrong: the roller-drum impact and falling-ball tests written for plastic shells are explicitly not applicable to metal-bodied cases. An aluminium frame case has to be tested against the aluminium requirements, not borrowed from the plastic test list.' },
-      ] },
-      { h2: 'Producing aluminium luggage', blocks: [
-        { ul: [
-          'Materials: polycarbonate or ABS+PC shell with an extruded aluminium frame; 6-series aluminium-magnesium corners and closure',
-          'Finish: anodised, oxide film specified at 10-12 micrometres',
-          'Minimum order: 200 units per specification',
-          'Lead time: 25-55 days from deposit and approved sample',
-          'Capacity: 30,000 units a month, about 70% hard shell, with 100% in-house mould making',
-        ] },
-      ] },
-    ],
-  },
 
   // ------------------------------------------------------------ 6. Made in Indonesia
   {

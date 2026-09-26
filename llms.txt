@@ -71,7 +71,17 @@ Specifications, colour availability and structure are confirmed per order on the
 - Production workflow: https://djiluggage.id/process
 - Newsroom: https://djiluggage.id/newsroom
 - Careers: https://djiluggage.id/careers
+- Made in Indonesia: https://djiluggage.id/made-in-indonesia
 - Contact: https://djiluggage.id/contact
+
+### Services and articles
+
+- OEM: https://djiluggage.id/services/luggage-oem
+- ODM: https://djiluggage.id/services/luggage-odm
+- Private label / own-brand programmes: https://djiluggage.id/services/private-label-luggage
+- Aluminium luggage explained (frame vs solid body): https://djiluggage.id/newsroom/aluminum-luggage-explained
+- Choosing a luggage manufacturer: https://djiluggage.id/newsroom/choosing-the-right-luggage-manufacturer
+- OEM vs ODM: https://djiluggage.id/newsroom/oem-vs-odm-for-luggage-brands
 
 ## Contact
 

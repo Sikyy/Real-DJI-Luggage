@@ -11,16 +11,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/aluminum-frame-luggage</loc>
-    <lastmod>2026-09-26</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://djiluggage.id/aluminum-luggage</loc>
-    <lastmod>2026-09-26</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://djiluggage.id/careers</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
@@ -64,6 +54,11 @@
     <loc>https://djiluggage.id/newsroom</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://djiluggage.id/newsroom/aluminum-luggage-explained/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://djiluggage.id/newsroom/building-a-private-label-travel-line/</loc>
