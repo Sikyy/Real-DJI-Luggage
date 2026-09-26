@@ -1382,9 +1382,9 @@
       <source src="/assets/home/hero-video-3ba1ad6d.mp4" type="video/mp4">
     </video>
   <script>
-    // 主视觉视频不参与首屏加载：HTML 里只留 poster，页面空闲后再开始播放。
-    // 原先 autoplay + preload="auto" 会在解析阶段就抢着下载整个 mp4，
-    // 与首屏关键资源争带宽，直接拖高 LCP。
+    // 主视觉视频不参与首屏加载：HTML 里只留 poster，等 load 事件（关键资源都下完）
+    // 之后浏览器空闲时再开始播放。原先 autoplay + preload="auto" 会在解析阶段
+    // 就抢着下载整个 mp4，与首屏关键资源争带宽，直接拖高 LCP。
     (function () {
       function startHeroVideo() {
         var v = document.getElementById('heroVideo');
@@ -1393,8 +1393,12 @@
         var p = v.play();
         if (p && p.catch) p.catch(function () { /* 自动播放被拒时保留 poster */ });
       }
-      if ('requestIdleCallback' in window) requestIdleCallback(startHeroVideo, { timeout: 2500 });
-      else window.addEventListener('load', function () { setTimeout(startHeroVideo, 300); });
+      function schedule() {
+        if ('requestIdleCallback' in window) requestIdleCallback(startHeroVideo, { timeout: 2000 });
+        else setTimeout(startHeroVideo, 300);
+      }
+      if (document.readyState === 'complete') schedule();
+      else window.addEventListener('load', schedule);
     })();
   </script>
 
