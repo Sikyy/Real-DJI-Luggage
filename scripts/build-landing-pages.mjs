@@ -124,6 +124,8 @@ const ORG = {
 }
 
 const CTA = `  <section class="final-cta" data-header="dark">
+    <picture><source type="image/webp" srcset="/assets/home/final-cta-bg.webp"><img class="final-cta-bg" src="/assets/home/final-cta-bg.png" alt="" loading="lazy"></picture>
+    <div class="section-label reveal">LET'S GET TO WORK</div>
     <h2 class="cta-title" id="ctaTitle">Build Your<br>Luggage Line</h2>
     <a href="/contact" class="btn btn-glass reveal">Get a Quote</a>
   </section>
@@ -292,8 +294,8 @@ const PAGES = [
   {
     out: 'compliance/index.html',
     path: '/compliance',
-    title: 'Export Compliance For Luggage Orders | Indonesia Factory',
-    description: 'Packaging, chemical and testing compliance for luggage orders from Indonesia: EU PPWR, US CONEG, REACH, QB/T 2155-2018, and what we do not claim.',
+    title: 'Export Compliance For Luggage Orders | EU, US, Australia',
+    description: 'Packaging, chemical and testing compliance for luggage orders from Indonesia: EU PPWR, US CONEG, REACH, the Australian rules, and what we do not claim.',
     h1: 'Packaging, Chemical And Testing Compliance',
     heroDesc: 'The packaging rules, substance restrictions and test standards our export orders are built to - and the claims we do not make.',
     service: { name: 'Luggage Export Compliance', type: 'Export compliance and documentation for luggage manufacturing' },
@@ -303,13 +305,28 @@ const PAGES = [
         { p: 'The fourth item is origin: the documentation that proves where the goods were made. All four are settled at the quotation stage in our process, because the destination market determines which set applies.' },
       ] },
       { h2: 'Packaging compliance', blocks: [
-        { p: 'These are the packaging regulations our export packing is produced to. They are stated here because buyers increasingly have to evidence them at their own end:' },
+        { p: 'These are the packaging regulations our export packing is produced to. They are stated here because buyers increasingly have to evidence them at their own end. Australia works differently again, and is covered in the next section.' },
         { ul: [
           '<strong>EU PPWR</strong> - the European packaging and packaging waste regulation',
           '<strong>US CONEG</strong> - heavy metals in packaging below 100 ppm',
           '<strong>REACH</strong> - no DMFu',
         ] },
         { p: 'The packing itself is built for a long sea route as well as for the regulation: a PE or PP dust bag on every case, non-woven fabric or EPE foam between nested cases, die-cut corrugated board or EPE foam at the wheel housings and handle mounts, and silica gel desiccant or an anti-mould patch in the interior mesh pocket to absorb the condensation that forms inside a container crossing the equator.' },
+      ] },
+      { h2: 'Australia: what actually applies', blocks: [
+        { p: 'Australia regulates this differently from the EU. There is no mandatory product safety standard for suitcases, and the packaging regime is co-regulatory rather than legislated. What follows is what a buyer importing luggage into Australia should be able to evidence; it is a summary of publicly available requirements checked in September 2026, not legal advice.', lead: true },
+        { ul: [
+          '<strong>No mandatory standard for the case itself.</strong> The ACCC list of products with a mandatory standard carries a single entry in its luggage category, and it covers elastic luggage straps - the stretchy tie-down straps - not the suitcase. The ACCC is explicit that the common belief that everything sold in Australia must meet a safety standard is not correct.',
+          '<strong>The Australian Consumer Law still applies.</strong> Supplying goods that breach a mandatory standard is an offence, and that duty sits with the Australian supplier - importer, distributor or retailer - not with the overseas factory.',
+          '<strong>Packaging is co-regulatory.</strong> Used packaging is governed by the National Environment Protection Measure (Used Packaging Materials) together with the Australian Packaging Covenant, administered through APCO.',
+          '<strong>The National Packaging Targets are voluntary, but they are the benchmark.</strong> 100% reusable, recyclable or compostable packaging; 70% of plastic packaging recycled or composted; 50% average recycled content; and phase-out of problematic and unnecessary single-use plastic packaging. APCO reports that these will not be fully met on the original 2025 timeline and that a revised target date will be set.',
+          '<strong>No mandatory national packaging scheme, for now.</strong> In September 2026 the department told packaging stakeholders that a new Commonwealth packaging scheme will not be introduced in the current term, and that it is working with the states and territories instead. An updated Design for Kerbside Recyclability Grading Framework has been delivered to the department, with no decision yet on whether or how it will be applied.',
+          '<strong>The ARL is voluntary.</strong> The Australasian Recycling Label is the on-pack disposal labelling program, owned and operated by APCO and powered by PREP. It is applied by the brand owner as a program participant, not by the factory.',
+          '<strong>Wood packaging must meet ISPM 15.</strong> Pallets, crates and dunnage are subject to Australia\'s wood packaging requirements, certified under the Australian Wood Packaging Certification Scheme.',
+          '<strong>Origin claims are regulated.</strong> Country-of-origin claims fall under the Australian Consumer Law, and an origin claim that is not accurate is a false or misleading representation.',
+        ] },
+        { p: 'What that means for an order from us: there is no Australian equivalent of a mandatory product test to certify against, so the structural basis stays QB/T 2155-2018, above. We prepare the packing and origin documentation, and we declare the wood packaging treatment if your shipment uses timber. What we cannot do is carry the importer\'s obligations, because the Australian Consumer Law duty attaches to the Australian supplier. Confirm your own obligations with your importer or customs broker.' },
+        { p: 'Sources: <a href="https://www.productsafety.gov.au/business/understand-product-safety-rules/product-safety-standards-and-how-to-comply" rel="nofollow noopener" target="_blank">ACCC Product Safety</a>, <a href="https://apco.org.au/national-packaging-targets" rel="nofollow noopener" target="_blank">APCO National Packaging Targets</a>, and the department\'s September 2026 notification to packaging stakeholders.' },
       ] },
       { h2: 'Testing the finished case', blocks: [
         { p: 'Structural testing follows QB/T 2155-2018. The tests that decide whether a case is fit to ship are physical rather than documentary:' },

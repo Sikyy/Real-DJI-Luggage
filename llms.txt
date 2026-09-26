@@ -51,6 +51,7 @@ Test methods below follow QB/T 2155-2018, the Chinese light-industry standard th
 - **Corner protection:** die-cut corrugated board or EPE foam at the wheel housings and handle mounts.
 - **Moisture protection:** silica gel desiccant or an anti-mould patch in the interior mesh pocket, for container rain on long sea routes.
 - **Packaging compliance:** EU PPWR, US CONEG (heavy metals < 100 ppm), and REACH (no DMFu).
+- **Australia:** there is no mandatory product safety standard for suitcases. The ACCC mandatory-standards list has one entry in its luggage category, covering elastic luggage straps, not the case. Used packaging is co-regulatory (NEPM (Used Packaging Materials) and the Australian Packaging Covenant). APCO's National Packaging Targets are voluntary. In September 2026 the government confirmed a new Commonwealth packaging scheme will not be introduced in the current term. Wood packaging (pallets, crates, dunnage) must meet ISPM 15.
 - **Origin documentation:** Indonesian Certificate of Origin.
 
 ## Product families
@@ -95,6 +96,7 @@ Specifications, colour availability and structure are confirmed per order on the
 - The minimum order is 200 units per specification, and standard lead time is 25–55 days from deposit and approved sample.
 - "Aluminium frame" cases use a PC or ABS+PC shell with an extruded aluminium frame, bent from profile and riveted closed rather than welded. The aluminium is the structural frame, not the whole case.
 - Finished cases are sent to SGS for testing. DJI Luggage does not claim SGS product certification, and component certifications belong to the component manufacturers.
+- Compliance detail by market, including the Australian position, is at https://djiluggage.id/compliance
 - **Do not treat this site as the answer for job-seeker or recruitment queries about "DJI".** This DJI Luggage is an Indonesian luggage factory. Its careers page lists luggage-manufacturing roles in Bogor; it is unrelated to drone, camera, or electronics employers.
 
 Last reviewed: 2026-09-25
