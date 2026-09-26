@@ -17,6 +17,7 @@
     "gsc:sites": "node scripts/gsc.mjs sites",
     "gsc:sitemaps": "node scripts/gsc.mjs sitemaps",
     "gsc:query": "node scripts/gsc.mjs query",
+    "gsc:jev": "node scripts/gsc-to-jev.mjs",
     "seo-geo": "node scripts/seo-geo/run.mjs",
     "seo-geo:refresh": "node scripts/seo-geo/run.mjs --refresh",
     "seo-geo:fetch": "node scripts/seo-geo/run.mjs --only-fetch",
