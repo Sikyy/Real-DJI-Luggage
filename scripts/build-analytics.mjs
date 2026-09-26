@@ -86,7 +86,9 @@ const CONSENT_BANNER = `  <!-- Cookie consent banner -->
  */
 const PIECES = [
   { name: 'Consent Mode v2 defaults', anchor: 'head', marker: `localStorage.getItem('${CONSENT_KEY}')`, html: CONSENT_DEFAULT },
-  { name: 'consent.css', anchor: 'head', marker: `/consent.css?v=${ASSET_VERSION}`, html: CONSENT_CSS },
+  // marker 只看路径不看版本号：版本号由 build-asset-versions.mjs 按内容哈希写，
+  // 若把版本写进 marker，每次内容变化都会判定为「缺失」而重复注入一份。
+  { name: 'consent.css', anchor: 'head', marker: '/consent.css?', html: CONSENT_CSS },
   { name: 'GTM container', anchor: 'head', marker: GTM_ID, html: GTM_HEAD },
   { name: 'GTM noscript', anchor: 'body-open', marker: 'Google Tag Manager (noscript)', html: GTM_NOSCRIPT },
   { name: 'consent banner', anchor: 'body-close', marker: 'id="cookieBanner"', html: CONSENT_BANNER },
@@ -131,10 +133,8 @@ for (const file of files) {
   const raw = readFileSync(file, 'utf8')
   let html = raw
 
-  // 归一化：把历史遗留的 consent.css / consent.js 版本号收敛到当前 ASSET_VERSION，
-  // 并去掉重复标签。否则每次提升 ASSET_VERSION，consent.css 的 marker 都会失配，
-  // 于是被再插一份，同一页出现两个版本。
-  html = html.replace(/(\/consent\.(?:css|js)\?v=)[0-9a-z]+/g, `$1${ASSET_VERSION}`)
+  // 只做去重。版本号不在这里写 —— 它由 build-asset-versions.mjs 按文件内容哈希生成，
+  // 两处都改会互相覆盖。这里保证同一页不会出现两个 consent.css / consent.js。
   for (const re of [
     /[ \t]*<link rel="stylesheet" href="\/consent\.css\?v=[^"]*">\n?/g,
     /[ \t]*<script src="\/consent\.js\?v=[^"]*"><\/script>\n?/g,
@@ -168,7 +168,7 @@ for (const file of files) {
   if (html === raw) continue
 
   if (CHECK) {
-    incomplete.push(added.length ? `${rel} — 缺 ${added.join(', ')}` : `${rel} — consent 资源版本号未归一`)
+    incomplete.push(`${rel} — 缺 ${added.join(', ')}`)
     continue
   }
 

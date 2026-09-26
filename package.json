@@ -36,6 +36,8 @@
     "ai:visibility": "node scripts/site-audit/ai-visibility.mjs",
     "audit:plan": "node scripts/site-audit/plan.mjs",
     "landing": "node scripts/build-landing-pages.mjs",
-    "build:all": "npm run landing && npm run prerender:careers && npm run build && npm run structured-data && npm run org-schema && npm run breadcrumbs && npm run analytics && npm run sitemap && npm run build"
+    "build:all": "npm run landing && npm run prerender:careers && npm run build && npm run structured-data && npm run org-schema && npm run breadcrumbs && npm run analytics && npm run asset-versions && npm run sitemap && npm run build",
+    "asset-versions": "node scripts/build-asset-versions.mjs",
+    "asset-versions:check": "node scripts/build-asset-versions.mjs --check"
   }
 }
