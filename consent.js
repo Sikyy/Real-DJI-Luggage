@@ -45,7 +45,9 @@
 
   // 允许随时撤回或更改选择
   if (settings) {
-    settings.addEventListener('click', function () {
+    settings.addEventListener('click', function (event) {
+      // 页脚里是个 <a href="#">，阻止默认锚点跳转
+      event.preventDefault();
       banner.hidden = false;
       settings.hidden = true;
     });

@@ -62,26 +62,9 @@
 .cookie-btn-accept { background: #1c1c1c; color: #fff; }
 .cookie-btn-accept:hover { background: #000; border-color: #000; }
 
-/* 已作出选择后保留一个可撤回入口 */
-.cookie-settings {
-  position: fixed;
-  left: 16px;
-  bottom: 16px;
-  z-index: 199;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #333;
-  background: #fff;
-  border: 1px solid #e1e1e1;
-  padding: 8px 12px;
-  cursor: pointer;
-  opacity: 0.72;
-  transition: opacity 0.25s ease;
-}
-
-.cookie-settings:hover { opacity: 1; }
+/* 已作出选择后，在页脚保留一个可撤回入口。
+   刻意不做浮动按钮 —— 页脚文字链接是行业标准做法，不打断浏览。 */
+.cookie-settings { cursor: pointer; }
 .cookie-settings[hidden] { display: none; }
 
 @media (max-width: 768px) {

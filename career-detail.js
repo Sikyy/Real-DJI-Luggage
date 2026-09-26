@@ -244,6 +244,7 @@
           <div class="footer-nav-col">
             <h4>SUPPORT</h4>
             <a href="/privacy-policy">PRIVACY POLICY</a>
+            <a href="#" id="cookieSettings" class="cookie-settings" hidden>COOKIE SETTINGS</a>
           </div>
         </div>
       </div>

@@ -73,7 +73,6 @@ const CONSENT_BANNER = `  <!-- Cookie consent banner -->
       </div>
     </div>
   </div>
-  <button type="button" id="cookieSettings" class="cookie-settings" hidden>Cookie settings</button>
   <script src="/consent.js?v=${ASSET_VERSION}"></script>
   <!-- End cookie consent banner -->
 `
