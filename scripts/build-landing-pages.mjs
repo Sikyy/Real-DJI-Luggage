@@ -31,7 +31,10 @@ const at = (marker, from = 0) => {
   return i
 }
 const HEAD_A = shell.slice(0, at('<title>'))
-const HEAD_B_RAW = shell.slice(at('<link rel="preload"'), at('<section class="services-hero">'))
+// HEAD_B 只到 </head> 为止。若切到 services-hero，会把 <body> 里的 GTM noscript、
+// header 和 menu overlay 一起卷进来，而 BODY_A 也是从 <body> 切到 services-hero，
+// 结果这些块被输出两遍：id 重复，getElementById 只拿到第一个，菜单就点不动了。
+const HEAD_B_RAW = shell.slice(at('<link rel="preload"'), at('</head>'))
 const BODY_A = shell.slice(at('<body>'), at('<section class="services-hero">'))
 const BODY_B = shell.slice(at('<!-- FOOTER -->'))
 
@@ -663,7 +666,8 @@ ${renderSections(page.sections)}
 
 `
 
-  const html = HEAD_A + meta + HEAD_B.replace('</head>', LP_CSS + jsonld + '</head>') + BODY_A + hero + CTA + BODY_B
+  // HEAD_B 现在只到 </head> 之前，所以这里直接补样式与结构化数据，再补上闭合标签。
+  const html = HEAD_A + meta + HEAD_B + LP_CSS + jsonld + '</head>\n' + BODY_A + hero + CTA + BODY_B
 
   const target = path.join(root, page.out)
   report.push({ out: page.out, title: page.title.length, desc: page.description.length, bytes: html.length })
