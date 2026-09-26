@@ -13,6 +13,8 @@
     "structured-data:check": "node scripts/build-structured-data.mjs --check",
     "org-schema": "node scripts/build-org-schema.mjs",
     "org-schema:check": "node scripts/build-org-schema.mjs --check",
+    "breadcrumbs": "node scripts/build-breadcrumbs.mjs",
+    "breadcrumbs:check": "node scripts/build-breadcrumbs.mjs --check",
     "analytics": "node scripts/build-analytics.mjs",
     "analytics:check": "node scripts/build-analytics.mjs --check",
     "gsc": "node scripts/gsc.mjs report",
