@@ -11,7 +11,7 @@ const includeDirs = new Set([
   'careers',
   'collections',
   'contact',
-  'made-in-indonesia',
+  'compliance',
   'newsroom',
   'privacy-policy',
   'process',

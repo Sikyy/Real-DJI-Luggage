@@ -123,7 +123,7 @@
               <nav class="menu-nav">
                 <a href="/">Home</a>
                 <a href="/about">About</a>
-                <a href="/made-in-indonesia">Made in Indonesia</a>
+                <a href="/compliance">Compliance</a>
                 <a href="/services">Manufacturing</a>
                 <a href="/products">Products</a>
                 <a href="/platform">Capabilities</a>
@@ -236,7 +236,7 @@
             <a href="/services">MANUFACTURING</a>
             <a href="/products">PRODUCTS</a>
             <a href="/about">ABOUT</a>
-            <a href="/made-in-indonesia">MADE IN INDONESIA</a>
+            <a href="/compliance">COMPLIANCE</a>
             <a href="/careers">CAREERS</a>
             <a href="/platform">CAPABILITIES</a>
             <a href="/newsroom/filters/all">INSIGHTS</a>

@@ -546,7 +546,14 @@
     .our-focus-details {
       display: flex;
       flex-direction: row;
-      gap: 80px;
+      flex-wrap: wrap;
+      gap: 48px 80px;
+    }
+
+    /* 不给 flex-basis 时 4 段文字会被压成 4 个极窄的列（一行只剩几个词）。
+       固定 300px 基宽 + 允许换行，在 800px 容器里得到 2x2 的排布。 */
+    .our-focus-details > p {
+      flex: 0 0 300px;
     }
 
     .our-focus-details p {
@@ -557,6 +564,95 @@
       line-height: 1.3;
       color: rgb(0, 0, 0);
       max-width: 300px;
+    }
+
+    .focus-types-intro {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      letter-spacing: -0.64px;
+      line-height: 1.3;
+      color: rgb(0, 0, 0);
+      max-width: 560px;
+      margin: 0;
+    }
+
+    .focus-types {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .focus-type {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 24px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.45);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .25s ease, transform .25s ease, background .25s ease;
+    }
+
+    .focus-type:hover {
+      border-color: rgba(0, 0, 0, 0.45);
+      background: rgba(255, 255, 255, 0.85);
+      transform: translateY(-2px);
+    }
+
+    .focus-type-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .focus-type-head h3 {
+      font-family: 'Geist', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: -0.8px;
+      line-height: 1.15;
+      margin: 0;
+      color: rgb(0, 0, 0);
+    }
+
+    .focus-type-head span {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 14px;
+      color: rgb(110, 110, 110);
+    }
+
+    .focus-type-cols {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .focus-type-label {
+      display: block;
+      font-family: 'Fragment Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgb(110, 110, 110);
+      margin-bottom: 6px;
+    }
+
+    .focus-type-cols p {
+      font-family: 'Geist', sans-serif;
+      font-size: 14px;
+      letter-spacing: -0.4px;
+      line-height: 1.4;
+      color: rgb(51, 51, 51);
+      margin: 0;
+    }
+
+    @media (max-width: 1100px) {
+      .focus-types { grid-template-columns: 1fr; }
+      .our-focus-layout { gap: 48px; }
     }
 
     /* ========== BEST SELLERS ========== */
@@ -1169,7 +1265,7 @@
           <nav class="menu-nav">
             <a href="/">Home</a>
             <a href="/about">About</a>
-            <a href="/made-in-indonesia">Made in Indonesia</a>
+            <a href="/compliance">Compliance</a>
             <a href="/services">Services</a>
             <a href="/products">Products</a>
             <a href="/process">Production Workflow</a>
@@ -1238,6 +1334,57 @@
           <p>Aluminium programmes: <a href="/newsroom/aluminum-luggage-explained/">where the metal actually goes on a suitcase</a>, and the frame hardness figure to ask for.</p>
           <p>Our team supports ABS, PC, ABS+PC, PP, fabric, hybrid, and travel bag programs, including size planning, trims, wheels, handles, locks, lining, and retail packaging.</p>
           <p>Use this page as a product-range map before sending drawings, target prices, reference samples, or private-label requirements for quotation.</p>
+        </div>
+        <p class="focus-types-intro reveal reveal-delay-1">Three shell types cover the range. Each page sets out where the material performs and what it costs you.</p>
+        <div class="focus-types reveal reveal-delay-2">
+          <a class="focus-type" href="/products/pc-abs-luggage/">
+            <div class="focus-type-head">
+              <h3>PC &amp; ABS+PC</h3>
+              <span>&rarr;</span>
+            </div>
+            <div class="focus-type-cols">
+              <div>
+                <span class="focus-type-label">Where it performs</span>
+                <p>The most impact-tolerant shell, and the only one that carries gloss, matte and brushed finishes. Holds colour evenly across a nested set.</p>
+              </div>
+              <div>
+                <span class="focus-type-label">What it costs you</span>
+                <p>Heavier and more expensive than PP. A high-gloss surface records scratches, and every new shell shape needs its own mould.</p>
+              </div>
+            </div>
+          </a>
+          <a class="focus-type" href="/products/pp-luggage/">
+            <div class="focus-type-head">
+              <h3>PP</h3>
+              <span>&rarr;</span>
+            </div>
+            <div class="focus-type-cols">
+              <div>
+                <span class="focus-type-label">Where it performs</span>
+                <p>The lightest and lowest-cost hard shell. Flexes instead of cracking in the cold, and recycles as a single material under resin code 5.</p>
+              </div>
+              <div>
+                <span class="focus-type-label">What it costs you</span>
+                <p>Matte, slightly waxy surface with no premium gloss. Lower rigidity, so it needs ribbing, and it moulds to a looser tolerance.</p>
+              </div>
+            </div>
+          </a>
+          <a class="focus-type" href="/products/aluminum-frame-luggage/">
+            <div class="focus-type-head">
+              <h3>Aluminium Frame</h3>
+              <span>&rarr;</span>
+            </div>
+            <div class="focus-type-cols">
+              <div>
+                <span class="focus-type-label">Where it performs</span>
+                <p>An extruded profile around the case mouth removes the zipper from the weakest point, and case mouth hardness is a testable number.</p>
+              </div>
+              <div>
+                <span class="focus-type-label">What it costs you</span>
+                <p>The highest unit cost and the heaviest option. Extrusion and anodising are outsourced steps, so their queue sits inside your lead time.</p>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -1388,7 +1535,7 @@
           <a href="/services">SERVICES</a>
           <a href="/products">PRODUCTS</a>
           <a href="/about">ABOUT</a>
-          <a href="/made-in-indonesia">MADE IN INDONESIA</a>
+          <a href="/compliance">COMPLIANCE</a>
           <a href="/careers">CAREERS</a>
           <a href="/process">PRODUCTION WORKFLOW</a>
           <a href="/newsroom/filters/all/">NEWSROOM</a>

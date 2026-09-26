@@ -49,6 +49,10 @@
 /aluminum-frame-luggage /newsroom/aluminum-luggage-explained/ 301
 /aluminum-frame-luggage/ /newsroom/aluminum-luggage-explained/ 301
 
+# 印尼产地页改为合规页（内容侧重重心从产地介绍转为包装/化学/测试合规）
+/made-in-indonesia /compliance/ 301
+/made-in-indonesia/ /compliance/ 301
+
 # 已废弃的多语言前缀。站内不存在 zh/ id/ 目录，此前用 200 重写会让 Google
 # 把它们当作独立页面收录（重复内容）。改为 301 收敛到英文版。
 # 注意：若将来真要上线中文/印尼语版本，需删掉这 4 行。

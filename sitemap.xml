@@ -41,12 +41,12 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/contact</loc>
+    <loc>https://djiluggage.id/compliance</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/made-in-indonesia</loc>
+    <loc>https://djiluggage.id/contact</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
   </url>
@@ -116,6 +116,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://djiluggage.id/products/aluminum-frame-luggage</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://djiluggage.id/products/aluminum-suitcase-black/</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.7</priority>
@@ -152,6 +157,16 @@
   </url>
   <url>
     <loc>https://djiluggage.id/products/aluminum-suitcase-white/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://djiluggage.id/products/pc-abs-luggage</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://djiluggage.id/products/pp-luggage</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.7</priority>
   </url>

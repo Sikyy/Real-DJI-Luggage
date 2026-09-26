@@ -1,4 +1,4 @@
-import { createReadStream, existsSync, statSync } from 'node:fs';
+import { createReadStream, existsSync, readFileSync, statSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -147,10 +147,58 @@ function sendFile(request, response, filePath) {
   }
 }
 
+// Cloudflare Pages 会先套用 _redirects 再找静态文件。本地预览如果跳过这一步，
+// 已加 301 的旧 URL 在本地会显示 404，与线上不一致，所以这里同样先匹配规则。
+// 支持精确路径和尾部 * 通配（目标里用 :splat），够覆盖本仓库的全部规则。
+function loadRedirects() {
+  const file = resolve(root, '_redirects');
+  if (!existsSync(file)) return [];
+  return readFileSync(file, 'utf8')
+    .split('\n')
+    .map((line) => line.split('#')[0].trim())
+    .filter(Boolean)
+    .map((line) => line.split(/\s+/))
+    .filter((parts) => parts.length >= 2)
+    .map(([from, to, status]) => ({ from, to, status: Number(status) || 302 }));
+}
+
+const redirectRules = loadRedirects();
+
+function matchRedirect(urlPath) {
+  // 必须按字面路径匹配：/id/* 和 /zh/* 这两条规则正是要收敛掉语言前缀，
+  // 若先剥前缀就永远匹配不到它们。
+  const pathOnly = String(urlPath || '/').split('?')[0] || '/';
+  const normalized = pathOnly.length > 1 ? pathOnly.replace(/\/+$/, '') : pathOnly;
+
+  for (const rule of redirectRules) {
+    const isSplat = rule.from.endsWith('*');
+    const fromBase = isSplat ? rule.from.slice(0, -1) : rule.from;
+    const fromNormalized = fromBase.length > 1 ? fromBase.replace(/\/+$/, '') : fromBase;
+
+    if (isSplat) {
+      if (!normalized.startsWith(fromNormalized)) continue;
+      const splat = normalized.slice(fromNormalized.length).replace(/^\//, '');
+      return { status: rule.status, location: rule.to.replace(':splat', splat) };
+    }
+
+    if (normalized === fromNormalized) {
+      return { status: rule.status, location: rule.to };
+    }
+  }
+  return null;
+}
+
 const server = createServer((request, response) => {
   if (!['GET', 'HEAD'].includes(request.method || '')) {
     response.writeHead(405, { Allow: 'GET, HEAD' });
     response.end('Method Not Allowed');
+    return;
+  }
+
+  const redirect = matchRedirect(request.url || '/');
+  if (redirect) {
+    response.writeHead(redirect.status, { Location: redirect.location, 'Cache-Control': 'no-store' });
+    response.end();
     return;
   }
 
