@@ -53,6 +53,16 @@
 /made-in-indonesia /compliance/ 301
 /made-in-indonesia/ /compliance/ 301
 
+# 根级平铺文件已删除，统一到带结尾斜杠的目录版（消除 /x 与 /x/ 双 200 重复）
+/about /about/ 301
+/careers /careers/ 301
+/contact /contact/ 301
+/newsroom /newsroom/ 301
+/privacy-policy /privacy-policy/ 301
+/process /process/ 301
+/products /products/ 301
+/services /services/ 301
+
 # 已废弃的多语言前缀。站内不存在 zh/ id/ 目录，此前用 200 重写会让 Google
 # 把它们当作独立页面收录（重复内容）。改为 301 收敛到英文版。
 # 注意：若将来真要上线中文/印尼语版本，需删掉这 4 行。

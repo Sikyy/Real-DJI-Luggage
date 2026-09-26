@@ -168,23 +168,19 @@ function loadRedirects() {
 const redirectRules = loadRedirects();
 
 function matchRedirect(urlPath) {
-  // 必须按字面路径匹配：/id/* 和 /zh/* 这两条规则正是要收敛掉语言前缀，
-  // 若先剥前缀就永远匹配不到它们。
+  // 按字面路径匹配，结尾斜杠有别 —— 这与 Cloudflare 一致（官方文档同时给出
+  // `/trailing /trailing/ 301` 与 `/notrailing/ /nottrailing 301` 两个示例）。
+  // 若在这里把斜杠归一化，`/about /about/ 301` 会连 /about/ 一起匹配，导致自跳转死循环。
   const pathOnly = String(urlPath || '/').split('?')[0] || '/';
-  const normalized = pathOnly.length > 1 ? pathOnly.replace(/\/+$/, '') : pathOnly;
 
   for (const rule of redirectRules) {
-    const isSplat = rule.from.endsWith('*');
-    const fromBase = isSplat ? rule.from.slice(0, -1) : rule.from;
-    const fromNormalized = fromBase.length > 1 ? fromBase.replace(/\/+$/, '') : fromBase;
-
-    if (isSplat) {
-      if (!normalized.startsWith(fromNormalized)) continue;
-      const splat = normalized.slice(fromNormalized.length).replace(/^\//, '');
+    if (rule.from.endsWith('*')) {
+      const base = rule.from.slice(0, -1);
+      if (!pathOnly.startsWith(base)) continue;
+      const splat = pathOnly.slice(base.length).replace(/^\//, '');
       return { status: rule.status, location: rule.to.replace(':splat', splat) };
     }
-
-    if (normalized === fromNormalized) {
+    if (pathOnly === rule.from) {
       return { status: rule.status, location: rule.to };
     }
   }

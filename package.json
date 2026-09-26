@@ -34,6 +34,8 @@
     "audit:report": "node scripts/site-audit/report.mjs",
     "audit:benchmark": "node scripts/site-audit/benchmark.mjs",
     "ai:visibility": "node scripts/site-audit/ai-visibility.mjs",
-    "audit:plan": "node scripts/site-audit/plan.mjs"
+    "audit:plan": "node scripts/site-audit/plan.mjs",
+    "landing": "node scripts/build-landing-pages.mjs",
+    "build:all": "npm run landing && npm run prerender:careers && npm run build && npm run structured-data && npm run org-schema && npm run breadcrumbs && npm run analytics && npm run sitemap && npm run build"
   }
 }

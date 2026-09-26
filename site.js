@@ -62,7 +62,14 @@
   function stripLocalePrefix(pathname) {
     const parts = String(pathname || '/').split('/').filter(Boolean);
     if (SUPPORTED_LOCALES.includes(parts[0])) parts.shift();
-    return '/' + parts.join('/');
+    const base = '/' + parts.join('/');
+    if (base === '/') return '/';
+    // 目录型页面统一带结尾斜杠。Cloudflare 会把无斜杠版本 308 到带斜杠版本，
+    // 站内链接若不带斜杠，每次点击都会多一次重定向；这里既保留原有斜杠，
+    // 也给漏写的补上。带扩展名的静态文件（.svg/.xml/.txt/.woff2 等）保持原样。
+    const lastSegment = base.slice(base.lastIndexOf('/') + 1);
+    if (lastSegment.includes('.')) return base;
+    return base + '/';
   }
 
   function localizeUrl(url) {

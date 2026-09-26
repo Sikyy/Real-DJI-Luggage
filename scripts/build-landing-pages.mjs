@@ -3,7 +3,7 @@
  *
  * 为什么不手写 HTML：站点的导航、菜单浮层、页脚、GTM/Consent 样板在每个页面里
  * 都是内联的。手写 6 个新页会把这份样板再复制 6 遍（全站将变成 63 份），
- * 以后改一次导航要动 63 个文件。这里改为从 services.html 抽取外壳，
+ * 以后改一次导航要动 63 个文件。这里改为从 services/index.html 抽取外壳，
  * 内容以数据形式定义在下面，需要改文案就改本文件再重跑。
  *
  * 生成后的页面仍需跑：
@@ -23,7 +23,7 @@ const SITE = 'https://djiluggage.id'
 
 // ---------------------------------------------------------------- 外壳
 
-const shell = readFileSync(path.join(root, 'services.html'), 'utf8')
+const shell = readFileSync(path.join(root, 'services', 'index.html'), 'utf8')
 
 const at = (marker, from = 0) => {
   const i = shell.indexOf(marker, from)
@@ -177,7 +177,7 @@ const PAGES = [
   // ------------------------------------------------------------ 1. OEM
   {
     out: 'services/luggage-oem/index.html',
-    path: '/services/luggage-oem',
+    path: '/services/luggage-oem/',
     title: 'Luggage OEM Manufacturing in Indonesia | DJI Luggage',
     description: 'OEM luggage manufacturing in Indonesia: we build to your specification with in-house moulds, MOQ 200 units and a 25-55 day lead time. Request a quote.',
     h1: 'Luggage OEM Manufacturing',
@@ -231,7 +231,7 @@ const PAGES = [
   // ------------------------------------------------------------ 2. ODM
   {
     out: 'services/luggage-odm/index.html',
-    path: '/services/luggage-odm',
+    path: '/services/luggage-odm/',
     title: 'Luggage ODM Development in Indonesia | DJI Luggage',
     description: 'ODM luggage development in Indonesia: adapt proven suitcase structures with your colours, hardware and branding. Faster to market, MOQ 200 units.',
     h1: 'Luggage ODM Development',
@@ -284,7 +284,7 @@ const PAGES = [
   // ------------------------------------------------------------ 3. Private label
   {
     out: 'services/private-label-luggage/index.html',
-    path: '/services/private-label-luggage',
+    path: '/services/private-label-luggage/',
     title: 'Build Your Own Luggage Brand | OEM Factory in Indonesia',
     description: 'Launch your own luggage brand: your name on the case, the lining and the carton, produced to your brief in Indonesia. MOQ 200 units, 25-55 day lead time.',
     h1: 'Build Your Own Luggage Brand',
@@ -334,7 +334,7 @@ const PAGES = [
   // ------------------------------------------------------------ 6. Made in Indonesia
   {
     out: 'compliance/index.html',
-    path: '/compliance',
+    path: '/compliance/',
     title: 'Export Compliance For Luggage Orders | EU, US, Australia',
     description: 'Packaging, chemical and testing compliance for luggage orders from Indonesia: EU PPWR, US CONEG, REACH, the Australian rules, and what we do not claim.',
     h1: 'Packaging, Chemical And Testing Compliance',
@@ -449,7 +449,7 @@ const PAGES = [
   // 三个箱体类型页，作为 /products 的 OUR FOCUS 分类入口。
   {
     out: 'products/pc-abs-luggage/index.html',
-    path: '/products/pc-abs-luggage',
+    path: '/products/pc-abs-luggage/',
     collection: true,
     title: 'PC And ABS+PC Luggage Manufacturing | Indonesia Factory',
     description: 'Polycarbonate and ABS+PC hard-shell luggage made in Indonesia: impact resistance, finish options, tooling and MOQ 200 units. See how PC compares.',
@@ -494,7 +494,7 @@ const PAGES = [
   },
   {
     out: 'products/pp-luggage/index.html',
-    path: '/products/pp-luggage',
+    path: '/products/pp-luggage/',
     collection: true,
     title: 'PP Luggage Manufacturing | Polypropylene Suitcases',
     description: 'Polypropylene hard-shell luggage made in Indonesia: the lightest and lowest-cost shell, strong in the cold, MOQ 200 units and a 25-55 day lead time.',
@@ -540,7 +540,7 @@ const PAGES = [
   },
   {
     out: 'products/aluminum-frame-luggage/index.html',
-    path: '/products/aluminum-frame-luggage',
+    path: '/products/aluminum-frame-luggage/',
     collection: true,
     title: 'Aluminium Frame Luggage Manufacturing | Indonesia',
     description: 'Aluminium frame suitcases: an extruded aluminium profile around a PC or ABS+PC shell. Case mouth hardness, anodising, MOQ 200 units, 25-55 day lead time.',

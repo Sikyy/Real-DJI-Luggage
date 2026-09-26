@@ -6,14 +6,14 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/about</loc>
+    <loc>https://djiluggage.id/about/</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/careers</loc>
+    <loc>https://djiluggage.id/careers/</loc>
     <lastmod>2026-09-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://djiluggage.id/careers/export-sales-coordinator/</loc>
@@ -41,19 +41,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/compliance</loc>
+    <loc>https://djiluggage.id/compliance/</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/contact</loc>
+    <loc>https://djiluggage.id/contact/</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/newsroom</loc>
+    <loc>https://djiluggage.id/newsroom/</loc>
     <lastmod>2026-09-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://djiluggage.id/newsroom/aluminum-luggage-explained/</loc>
@@ -101,22 +101,22 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/privacy-policy</loc>
-    <lastmod>2026-09-26</lastmod>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://djiluggage.id/process</loc>
+    <loc>https://djiluggage.id/privacy-policy/</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/products</loc>
+    <loc>https://djiluggage.id/process/</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/products/aluminum-frame-luggage</loc>
+    <loc>https://djiluggage.id/products/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://djiluggage.id/products/aluminum-frame-luggage/</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.7</priority>
   </url>
@@ -161,12 +161,12 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/products/pc-abs-luggage</loc>
+    <loc>https://djiluggage.id/products/pc-abs-luggage/</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/products/pp-luggage</loc>
+    <loc>https://djiluggage.id/products/pp-luggage/</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.7</priority>
   </url>
@@ -236,22 +236,22 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/services</loc>
+    <loc>https://djiluggage.id/services/</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/services/luggage-odm</loc>
+    <loc>https://djiluggage.id/services/luggage-odm/</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/services/luggage-oem</loc>
+    <loc>https://djiluggage.id/services/luggage-oem/</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://djiluggage.id/services/private-label-luggage</loc>
+    <loc>https://djiluggage.id/services/private-label-luggage/</loc>
     <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
   </url>

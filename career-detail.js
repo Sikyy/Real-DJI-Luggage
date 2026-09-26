@@ -61,7 +61,14 @@
   function stripLocalePrefix(pathname) {
     const parts = String(pathname || '/').split('/').filter(Boolean);
     if (SUPPORTED_LOCALES.includes(parts[0])) parts.shift();
-    return '/' + parts.join('/');
+    const base = '/' + parts.join('/');
+    if (base === '/') return '/';
+    // 目录型页面统一带结尾斜杠。Cloudflare 会把无斜杠版本 308 到带斜杠版本，
+    // 站内链接若不带斜杠，每次点击都会多一次重定向；这里既保留原有斜杠，
+    // 也给漏写的补上。带扩展名的静态文件（.svg/.xml/.txt/.woff2 等）保持原样。
+    const lastSegment = base.slice(base.lastIndexOf('/') + 1);
+    if (lastSegment.includes('.')) return base;
+    return base + '/';
   }
 
   function localizeUrl(url) {
@@ -119,7 +126,7 @@
     <header id="header" class="txt-dark">
       <a href="/" class="logo">${brandLogo}</a>
       <div class="hamburger" id="menuToggle" role="button" tabindex="0" aria-label="Open menu" aria-expanded="false" aria-controls="menuOverlay"><span></span><span></span></div>
-      <a href="/contact" class="header-cta">GET A QUOTE</a>
+      <a href="/contact/" class="header-cta">GET A QUOTE</a>
     </header>
 
     <div class="menu-overlay" id="menuOverlay">
@@ -130,19 +137,19 @@
               <div class="menu-nav-label">Main</div>
               <nav class="menu-nav">
                 <a href="/">Home</a>
-                <a href="/about">About</a>
-                <a href="/compliance">Compliance</a>
-                <a href="/services">Manufacturing</a>
-                <a href="/products">Products</a>
-                <a href="/platform">Capabilities</a>
-                <a href="/newsroom/filters/all">Insights</a>
+                <a href="/about/">About</a>
+                <a href="/compliance/">Compliance</a>
+                <a href="/services/">Manufacturing</a>
+                <a href="/products/">Products</a>
+                <a href="/process/">Capabilities</a>
+                <a href="/newsroom/filters/all/">Insights</a>
               </nav>
             </div>
             <div class="menu-contact-section">
               <div class="menu-section-label">Contact</div>
               <div class="menu-contact-btns">
                 <a href="mailto:info@djiluggage.id" class="btn btn-dark menu-btn">Send Us A Message</a>
-                <a href="/contact" class="btn btn-yellow menu-btn">Get a Quote</a>
+                <a href="/contact/" class="btn btn-yellow menu-btn">Get a Quote</a>
               </div>
             </div>
           </div>
@@ -212,7 +219,7 @@
           <textarea placeholder="Addition Information" aria-label="Addition Information"></textarea>
           <button type="submit">Submit</button>
         </form>
-        <a href="/careers" class="view-all">View All</a>
+        <a href="/careers/" class="view-all">View All</a>
       </section>
     </main>
 
@@ -220,7 +227,7 @@
       <picture><source type="image/webp" srcset="/assets/home/final-cta-bg.webp"><img class="final-cta-bg" src="/assets/home/final-cta-bg.png" alt="" loading="lazy"></picture>
       <div class="section-label">LET'S GET TO WORK</div>
       <h2 class="cta-title">Build Your<br>Luggage Line</h2>
-      <a href="/contact" class="btn btn-glass">Get a Quote</a>
+      <a href="/contact/" class="btn btn-glass">Get a Quote</a>
     </section>
 
     <footer data-header="light">
@@ -230,7 +237,7 @@
           <div class="footer-contact">
             <h3>Let's Get Started</h3>
             <div class="divider"></div>
-            <a href="/contact" class="btn btn-frosted" style="font-size:14px;">Get a Quote</a>
+            <a href="/contact/" class="btn btn-frosted" style="font-size:14px;">Get a Quote</a>
           </div>
         </div>
         <div class="footer-nav">
@@ -241,17 +248,17 @@
           <div class="footer-nav-col">
             <h4>MAIN</h4>
             <a href="/">HOME</a>
-            <a href="/services">MANUFACTURING</a>
-            <a href="/products">PRODUCTS</a>
-            <a href="/about">ABOUT</a>
-            <a href="/compliance">COMPLIANCE</a>
-            <a href="/careers">CAREERS</a>
-            <a href="/platform">CAPABILITIES</a>
-            <a href="/newsroom/filters/all">INSIGHTS</a>
+            <a href="/services/">MANUFACTURING</a>
+            <a href="/products/">PRODUCTS</a>
+            <a href="/about/">ABOUT</a>
+            <a href="/compliance/">COMPLIANCE</a>
+            <a href="/careers/">CAREERS</a>
+            <a href="/process/">CAPABILITIES</a>
+            <a href="/newsroom/filters/all/">INSIGHTS</a>
           </div>
           <div class="footer-nav-col">
             <h4>SUPPORT</h4>
-            <a href="/privacy-policy">PRIVACY POLICY</a>
+            <a href="/privacy-policy/">PRIVACY POLICY</a>
             <a href="#" id="cookieSettings" class="cookie-settings" hidden>COOKIE SETTINGS</a>
           </div>
         </div>
