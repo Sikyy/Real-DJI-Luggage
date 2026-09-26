@@ -20,6 +20,7 @@
     "gsc:sitemaps": "node scripts/gsc.mjs sitemaps",
     "gsc:query": "node scripts/gsc.mjs query",
     "gsc:jev": "node scripts/gsc-to-jev.mjs",
+    "audit:jev": "node scripts/audit-to-jev.mjs",
     "authority": "node scripts/external-authority.mjs",
     "seo-geo": "node scripts/seo-geo/run.mjs",
     "seo-geo:refresh": "node scripts/seo-geo/run.mjs --refresh",
