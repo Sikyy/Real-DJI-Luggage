@@ -1,27 +1,51 @@
-# Production cache headers (Netlify / Cloudflare Pages).
-# HTML is intentionally omitted so it keeps the host default (revalidated),
-# letting content and _redirects changes propagate immediately.
+# 生产环境缓存策略（Cloudflare Pages）。
+#
+# 两类资源，两种策略：
+#
+# 1. 根级 CSS/JS —— URL 带内容哈希查询串（?v=xxxxxxxx，由
+#    scripts/build-asset-versions.mjs 按文件内容生成）。同一个 URL 的内容
+#    永远不变，所以可以 immutable 永久缓存。
+#
+# 2. /assets/ 与 /product-images/ —— 默认不带哈希。这里给 7 天 + must-revalidate：
+#    7 天内浏览器直接用本地副本；到期后带 If-None-Match 复验，未变则 304。
+#
+# ⚠ 在同一个 URL 上替换了文件，max-age 未到期前浏览器与 CDN 仍会用旧副本。
+#   「revalidate」只发生在 max-age 到期之后，不会因为源站文件变了就自动触发。
+#   要让替换立刻生效，二选一：
+#     · 改文件名（推荐，本仓库的做法：hero-video-3ba1ad6d.mp4、
+#       product-images/avif/home-pp-suitcase-500.cf2a9fbf.avif 都带内容哈希）
+#     · 清 Cloudflare 缓存对应的 URL
+#
+# 注意：Cloudflare 会把同一条响应上多条规则的 Cache-Control **用逗号拼接**，
+# 所以每棵路径树只能有一条规则，不能写成 /assets/* 加 /assets/xxx/* 这种嵌套。
+#
+# HTML 故意不设规则，保持主机默认（每次复验），让内容与 _redirects 的改动立即生效。
 
-# Images, video, and self-hosted fonts under /assets: long cache, revalidated
-# on replace (filenames are not content-hashed).
 /assets/*
-  Cache-Control: public, max-age=2592000
+  Cache-Control: public, max-age=604800, must-revalidate
+
+/product-images/*
+  Cache-Control: public, max-age=604800, must-revalidate
 
 /favicon.svg
-  Cache-Control: public, max-age=2592000
+  Cache-Control: public, max-age=604800, must-revalidate
 
-# Root CSS/JS are query-versioned (?v=...), so a given URL never changes.
+# 下面这些 URL 都带 ?v=<文件内容哈希>，内容不会变。
 /site.css
+  Cache-Control: public, max-age=31536000, immutable
+/site.js
   Cache-Control: public, max-age=31536000, immutable
 /menu-fix.css
   Cache-Control: public, max-age=31536000, immutable
 /menu-fix.js
   Cache-Control: public, max-age=31536000, immutable
-/site.js
-  Cache-Control: public, max-age=31536000, immutable
 /career-detail.css
   Cache-Control: public, max-age=31536000, immutable
 /career-detail.js
+  Cache-Control: public, max-age=31536000, immutable
+/consent.css
+  Cache-Control: public, max-age=31536000, immutable
+/consent.js
   Cache-Control: public, max-age=31536000, immutable
 /reveal.js
   Cache-Control: public, max-age=31536000, immutable
