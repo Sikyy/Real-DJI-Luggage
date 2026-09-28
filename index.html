@@ -39,6 +39,7 @@
   {"@context":"https://schema.org","@type":"WebSite","name":"DJI Luggage","url":"https://djiluggage.id/"}
   </script>
 
+  <link rel="preload" as="image" href="/assets/home/hero-poster.webp" fetchpriority="high">
   <link rel="preload" href="/assets/fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <style>@font-face{font-family:'Fragment Mono';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/FragmentMono-Regular.woff2') format('woff2')}</style>
   <link rel="stylesheet" href="/site.css?v=0696fe17">
@@ -128,7 +129,10 @@
         url('/assets/home/hero-poster.jpg') type('image/jpeg'));
     }
 
-    .hero-video {
+    /* 首屏视觉分两层：底层是一张 0.12 MB 的静态图，它才是 LCP 元素；
+       视频叠在上面，播放后再淡入。之前 <video> 本身是 LCP 元素，移动端要等
+       整个 mp4 下完才绘制，1.96 MB / 1.6 Mbps ≈ 10 秒。 */
+    .hero-poster {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
@@ -136,17 +140,29 @@
       z-index: 0;
     }
 
+    .hero-video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .hero-video.is-playing { opacity: 1; }
+
     .hero-overlay {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.6);
-      z-index: 1;
+      z-index: 2;
     }
 
     .hero-content-wrap {
       position: relative;
-      z-index: 2;
+      z-index: 3;
     }
 
     .hero-breadcrumb {
@@ -1378,7 +1394,11 @@
 
   <!-- HERO -->
   <section class="hero" data-header="light">
-    <video class="hero-video" id="heroVideo" muted loop playsinline preload="none" poster="/assets/home/hero-poster.jpg">
+    <picture>
+      <source type="image/webp" srcset="/assets/home/hero-poster.webp">
+      <img class="hero-poster" src="/assets/home/hero-poster.jpg" alt="" width="1920" height="960" fetchpriority="high" decoding="async">
+    </picture>
+    <video class="hero-video" id="heroVideo" muted loop playsinline preload="none" aria-hidden="true">
       <source src="/assets/home/hero-video-3ba1ad6d.mp4" type="video/mp4">
     </video>
   <script>
@@ -1390,6 +1410,7 @@
         var v = document.getElementById('heroVideo');
         if (!v) return;
         v.preload = 'auto';
+        v.addEventListener('playing', function () { v.classList.add('is-playing'); }, { once: true });
         var p = v.play();
         if (p && p.catch) p.catch(function () { /* 自动播放被拒时保留 poster */ });
       }
