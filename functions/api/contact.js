@@ -2,13 +2,14 @@
  * 联系表单接口（Cloudflare Pages Function）。
  *
  * 请求：multipart/form-data（含可选的 attachment 文件）
- * 存储：附件存 R2（绑定 ATTACHMENTS），邮件里给一条限时签名下载链接。
+ * 存储：附件存 R2（绑定 ATTACHMENTS），邮件里给一条永久取件链接。
  *
  * 为什么不是 JSON：JSON 装不下文件字节。历史上这个接口收 JSON，
  * 只把 fileName 字段写进邮件，文件本体被丢掉了 —— 客户以为发了，
  * 其实从没离开浏览器。
  *
- * R2 桶是私有的：不挂公开域名，只通过 createSignedUrl 生成短期链接。
+ * R2 桶是私有的：不挂公开域名。邮件里的链接指向 /api/attachment，
+ * 由那一层在每次访问时实时签发短期 R2 链接（见 functions/api/attachment.js）。
  */
 const DEFAULT_TO_EMAIL = 'info@djiluggage.id'
 const DEFAULT_FROM_EMAIL = 'website@djiluggage.id'
@@ -25,13 +26,53 @@ const ALLOWED_FILE_EXTENSIONS = [
   'zip', 'rar', 'ai', 'psd', 'dwg',
 ]
 
-// 签名链接有效期。30 天覆盖整个报价周期（客户比价、内部审批、
-// 打样往返），避免邮件还在流转、链接已经失效。
-// 注意：这是链接的有效期，不是文件的保存期 —— 桶里的对象不会自动删除。
-const SIGNED_URL_TTL_SECONDS = 30 * 24 * 60 * 60
+// 邮件里给的是「取件页」链接（/api/attachment?key=...&token=...），永久有效；
+// 点开时由取件页实时签一个 5 分钟的 R2 链接再跳转。
+//
+// 早期版本直接把 R2 签名链接写进邮件，最长只能签 7 天，客户比价、
+// 内部审批还没走完链接就失效了。取件页把「链接长期可用」和
+// 「桶保持私有」这两件本来冲突的事分开了：邮件里的链接只是入口，
+// 真正的对象权限仍然是每次访问临时签发的。
+const DOWNLOAD_PAGE_PATH = '/api/attachment'
 
-// 邮件里写给客户的「有效天数」，由上面的秒数推导，避免两处写死不同步。
-const SIGNED_URL_TTL_DAYS = SIGNED_URL_TTL_SECONDS / 86400
+// 取件页链接里 token 的签名密钥（Pages 环境变量 ATTACHMENT_TOKEN_SECRET）。
+// 没配就没有可用的下载链接 —— 见 storeAttachment 里的处理。
+const ATTACHMENT_TOKEN_SECRET_ENV = 'ATTACHMENT_TOKEN_SECRET'
+
+async function computeAttachmentToken(key, secret) {
+  const encoder = new TextEncoder()
+  const cryptoKey = await crypto.subtle.importKey(
+    'raw',
+    encoder.encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign'],
+  )
+  const signature = await crypto.subtle.sign('HMAC', cryptoKey, encoder.encode(key))
+  return btoa(String.fromCharCode(...new Uint8Array(signature)))
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '')
+}
+
+/**
+ * 由对象 key 拼出永久取件链接。签名算法必须与 functions/api/attachment.js
+ * 完全一致（同一 key、同一密钥、同样的 base64url 处理），否则下载会 403。
+ */
+async function buildDownloadUrl(key, request, env) {
+  const secret = env[ATTACHMENT_TOKEN_SECRET_ENV]
+  if (!secret) {
+    console.error(`${ATTACHMENT_TOKEN_SECRET_ENV} is not configured; attachment link omitted`)
+    return null
+  }
+
+  const token = await computeAttachmentToken(key, secret)
+  // 用请求自身的 origin，这样预览域名、自定义域、本地调试都能得到正确链接，
+  // 不需要把 djiluggage.id 写死在代码里。
+  const origin = new URL(request.url).origin
+  const params = new URLSearchParams({ key, token })
+  return `${origin}${DOWNLOAD_PAGE_PATH}?${params.toString()}`
+}
 
 // 扩展名 -> MIME，用于回传 Content-Type。R2 不会替我们猜。
 const EXTENSION_MIME = {
@@ -225,7 +266,7 @@ async function readRequest(request) {
  * 任何一步失败都不能静默降级成「没附件但邮件照发」——
  * 那正是这个接口以前的 bug：客户以为发了，收件人永远看不到。
  */
-async function storeAttachment(file, env) {
+async function storeAttachment(file, env, request) {
   if (!env.ATTACHMENTS || typeof env.ATTACHMENTS.put !== 'function') {
     return { error: 'Attachment storage is not configured.' }
   }
@@ -271,9 +312,8 @@ async function storeAttachment(file, env) {
   })
 
   let url = null
-  if (typeof env.ATTACHMENTS.createSignedUrl === 'function') {
-    // v4 签名同时保护 query string，所以必须显式声明 GET。
-    url = await env.ATTACHMENTS.createSignedUrl(key, SIGNED_URL_TTL_SECONDS, { method: 'GET' })
+  if (typeof env.ATTACHMENTS.get === 'function') {
+    url = await buildDownloadUrl(key, request, env)
   }
 
   return { name: fileName, size: buffer.byteLength, key, url }
@@ -313,7 +353,7 @@ export async function onRequestPost({ request, env }) {
   // 不吞掉错误、也不发一封没有附件的邮件假装成功。
   let attachment = null
   if (file && file.size > 0) {
-    const stored = await storeAttachment(file, env)
+    const stored = await storeAttachment(file, env, request)
     if (stored.error) {
       console.error('Attachment upload failed', stored.error)
       return json({ ok: false, error: stored.error }, 400, headers)
@@ -330,12 +370,12 @@ export async function onRequestPost({ request, env }) {
   const replyTo = email || undefined
 
   const attachmentText = attachment
-    ? `${attachment.name} (${Math.round(attachment.size / 1024)} KB)\n  ${attachment.url || '(signed link unavailable - check the R2 bucket)'}`
+    ? `${attachment.name} (${Math.round(attachment.size / 1024)} KB)\n  ${attachment.url || '(download link unavailable - check ATTACHMENT_TOKEN_SECRET and the R2 bucket)'}`
     : ''
   const attachmentHTML = attachment
     ? attachment.url
       ? `<a href="${escapeHTML(attachment.url)}">${escapeHTML(attachment.name)}</a> (${Math.round(attachment.size / 1024)} KB)`
-      : `${escapeHTML(attachment.name)} (${Math.round(attachment.size / 1024)} KB) - signed link unavailable`
+      : `${escapeHTML(attachment.name)} (${Math.round(attachment.size / 1024)} KB) - download link unavailable`
     : ''
 
   const text = [
@@ -349,7 +389,7 @@ export async function onRequestPost({ request, env }) {
     textLine('Attachment', attachmentText),
     textLine('Source URL', sourceUrl),
     textLine('Submitted at', submittedAt),
-    ...(attachment ? ['', `Download link valid for ${SIGNED_URL_TTL_DAYS} days.`] : []),
+    ...(attachment ? ['', 'The download link does not expire. Keep this email to retrieve the file later.'] : []),
     '',
     'Message:',
     message || '-',
@@ -370,7 +410,7 @@ export async function onRequestPost({ request, env }) {
     htmlRow('Submitted at', submittedAt),
     '</table>',
     ...(attachment
-      ? [`<p style="font-family:Arial,sans-serif;color:#717680;font-size:13px;margin:12px 0 0;">Download link valid for ${SIGNED_URL_TTL_DAYS} days.</p>`]
+      ? [`<p style="font-family:Arial,sans-serif;color:#717680;font-size:13px;margin:12px 0 0;">The download link does not expire. Keep this email to retrieve the file later.</p>`]
       : []),
     '<h3 style="font-family:Arial,sans-serif;margin:18px 0 8px;">Message</h3>',
     `<p style="font-family:Arial,sans-serif;white-space:pre-wrap;">${escapeHTML(message || '-')}</p>`,
