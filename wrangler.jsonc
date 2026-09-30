@@ -13,5 +13,15 @@
       "service": "djiluggage-contact-email",
       "environment": "production"
     }
+  ],
+  // 联系表单附件的存放位置。桶保持私有：不配公开域名、不捆绑自定义域，
+  // 只通过 createSignedUrl 生成短期链接写进通知邮件。
+  // 注意 R2 绑定名和桶名必须写在这里，否则 Pages 构建时不会注入 env.ATTACHMENTS，
+  // 接口会回 400 "Attachment storage is not configured."。
+  "r2_buckets": [
+    {
+      "binding": "ATTACHMENTS",
+      "bucket_name": "djiluggage"
+    }
   ]
 }

@@ -39,3 +39,6 @@ skills-lock.json
 .secrets/
 *service-account*.json
 gsc-*.json
+
+# 本地安装的 wrangler 与测试脚本（工具，不是站点产物）
+.tooling/

@@ -22,6 +22,15 @@
   const SUPPORTED_LOCALES = ['en', 'id', 'zh'];
   const DEFAULT_LOCALE = 'en';
 
+  // 附件限制必须与 functions/api/contact.js 里的常量保持一致。
+  // 前端先拦一道是为了给出即时反馈；真正的强制在后端（前端校验永远可被绕过）。
+  const MAX_FILE_BYTES = 10 * 1024 * 1024;
+  const ALLOWED_FILE_EXTENSIONS = [
+    'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx',
+    'png', 'jpg', 'jpeg', 'webp', 'gif', 'svg',
+    'zip', 'rar', 'ai', 'psd', 'dwg',
+  ];
+
   function detectLocale() {
     const firstSegment = window.location.pathname.split('/').filter(Boolean)[0];
     return SUPPORTED_LOCALES.includes(firstSegment) ? firstSegment : DEFAULT_LOCALE;
@@ -33,14 +42,20 @@
     en: {
       contactRequired: 'Please leave an email or phone number.',
       sending: 'Sending...',
+      fileTooLarge: 'That file is larger than 10 MB. Please compress it or share a link instead.',
+      fileType: 'That file type is not supported. Please send PDF, Office, image, archive or design files.',
     },
     id: {
       contactRequired: 'Mohon isi email atau nomor telepon.',
       sending: 'Mengirim...',
+      fileTooLarge: 'File tersebut lebih besar dari 10 MB. Mohon kompres atau kirim tautan.',
+      fileType: 'Jenis file tersebut tidak didukung. Mohon kirim PDF, Office, gambar, arsip, atau file desain.',
     },
     zh: {
       contactRequired: '请留下邮箱或电话号码。',
       sending: '发送中...',
+      fileTooLarge: '文件超过 10 MB，请压缩后重试，或改用链接分享。',
+      fileType: '不支持该文件类型，请上传 PDF、Office、图片、压缩包或设计文件。',
     },
   };
 
@@ -108,10 +123,36 @@
     return field && field.value ? field.value.trim() : '';
   }
 
+  // 文件选中后把「+ File」换成文件名，让用户确认真选上了。
+  // 文案节点是 .quote-file-text，样式见 contact/index.html 的 .quote-file。
+  function updateFileLabel(fileInput) {
+    if (!fileInput) return;
+    const label = fileInput.closest('.quote-file');
+    const text = label ? label.querySelector('.quote-file-text') : null;
+    if (!text) return;
+    const file = fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
+    text.textContent = file ? file.name : 'File';
+    if (label) label.dataset.hasFile = file ? 'true' : 'false';
+  }
+
+  function resetFileLabel(fileInput) {
+    if (!fileInput) return;
+    const label = fileInput.closest('.quote-file');
+    const text = label ? label.querySelector('.quote-file-text') : null;
+    if (text) text.textContent = 'File';
+    if (label) label.dataset.hasFile = 'false';
+  }
+
   function bindContactForm() {
     const form = document.querySelector('.quote-form');
     if (!form || form.dataset.submitBound === 'true') return;
     form.dataset.submitBound = 'true';
+
+    const fileInputEl = form.querySelector('input[type="file"]');
+    if (fileInputEl) {
+      resetFileLabel(fileInputEl);
+      fileInputEl.addEventListener('change', () => updateFileLabel(fileInputEl));
+    }
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -122,13 +163,13 @@
       const button = form.querySelector('.quote-submit');
       const defaultLabel = button ? button.textContent : '';
       const countryCode = selects[0] ? selects[0].value : '';
+      const file = fileInput && fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
       const payload = {
         customerName: fieldValue(inputs, 0),
         email: fieldValue(inputs, 1),
         phone: (countryCode ? countryCode + ' ' : '') + fieldValue(inputs, 2),
         companyName: fieldValue(inputs, 3),
         businessCategory: selects[1] ? selects[1].value : '',
-        fileName: fileInput && fileInput.files && fileInput.files[0] ? fileInput.files[0].name : '',
         message: textarea && textarea.value ? textarea.value.trim() : '',
         sourceUrl: window.location.href,
       };
@@ -140,21 +181,41 @@
         return;
       }
 
+      // 附件在后端是不可信的：这里只是提前给出反馈，后端会重新校验扩展名、大小和魔数。
+      if (file) {
+        if (file.size > MAX_FILE_BYTES) {
+          setFormStatus(form, COPY.fileTooLarge, 'error');
+          return;
+        }
+        const extension = file.name.includes('.')
+          ? file.name.split('.').pop().toLowerCase()
+          : '';
+        if (!ALLOWED_FILE_EXTENSIONS.includes(extension)) {
+          setFormStatus(form, COPY.fileType, 'error');
+          return;
+        }
+      }
+
       if (button) {
         button.disabled = true;
         button.textContent = COPY.sending;
       }
 
       try {
+        // 用 multipart 而不是 JSON：JSON 装不下文件字节。
+        // 注意不要手动设置 Content-Type —— 浏览器需要自己补 boundary。
+        const body = new FormData();
+        Object.keys(payload).forEach((key) => body.append(key, payload[key]));
+        if (file) body.append('attachment', file, file.name);
+
         const response = await fetch(CONTACT_ENDPOINT, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload),
+          body,
         });
         if (!response.ok) throw new Error('Contact submission failed with ' + response.status);
         form.reset();
+        if (fileInput) fileInput.value = '';
+        resetFileLabel(fileInput);
         setFormStatus(form, 'Inquiry sent. We will contact you shortly.', 'success');
         if (button) button.textContent = defaultLabel || 'Send Inquiry';
 
