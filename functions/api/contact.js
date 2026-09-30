@@ -25,9 +25,13 @@ const ALLOWED_FILE_EXTENSIONS = [
   'zip', 'rar', 'ai', 'psd', 'dwg',
 ]
 
-// 签名链接有效期。客户给的是报价单/图纸，不需要长期可访问；
-// 7 天足够业务处理，也限制了一旦邮件被转发出去的暴露面。
-const SIGNED_URL_TTL_SECONDS = 7 * 24 * 60 * 60
+// 签名链接有效期。30 天覆盖整个报价周期（客户比价、内部审批、
+// 打样往返），避免邮件还在流转、链接已经失效。
+// 注意：这是链接的有效期，不是文件的保存期 —— 桶里的对象不会自动删除。
+const SIGNED_URL_TTL_SECONDS = 30 * 24 * 60 * 60
+
+// 邮件里写给客户的「有效天数」，由上面的秒数推导，避免两处写死不同步。
+const SIGNED_URL_TTL_DAYS = SIGNED_URL_TTL_SECONDS / 86400
 
 // 扩展名 -> MIME，用于回传 Content-Type。R2 不会替我们猜。
 const EXTENSION_MIME = {
@@ -345,7 +349,7 @@ export async function onRequestPost({ request, env }) {
     textLine('Attachment', attachmentText),
     textLine('Source URL', sourceUrl),
     textLine('Submitted at', submittedAt),
-    ...(attachment ? ['', `Download link valid for ${SIGNED_URL_TTL_SECONDS / 86400} days.`] : []),
+    ...(attachment ? ['', `Download link valid for ${SIGNED_URL_TTL_DAYS} days.`] : []),
     '',
     'Message:',
     message || '-',
@@ -366,7 +370,7 @@ export async function onRequestPost({ request, env }) {
     htmlRow('Submitted at', submittedAt),
     '</table>',
     ...(attachment
-      ? [`<p style="font-family:Arial,sans-serif;color:#717680;font-size:13px;margin:12px 0 0;">Download link valid for ${SIGNED_URL_TTL_SECONDS / 86400} days.</p>`]
+      ? [`<p style="font-family:Arial,sans-serif;color:#717680;font-size:13px;margin:12px 0 0;">Download link valid for ${SIGNED_URL_TTL_DAYS} days.</p>`]
       : []),
     '<h3 style="font-family:Arial,sans-serif;margin:18px 0 8px;">Message</h3>',
     `<p style="font-family:Arial,sans-serif;white-space:pre-wrap;">${escapeHTML(message || '-')}</p>`,
