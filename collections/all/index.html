@@ -87,6 +87,16 @@
     .catalog-kicker { font-family: 'Fragment Mono', monospace; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; text-align: center; color: #404040; }
     .catalog-title { margin-top: 28px; font-size: 44px; font-weight: 400; letter-spacing: 10px; line-height: 1.1; text-transform: uppercase; text-align: center; color: #2e2e2e; }
     .catalog-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 76px; padding-top: 18px; border-top: 1px solid rgba(0,0,0,.12); font-family: 'Fragment Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #5b5b5b; }
+    /* 目录页原本只有商品卡，没有任何决策信息（Jev 买家价值 0.29，全站最低）。
+       这里补上「怎么下单」的一段与事实格，用的都是站内已公开的工厂数据。 */
+    .catalog-intro { max-width: 760px; margin: 34px auto 0; text-align: center; font-family: 'Nunito', 'Geist', sans-serif; font-size: 15px; line-height: 1.75; color: #4a4a4a; }
+    .catalog-facts { margin-top: 96px; padding-top: 48px; border-top: 1px solid rgba(0,0,0,.12); }
+    .catalog-facts-title { margin: 0; font-family: 'Fragment Mono', monospace; font-size: 12px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; color: #2e2e2e; text-align: center; }
+    .catalog-facts-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 34px; margin-top: 40px; }
+    .catalog-facts-grid span { display: block; font-family: 'Fragment Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #8a8a8a; }
+    .catalog-facts-grid p { margin-top: 10px; font-family: 'Nunito', 'Geist', sans-serif; font-size: 14px; line-height: 1.7; color: #3a3a3a; }
+    @media (max-width: 1180px) { .catalog-facts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 768px) { .catalog-facts { margin-top: 64px; padding-top: 36px; } .catalog-facts-grid { grid-template-columns: 1fr; gap: 26px; } .catalog-intro { font-size: 14px; } }
     .catalog-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 62px 34px; margin-top: 38px; }
     .catalog-card { min-width: 0; color: inherit; text-align: center; text-decoration: none; }
     .catalog-card-media { aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; background: #fff; overflow: hidden; }
@@ -177,7 +187,7 @@
   {"@context":"https://schema.org","@type":"CollectionPage","name":"All Collections","description":"Browse the DJI Luggage catalog - AURA Collection, plus Captain and Voyager aluminum frame carry-ons. OEM/ODM with custom colors and logos.","url":"https://djiluggage.id/collections/all/","isPartOf":{"@type":"WebSite","name":"DJI Luggage","url":"https://djiluggage.id/"},"mainEntity":{"@type":"ItemList","numberOfItems":21,"itemListElement":[{"@type":"ListItem","position":1,"name":"Captain Zipperless Aluminum Frame Carry-On Black","url":"https://djiluggage.id/products/roaming-all-aluminum-zipperless-luggage-black/"},{"@type":"ListItem","position":2,"name":"Captain Zipperless Aluminum Frame Carry-On Grey","url":"https://djiluggage.id/products/roaming-all-aluminum-zipperless-luggage-grey/"},{"@type":"ListItem","position":3,"name":"Voyager Zipperless Aluminum Frame Carry-On Grey","url":"https://djiluggage.id/products/roaming-all-aluminum-zipperless-luggage-grey-1/"},{"@type":"ListItem","position":4,"name":"Voyager Zipperless Aluminum Frame Carry-On Black","url":"https://djiluggage.id/products/roaming-all-aluminum-zipperless-luggage-silver-black-copy/"},{"@type":"ListItem","position":5,"name":"Captain Zipperless Aluminum Frame Carry-On Silver","url":"https://djiluggage.id/products/roaming-all-aluminum-zipperless-luggage-silver/"},{"@type":"ListItem","position":6,"name":"Voyager Zipperless Aluminum Frame Carry-On Silver","url":"https://djiluggage.id/products/roaming-all-aluminum-zipperless-luggage-grey-copy/"},{"@type":"ListItem","position":7,"name":"Voyager Zipperless Aluminum Frame Carry-On Black Silver","url":"https://djiluggage.id/products/roaming-all-aluminum-zipperless-luggage-silver-copy/"},{"@type":"ListItem","position":8,"name":"Captain Aluminum Frame Carry-On Black","url":"https://djiluggage.id/products/roaming-aluminum-frame-zipperless-luggage-blue-copy/"},{"@type":"ListItem","position":9,"name":"Captain Aluminum Frame Carry-On Grey","url":"https://djiluggage.id/products/roaming-aluminum-frame-zipperless-luggage-grey/"},{"@type":"ListItem","position":10,"name":"Captain Aluminum Frame Carry-On Blue","url":"https://djiluggage.id/products/roaming-aluminum-frame-zipperless-luggage-white/"},{"@type":"ListItem","position":11,"name":"Captain Aluminum Frame Carry-On Green","url":"https://djiluggage.id/products/roaming-aluminum-frame-zipperless-luggage-khaki-green/"},{"@type":"ListItem","position":12,"name":"Captain Aluminum Frame Carry-On Pink","url":"https://djiluggage.id/products/roaming-aluminum-frame-zipperless-luggage-pink/"},{"@type":"ListItem","position":13,"name":"Captain Aluminum Frame Carry-On White","url":"https://djiluggage.id/products/roaming-aluminum-frame-zipperless-luggage-white-copy/"},{"@type":"ListItem","position":14,"name":"AURA Collection White","url":"https://djiluggage.id/products/aluminum-suitcase-white/"},{"@type":"ListItem","position":15,"name":"AURA Collection Black","url":"https://djiluggage.id/products/aluminum-suitcase-black/"},{"@type":"ListItem","position":16,"name":"AURA Collection Blue","url":"https://djiluggage.id/products/aluminum-suitcase-blue/"},{"@type":"ListItem","position":17,"name":"AURA Collection Green","url":"https://djiluggage.id/products/aluminum-suitcase-green/"},{"@type":"ListItem","position":18,"name":"AURA Collection Gunmetal Gray","url":"https://djiluggage.id/products/aluminum-suitcase-gunmetal-gray/"},{"@type":"ListItem","position":19,"name":"AURA Collection Olive Green","url":"https://djiluggage.id/products/aluminum-suitcase-olive-green/"},{"@type":"ListItem","position":20,"name":"AURA Collection Red","url":"https://djiluggage.id/products/aluminum-suitcase-red/"},{"@type":"ListItem","position":21,"name":"AURA Collection Silver","url":"https://djiluggage.id/products/aluminum-suitcase-silver/"}]}}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://djiluggage.id/"},{"@type":"ListItem","position":2,"name":"All Collections","item":"https://djiluggage.id/collections/all"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://djiluggage.id/"},{"@type":"ListItem","position":2,"name":"All Collections","item":"https://djiluggage.id/collections/all/"}]}
   </script>
 </head>
 <body class="page-collection">
@@ -233,6 +243,7 @@
       <p class="catalog-kicker">Products</p>
       <h1 class="catalog-title">All Collections</h1>
       <div class="catalog-toolbar"><span>21 products</span><span>Sort by featured</span></div>
+      <p class="catalog-intro">Every case here is built to order rather than sold from stock. The grid shows the structures we currently produce in Bogor, Indonesia &mdash; shell material, colour, hardware, lining, branding and retail packaging are specified per programme, so most orders start from one of these and change what makes the product yours. Minimum order is 200 units per specification, and we supply brands, importers and distributors on an <a href="/services/luggage-oem/">OEM</a>, <a href="/services/luggage-odm/">ODM</a> and <a href="/services/private-label-luggage/">private-label</a> basis.</p>
       <div class="catalog-grid"><a class="catalog-card" href="/products/roaming-all-aluminum-zipperless-luggage-black/">
       <div class="catalog-card-media"><img src="/assets/products/roaming-catalog/roaming-all-aluminum-zipperless-luggage-black-gallery-1.png" alt="Captain Zipperless Aluminum Frame Carry-On Black" loading="lazy"></div>
       <h2 class="catalog-card-title">Captain Zipperless Aluminum Frame Carry-On Black</h2>
@@ -317,6 +328,44 @@
       <div class="catalog-card-media"><img src="/assets/products/roaming-catalog/aluminum-suitcase-silver-gallery-1.png" alt="AURA Collection Silver" loading="lazy"></div>
       <h2 class="catalog-card-title">AURA Collection Silver</h2>
     </a></div>
+
+      <section class="catalog-facts">
+        <h2 class="catalog-facts-title">How an order works</h2>
+        <div class="catalog-facts-grid">
+          <div>
+            <span>Minimum order</span>
+            <p>200 units per specification. It applies per colour and per size combination you want produced.</p>
+          </div>
+          <div>
+            <span>Lead time</span>
+            <p>25&ndash;55 days from deposit and approved sample.</p>
+          </div>
+          <div>
+            <span>Sampling</span>
+            <p>7&ndash;15 working days after artwork and component direction are approved.</p>
+          </div>
+          <div>
+            <span>Payment</span>
+            <p>30% deposit, 70% balance &mdash; the same terms for OEM, ODM and private label.</p>
+          </div>
+          <div>
+            <span>Materials and sizes</span>
+            <p>PP, PC, ABS+PC, aluminium frame and fabric shells. Sizes are 20, 24, 26 and 28 inch, supplied as single cases or nested sets.</p>
+          </div>
+          <div>
+            <span>Testing</span>
+            <p>Structural testing follows QB/T 2155-2018, and finished cases are sent to SGS. Those are test reports on submitted samples, not a product certification.</p>
+          </div>
+          <div>
+            <span>What you can change</span>
+            <p>Shell and trim colour, lining, wheel system, telescopic handle, lock, logo method and retail packaging.</p>
+          </div>
+          <div>
+            <span>Export packing</span>
+            <p>PE/PP dust bags, corner protection at the wheel housings and handle mounts, and silica gel desiccant. Produced to EU PPWR, US CONEG and REACH.</p>
+          </div>
+        </div>
+      </section>
     </main>
   <footer class="catalog-footer">
     <div>DJI LUGGAGE</div>

@@ -17,7 +17,7 @@
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import * as siteDir from './site-dir.mjs';
-import { dirname, join } from 'node:path';
+import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { loadApiKey, callJev } from '../seo-geo/jev.mjs';
@@ -84,7 +84,55 @@ const findings = {
 };
 
 const outPath = join(SITE_DIR, 'findings.json');
-if (existsSync(outPath)) Object.assign(findings, JSON.parse(readFileSync(outPath, 'utf8')));
+
+/**
+ * 复用上一轮结论前，先按「当前语料实际存在的 URL」过滤。
+ *
+ * 不这样做就会出幽灵页面：例如 /newsroom/filters/* 三个页面已废弃并 301 到
+ * /newsroom/，但它们旧的原创度/买家价值分数会留在文件里继续参与排序，
+ * 把已经修好的页面重新报成问题。合并只应保留仍然存在的 URL。
+ */
+const livePaths = new Set(pages.map((p) => p.urlPath));
+
+function pruneToLivePaths(old) {
+  const out = { ...old };
+
+  // 以 urlPath 为键的映射：thin / intent / audits
+  for (const key of ['thin', 'intent', 'audits']) {
+    const value = out[key];
+    if (value && typeof value === 'object' && !Array.isArray(value)) {
+      out[key] = Object.fromEntries(Object.entries(value).filter(([url]) => livePaths.has(url)));
+    }
+  }
+
+  // 以 url 字段标识的数组
+  if (Array.isArray(out.schema)) {
+    out.schema = out.schema.filter((s) => livePaths.has(s.url));
+  }
+  if (Array.isArray(out.linkCandidates)) {
+    out.linkCandidates = out.linkCandidates.filter(
+      (c) => livePaths.has(c.from) && livePaths.has(c.to),
+    );
+  }
+
+  // 蚕食聚类的成员
+  if (out.cannibal && Array.isArray(out.cannibal.groups)) {
+    out.cannibal.groups = out.cannibal.groups
+      .map((g) => ({ ...g, members: (g.members || []).filter((m) => livePaths.has(m)) }))
+      .filter((g) => g.members.length > 1);
+  }
+
+  return out;
+}
+
+if (existsSync(outPath)) {
+  const previous = JSON.parse(readFileSync(outPath, 'utf8'));
+  const pruned = pruneToLivePaths(previous);
+  const dropped =
+    Object.keys(previous.thin || {}).length - Object.keys(pruned.thin || {}).length;
+  if (dropped > 0) console.log(`  已丢弃 ${dropped} 条指向不存在页面的旧结论`);
+  Object.assign(findings, pruned);
+}
 findings.generatedAt = new Date().toISOString();
 findings.counts = { pages: pages.length, sitemapPages: pages.filter((p) => p.inSitemap).length, links: corpus.links.length, similarPairs: corpus.similar.length, clusters: corpus.clusters.length, legacyUrls: corpus.legacy.length };
 

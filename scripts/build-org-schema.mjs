@@ -39,6 +39,18 @@ const KNOWS_ABOUT = [
   'Export packaging',
 ]
 
+// 完整邮政地址。工厂全址一直写在 llms.txt 里，但结构化数据此前只有
+// 「Bogor, ID」—— 与 Google Business Profile、本地搜索和各类名录对不上，
+// 本地实体信号因此偏弱。字段拆法遵循印尼行政区划层级。
+const ADDRESS = {
+  '@type': 'PostalAddress',
+  streetAddress: 'Jl. Raya Parung, Desa/Kelurahan Kemang, Kec. Kemang',
+  addressLocality: 'Bogor',
+  addressRegion: 'West Java',
+  postalCode: '16310',
+  addressCountry: 'ID',
+}
+
 const BLOCK_RE = /(<script type="application\/ld\+json">\s*)([\s\S]*?)(\s*<\/script>)/g
 
 /**
@@ -64,6 +76,14 @@ function enrich(node, isTopLevel = true) {
       const hasKnows = Array.isArray(node.knowsAbout) && node.knowsAbout.length === KNOWS_ABOUT.length
       if (!hasArea) { node.areaServed = AREA_SERVED; touched++ }
       if (!hasKnows) { node.knowsAbout = KNOWS_ABOUT; touched++ }
+
+      const a = node.address
+      const addressIncomplete =
+        !a ||
+        a.streetAddress !== ADDRESS.streetAddress ||
+        a.addressRegion !== ADDRESS.addressRegion ||
+        a.postalCode !== ADDRESS.postalCode
+      if (addressIncomplete) { node.address = { ...ADDRESS }; touched++ }
     }
   }
 

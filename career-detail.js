@@ -111,6 +111,19 @@
     return `<ul><li><p>${escapeHTML(text)}</p></li></ul>`;
   }
 
+  // 职位页互链。此前 4 个职位页各自只有 /careers/ 一个入链，Google 长期不抓
+  // （Discovered / unknown to Google）。这里让每个职位页指向其余 3 个。
+  // 放在侧栏而不是正文：正文的列表是绝对定位 + 写死 top 偏移的，
+  // 插新块会重叠；侧栏是独立列，向下自然生长即可。
+  function otherRolesHTML(currentSlug) {
+    return Object.keys(jobs)
+      .filter(function (slug) { return slug !== currentSlug; })
+      .map(function (slug) {
+        return `<p><a href="/careers/${slug}/">${escapeHTML(jobs[slug].title)}</a></p>`;
+      })
+      .join('\n        ');
+  }
+
   applyLocaleToDocument();
 
   document.title = `${job.title} - DJI Luggage`;
@@ -172,6 +185,8 @@
       <aside class="job-sidebar">
         <div class="job-kicker">JOIN THE TEAM</div>
         <p>DJI Luggage is a Bogor-based luggage manufacturer supporting OEM, ODM, and private-label buyers.</p>
+        <div class="job-kicker" style="margin-top:26px;">OTHER OPEN ROLES</div>
+        ${otherRolesHTML(fallbackSlug)}
       </aside>
 
       <section class="job-content">

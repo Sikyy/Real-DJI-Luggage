@@ -12,13 +12,27 @@
  *   node scripts/gsc.mjs sitemaps [siteUrl]    列出站点地图与状态
  *   node scripts/gsc.mjs query   [siteUrl]     拉取搜索效果数据（默认近 28 天）
  *   node scripts/gsc.mjs report  [siteUrl]     生成基线报告（Markdown + JSON）
+ *   node scripts/gsc.mjs inspect [siteUrl]     逐条查询官方索引状态（默认查 sitemap.xml 里的全部 URL）
+ *     --url-file <path>   改从文件读 URL（每行一个）
+ *     --urls a,b,c        直接给 URL
+ *   node scripts/gsc.mjs resubmit [siteUrl]    重新提交 sitemap，促使 Google 重读
+ *
+ * 能力边界（很重要，别指望这三个命令能做的事超出范围）：
+ *   · inspect 的 URL Inspection API 是**只读**的，不能提交重新编入索引
+ *   · GSC 界面上的「请求编入索引」（URL 检查 → 请求编入索引）**没有任何 API**，
+ *     只能人工点。resubmit 只能重提 sitemap，不能给单个 URL 排优先级
+ *   · 想按 URL 主动推送，只有 Indexing API，而它**官方只接受 JobPosting 与
+ *     BroadcastEvent 两种结构化数据**，且需要单独在 Cloud 项目里启用
+ *     indexing.googleapis.com。本站只有 4 个职位页属于该类型。
+ *   · GSC 不开放「网页编入索引」报告的批量接口，所以那 76 条的明细拿不到，
+ *     只能拿候选 URL 去逐个问 inspect。
  *
  * 可选环境变量：
  *   GSC_KEY_FILE   服务账号 JSON 路径（默认 .secrets/gsc-service-account.json）
  *   GSC_DAYS       查询天数，默认 28
  *   GSC_LAG        数据滞后天数，默认 3（GSC 通常滞后 2–3 天）
  */
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs'
 import { createSign } from 'node:crypto'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -30,6 +44,11 @@ const KEY_FILE = process.env.GSC_KEY_FILE
 const DAYS = Number(process.env.GSC_DAYS || 28)
 const LAG = Number(process.env.GSC_LAG || 3)
 const SCOPE = 'https://www.googleapis.com/auth/webmasters.readonly'
+// 读+写。只有 resubmit 用得到：Sitemaps API 的 PUT 需要写权限，
+// readonly scope 会回 403 "insufficient authentication scopes"。
+const SCOPE_WRITE = 'https://www.googleapis.com/auth/webmasters'
+// Indexing API 用的是另一个 scope 与另一个 API 主机（indexing.googleapis.com）。
+const SCOPE_INDEXING = 'https://www.googleapis.com/auth/indexing'
 
 // ---------------------------------------------------------------- 认证
 
@@ -37,7 +56,7 @@ function base64url(input) {
   return Buffer.from(input).toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
 }
 
-async function getAccessToken() {
+async function getAccessToken(scope = SCOPE) {
   if (!existsSync(KEY_FILE)) {
     throw new Error(`找不到服务账号密钥：${KEY_FILE}\n请把 JSON 密钥放到该路径，或用 GSC_KEY_FILE 指定。`)
   }
@@ -50,7 +69,7 @@ async function getAccessToken() {
   const header = base64url(JSON.stringify({ alg: 'RS256', typ: 'JWT' }))
   const claims = base64url(JSON.stringify({
     iss: key.client_email,
-    scope: SCOPE,
+    scope,
     aud: key.token_uri || 'https://oauth2.googleapis.com/token',
     iat: now,
     exp: now + 3600,
@@ -275,9 +294,179 @@ async function cmdReport(auth, siteUrl) {
   console.log(`报告:      ${path.relative(root, mdPath)}`)
 }
 
+// ---------------------------------------------------------------- 索引状态体检
+
+const SITEMAP_FILE = path.join(root, 'sitemap.xml')
+
+function sitemapUrls() {
+  const xml = readFileSync(SITEMAP_FILE, 'utf8')
+  return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim())
+}
+
+/**
+ * URL Inspection API：拿单个 URL 的官方索引状态。
+ *
+ * 这是 GSC 界面上「网页编入索引」报告的 API 版本。注意它的能力边界：
+ *   · 只能**逐个**查询，且只能查「站点已验证」的 URL
+ *   · **只读**：不能提交重新编入索引的请求，那一步只能在 GSC 界面手工做
+ *   · GSC 不开放「未编入索引」清单的批量接口，所以只能拿候选 URL 去问
+ */
+async function inspectUrl(site, token, url) {
+  const body = await api('/v1/urlInspection/index:inspect', token, {
+    method: 'POST',
+    body: { inspectionUrl: url, siteUrl: site, languageCode: 'en-US' },
+  })
+  return body.inspectionResult?.indexStatusResult || {}
+}
+
+async function cmdInspect(auth, site, urls) {
+  console.log(`资源 ${site} | 检查 ${urls.length} 个 URL\n`)
+
+  const results = []
+  for (const url of urls) {
+    try {
+      const r = await inspectUrl(site, auth.token, url)
+      results.push({
+        url,
+        verdict: r.verdict,
+        coverageState: r.coverageState,
+        indexingState: r.indexingState,
+        robotsTxtState: r.robotsTxtState,
+        pageFetchState: r.pageFetchState,
+        googleCanonical: r.googleCanonical,
+        userCanonical: r.userCanonical,
+        lastCrawlTime: r.lastCrawlTime,
+      })
+      console.log(`  ${String(r.coverageState || '?').padEnd(46)} ${url}`)
+    } catch (err) {
+      results.push({ url, error: err.message })
+      console.log(`  ${'✖ 查询失败'.padEnd(46)} ${url}  ${err.message.slice(0, 70)}`)
+    }
+    // 配额是每分钟 600 次，稳妥起见放慢一点
+    await new Promise((resolve) => setTimeout(resolve, 120))
+  }
+
+  const indexed = results.filter((r) => r.verdict === 'PASS')
+  const byState = new Map()
+  for (const r of results) {
+    const key = r.error ? `查询失败: ${r.error.slice(0, 40)}` : r.coverageState || '(未知)'
+    byState.set(key, (byState.get(key) || 0) + 1)
+  }
+
+  console.log(`\n=== 汇总 ===`)
+  console.log(`  索引率 ${indexed.length}/${results.length}（${((indexed.length / results.length) * 100).toFixed(1)}%）`)
+  for (const [state, n] of [...byState.entries()].sort((a, b) => b[1] - a[1])) {
+    console.log(`  ${String(n).padStart(3)}  ${state}`)
+  }
+
+  // 与上一次体检对比：只关心「从有到无」和「从无到有」的转变
+  const gscDir = path.join(root, '.seo-geo', 'gsc')
+  mkdirSync(gscDir, { recursive: true })
+  const stamp = new Date().toISOString().slice(0, 10)
+  const prevFiles = existsSync(gscDir)
+    ? readdirSync(gscDir).filter((f) => /^inspect-.*\.json$/.test(f) && !f.includes(stamp)).sort()
+    : []
+  let deltas = []
+  if (prevFiles.length) {
+    const prev = JSON.parse(readFileSync(path.join(gscDir, prevFiles[prevFiles.length - 1]), 'utf8'))
+    const prevByUrl = new Map((prev.results || []).map((r) => [r.url, r.coverageState]))
+    deltas = results
+      .filter((r) => prevByUrl.has(r.url) && prevByUrl.get(r.url) !== r.coverageState)
+      .map((r) => ({ url: r.url, from: prevByUrl.get(r.url), to: r.coverageState }))
+    console.log(`\n=== 与上次（${prevFiles[prevFiles.length - 1]}）相比的变化 ===`)
+    if (!deltas.length) console.log('  无变化')
+    for (const d of deltas) console.log(`  ${d.url}\n      ${d.from}  →  ${d.to}`)
+  }
+
+  writeFileSync(
+    path.join(gscDir, `inspect-${stamp}.json`),
+    JSON.stringify({ siteUrl: site, fetchedAt: new Date().toISOString(), indexed: indexed.length, total: results.length, deltas, results }, null, 2),
+  )
+  console.log(`\n写入 .seo-geo/gsc/inspect-${stamp}.json`)
+}
+
+// ---------------------------------------------------------------- 重新提交站点地图
+
+/**
+ * 重新提交 sitemap，促使 Google 重读它。
+ *
+ * 这是 API 能做的「提交」里最有用的一个：Sitemaps API 的 PUT 等同于在 GSC
+ * 界面点「重新提交」。它不会给单个 URL 排优先级，但会让 Google 尽快看到
+ * 最新的 lastmod 与 URL 清单。
+ *
+ * 注意能力边界：GSC 界面上的「请求编入索引」（URL 检查 → 请求编入索引）
+ * **没有任何 API**，只能人工点。Indexing API 是另一回事，它只接受
+ * JobPosting / BroadcastEvent 两种结构化数据。
+ */
+async function cmdResubmit(auth, site) {
+  const feed = `${site.startsWith('sc-domain:') ? 'https://' + site.replace('sc-domain:', '') : site.replace(/\/$/, '')}/sitemap.xml`
+  const pathname = `/webmasters/v3/sites/${encodeURIComponent(site)}/sitemaps/${encodeURIComponent(feed)}`
+  await api(pathname, auth.token, { method: 'PUT' })
+  console.log(`已重新提交站点地图：${feed}`)
+  const after = await api(`/webmasters/v3/sites/${encodeURIComponent(site)}/sitemaps`, auth.token)
+  for (const s of after.sitemap || []) {
+    console.log(`  ${s.path}`)
+    console.log(`    最后提交: ${s.lastSubmitted || '—'}`)
+    console.log(`    最后下载: ${s.lastDownloaded || '从未'}`)
+    console.log(`    内容: ${(s.contents || []).map((c) => `${c.type}:${c.submitted}`).join(' ')}`)
+  }
+}
+
+// ---------------------------------------------------------------- Indexing API 推送
+
+// 本站唯一符合 Indexing API 要求（带 JobPosting 结构化数据）的页面。
+// 不传 --urls / --url-file 时默认推这四个。
+const JOB_POSTING_URLS = [
+  'https://djiluggage.id/careers/production-supervisor/',
+  'https://djiluggage.id/careers/quality-control-specialist/',
+  'https://djiluggage.id/careers/sample-development-technician/',
+  'https://djiluggage.id/careers/export-sales-coordinator/',
+]
+
+/**
+ * 用 Indexing API 主动推送 URL。
+ *
+ * ⚠️ 这个接口**官方只接受带 JobPosting 或 BroadcastEvent 结构化数据的 URL**。
+ * 拿它推普通页面不会报错，但也不会起作用 —— 别指望它能替代 GSC 界面上的
+ *「请求编入索引」（那个没有 API）。本站只有 4 个职位页属于该类型。
+ *
+ * 前置条件（缺一不可）：
+ *   1. Cloud 项目里启用 indexing.googleapis.com
+ *   2. 服务账号在 GSC 里是该资源的**所有者**（完整用户可能不够）
+ */
+async function cmdPush(auth, urls) {
+  console.log(`推送 ${urls.length} 个 URL（Indexing API，仅限 JobPosting / BroadcastEvent）\n`)
+  let ok = 0
+  for (const url of urls) {
+    const res = await fetch('https://indexing.googleapis.com/v3/urlNotifications:publish', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${auth.token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url, type: 'URL_UPDATED' }),
+    })
+    const body = await res.json().catch(() => ({}))
+    if (res.ok) {
+      ok++
+      console.log(`  ✓ ${url}`)
+      console.log(`      notifyTime: ${body.urlNotificationMetadata?.latestUpdate?.notifyTime || '—'}`)
+    } else {
+      const msg = body.error?.message || JSON.stringify(body).slice(0, 200)
+      console.log(`  ✗ ${url}`)
+      console.log(`      HTTP ${res.status}  ${msg.slice(0, 220)}`)
+    }
+    await new Promise((r) => setTimeout(r, 250))
+  }
+  console.log(`\n成功 ${ok}/${urls.length}`)
+}
+
 // ---------------------------------------------------------------- 入口
 
-const [cmd = 'report', siteArg] = process.argv.slice(2)
+const argv = process.argv.slice(2)
+const cmd = argv[0] || 'report'
+const siteArg = argv[1] && !argv[1].startsWith('--') ? argv[1] : undefined
+const flagValue = (name) => {
+  const i = argv.indexOf(name)
+  return i >= 0 ? argv[i + 1] : null
+}
 
 /**
  * 解析要查询的资源。GSC 有两种资源类型，API 里的 siteUrl 写法不同：
@@ -295,7 +484,10 @@ async function resolveSite(auth, explicit) {
 }
 
 try {
-  const auth = await getAccessToken()
+  // 各命令按需申请最小 scope：resubmit 要写权限，push 走 Indexing API，其余只读。
+  const auth = await getAccessToken(
+    cmd === 'resubmit' ? SCOPE_WRITE : cmd === 'push' ? SCOPE_INDEXING : SCOPE,
+  )
   if (cmd === 'sites') {
     await cmdSites(auth)
   } else if (cmd === 'sitemaps') {
@@ -313,8 +505,28 @@ try {
     }
   } else if (cmd === 'report') {
     await cmdReport(auth, await resolveSite(auth, siteArg))
+  } else if (cmd === 'inspect') {
+    const urlFile = flagValue('--url-file')
+    const inline = flagValue('--urls')
+    const urls = urlFile
+      ? readFileSync(path.resolve(urlFile), 'utf8').split('\n').map((s) => s.trim()).filter(Boolean)
+      : inline
+        ? inline.split(',').map((s) => s.trim()).filter(Boolean)
+        : sitemapUrls()
+    await cmdInspect(auth, await resolveSite(auth, siteArg), urls)
+  } else if (cmd === 'resubmit') {
+    await cmdResubmit(auth, await resolveSite(auth, siteArg))
+  } else if (cmd === 'push') {
+    const urlFile = flagValue('--url-file')
+    const inline = flagValue('--urls')
+    const urls = urlFile
+      ? readFileSync(path.resolve(urlFile), 'utf8').split('\n').map((s) => s.trim()).filter(Boolean)
+      : inline
+        ? inline.split(',').map((s) => s.trim()).filter(Boolean)
+        : JOB_POSTING_URLS
+    await cmdPush(auth, urls)
   } else {
-    console.error(`未知命令: ${cmd}\n可用: sites | sitemaps | query | report`)
+    console.error(`未知命令: ${cmd}\n可用: sites | sitemaps | query | report | inspect | resubmit | push`)
     process.exit(1)
   }
 } catch (err) {

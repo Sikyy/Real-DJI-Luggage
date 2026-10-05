@@ -9,6 +9,7 @@
  *   --check  只比对，不写入；有差异时以非零码退出
  */
 import { readFileSync, writeFileSync, statSync, readdirSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -42,10 +43,52 @@ function priorityFor(urlPath) {
   return '0.8'
 }
 
-function lastmodFor(file) {
+/**
+ * lastmod 取「内容最后一次真正变化」的日期，而不是文件 mtime。
+ *
+ * 用 mtime 会误报：任何重新生成页面的脚本（build-landing-pages、breadcrumbs……
+ * 即使内容逐字节没变）都会刷新 mtime，把 lastmod 顶到今天。Google 一旦发现
+ * lastmod 不可信，就会整体忽略这个字段。
+ *
+ * 规则：
+ *   · 相对 HEAD 有未提交改动  → 今天（改动确实发生了，只是还没提交）
+ *   · 已提交且无改动          → 该文件最后一次提交的日期
+ */
+const rel = (file) => path.relative(root, file).split(path.sep).join('/')
+
+const modified = new Set(
+  (() => {
+    try {
+      return execFileSync('git', ['diff', '--name-only', 'HEAD'], { cwd: root, encoding: 'utf8' })
+        .split('\n')
+        .map((s) => s.trim())
+        .filter(Boolean)
+    } catch {
+      return []
+    }
+  })(),
+)
+
+const mtimeDate = (file) => {
   const d = statSync(file).mtime
   const p = (n) => String(n).padStart(2, '0')
   return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`
+}
+
+function lastmodFor(file) {
+  const r = rel(file)
+  if (modified.has(r)) return mtimeDate(file)
+  try {
+    const out = execFileSync('git', ['log', '-1', '--format=%ad', '--date=short', '--', r], {
+      cwd: root,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim()
+    if (out) return out
+  } catch {
+    /* 未跟踪或 git 不可用 → 退回 mtime */
+  }
+  return mtimeDate(file)
 }
 
 const seen = new Map() // canonical path -> { file }

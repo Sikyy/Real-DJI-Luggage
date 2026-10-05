@@ -24,8 +24,16 @@ const includeFiles = new Set(['_headers', '_redirects'])
 // 模板文件仅供本地开发服务器（static-server.mjs）兜底使用，不发布到生产环境。
 const excludeNames = new Set(['.DS_Store', 'article-template.html', 'career-template.html'])
 
+// macOS / iCloud 在文件被改写而同步尚未完成时会生成「冲突副本」，
+// 形如 "index 2.html" / "site 2.css"。它们会混进 dist，成为与正本共用
+// 同一 canonical 的重复页面 —— 也就是一批多出来的、可被抓取的 URL。
+// 本仓库放在 Desktop 下，构建又频繁重写 dist，所以这类文件会偶发出现。
+const CONFLICT_COPY_RE = / \d+\.[^.]+$/
+const isConflictCopy = (name) => CONFLICT_COPY_RE.test(name)
+
 function shouldCopyFile(name) {
   if (excludeNames.has(name)) return false
+  if (isConflictCopy(name)) return false
   if (includeFiles.has(name)) return true
   return includeFileExtensions.has(path.extname(name))
 }
@@ -58,7 +66,10 @@ for (const entry of await readdir(root)) {
   if (info.isDirectory()) {
     if (includeDirs.has(entry)) {
       await cp(source, destination, {
-        filter: (sourcePath) => !sourcePath.split(path.sep).includes('.DS_Store'),
+        filter: (sourcePath) => {
+          const base = path.basename(sourcePath)
+          return base !== '.DS_Store' && !isConflictCopy(base)
+        },
         recursive: true,
       })
     }

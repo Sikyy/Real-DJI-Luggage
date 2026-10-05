@@ -11,7 +11,10 @@
  * 节点名称优先取该页的真实 <h1>，取不到才回退到路径段美化的名字。
  *
  * 幂等：已含 BreadcrumbList 的页面会跳过。
- * 用法：node scripts/build-breadcrumbs.mjs [--check]
+ * 用法：node scripts/build-breadcrumbs.mjs [--check] [--refresh]
+ *   --refresh  先删除已有的 BreadcrumbList 再按当前规则重建。
+ *              幂等跳过只认 MARKER，所以「规则本身变了」（例如 item URL 补斜杠）
+ *              时不会自动生效，必须显式刷新。
  */
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from 'node:fs'
 import path from 'node:path'
@@ -19,6 +22,9 @@ import { fileURLToPath } from 'node:url'
 
 const root = path.resolve(fileURLToPath(new URL('..', import.meta.url)))
 const CHECK = process.argv.includes('--check')
+const REFRESH = process.argv.includes('--refresh')
+const BREADCRUMB_RE =
+  /[ \t]*<script type="application\/ld\+json">\n[^\n]*"@type":"BreadcrumbList"[^\n]*\n[ \t]*<\/script>\n?/
 
 const SKIP_DIRS = new Set([
   'node_modules', 'dist', '.git', '.seo-geo', '.workbuddy-ai', '.agents', 'agent', 'sales-kit',
@@ -96,9 +102,12 @@ let skippedNoCanonical = 0
 
 for (const file of files) {
   const rel = path.relative(root, file)
-  const html = readFileSync(file, 'utf8')
+  let html = readFileSync(file, 'utf8')
 
-  if (html.includes(MARKER)) continue // 幂等
+  if (html.includes(MARKER)) {
+    if (!REFRESH) continue // 幂等
+    html = html.replace(BREADCRUMB_RE, '') // --refresh：拆掉旧的按新规则重建
+  }
 
   const canonical = (html.match(/<link rel="canonical" href="([^"]*)"/) || [])[1]
   if (!canonical) { skippedNoCanonical++; continue }
@@ -115,6 +124,9 @@ for (const file of files) {
 
   for (let i = 1; i <= segments.length; i++) {
     const prefix = '/' + segments.slice(0, i).join('/')
+    // byPath 的键是无斜杠形态（第 83 行剥掉了），但面包屑的 item 必须指向规范 URL。
+    // 少一个斜杠，JSON-LD 里的 item 就指向一个 301，Google 看到的是重定向而不是页面。
+    const prefixUrl = `${prefix}/`
     const isLast = i === segments.length
     const entry = byPath.get(prefix)
 
@@ -123,10 +135,10 @@ for (const file of files) {
       // 更深层页面用其自身 H1（如 "Export Sales Coordinator"）。
       // 避免 "Careers That Move You Forward." 这类标语被写进面包屑。
       const name = i === 1 ? pretty(segments[i - 1]) : pageName(html, pretty(segments[i - 1]))
-      items.push({ name: name.replace(/[.。]+$/, ''), url: `${ORIGIN}${prefix}` })
+      items.push({ name: name.replace(/[.。]+$/, ''), url: `${ORIGIN}${prefixUrl}` })
     } else if (entry) {
       // 中间层只在该路径确实有页面时才计入，名称用规则化段落名
-      items.push({ name: pretty(segments[i - 1]), url: `${ORIGIN}${prefix}` })
+      items.push({ name: pretty(segments[i - 1]), url: `${ORIGIN}${prefixUrl}` })
     }
   }
 

@@ -55,6 +55,15 @@ const ctaBlock = fill(src.match(/[ \t]*<section class="final-cta"[\s\S]*?<\/sect
 const footerBlock = fill(src.match(/[ \t]*<footer[\s\S]*?<\/footer>/)?.[0])
 if (!ctaBlock || !footerBlock) throw new Error('未能从 career-detail.js 取到 final-cta 或 footer')
 
+// 与 career-detail.js 的 otherRolesHTML() 保持一致：职位页互链，放在侧栏。
+// 两处必须同步，否则 JS 渲染版与静态预渲染版会漂移（prerender:careers:check 可检测）。
+function otherRolesHTML(currentSlug) {
+  return Object.keys(jobs)
+    .filter((s) => s !== currentSlug)
+    .map((s) => `<p><a href="/careers/${s}/">${esc(jobs[s].title)}</a></p>`)
+    .join('\n        ')
+}
+
 function renderBody(slug) {
   const job = jobs[slug]
   if (!job) throw new Error(`jobs 中缺少 ${slug}`)
@@ -62,6 +71,8 @@ function renderBody(slug) {
       <aside class="job-sidebar">
         <div class="job-kicker">JOIN THE TEAM</div>
         <p>${esc(SIDEBAR)}</p>
+        <div class="job-kicker" style="margin-top:26px;">OTHER OPEN ROLES</div>
+        ${otherRolesHTML(slug)}
       </aside>
 
       <section class="job-content">
