@@ -359,30 +359,56 @@ async function cmdInspect(auth, site, urls) {
     console.log(`  ${String(n).padStart(3)}  ${state}`)
   }
 
-  // 与上一次体检对比：只关心「从有到无」和「从无到有」的转变
+  // 与上一次体检对比：只关心「从有到无」和「从无到有」的转变。
+  //
+  // 文件名必须带时间，不能只用日期。最初只写 `inspect-<日期>.json`，结果同一天
+  // 跑一次 `--urls` 的小批量抽查，就把当天早些时候那份完整 51 条的基线**覆盖**了；
+  // 下一次全量跑时拿去对比的是一份 40 条的子集，重叠的 URL 恰好都没变，
+  // 于是输出「无变化」——把 37/51 → 41/51 这个真实进展完全掩盖掉了。
   const gscDir = path.join(root, '.seo-geo', 'gsc')
   mkdirSync(gscDir, { recursive: true })
-  const stamp = new Date().toISOString().slice(0, 10)
-  const prevFiles = existsSync(gscDir)
-    ? readdirSync(gscDir).filter((f) => /^inspect-.*\.json$/.test(f) && !f.includes(stamp)).sort()
+  const now = new Date()
+  const stamp = `${now.toISOString().slice(0, 10)}T${String(now.getUTCHours()).padStart(2, '0')}${String(now.getUTCMinutes()).padStart(2, '0')}`
+  const outFile = path.join(gscDir, `inspect-${stamp}.json`)
+
+  const candidates = existsSync(gscDir)
+    ? readdirSync(gscDir)
+        .filter((f) => /^inspect-.*\.json$/.test(f))
+        // 排除本次即将写入的文件：同一分钟内跑两次会撞名，否则会拿自己跟自己比。
+        .filter((f) => path.join(gscDir, f) !== outFile)
+        .sort()
+        .map((f) => {
+          try {
+            const j = JSON.parse(readFileSync(path.join(gscDir, f), 'utf8'))
+            return { file: f, total: (j.results || []).length }
+          } catch {
+            return null
+          }
+        })
+        .filter(Boolean)
     : []
+
+  // 优先和「规模相当」的上一次比（至少覆盖本次 90% 的 URL），避免拿小批量抽查当基线。
+  const comparable = candidates.filter((c) => c.total >= results.length * 0.9)
+  const prevPick = (comparable.length ? comparable : candidates).slice(-1)[0]
+
   let deltas = []
-  if (prevFiles.length) {
-    const prev = JSON.parse(readFileSync(path.join(gscDir, prevFiles[prevFiles.length - 1]), 'utf8'))
+  if (prevPick) {
+    const prev = JSON.parse(readFileSync(path.join(gscDir, prevPick.file), 'utf8'))
     const prevByUrl = new Map((prev.results || []).map((r) => [r.url, r.coverageState]))
     deltas = results
       .filter((r) => prevByUrl.has(r.url) && prevByUrl.get(r.url) !== r.coverageState)
       .map((r) => ({ url: r.url, from: prevByUrl.get(r.url), to: r.coverageState }))
-    console.log(`\n=== 与上次（${prevFiles[prevFiles.length - 1]}）相比的变化 ===`)
+    console.log(`\n=== 与上次（${prevPick.file}，${prevPick.total} 条）相比的变化 ===`)
     if (!deltas.length) console.log('  无变化')
-    for (const d of deltas) console.log(`  ${d.url}\n      ${d.from}  →  ${d.to}`)
+    for (const d of deltas) console.log(`  ${d.url.replace(/^https?:\/\//, '')}\n      ${d.from}  →  ${d.to}`)
   }
 
   writeFileSync(
-    path.join(gscDir, `inspect-${stamp}.json`),
-    JSON.stringify({ siteUrl: site, fetchedAt: new Date().toISOString(), indexed: indexed.length, total: results.length, deltas, results }, null, 2),
+    outFile,
+    JSON.stringify({ siteUrl: site, fetchedAt: now.toISOString(), indexed: indexed.length, total: results.length, deltas, results }, null, 2),
   )
-  console.log(`\n写入 .seo-geo/gsc/inspect-${stamp}.json`)
+  console.log(`\n写入 ${path.relative(root, outFile)}`)
 }
 
 // ---------------------------------------------------------------- 重新提交站点地图
