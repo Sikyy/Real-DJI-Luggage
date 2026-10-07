@@ -288,7 +288,7 @@ const PAGES = [
   {
     out: 'services/private-label-luggage/index.html',
     path: '/services/private-label-luggage/',
-    title: 'Build Your Own Luggage Brand | OEM Factory in Indonesia',
+    title: 'Private Label Luggage Manufacturer in Indonesia',
     description: 'Launch your own luggage brand: your name on the case, the lining and the carton, produced to your brief in Indonesia. MOQ 200 units, 25-55 day lead time.',
     h1: 'Build Your Own Luggage Brand',
     heroDesc: 'From brief to branded stock: your name on the case, the lining, the hardware and the carton, produced in Bogor, Indonesia.',
@@ -499,7 +499,7 @@ const PAGES = [
     out: 'products/pp-luggage/index.html',
     path: '/products/pp-luggage/',
     collection: true,
-    title: 'PP Luggage Manufacturing | Polypropylene Suitcases',
+    title: 'PP Luggage Manufacturing in Indonesia | Polypropylene',
     description: 'Polypropylene hard-shell luggage made in Indonesia: the lightest and lowest-cost shell, strong in the cold, MOQ 200 units and a 25-55 day lead time.',
     h1: 'PP Luggage',
     heroDesc: 'The lightest and lowest-cost hard shell. Polypropylene flexes instead of cracking, which is why it carries entry and mid-market ranges.',
