@@ -51,6 +51,21 @@ const ADDRESS = {
   addressCountry: 'ID',
 }
 
+// 公司在 Google Maps / Business Profile 上**已经存在**的列表。
+//
+// 关键点：列表用的是印尼法人名，与网站品牌名 "DJI Luggage" 不一致。Google 靠
+// 名称+地址+电话把网站和商家页认成同一个实体，名字对不上就会削弱这个关联。
+// 解法是同时补两个字段：
+//   legalName —— schema.org 里专门表示「注册名称」的属性
+//   sameAs    —— 声明「这个 URL 指的是同一个实体」
+//
+// CID 来自用户提供的 Maps 链接：!1s0x2e69c30045c91d6d:0x2582d60d79a048e0
+// 用 ?cid=<十进制> 形式，比带一堆参数的原始 URL 稳定。
+// ⚠️ 列表名写的是 "PRODUCK"（拼写错误），下面用的是正确拼法；若与 PT 注册名
+//    不一致，改这一行即可。
+const LEGAL_NAME = 'PT. DJI Travel Product Indonesia'
+const SAME_AS = ['https://maps.google.com/?cid=2702958079739185376']
+
 const BLOCK_RE = /(<script type="application\/ld\+json">\s*)([\s\S]*?)(\s*<\/script>)/g
 
 /**
@@ -84,6 +99,13 @@ function enrich(node, isTopLevel = true) {
         a.addressRegion !== ADDRESS.addressRegion ||
         a.postalCode !== ADDRESS.postalCode
       if (addressIncomplete) { node.address = { ...ADDRESS }; touched++ }
+
+      // 把网站品牌名与印尼法人名、以及 Google Maps 上那个已存在的列表连起来。
+      if (node.legalName !== LEGAL_NAME) { node.legalName = LEGAL_NAME; touched++ }
+
+      const existing = Array.isArray(node.sameAs) ? node.sameAs : []
+      const missing = SAME_AS.filter((u) => !existing.includes(u))
+      if (missing.length) { node.sameAs = [...existing, ...missing]; touched++ }
     }
   }
 
